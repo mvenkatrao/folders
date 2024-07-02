@@ -1,0 +1,212 @@
+- ordinary ffile
+l represent link file
+
+c character special file
+b block speical files
+s socket files
+
+types of files in linux
+========================
+1 . ordinary files
+2 . directory files
+3 . device files
+
+10-59/10 5 * * *
+Clear the cache every 10 minutes at 5am, starting from 5:10am.
+
+
+to run 3 months first day once at 8am
+
+0 8  */3 *
+
+to take a dump evvery hour
+
+0 * * * * 
+
+
+to run a job at 12 PM
+
+0 12 * * * 
+
+to run a job at midnight (12AM) 
+
+0 12 * * * 
+
+
+00 (12 AM)
+
+
+Every five minutes starting at 1 p.m. and ending at 1:55 p.m. and then starting at 6 p.m. and ending at 6:55 p.m., every day
+
+*/5 13,18 * * ?
+
+Every minute starting at 1 p.m. and ending at 1:05 p.m., every day:
+
+ 0-5 13 * * *
+ 
+ 
+ 
+ At 1:15 p.m. and 1:45 p.m. every Tuesday in the month of June:
+ 
+ 
+ 
+ 15,45 13 ? 6 3
+ 
+ At 9:30 a.m. every Monday, Tuesday, Wednesday, Thursday and Friday:
+
+30 9 * * 1-5
+
+At 6 p.m. on the last day of every month:
+
+0 6 L * ? (to mention last we are using L)
+
+At 6 p.m. on the third to last day of every month:
+
+
+0 18 L-3 * * 
+
+At 10:30 a.m. on the last Thursday of every month:
+
+30 10 * * 4L
+
+At 10 a.m. on the third Monday of every month:
+
+0 10 ? * 1#3  (here 1 is monday 3rd rd week)
+
+At 12 midnight on every day for five days starting on the 10th day of the month:
+
+0 0-5 10 * ?
+##################################################################################################
+
+* * * * * * (Every second)
+* * * * * (evvery minute) or (0 * * ? * *) or (* * ? * * * )
+
+Ref : https://crontab.cronhub.io/
+
+
+
+
+###########################################################################################################################
+
+what is cron?
+cron is simple words is a time based job scheduler user to run a specified jobs periodically at fixed times dates or intervals 
+
+why it's needed?
+################
+
+this would help to run the job periodically without any human interaction a set time (automation)
+special characters used in the expression :
+#########################################
+
+* ((any) :: job executes at evvery time unit .
+- (range):: Rangge of the time unit.
+, (values):: Multiple values of time unit.
+/ (increments) :: specify inncremental values of the time unit.
+? (no specific value) ::  Useful when you need to specify something in one of the two fileds in which the character is allowed , but not the other.
+For example, if i want my trigger to fire on particular day of the month (say, the 10th), but dont' care what day of the week that happends to be, i would put 10 in the day of the month field and ? in the day of the week field. 
+
+
+# (occurence) :: it is used to specify the N-th occurence of a weekday of the month, for example 
+
+if i want 3rd friday of the month can be indicated as 6#3
+
+example :
+######   3rd saturday
+         first should mention the 6#3 (first comes friday and 3rdfriday)
+		 
+		 
+L (last) :: it has different meanings when used in vvarious fields, for example if it's applied in the day of the month field then it means last day of the month
+
+to spcify last sunday it comes under like
+* * * * 0L
+
+example :
+#######
+
+15 10 * * Mon,Tue
+
+Fire at 10:15 am on the last day of every month
+
+15 10 L * ?
+
+Run the schedule at 9:00 a.m. every day.
+
+0 9 * ? *
+
+Run the schedule every 5 seconds for 1 minute beginning at 9:00 a.m. every day.
+0/5 9 * ? *
+
+
+
+Run the schedule at 9:25 a.m. every Friday.
+25 9 * ? */FRI
+25 9 * * 6 
+
+It denotes that a job will execute at 6 PM on the third to last day of every month.
+0 18 L-3 * ?
+
+It denotes that a job will execute at 10:30 AM on the last Thursday of every month.
+30 10 ? * 5L
+
+It denotes that a job will execute at 10 AM on the third Monday of every month.
+0 10 ? * 1#3
+0 10 ? * 1#3
+
+It denotes that a job will execute at 12 midnight on every day for five days starting on the 10th day of the month.
+0 00 10/5 * ?
+It denotes that a job will execute on every November 11th at 11:11 AM
+11 11 11 11 ?
+
+Fire at 10:15 AM on every last Friday of every month during the years 2002, 2003, 2004, and 2005.
+15 10 ? * 6L 2002-2005
+
+
+
+It denotes that a job will execute on first Monday in the month at midnight.
+0 0 0 ? * MON#1
+
+It denotes that a job will execute at 8:00, 8:30, 9:00, 9:30, 10:00 and 10:30 every day.
+0/30 8,9,10 * * *
+ 
+ 
+ 	Once every five minutes
+	
+	*/5 * * * *
+	
+	Every hour at minutes 20, 30 and 45 of the hour (Thus thrice in each hour)
+	
+	20,30,45 *  * * * 
+	At 2:30 p.m. and 2:45 p.m. every Monday in the months January to May (1-5)
+	
+	30,45 14 ? JAN-MAY */1
+	Every 09:00 a.m. from Monday to Friday
+	
+	At the 15th second of the 30th minute for every hour. E.g. 10:30:15, 11:30:15, …
+	15 30 * ? * *
+	
+	At 10:30:25 a.m. every day in the year 2021
+	
+	25 30 10 * * ? 2021
+	
+	At 08:20 a.m. on every last Tuesday of each month for the years 2020, 2021 and 2022
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+

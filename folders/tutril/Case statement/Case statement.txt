@@ -1,0 +1,91 @@
+#!/bin/bash
+
+hour=$(date +%H)
+
+case $hour in
+    0[0-9]|1[0-1])
+        echo "Good morning!"
+        ;;
+    *)
+        echo "Good afternoon!"
+        ;;
+esac
+
+#!/bin/bash
+
+day=$(date +%a)
+
+case $day in
+    Sat|Sun)
+        echo "Weekend!"
+        ;;
+    *)
+        echo "Not weekend yet!"
+        ;;
+esac
+
+
+
+
+
+
+#!/bin/bash
+
+read -p "Enter a number: " num
+
+case $((num % 2)) in
+    0)
+        echo "Even"
+        ;;
+    *)
+        echo "Odd"
+        ;;
+esac
+
+
+
+#!/bin/bash
+
+month=$(date +%b)
+
+case $month in
+    Jan)
+        echo "January"
+        ;;
+    Feb)
+        echo "February"
+        ;;
+    Mar)
+        echo "March"
+        ;;
+    Apr)
+        echo "April"
+        ;;
+    May)
+        echo "May"
+        ;;
+    Jun)
+        echo "June"
+        ;;
+    Jul)
+        echo "July"
+        ;;
+    Aug)
+        echo "August"
+        ;;
+    Sep)
+        echo "September"
+        ;;
+    Oct)
+        echo "October"
+        ;;
+    Nov)
+        echo "November"
+        ;;
+    Dec)
+        echo "December"
+        ;;
+esac
+
+
+

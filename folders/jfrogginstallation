@@ -1,0 +1,27 @@
+wget https://releases.jfrog.io/artifactory/artifactory-rpms/artifactory-rpms.repo -O jfrog-artifactory-rpms.repo;
+sudo mv jfrog-artifactory-rpms.repo /etc/yum.repos.d/;
+sudo yum update && sudo yum install jfrog-artifactory-oss
+sudo systemctl status artifactory.service
+======================================================================
+what is artifactory?
+
+The files that contain both the compiled code and the resources that are used to compile them are known as artifacts. they are readily deployable files.
+in java an artifact woulbe a .jar .war .ear file
+in NPM the artifact file woulbe a .tar.gz file
+in .NET the artifact file would be a .dll file
+
+what is an artifact repository?
+
+an artifact repository is a repository which can store multiple diffrenct versions of a artifacts. each time the war file or targz file is created it is stored in a server dedicated for the artifacts.
+
+=======================================================
+
+why should we use jfrogg for devops?
+--- system stability and reliability with artifactory high avaialability
+--- managing binaries across diffrent environements
+--- security,access control and tracebility
+--- full support for docker
+--- quickly replicating remote repos in local area
+--- it has support for chef
+
+

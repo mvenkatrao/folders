@@ -1,0 +1,69 @@
+Liveness And Readiness probes
+##################################
+
+Liveness Probe:
+  Suppose that a pod is running our application inside a contaner , but due to some reason let's say memory leak,CPU usage application deadlock etc,
+  the application i not rsponding to our requets, and stuck in error state
+
+
+Liveness probe checks the container health as we tell it do, and if for some reason the liveness probe fails it restarts the container
+
+Readiness probe:
+######################
+
+-- This type of probe is used to detech if a container is ready to take the 
+-- it will remove from the end point
+-- if it's success
+
+httpGet 
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: javawebapprs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+       app: javawebapp
+  template:
+    metadata:
+      name: javawebapppod
+      labels:
+        app: javawebapp
+    spec:
+      containers:
+      - name: javawebappcontainer
+        image: ashoknagari/javawebapp:10
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /java-web-app  ###(we can set if it's the root context like this /)
+            port: 8080
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 15
+        livenessProbe:
+          httpGet:
+            path: /java-web-app
+            port: 8080
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          periodSeconds: 15
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: javawebappsvc
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: javawebapp
+#############################################################################################################################
+
+ 

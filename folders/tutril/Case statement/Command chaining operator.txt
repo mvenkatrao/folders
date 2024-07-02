@@ -1,0 +1,49 @@
+logical operators
+
+;
+&&
+| | 
+
+
+if first command fails then next command will pass (only commands fails only it will work this || (or logical operator ))
+
+
+
+command 1 && command2 || command3 (in this scenario command3 will execute when command1 or command2 fails )
+###########################################################
+ex : 
+
+[[ -e "abcdjfhr" ]] && echo "file is there" || echo "file is not there"  
+
+
+command1|| command2 && command3
+##################################
+
+ex : 
+
+[[ -e my_search ]] || echo "file is not rhere " && touch my_search
+
+
+
+; it will execute if previous command fails also
+&& it will not execute if previus command fails
+
+
+#!/bin/bash
+
+# Check if httpd is running
+if systemctl is-active --quiet httpd.service; then
+  echo "httpd is already running"
+else
+  # Start httpd
+  sudo systemctl start httpd.service
+  echo "httpd has been started"
+fi
+
+
+
+
+systemctl status httpd.service | grep -q "Active: active (running)" && echo "httpd is already running" || sudo systemctl start httpd.service && echo "httpd has been started"
+
+
+2>/dev/null

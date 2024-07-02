@@ -1,0 +1,153 @@
+there are two types
+
+
+1.Bug
+2.Volurnerability
+3. Code smell
+
+
+
+community version -- there are some certain rules how lines it can scan 
+developer version -- no limit
+
+
+
+Code Review: Verifying the code against the standars
+Code Coverage: How many lines of source code is tested by unit test cases.
+
+100 lines
+90 lines of code tested by Junit Test case
+employeeserviceTest.java
+
+90 % code coverage
+developer should write junit test cases 
+799-789-3489
+
+sonarqube is a code quality management tool
+
+
+Relational Databases
+------------------------
+
+Oracle
+My SQL server
+
+MYSQL
+Postgre SQL
+
+DB2
+
+big amount data we can use relational data base
+
+
+tables 
+rows and columns
+
+----------------
+unstructure format
+we will be having  most of the time read operations and also to create dashboards we can se mongo DB
+
+NOSQL DB
+
+Mongo DB
+
+sonarqube supporting below data bases MySQL and Postgre SQL
+oracle ms sql server
+in built one data base H2 database
+
+
+it will identifies the below category of issues.
+------------------------------------------------
+
+
+Duplicated code
+Writting Duplicated code
+
+
+Coading standars
+ex:  EmployeeService.java
+camel case
+---------------------------------
+Unit Tets
+
+Complex code
+Comments
+Potential Bugs
+Ex: exception handling machanisam
+  try
+  catch
+  finally
+  throws
+  throw
+
+Architecture & Designs
+
+it supports more than 20 languages
+
+it supports JDK 11 scanner and server
+
+
+
+
+sonarqube scanner input the our source code
+
+sonarqube scanner will scan the code that will give the report to the sonarqube server\
+
+sonarqube servver 
+  - computer enginee 
+        -- this will classify in vaulanabilities
+        -- Bugs
+        -- Code Smells
+this will store in data base
+
+webserver (one more component in sonarqube server)
+ -- for UI
+search enginee (one more component in sonarqube server)
+
+  -- 
+
+Quality Mode
+------------
+
+Reliability
+==========
+Bugs track code that is demonstrably wrong or highly likely to yield unexpected behaviour
+
+Security
+-----------
+
+Vulnerabilities are raised on code that can be exploited by hackers
+security hotspots : are raised on security-sensitive code that requires manual review to assess whether or not a vulnerability exists
+Maintainability:
+--------------
+code smells Will confuse maintainers or give them pause they are measered primaily in termsn of the time they will take to fix
+
+
+Force User authentication we should enable
+
+we should delete entire temp directory with sonar user
+sudo rm -rf /opt/sonarqube-7.8/temp/
+
+we can configure in the pom.xml
+
+sudo apt intall npm
+apt install -y nodejs
+npm install sonarqube-scanner --save-dev
+npm run sonar
+
+
+quality profile
+---------------
+
+ quality profiles are collections of rules to apply during an analasysis (customized rules)
+
+quality gates 
+-------------------
+
+how much code quality should be conditions we can define
+
+we can delete the projects we can go to Administration tab --> Projects-- We can select the project and delte
+systeminfo logs we can get under Administration --> system 
+systemtab --> system--> webb--> compute Engine --> Search Engine
+we can restart also under systemtab
+ 

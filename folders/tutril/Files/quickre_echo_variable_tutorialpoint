@@ -1,0 +1,105 @@
+#!/bin/bash
+
+VAR="world"
+echo "Hello $VAR!" # => Hello world!
+############################################
+NAME="John"
+
+echo ${NAME}    # => John (Variables)
+echo $NAME      # => John (Variables)
+echo "$NAME"    # => John (Variables)
+echo '$NAME'    # => $NAME (Exact string)
+echo "${NAME}!" # => John! (Variables)
+
+NAME = "John"   # => Error (about space)
+
+
+#####################################################################################
+
+
+Comments
+########
+# This is an inline Bash comment.
+: '
+This is a
+very neat comment
+in bash
+'
+
+##############################################################################################
+
+Command line arguments or positional arguments
+################################################
+
+
+$1 … $9	Parameter 1 ... 9
+$0	Name of the script itself
+$1	First argument
+${10}	Positional parameter 10
+$#	Number of arguments
+$$	Process id of the shell
+$*	All arguments
+$@	All arguments, starting from first
+$-	Current options
+$_	Last argument of the previous command
+
+example file :
+############
+
+Your Process id is : 309487
+[root@ip-172-31-45-211 quickr]# cat -n commandline_arguments.sh
+     1  #!/bin/bash
+     2
+     3  echo "The all values with \$* are : $*"
+     4  for each in "$*"
+     5  do
+     6    echo "$each"
+     7  done
+     8
+     9  echo "The all the values with \$@ are $@ "
+    10
+    11  for each in "$@"
+    12  do
+    13    echo "$each"
+    14  done
+    15
+    16  echo "Here is the last current options: $_ "
+    17
+    18  echo "Your Process id is : $$"
+[root@ip-172-31-45-211 quickr]#  ./commandline_arguments.sh 34 50 84 "Hi here is the example for command line arguments" 45 87
+####################################################################################################################################
+
+
+
+Redicrections 
+  0 . STDIN
+  1. STDOUT
+  2. STDERR
+
+we have some operators
+ * output redirection
+ * Input redirection
+ * combining redirection
+
+output redirection
+###################
+> (it will store the output to one file)
+  ex :
+     ls -lrt > output.txt
+     
+>> (it will store the data if data is existing also)
+	 ex : 
+	    ls -lrt >> output.txt
+
+		
+to store a particular output or error into a single file we can use below command
+
+ls -lrt > success_error.txt 2>&1
+
+
+
+
+
+
+		
+		

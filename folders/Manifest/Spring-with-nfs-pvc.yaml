@@ -1,0 +1,102 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springapp-Deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: springapp
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  minReadySeconds: 60
+  template:
+    metadata:
+      name: springapppod
+      labels:
+        app: springapp
+    spec:
+      containers:
+      - name: springapp
+        image: ashoknagari/spring-app-mongo:1
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MONGO_DB_HOSTNAME
+          value: mongo
+        - name: MONGO_DB_USERNAME  # Corrected typo in name field
+          value: devdb
+        - name: MONGO_DB_PASSWORD
+          value: devdb@123
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springapp
+spec:
+  selector:
+    app: springapp
+  ports:
+  - port: 80
+    targetPort: 8080
+    nodePort: 30032
+    type: NodePort
+---
+apiVersion: v1
+kind: PersistentVolumeClaim  # Corrected typo in the resource kind
+metadata:
+  name: mongodbpvc
+spec:
+  storageClassName: ""  # Updated storageClassName to empty string
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Mi
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: mongodbRS
+spec:
+  selector:
+    matchLabels:
+      app: mongodb
+  template:
+    metadata:
+      name: mongodbpod
+      labels:
+        app: mongodb
+    spec:
+      volumes:
+      - name: pvc  # Corrected typo in volume name
+        persistentVolumeClaim:
+          claimName: mongodbpvc  # Corrected typo in claimName field
+        containers:
+        - name: mongodbcontainer
+          image: mongo
+          ports:
+          - containerPort: 27017
+          env:
+          - name: MONGO_INITDB_ROOT_USERNAME
+            value: devdb
+          - name: MONGO_INITDB_ROOT_PASSWORD  # Corrected typo in name field
+            value: devdb@123
+          volumeMounts:
+          - name: pvc
+            mountPath: /data/db
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+spec:
+  type: ClusterIP
+  selector:
+    app: mongodb
+  ports:
+  - port: 27017
+    targetPort: 27017

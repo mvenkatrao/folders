@@ -1,0 +1,62 @@
+kubectl get nodes
+kubectl get ns
+kubectl get pods -o wide -n kube-system
+kubectl get all -n kube-system
+  <podname>
+ kubectl get pods -o wide
+  kubectl token create --print-join-command
+kubectl get pods --all-namespaces
+
+kubectl get pods --show-labels
+
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+
+we are trying to setup kubectl to connect to API server which is there as a root user
+
+
+weave-net-wgxtc                          2/2     Running   0             27h   172.31.15.111   ip-172-31-15-111   <none>           <none>
+ubuntu@ip-172-31-0-12:~$ kubectl get pod javawebapppod -o wide
+NAME            READY   STATUS    RESTARTS   AGE   IP          NODE              NOMINATED NODE   READINESS GATES
+javawebapppod   1/1     Running   0          25h   10.44.0.1   ip-172-31-6-160   <none>           <none>
+ubuntu@ip-172-31-0-12:~$
+
+
+
+ ubuntu@ip-172-31-0-12:~$ kubectl describe service javawebappsvc
+Name:              javawebappsvc
+Namespace:         default
+Labels:            <none>
+Annotations:       <none>
+Selector:          app=javawebapp
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                10.105.109.116
+IPs:               10.105.109.116
+Port:              <unset>  80/TCP
+TargetPort:        8080/TCP
+Endpoints:         10.44.0.1:8080
+Session Affinity:  None
+Events:            <none>
+ubuntu@ip-172-31-0-12:~$
+
+kubectl run -it --rm testpod --image=ubuntu
+apt update -y
+apt install curl
+curl javawebappservicename
+#####################################
+
+
+what is the node port range in k8?
+
+node port is a service type when we create service type of node port it will give one node port which we can access out side of the network
+
+port range 30000-32767
+within this range we will get the service port for that service
+
+we can access by using that port out side of the network
+###################################################
+sudo iptables-save | grep 32362

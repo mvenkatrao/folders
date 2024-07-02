@@ -1,0 +1,61 @@
+ httpd -v | grep "version" | awk '{print $3}' | cut -d "/" -f 2 && httpd -v | grep  "built" | cut -d " " -f 5-7
+ 
+ 
+ 
+ 
+ awk [options] '[selection_criteria] {action}' input-file
+ ##############################################################
+ in above selection criteria is an optional
+ 
+ there is a awk seperate scripting langue for this same it's like a bash scripting
+ ##########################################################################
+ 
+ awk -F '[selection_criteria]{action}' inputfile 
+ 
+ cat inputfile.txt | awk [options] '{selection_criteria} {action}' inputfile.txt
+ 
+ 
+ -F ( to specify a filed seperator.(Default seperator is tab and space))
+ -f To specity a file that contains awk script
+ -v var=value to declare a variable.
+ 
+ selection criteria: pattern/condition 	
+ 
+ 
+ rows and records both are same
+ 
+ colums means fileds
+ 
+  awk -F "[ ]" 'NR==1 {print $2,$3}' grep.sh
+  
+  in awk tab is a space
+  
+  
+######################################################################################################################
+
+awk '{print $1}' demo.txt
+
+
+awk '{print NR}' demo.txt (it will display how many lines )
+
+awk '{print NR, $0}' demo.txt (it will dispaly all the fields and lines with line numbers)
+awk '{print NR, $0,NF}' demo.txt (it will display how many fields are there by using NF)
+
+NR means number of records
+NF number of fields
+
+
+if we use $NF we will get last record last field 
+
+
+awk '{print NR,$NF}' demo.txt 
+
+
+
+
+
+
+
+
+
+

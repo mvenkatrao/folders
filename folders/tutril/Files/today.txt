@@ -1,0 +1,12 @@
+systemctl command (service)
+whatis mkdir command
+help command
+info mkdir command
+man command
+hostname google.com
+ ip a
+hostname -i
+du -sh
+df
+CPU
+################################################################

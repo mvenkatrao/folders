@@ -1,0 +1,512 @@
+- By Hashicrop
+- Open Source
+- Developed using Golang (Go)
+- Introduced in 2018 - Mitchell Hashimoto & Armon Dadar
+
+
+what is vault
+-----------
+
+- Centralized Secrets && encryption management system
+- Identity-based
+- gated by athentication and authorization methods
+
+- basically vault manages the secrets && encryption management system
+
+what is secrets?
+-----------------
+
+anything controls the access (A & A)
+- authentication 
+- authenorization
+
+Passwords
+PKI Certificates
+SSH Keys
+key Value
+API Key
+Encryption Keys (Symmetric & Asymmetric)
+Time-Based one-time password (TOTP)
+TLS Certs
+etc ....
+
+
+
+===========================================
+
+key Features of vault
+
+Secure Secret Storage
+  - Integrated Storage (Local or Consul)
+  - External Storage (AWS,Azure,GCP)
+
+Dynamic Secrets
+- Secrets on-demand for AWS
+- TOTP - Revoke after that
+
+Data Encryption
+- Encrypt & Decrypt data without storing it
+- Creation encryptin keys
+
+Leasing and Renewal 
+- Lease - allow & revokes the secret
+- Renew- the secret
+
+Revocation
+- Revoke secrets
+- Based on - User,Bulk,type
+
+=============================================================
+
+
+
+
+Use Cases -1
+
+General Secret Storage
+ - Store it & Read in plain text - Support Audit
+
+Employee Credential Storage
+- Manage employee credentials
+- Create,Rollout,manage,revoke etc
+
+
+API Key Generation for Scripts
+- Ideal for scripts - dynamic
+- AWS,Azure,GCP - access & IAM
+
+
+Data Encryption
+
+- Encrypt/decrypt of somewhere data
+- worry free encryption
+
+=========================================================================================================
+
+Use Cases -2
+
+Automated PKI Infrastructure 
+- Creating, rotating, and managing certificates
+
+Data Encryption & Tokenization
+
+- Data across clouds, application, and systems
+- Encrypt and tokenize
+ 
+DataBase Credentials Rotation
+- Each DB credentials for apps, Services, And Users
+- Automated shared DB credentials rotation
+
+Dynamic Secrets
+
+- Organization - avoid long living credentials
+- Generate time-based access credentials
+  this will generate based on the rules based on the certain time by 5 mins by 10mins
+
+Key Management
+
+- Centrally  Manage & automate encryption keys
+- across environments
+where we can maintain the keys
+
+Kubernetes Secrets
+
+- No sharing of creds/token to pods
+- Vault to securely inject secrets to stack
+
+Secrets management
+- Keys, and tokens
+- across different clouds & environments
+======================================================================================
+
+
+
+Vault Architecrutte
+
+Core - Storage 
+Default storage is Raft Storage or (Consul) or (RDBMS) or (Cloud Backends) or (Spanner)
+
+Secret Enginee
+ - KeyValue
+ - Databases
+ - Transit
+ - SSH
+ - OTP
+ - Custom
+ - PKI Certificates
+ - AWS
+ - Azure
+ - Google Cloud
+ - Consul
+ - NOmad
+------------------------------
+
+
+ways to use vault	
+
+CLI
+Hashicrop Cloud Platform (HCP)
+UI
+
+-----------------------------------------
+
+How to install Vault
+
+Install Using Linux package
+Use a Precompiled binary
+Install from source
+
+
+
+Vault Integration
+
+Auth Methods
+   - Cloud 
+   - IDP
+   - Infrastructure
+   	- Audit
+        - Monitoring
+  	- Compliance
+
+
+RUNTIME INTEGRATION
+
+- Cloud CI/CD pipeline 
+- Scheduler & Orchestrators
+- Serverless
+- Bussiness Systems
+   - Cloud 
+
+
+
+Installation 
+
+1. Install Vault Server
+  - Install as per doc steps
+2. Vault Configuration
+  - Storage (Local DB or Consul etc)
+  - Listener (HTTPS)
+  - Telemetry
+  - Replication
+3. Vault Started
+  - Check vault Server Status
+
+
+
+
+Vault Configuration file path
+
+HCL or JSON
+Located at /etc/vault.d/vault.hcl
+
+All Configuration Settings
+
+ - Default - No write & Execute
+
+File permissions can disable using
+
+VAULT_DISABLE_FILE_PERMISSIONS_CHECK
+
+
+Vault Configuration file
+
+
+ui = true
+
+
+storage "file" {
+  path = "/opt/vault/data"
+}
+
+# Consul Bakend
+ storage "consul" {
+    address = "127.0.0.1:8500"
+    patj = "vault"
+}
+
+replication {
+  resolver_discover_servers = true
+  logshipper_buffer_length = 1000
+  longshipper_buffer_size = "5gb"
+  allow_forwarding_via_header = false
+  best_effort_wal_wait_duration = "2s"
+}
+
+# HTTPS listener
+
+listener "tcp" {
+  address = "0.0.0.0:8200"
+  tls_cert_file = "/opt/vault/tls/tls.crt"
+  tls_key_file = "/opt/vault/tls/tls.key"
+
+}
+
+
+
+- shamir's secret sharing algorithm
+
+
+vault operator init - > to get the keys
+
+vault operator unseal <1st key>
+
+vault operator unseal <2nd key>
+vault status
+
+vault operator unseal <3rd key>
+
+vault status
+
+
+
+vault login 8h7R6YKUPWamD0JlQ6RPhHBv
+VAULT_ADDR=http://127.0.0.1:8200
+
+
+
+vault server -dev (in locally)
+
+export VAULT_SKIP_VERIFY=true
+export VAULT_ADD='http://127.0.0.1:8200'
+export VAULT_TOKEN="root_token"
+
+vault status
+
+vault operator init -key-shares=5 -key-threshold=3
+
+
+
+Unseal Key 1: AmOX0VC6NPNQzMWh+iMdLTlSdCiNuwJYVrPRZFuUfpHT
+Unseal Key 2: dvr4mw4ur7DVC2cXadCp2dhjsq3sx/DCSxPoKEolC7CN
+Unseal Key 3: EF4VV0QnZvKfM/1rVgss0kuyYnRV4jWNPLXcYilpwGVg
+Unseal Key 4: RQTZ9Ej6vnd1aa10NW8HdDFF7tJv5yKMlwNO2LfGA1Ot
+Unseal Key 5: Y/+ZdbK+trFgyTKyv/0AmKs4/MUztb10PIbLnPgkNBEB
+
+Initial Root Token: 8h7R6YKUPWamD0JlQ6RPhHBv
+
+============================================
+
+
+Authentication Methods Types
+
+Generic
+ - AppRole
+ - JWT
+ - OIDC
+ - TLS Certificates
+ - Username & password
+
+
+Cloud
+- AliCLoud
+- AWS
+- Azure
+- Google Cloud
+- Github
+
+
+Infra
+
+- Kubernetes
+- LDAP
+- Okta
+- RADIUS
+==============================================
+
+
+Vault Auth Steps
+
+- Enable - enable backend
+- Write - store auth details
+- Login Login with it
+- Disable
+
+
+Vault authentication for time period
+after that it will authentication will expire
+
+
+-
+
+new token 1VMi7D9iHYhhGO2AdcmoT2mO
+
+
+vault auth enable <token>
+
+vault token create
+
+vault login token=<token>
+vault auth disable=<token>
+
+vault path-help auth/token
+
+ vault auth enable github
+vault login -method=github token=<GithubToken>
+
+
+vault auth enable aws
+vault write auth/aws/config/client \
+  secret_key=xxxxxxx \
+  access_key=xxxxxxx
+
+vault paht-help auth/aws
+
+
+
+tokens= for admins
+Github= for developers
+LDAP = for users/svc accounts
+AppRole=For machines or apps
+Kubernetes=for apps
+AWS/Azure/GCP = for apps
+JWT = For apps
+MFA = for authorized users
+
+======================
+
+Secret eninee
+Store,Generate or encrypt the secrets
+in the vault, secrets will be stored in a "path"
+Every Secret has configuration
+
+
+Vault Secrets
+
+Enable Secret
+write - move secret path
+Read - Read Secret
+Delete 
+Disable
+
+vault login token=<token>
+
+
+vault secrets list
+
+vault secrets enable -path=gvr kv
+
+vault kv put gvr/webui user=gvr pass=123
+
+vault kv get gvr/webui
+vault kv delete gvr/webui
+
+vault secrets disable kv
+vault secrets disable gvr
+
+
+vault secrets list
+vault secrets enable -path=gvr kv
+vault kv put gvr/webui user=admin pass=xyz
+vault kv get gvr/webui user
+vault kv list gvr/webui
+vault kv delete gvr/webui
+
+vault secrets disable gvr
+----------------------------
+
+storing in versions
+
+vault secrets enable -path=gvr kv
+vault kv put gvr/webui user=gvr pass=124 -- creating the user and passwords
+vault kv get gvr2/webui - we are trying to read
+vault secrets enable -version=2 -path=gvr2 kv -- we are enabling the verioning for the particular path
+vault kv get -version=2 gvr2/webui  -- based on the version we can get
+vault kv metadata get gvr2/webui
+vault kv delete -versions=2 gvr2/webui
+
+vault secrets list -detailed
+===============================================
+
+
+
+vault secrets enable -version=2 -path=gvr kv
+vault write gvr/config max_versions=4
+vault read gvr/config
+vault kv put gvr/cus name="gvr" pass="1111"
+vault kv get -version=1 gvr/cus
+vault kv delete -versions=1 gvr/cus
+vault kv undelete -versions=1 gvr/cus
+vault kv destroy -versions=2 gvr/cus
+vault kv metadata get gvr/cus
+vault kv metadata put -mount= gvr/cus -max-versions 3 -delete-version-after="1H1m1s" kv
+==================================================================================================
+
+AppRole Pull Authentiction Method
+
+AppRole => For Machines or Apps
+Kubernetes => Apps
+AWS => For Apps
+JWT => For Apps
+MFA => for authorized Users
+
+====================================
+
+AppRole Auth Methods
+
+OIDC - OpenID Connect Method/Identity Providers
+Azure AD with OIDC & External groups
+OIDC
+
+
+Jenkins logins with RoleID & SecretID
+RoleID refering to the policy 
+SecretID refering to the actual Secret
+
+
+Retriever specific secret (DB Secret1)
+
+
+AppRole Config/Use Via
+
+Via CLI
+Via API CALLS
+
+
+
+1 . Enable AppRole auth method
+2.  Create DB Secret
+3.
+
+
+
+vault kv put secret/mysql/webapp db-name="users" username="admin" password="12345"
+vault kv get secret/mysql/webapp
+vault write auth/approle/role/jenkins token_policies="jenkins" token_ttl=1h token_ttl_4h secret_id_num_uses=5 
+vault read auth/approle/role/jenkins
+vault read auth/approle/role/jenkins/role-i
+vault write -f auth/approle/role/jenkins/secret-id
+vault read auth/approle/role/jenkins/role-id
+vault write -f auth/approle/role/jenkins/secret-id
+
+
+
+
+root@ip-172-31-50-192:~# vault policy write jenkins -<<EOF
+path "secret/my/sql/webapp" {
+capabilities = ["read"]
+}
+EOF
+
+===================================================
+
+
+vault policies
+
+path "gvr/webui" 
+{
+
+   capabilities = ["create","update","read","list"]
+}
+
+
+
+
+create - POST
+read - GET
+update POST/PUT
+delete - DLETE
+list - LIST
+path - PATCH
+sudo - Access to path that root
+deny - Disable access path
+

@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: ReplicationController
+metadata: 
+  name: javawebapprc
+spec:
+  replicas: 1
+  selector:
+    app: javawebap
+  template:
+    metadata:
+      name: javawebapppod
+      labels:
+        app: javawebap
+    spec:
+      containers:
+      - name: javawebappcontainer
+        image: ashoknagari/javawebapp:1
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: RCService
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: javawebap
+---
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,268 @@
+pipeline as a code instead of clicks we can automate the all the things
+
+diffrence between declarative way and scripted way
+*****************************************************
+
+what is the umask value of root
+---------------------------------
+
+umask value
+############             default dir permissions file permissions 
+for root user : 022        0777 			0666
+			(-)0022                      (-)0022			
+			--------		     --------	
+			   0755			        0644	
+
+umask value
+############             default dir permissions file permissions
+for normal user : 002      0777
+			(-)0002                      0666
+			--------		(-)  0002				
+			   0775			 ----------  		
+					             0664	
+=============================================================
+	
+netstat -tunlap --> open ports
+------------------------------------------
+what is swap memory ?
+-------------------
+
+when we are working on something when system goes down the task which we were doing that's going to save in swap memory
+
+what is the use of multi stage dockerfile?
+----------------------------------------------
+it will have multiple FROM commands multiple stages easy to find the errors and low resource utilizations
+
+how do you set up the database in aws?
+-----------------------------------------
+
+first thing is sign in admin after that you need to create RDS 
+
+how to creat zip folder?
+--------------------------
+zip archive.zip file1.txt file2.txt
+
+=======================================
+
+diffrence between CI,CD countious integration countious delivery countious deployment?
+countious integration like when developer dones the commit 
+
+countious delivery --> manual approval when evverything goues good
+countious deployment --> this is the automate process
+-------------------------------------------
+
+which version is git you used?
+-----------------------------
+
+git merge and git rebase?
+-------------------------
+
+basically the purpose of git merge and git rebase are the same but there is a diffrence in them when we do the rebase it in corporate the changes to the another branch which willl not create extra commit id when we use this 
+when we use git merge this will create a new commit id
+----------------------------------------
+
+what is the branching strategy?
+================================
+==============================
+
+master
+dev
+feature
+release
+hotfix
+
+master contains the production and stable code
+dev --> pre-production code
+
+master--> dev --> featue --> (when they done with feature they will merge it back to the dev branch) --> merge into dev --> release --> hot fix is to done with patching
+============================================
+
+Build life cycle
+------------------
+
+clean
+build --> 
+site --> generate site document like four phases -- pre - site --post site -- site deploy
+
+====================
+
+maven repositories 3
+-------------------
+
+we havve three repositiores in maven
+-------------------------
+local -> .m2
+central --> maven
+remote --> private
+custome directory --> settings.xml 
+mvn install -d local.repo
+mvn deploy --> we need to define under distubution management  URL --> pom.xml password --> settings.xml 
+
+-------------------------------------
+
+what is groupid --> just for the identification
+tagid --> .jar --> packaging
+========================================
+
+we can enable source branch deletion in github once PR is done
+=============================================
+
+post block  --> we can perfome clean up and success or failure and notification
+
+how we can take a back up --> /var/lib/jenkins or 
+we can have jenkinsbackup plugin which we can use to take backup
+==============================================
+
+Docker --> version 
+
+docker.ignore --> we can speficy the pattern for the final build unessary file to docker.ignore
+
+docker -f filename . --> custome file instead of dockerfile
+
+why configMaps --> storing the keyvalue pair 
+  ex: let's say this config map being used by multiple pods to do the some certain modification we can do in configMaps 
+====================================================
+
+default strategy in k8 --> RollingUpdate 
+			   Roll Back 
+========================================================
+
+helm charts
+-------------
+why we need helm 
+
+instead of creating all the resources seperatly ?
+
+=========================================================
+
+exit status $? 0 -- status
+=============================
+
+to check the os --> uanem -e
+=================================
+
+==================================================================================================================
+==================================================================================================================
+
+why we need git?
+=================
+
+when we go for git let's say when we have a bug in the code we can versionizing the code to fix for that we use git 
+when we go for svn it's centralized server if we want to do the something we should directly perfome in server we will not have the local repo
+
+
+================================
+
+
+to skip particualr folder in git
+
+[O==================================
+
+
+Git pull : fetch + merge
+Git fetch : it will just get the code but it will not merge with local code
+
+=======================================
+
+git clone -b <repo> --> it will just get the particular branch
+
+====================================================================
+
+when we do mvn install what happens
+====================================
+
+it will generates the packages to default local repo like .m2 that particualr package
+============================================
+
+base
+
+pwd | cut -f 
+==========================
+
+module you have used?
+=====================
+
+ping
+command
+file
+notify
+get 
+register
+output
+
+======================================
+
+why we need multi branch pipeline? 
+==================================
+
+how to recovery if i forgot the jenkins 
+=======================================
+server.xml --> 
+
+
+3 best practices to docker?
+============================
+
+diffrence between docker stop and kill?
+===========================================
+
+we will lose the state of when we use docker kill if i want to come back and start we will not have the 
+=====================================================
+
+instances and k8s configurations?
+------------------------------------
+8  to 10
+---------------------
+
+what kind of troubleshoot?
+---------------------------
+
+checking the describe docker cp
+============================
+
+docker cp example.txt mycontainer:/app/data
+docker cp mycontainer:/app/logs/data.txt .
+
+docker inspect --> describing the container
+
+===========================================================
+
+
+git branch -b <branchName> --lastone
+
+sub module in git?
+Ans: inside the project 
+
+3. how to revert one particular file 
+Maven=======================
+
+what is multi module project
+
+what is transitive dependency?
+Ans: 
+
+where we can use side car container and init container?
+Ans: 
+init container measn whenever you want to do something before running your application pre-configurtion
+side-car container:
+------------------
+actually purpose support for the application
+it can be used 
+
+========================
+
+maven life cycles 3
+clean - clean
+default - goals 
+site -- single 
+
+======================
+
+PACKAGING -jar -war -ear
+
+what is hooks?
+======================
+
+develop -- feature -- dev -- master 
+dev -- hot fix 
+

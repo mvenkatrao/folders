@@ -1,4 +1,5 @@
 1. umask value for the directory if it's the root directory base file permissions
+
 2. diffrence between sudo su - and sudo su
 3. how to see the all the groups
 4. diffrence between hard link and soft link
@@ -10,4 +11,5 @@
 10. what is the status code of 200
 11. i want to check in particular file particular string is avaiable or not how do you check
 12.What is Swap Space in Linux
+13. i h ave one requirement that i want to redirect the output to one file if that's having any error that should redirect to another file how do you do that
 #######################

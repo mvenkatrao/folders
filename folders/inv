@@ -19,3 +19,11 @@
 16. how do you remove the the plugin without touching in jenkins UI 
 17. what is the extensions of jenkins plugin
 18. what are the best practices you do follow to keep the image light weight
+19. how do you print the environments of a container
+20. is this possible to set the certain resource to a container
+21. how do you connect the network to a container
+22. how many types of networks are there\
+23. what is the diffrence between CMD and ENTRYPOINT and 
+24. what is the diffrence between ADD and COPY
+25.what is the command to check the docker images layers
+26. in my docker container few logs will be generated those i don't want to login into the docker but i want to get those logs outside of the container how can we do that

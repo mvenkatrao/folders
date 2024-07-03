@@ -27,3 +27,30 @@
 24. what is the diffrence between ADD and COPY
 25.what is the command to check the docker images layers
 26. in my docker container few logs will be generated those i don't want to login into the docker but i want to get those logs outside of the container how can we do that
+###############################################################################################################
+
+1.what is the command to check the black storage ?
+2.let's say in one server my jenkins is running but server is down or that's not any more how do you achive without lossing the data how do you move?
+3. you have lost the pem file of any server how can you recovery the server
+##############
+4. storage types in s3?
+storageclass --> standard by default file which are accessing frequently we can maintain in standard storage class 
+IAS--> infrequest access , we can maintain files which are not acces freqnelty
+RRS --> Reduced Redudency storage,Non critical re producable data we can maintain in RSS
+Glacier --> we can maintain archived data. if we retrive it will be charged
+########################################################
+
+From GUI we can only upload 160GM of file
+
+s3 limit is 5000GB/5TB
+5. how traffic reaches to the servers?
+
+ VPC will have subnets
+   -- Sub nets
+        -- Public subnets -- This wil have Internet connection \
+	      (IGW)  a logical device enable traffic to be routed from public internet
+		-- private subnets -- 
+   -- IGW internet gate way
+   -- ROutable
+   -- NAT gateway/NAT instance
+   -- ACL network access control list

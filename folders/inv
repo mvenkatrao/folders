@@ -1,0 +1,56 @@
+1. umask value for the directory if it's the root directory base file permissions
+
+2. diffrence between sudo su - and sudo su
+3. how to see the all the groups
+4. diffrence between hard link and soft link
+5. i have one senario that i want to print the how many lines code is there in particular file what is the command
+6. how many ways you can check the cpu and load average what are those indicates from the uptime
+7. how do you check the disk usages
+8. how do you check particular port is opened or occupaid
+9. what is the use of export in linux
+10. what is the status code of 200
+11. i want to check in particular file particular string is avaiable or not how do you check
+12.What is Swap Space in Linux
+13. i have one requirement that i want to redirect the output to one file if that's having any error that should redirect to another file how do you do that
+14. what is the file descripter
+#######################
+
+15. what is the library in jenkins
+16. how do you remove the the plugin without touching in jenkins UI 
+17. what is the extensions of jenkins plugin
+18. what are the best practices you do follow to keep the image light weight
+19. how do you print the environments of a container
+20. is this possible to set the certain resource to a container
+21. how do you connect the network to a container
+22. how many types of networks are there\
+23. what is the diffrence between CMD and ENTRYPOINT and 
+24. what is the diffrence between ADD and COPY
+25.what is the command to check the docker images layers
+26. in my docker container few logs will be generated those i don't want to login into the docker but i want to get those logs outside of the container how can we do that
+###############################################################################################################
+
+1.what is the command to check the black storage ?
+2.let's say in one server my jenkins is running but server is down or that's not any more how do you achive without lossing the data how do you move?
+3. you have lost the pem file of any server how can you recovery the server
+##############
+4. storage types in s3?
+storageclass --> standard by default file which are accessing frequently we can maintain in standard storage class 
+IAS--> infrequest access , we can maintain files which are not acces freqnelty
+RRS --> Reduced Redudency storage,Non critical re producable data we can maintain in RSS
+Glacier --> we can maintain archived data. if we retrive it will be charged
+########################################################
+
+From GUI we can only upload 160GM of file
+
+s3 limit is 5000GB/5TB
+5. how traffic reaches to the servers?
+
+ VPC will have subnets
+   -- Sub nets
+        -- Public subnets -- This wil have Internet connection \
+	      (IGW)  a logical device enable traffic to be routed from public internet
+		-- private subnets -- 
+   -- IGW internet gate way
+   -- ROutable
+   -- NAT gateway/NAT instance
+   -- ACL network access control list

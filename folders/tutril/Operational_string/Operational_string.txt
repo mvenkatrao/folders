@@ -1,0 +1,140 @@
+space is a one character 
+
+#!/bin/bash
+
+myname="shell"
+
+echo "$myname"
+echo "${myname}"
+
+echo "${#myname}" (# means how many characters are there in myvariable name value)
+
+
+[root@ip-172-31-43-228 operational_string]# cat operators_file
+#!/bin/bash
+
+my_name="shell"
+
+echo "$my_name"
+echo "${my_name}"
+valuesnumber="${#my_name}"
+echo "$?"
+
+if [ $? = 0 ]; then
+echo "it's sucess"
+else
+echo "not sucess"
+fi
+
+echo "number of values it's having is $valuesnumber"
+path1="/etc/httpd/conf"
+path2="httpd.conf"
+httpd_conf_file_path=${path1}/${path2}
+echo "$httpd_conf_file_path it's the path for it"
+[root@ip-172-31-43-228 operational_string]#
+
+
+###########
+
+
+
+
+
+#!/bin/bash
+
+my_name="shell"
+
+echo "$my_name"
+echo "${my_name}"
+valuesnumber="${#my_name}"
+echo "$?"
+
+if [ $? = 0 ]; then
+echo "it's sucess"
+else
+echo "not sucess"
+fi
+
+<< comment1
+echo "number of values it's having is $valuesnumber"
+path1="/etc/httpd/conf"
+path2="httpd.conf"
+httpd_conf_file_path=${path1}/${path2}
+echo "$httpd_conf_file_path it's the path for it"
+############ BELOW LINES TO CONVERT TO UPPERCASE############
+my_variable="This is the info to conver to upper and lower"
+my_name_upper=${my_variable^^}
+my_name_lower=${my_variable,,}
+
+echo -e  "It's converted to upper :  \v\t\n\t${my_name_upper}"
+echo -e "It's converted to lower :  \v\t\n\t${my_name_lower}"
+echo -e "it's the original info  :  \v\t\n\t$myvariable"
+comment1
+
+httpd_conf_path_file="/ettc/httpd/conf/httpd.conf"
+httpd_conf_home=$(dirname $httpd_conf_path_file)
+httpd_conf_file=$(basename $httpd_conf_path_file)
+
+echo "httpd conf path file : $httpd_conf_path_file"
+echo "httpd conf home : $httpd_conf_home"
+echo "httpd conf file path $httpd_conf_file"
+
+##########################################################################################
+
+#!/bin/bash
+
+my_name="shell"
+
+echo "$my_name"
+echo "${my_name}"
+valuesnumber="${#my_name}"
+echo "$?"
+
+if [ $? = 0 ]; then
+echo "it's sucess"
+else
+echo "not sucess"
+fi
+
+<< comment1
+echo "number of values it's having is $valuesnumber"
+path1="/etc/httpd/conf"
+path2="httpd.conf"
+httpd_conf_file_path=${path1}/${path2}
+echo "$httpd_conf_file_path it's the path for it"
+############ BELOW LINES TO CONVERT TO UPPERCASE############
+my_variable="This is the info to conver to upper and lower"
+my_name_upper=${my_variable^^}
+my_name_lower=${my_variable,,}
+comment1
+
+#echo -e  "It's converted to upper :  \v\t\n\t${my_name_upper}"
+#echo -e "It's converted to lower :  \v\t\n\t${my_name_lower}"
+#echo -e "it's the original info  :  \v\t\n\t$myvariable"
+
+httpd_conf_path_file="/ettc/httpd/conf/httpd.conf"
+httpd_conf_home=$(dirname $httpd_conf_path_file)
+httpd_conf_file=$(basename $httpd_conf_path_file)
+
+echo "httpd conf path file : $httpd_conf_path_file"
+echo "httpd conf home : $httpd_conf_home"
+echo "httpd conf file path $httpd_conf_file"
+
+httpd_conf_file_without_suffix=$(basename $httpd_conf_path_file .conf)
+echo $httpd_conf_file_without_suffix
+######################################################################################
+
+dirname : strip/removes last component from file
+basename : strip/removes directory and suffix from filenames
+
+string slicing or extracting portion of a string
+###########################################################
+
+index means
+variablevalue name 
+
+example 
+
+variable=variablevalues 
+		 01234567891011 (it's called as index numbers)
+		 

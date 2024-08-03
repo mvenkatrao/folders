@@ -1,0 +1,5329 @@
+ssh -- secure shell
+ftp -- fire zill (file transffer protocal)
+
+linux torlvads he is the founder of unix
+
+Open source :
+ does it mean like whatevver code is there we can customize the code as per our requirements 
+AIX is a IBM product as os linux
+
+bin / can be accessed by normal users
+sbin can be accessed by root user
+
+
+bin contents mkdir ls logins 
+sbin contents shutdown start
+
+
+etc contents
+sudeors
+passwd
+shadow
+group
+cron.allow
+ssh_config
+
+
+opt
+it's empty folder 
+we use to install the third party applicatioons in this folder 
+
+
+DEVICE DIRECTOR: 
+
+-i or inode
+i node means data structure it holdes the information about the file or directory
+
+it contents file information date of the creation and size of the file 
+
+but it does'nt content the file name or folder name 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            crontab: usage error: file name must be specified for replace
+Usage:
+ crontab [options] file
+ crontab [options]
+ crontab -n [hostname]
+
+Options:
+ -u <user>  define user
+ -e         edit user's crontab
+ -l         list user's crontab
+ -r         delete user's crontab
+ -i         prompt before deleting
+ -n <host>  set host in cluster to run users' cront4abs
+ -c         get host in cluster to run users' crontabs
+ -s         selinux context
+ -V         print version and exit
+ -x <mask>  enable debugging
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+
+uname options
+$uname  -a
+1. (uname  -a)
+        -a option: It prints all the system information in the following order: Kernel name, network node hostname, kernel release date, kernel version, machine hardware name, hardware platform, operating system
+2. (uname  -s)
+        -s option: It prints the kernel name.
+3. (uname -n)
+        -n option: It prints the hostname of the network node(current computer).
+4.(uname  -r)
+        -r option: It prints the kernel release date.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  5. (uname -v)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           -v option: It prints the version of the current kernel.  
+6.(uname -m)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              -m option: It prints the machine hardware name.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+7. uname -p
+         -p option: It prints the type of the processor
+8.uname -i
+        -i option: It prints the platform of the hardware.
+9.uname -o
+ 	-o option: It prints the name of the operating system.
+
+path to add the sudo's permission
+
+ /etc/sudoers
+
+
+find command cheatsheet : https://quickref.me/find
+
+* it indicates evverything 
+& -- run a command in the baground. it will run the PID of the newly running process to you and won't show you the output
+
+example : sudo apt update &
+
+
+&& -- it indicates to run the multiple commands 
+
+\ allows you to continue writing commands 
+
+important symbols : https://fosspost.org/linux-command-line-basics-examples/
+
+
+| This is called "Piping", which is the process of redirecting the output of one command to the input of another command. Very useful and common in Linux/Unix-like systems.
+
+
+
+
+umask value
+############             default dir permissions file permissions 
+for root user : 022        0777 			0666
+			(-)0022                      (-)0022			
+			--------		     --------	
+			   0755			        0644	
+
+umask value
+############             default dir permissions file permissions
+for normal user : 002      0777
+			(-)0002                      0666
+			--------		(-)  0002				
+			   0775			 ----------  		
+					             0664			
+
+base file permission : 0666
+		
+stat test
+
+
+
+chmod cheatshet : https://quickref.me/chmod
+
+
+diffrence between sudo su - and sudo su
+########################################
+
+sudo su - it will switch to the root user and it will poin to the root user home directory and it will load the root user configuration
+
+sudo su - it will switch to the root user and it will not point to the root user and it will not load the root user configuration
+
+################################################################################################################################
+
+chgrp
+
+example command 
+
+-rwxrwxr-x. 1 ec2-user root    0 Nov  6 07:52 inixfile.txt
+
+[root@ip-172-31-47-2 ~]# chown -v root inixfile.txt
+changed ownership of 'inixfile.txt' from ec2-user to root
+
+
+-rwxrwxr-x. 1 root root    0 Nov  6 07:52 inixfile.txt
+
+
+to see the all the groups
+#############################
+
+cat /etc/group/
+
+
+changing the ownername and grup name at same time
+##########################
+
+chown ec2-user:ec2-user inixfile.txt
+
+CP command 
+############
+
+
+
+Option	Description
+-a	archive files
+-f	force copy by removing/overriding the destination file (if already present)
+-i	interactive mode override (asks before overwrite)
+-l	linkes the files instead copy
+-L	follows symbolic links
+-n	no file overwrite, if destination file already exists
+-R	recursive copy (this includes hidden files)
+-u	update mode i.e copy only when source is newer than dest
+-v	verbose mode i.e prints more information
+
+
+
+mv command
+#########
+mv command is used to renaming the filename or directory name and to move the filename or directory
+
+
+
+
+wc command
+###########
+
+Option	Description
+-l	prints lines count
+-c	prints byte count
+-m	prints character count
+-L	prints length of longest line
+-w	prints word count
+
+
+
+wc command
+
+wc -l (howmany lines are there)
+wc -w (how many words are there)
+wc -m (how many characters are there)
+wc -L (which is the longest line in the code)
+
+
+###########################################################################################################################
+
+to see how many lines are there in a file by vi editior 
+
+:set number
+
+
+:set nu!
+
+
+##################################################################################################################################
+
+hard link and soft link
+
+hard link : 
+###########
+
+hard link mean we are going to create a new file if we modify in any one of them it reflect in both files 
+
+example : 
+
+hardlink.txt
+new_hardlink.txt
+
+ln hardlink.txt new_hardlink.txt
+
+if we modify in both of them it will show in both of them
+#################################################################
+
+
+
+vi editor 
+
+#############
+
+vi -- visual instument
+
+to search
+
+/want to search
+and n for next occurance
+N for back
+ ### STILL IS THERE ############
+
+
+nano 
+####
+
+nano nanoedit.txt
+for saving ctrl + o
+for quiet Ctrl +  x
+
+
+head command 
+#############
+
+head is default for 10 lines
+
+
+tail 
+#####
+
+tail command is used for last 10 lines 
+
+
+
+
+
+more 
+
+#########
+
+see as page 
+
+more filename.txt
+
+less 
+####
+
+less command is used to go back and forward
+
+less filename.txt
+
+CTRL + F forward
+CTRL + B back
+
+CTRL + D for middle forward
+
+CTRL + U for middlb back
+
+
+sed command
+############
+
+to the specific line number
+
+
+sed -n "15p" filename,txt
+
+to display 15th line
+
+below command is used for to dispaly from particualr line number to particualr line number
+
+sed -n "10,20p" filename.txt
+
+ to relace in file
+
+
+sed -i "s/red/blue/" filename.txt
+sed -i "s/red/blue/1" filename.txxt
+
+
+
+###############################################
+
+sort command 
+
+##############
+
+it's used to displayy the assigning order 
+
+example: file with a,b,c,d,e,f
+
+we can disaply from assiging order or reverse order also
+
+ex : sort filename.txt
+
+it will diaply a to z
+
+if we use sort -r filename.txxt
+itwill display z-a
+
+to make upper case
+
+we can use one command
+
+cat filename.txt | sort | tr [a-z] [A-Z]
+
+
+load avergage means CPU
+
+
+		1st 2nd   3rd
+ load average: 0.00, 0.00, 0.00
+
+ cat /proc/cpuinfo
+
+
+who ami
+
+
+
+[ec2-user@ip-172-31-47-2 ~]$ whereis sort
+sort: /usr/bin/sort /usr/share/man/man1/sort.1.gz
+
+
+ex : regarding to sort command binary files are avaialbe in /usr/bin/sort
+ex : regarding to sort command manual page is avaiabble in /usr/share/man/man1/sort.1.gz
+
+
+
+
+#################################################################################################
+
+du - disk utilization
+df - disk free
+
+
+du -sh
+
+to check disk free 
+ -s summary
+ - h human readable
+
+commands
+
+df -h (human readable)
+df -T (file system type)
+df -t (to specify the particular file system)
+     example : df -t tmps
+df -i (to display inode)
+df -x (to not to display for the output)
+     example: df-x tmps
+#################################################################################################################################
+
+hostname
+############
+to display the hostname
+
+to display the ip
+ hostname -i
+
+[root@ip-172-31-47-2 ~]# hostname -i
+172.31.47.2
+
+###ip a ###
+above command will show the all the details related to inet also like below
+
+[root@ip-172-31-47-2 ~]# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9001 qdisc fq_codel state UP group default qlen 1000
+    link/ether 02:dc:26:ac:3e:d0 brd ff:ff:ff:ff:ff:ff
+    inet 172.31.47.2/20 brd 172.31.47.255 scope global dynamic noprefixroute eth0
+       valid_lft 2627sec preferred_lft 2627sec
+    inet6 fe80::dc:26ff:feac:3ed0/64 scope link
+       valid_lft forever preferred_lft forever
+[root@ip-172-31-47-2 ~]#
+
+
+
+###########################################################
+
+if we want to set the hostname we can use hostname hostname.com
+it will display the hostname which we mentioned above
+
+like below
+
+[root@ip-172-31-47-2 ~]# hostname google.com
+[root@ip-172-31-47-2 ~]# hostname
+google.com
+[root@ip-172-31-47-2 ~]#
+
+
+###########################################################################################
+
+man command
+#############
+
+man command is for manul page about the commands
+
+ex : man mkdir
+###############################################################################################
+
+info mkdir command
+#########################
+
+it's used to get the infomartion about the command information
+##############################################################
+
+help command
+#############
+
+it's used to get the help of the command like information
+
+ex : mkdir --help
+########################################################################################################
+whatis mkdir command
+#########################
+whatis command for disply the short discrption
+####################################################################################################
+systemctl command (service)
+##################
+
+systemctl status servicename
+
+Ref : https://access.redhat.com/sites/default/files/attachments/12052018_systemd_6.pdf
+
+timestamp : 1 hr 18 mins (1:18)
+
+
+service crond start 
+service crond status 
+####################################################
+wildcards
+
+? == to match the possible matching
+ls file?== it should havve some character or digits after the filename
+###########################################################################################################
+
+top command 
+##########
+PID: It is the task's unique process ID.
+USER: It shows the owner of the tasks.
+PR: It is the priority of a task.
+NI: The nice value of a task. A negative value means higher priority, whereas a positive value means lower priority.
+VIRT: The total amount of virtual memory used by the task.
+RES: The non-swapped physical memory used by a task.
+SHR: The amount of shared memory used by a task.
+S: The process status of a task:
+D = uninterruptible sleep
+I = idle
+R = running
+S = sleeping
+T = stopped by job control signal
+t = stopped by debugger during trace
+Z = zombie
+%CPU: The percentage of CPU usage of a task.
+%MEM: The percentage of memory used by a task.
+TIME+: Total CPU time the task has used since it started.
+COMMAND: The command line which is used to start a task.
+
+##########################################################
+
+
+mkdir command
+################
+
+mkdir -p (to create a parent directory)
+mkdir -m (to set the permissions while create a folder)
+mkdir -v (verbose mode)
+
+
+zip and unzip command
+########################
+
+zip wishfilename.zip sourcefolders
+
+example : zip newzipfile existingfolder
+
+to extract in diffrent directory
+ex : unzip zipfile.zip -d /root/extractedpath
+################################################################
+tar command
+############
+
+c - create
+v -verbose
+f -file system
+x - extract
+
+####################################################
+
+tar -cvf wishfolder.tar foldername orherefillename
+
+tar -xvf wishfolder.tar
+tar -xvf wishfolder.tar -C /path/
+
+to view the tarfilew whhich are present in tar file
+
+tar -tf wishfolder.tar
+
+to add a specific file into it 
+
+tar -rf wishfolder.tar extrafile.txt
+
+
+to extract the single file or folder
+
+tar -xvf tarfile.tar whichfolder
+
+touch foo bar
+tar cf archive.tar foo bar --transform 's,^,bazdir/,'
+
+
+to create .ttar.gz
+
+tar -czvf tarfilename.tar.gz foldername
+tar -xzvf tarfilename.tar (z is added)
+########################################################################################
+
+useradd command 
+###############
+cat /etc/passwd
+from RHL 7.
+UID  starts with 1000 is common for normal user
+
+where password is going to save
+
+cat /etc/shadow
+
+what is the UID for root user 
+
+A) 0
+###########
+can we give the password for two user
+A) yes 
+
+useradd harsha
+passwd harsha
+
+attributes
+
+command is chage
+################
+
+        Minimum Password Age [0]: 90
+        Maximum Password Age [99999]: 90
+        Last Password Change (YYYY-MM-DD) [2022-11-10]:
+        Password Expiration Warning [7]: 30
+        Password Inactive [-1]:
+        Account Expiration Date (YYYY-MM-DD) [-1]:
+
+######################
+
+useradd harsha
+passwd 
+chage : it's used to set the inactive dates and expiration of the password
+groupadd :  it used to create a group
+  usermod -g Devops harsha (Devops is the group name and harsha is the name )
+  to view the details of the group
+
+cat /etc/group
+##############
+
+to view the how many users are there in the group below is the command
+#############################
+
+lid -g Groupname
+to view the information entry related to a user below is the command
+
+getent passwd ec2-user
+
+we can lock the user below is the command
+##########################################
+usermod -L ec2-user
+usermod -U ec2-user
+
+to view a useer howmany groups he is part of 
+
+id username
+or groups username
+
+usermod -a -G usernmae (he can part of many groups)
+
+
+
+
+
+what is shell?
+
+shell is a program that will take the command and communicate with the kernal 
+
+shell is a interface between user and kernal
+
+type of shell
+###############
+bash  (it's advance shell and default shell)
+sh (older version)
+csh
+zsh
+ksh
+tiny
+
+
+cat /etc/shells
+
+[root@ip-172-31-13-136 ~]# cat /etc/shells
+/bin/sh
+/bin/bash
+/usr/bin/sh
+/usr/bin/bash
+
+to install the another shell we can install like below
+
+sudo yum install csh
+
+what is shell scripting
+#######################
+shell scripting nothing but a it's simple file, which contains all the command and to make automate also
+
+to display the current shell type
+echo $SHELL
+echo $0
+ps -p $$
+################################################################################
+
+why do we need shel scripting
+#############################
+
+to automate the job's 
+take the backup'scripting
+monitoring several server resources like cpu utilization and memory utilization
+portable (it can be executed in any unix like operating system without modification)
+
+
+pre requisites
+###################
+
+knowledge on linux
+knowledge on commands
+basic programing language 
+
+
+#!/bin/bash (it's called she-bang line which will execute the commands but it's not a mandatory field because default shell will read them and will execute)
+
+
+how we can execute a shell
+./hello.sh
+sh hello.sh
+bash hello.sh
+csh hello.sh
+
+to change the file permissions recurivily
+chmod -R /foldername/filename.txt
+
+
+to run a file in debug mode
+
+sh -x samplefile.sh
+
+how to run a specific lines in debug mode in shell scripting
+
+set -x
+set +x
+
+example :
+#!/bin/bash
+echo "good morning"
+set  -x
+date
+set +x
+
+above file will run date command in debug mode
+
+and if we run with sh -x samplefile.txt (it will run in debug mode until where we have asked to stop)
+
+example :
+
+#!/bin/basj
+echo "sample shell scriptin"
+set -x
+echo "good morning"
+set +x
+echo "shell"
+date
+
+there is a diffrence between runing a file with sh sample.sh and sh -x  sample.txt
+sh sample.sh ( it will execute the file only in required places where we have mentioned like set -x +x (it means it will get stop the debug runnning till +x and))
+sh -x sample.sh (it will run a file till +x and it will run as normal)
+
+shell scripting file naming we can give 255 characters
+							################
+							
+it can contain alphabets and digits dots and underscore
+
+
+system command names and linux server words can not be used for naming
+
+ex:
+harsha.sh
+Harsha.sh
+harsha_01.sh
+harsha05.sh
+
+
+we can run a file without .sh also
+
+comments 
+#######
+single line comments (#)
+multi line comments
+
+ways to comment the script
+
+<<comment
+ "Code" or "Comments"
+comment
+
+: '
+
+Code or Comment here
+ '
+ 
+ without execute permission also it will run 
+ 
+ sh sample.sh
+ it is running throguh sh shell 
+ 
+ 
+ variables
+ #########
+ 
+ initilization :
+ #############
+ creating a values and assining
+ example 
+ 
+ int a = 1;
+ int b = 2;
+ int c; -- declaration variables 
+ 
+  
+  there are two types of variables
+  1. system defined variables (bash shell) (env or printenv)
+  2. user defined variables 
+  
+  
+  variable will be in left side
+  value will be in right side
+  
+  HISTSIZE=1000
+  
+  source ~/.bash_profile (to reload the default values of system defind variables)
+  
+  how we can defind the variables 
+  ##################################
+  
+  typees of it 
+  
+ HISTSIZE=-1 HISTFILESIZE=-1 (to make history size unlimited)
+ to make history size for some limit
+ 
+ export HISTSIZE=2000
+ 
+ 2 . user defined variables 
+  example :
+  a=10
+  b=20
+  name="this is harsha"
+  
+  echo $a
+  echo $b
+  echo $name
+  
+	camelcase meaning first letter should be a uppercase should'nt be uppercase next words
+	 
+	 
+a=10
+b=20
+name="this is harsha"
+#echo the first line a variabble value is $a
+#a=30
+echo The a variable value is : $a
+echo The b variable value is: $b
+echo The name variable value is : $name
+date
+
+
+
+there is a diffrence between using $ and using ${} in variables
+###############################################################
+
+the diffrence beween using $ symbol we can'nt spacify the word without space like below
+
+with only $ 
+
+
+#!/bin/bash
+NAME="Harsha"
+SPORT="Foot"
+echo "The most popular sport is $SPORTball"
+
+
+output : The most popular sport is we can't specify ball along with foot 
+
+with ${}
+#!/bin/bash
+NAME="Harsha"
+SPORT="Foot"
+echo "The most popular sport is ${SPORT}ball"
+
+
+output : The most popular sport is Football
+
+with ''
+#######
+
+it will display along with $
+
+
+if we specify like without providing the varrible and values and providing the echo command it will give like blank
+
+ex :
+a=10
+echo "first line $a"
+echo "second line $b"
+b=20
+
+arguments values both are same
+
+
+
+
+
+
+
+
+
+
+
+
+on above example it will take a valuue which is next to it
+	 
+
+what is command line arguments?
+while executing the script passing the value to command promt called command line arguments we can called it as positional parameters in Linux also
+ 
+ 
+ single quotes '' : if we use single quotes then variable substitution won't be happend.
+###################
+
+ command substitution :
+########################
+
+execute command ans substitute it's results 
+old style `commmand`
+back quotes ``
+new style : $(it's called paralasis command)
+
+eg:to display command
+
+##########################################################################################
+command line arguments :
+############################
+while executinng the script passing the values in command promt  called command line arguments 
+
+ 
+echo $0 (gives scriptt name)
+echo $1 (gives first argument)
+echo $2 (gives second argument)
+echo $3 (gives thrid argument)
+
+if we pass more than one number it's going to consider as $1 example (sh dbbackup.sh dbname /opt/ (here dbbackup name is the scriptname dbname is the first argument /opt/ is the second argument it should not be the duplicates ))
+
+to get the particular more than 1 number we should use ${11}
+arguments and values both are same
+
+
+echo $# (it gives the number of arguments)
+echo $* (it gives the all the arguments it gives all tthe arguent in one string)
+echo $@  (it also gives the all the arguments it gives each argument is  in one string)
+echo $$ (it gives the process id(PID))
+echo ($? it gives the either command is success or not like exit status )
+            0 - success 
+			127- standard error code  for command not found
+			1 - catchall for general errors
+			2 - misuse of shell builtins (according to bash documentation)
+			126 - command invoked cannot executte
+			128 - invalid argument to exit command
+			128+n - Fatal error sign "n"
+			130 - bash scripting exit by control-C
+			255* exit status out of range
+			
+			
+ex : 
+
+echo "C L args demo"
+echo $0 
+echo $1
+echo $2
+echo $3
+echo ${11}
+echo $#
+echo $*
+echo $@
+echo $$
+date
+echo $?
+
+			
+			positional arguments or command line arguments both are same+
+
+
+
+	diffrence between $* and $@
+Diffrence will come in to picture only when we use in quotes
+example
+"$* = "$1 IFS $2 IFS $3 IFS"
+"$@" = "$1" "$2 "$3"
+
+
+   a value and b value
+
+eq == (equal to)   10 ==10 (it should get the equal number a should be having the same number and b should be having the same number )
+###################################################################################################################################
+
+[root@ip-172-31-45-211 ~]# cat lessthan.sh
+#!/bin/bash
+
+echo "Enter first value : "
+
+read a
+
+echo "Enter second value : "
+
+read b
+
+if [ $a -eq $b ]
+
+then
+   echo "the statment become is true"
+else
+
+   echo "the statment become false"
+fi
+
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+50
+Enter second value :
+50
+the statment become is true
+[root@ip-172-31-45-211 ~]#
+
+
+
+
+########################################################################################################################################## 
+lt < ( less than) a value should be less than b value like a should be having 10 value b should be having 20 here 10 is less means a b should be having 20 here b value is higher than a value)
+
+ex : 
+
+the statment become false
+[root@ip-172-31-45-211 ~]# cat lessthan.sh
+#!/bin/bash
+
+echo "Enter first value : "
+
+read a
+
+echo "Enter second value : "
+
+read b
+
+if [ $a -lt $b ]
+
+then
+   echo "the statment become is true"
+else
+
+   echo "the statment become false"
+fi
+
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+10
+Enter second value :
+20
+the statment become is true
+[root@ip-172-31-45-211 ~]#
+##################################################################################################################################################################
+  
+le <= (Less than or equa) 10 < 50 ( left side value should be less and right side value is more ) (it should be having a value and b value is same or less than right value b should be a more number )
+##########################################################################################
+
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+10
+Enter second value :
+10
+the statment become is true
+[root@ip-172-31-45-211 ~]# cat lessthan.sh
+#!/bin/bash
+
+echo "Enter first value : "
+
+read a
+
+echo "Enter second value : "
+
+read b
+
+if [ $a -le $b ]
+
+then
+   echo "the statment become is true"
+else
+
+   echo "the statment become false"
+fi
+
+[root@ip-172-31-45-211 ~]#
+
+
+
+
+
+########################################################################################################################################################
+gt > (greater than) (left side value should be big value than the b value example right side value is 10 left side value should be 20)
+########################
+
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+10
+Enter second value :
+9
+the statment become is true
+[root@ip-172-31-45-211 ~]# cat lessthan.sh
+#!/bin/bash
+
+echo "Enter first value : "
+
+read a
+
+echo "Enter second value : "
+
+read b
+
+if [ $a -gt $b ]
+
+then
+   echo "the statment become is true"
+else
+
+   echo "the statment become false"
+fi
+
+[root@ip-172-31-45-211 ~]#
+########################################################################################################################################################
+ge >= (Greater than or equal)	same it should get same value a value b value should be the same or equal
+#########################################
+
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+50
+Enter second value :
+50
+the statment become false
+[root@ip-172-31-45-211 ~]# vi lessthan.sh
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+50
+Enter second value :
+50
+the statment become is true
+[root@ip-172-31-45-211 ~]# cat lessthan.sh
+#!/bin/bash
+
+echo "Enter first value : "
+
+read a
+
+echo "Enter second value : "
+
+read b
+
+if [ $a -ge $b ]
+
+then
+   echo "the statment become is true"
+else
+
+   echo "the statment become false"
+fi
+
+[root@ip-172-31-45-211 ~]#
+###################################################################################################################################
+
+
+ne != (Not equal) (it should not be not equal)
+
+#############################
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+50
+Enter second value :
+20
+the statment become is true
+[root@ip-172-31-45-211 ~]# cat lessthan.sh
+#!/bin/bash
+
+echo "Enter first value : "
+
+read a
+
+echo "Enter second value : "
+
+read b
+
+if [ $a -ne $b ]
+
+then
+   echo "the statment become is true"
+else
+
+   echo "the statment become false"
+fi
+
+[root@ip-172-31-45-211 ~]#
+###################################################################################################### 
+we can use any one of them either alphabets or symbols
+
+fi means closing the conditions
+ 
+
+string meaning :
+################
+
+set of characters / group of characters enclosed in a single ot double quotes.
+
+name="harsha"
+location='Bangalore' 
+
+
+
+ 
+
+ 
+, and space consider as a one character 
+
+to ignore the string (means a characters)
+
+we can use below commmand`
+
+echo ${variablename:10} shell scripting (if we mention :10 it's going to display after 11th character)
+
+to see variable legnth we can use like below
+
+echo ${#variablename} 
+
+if we keep like below ${variablename#value} (if we write like #andmention like variablevalue that will be commented in output) if value not matched output will be the same  
+
+
+echo ${variablename:10:5} it will display first 5 letters 
+
+echo ${variablename (-5)} it will display last five letters 
+
+echo ${variablename 0:2} it will display first two letters 
+
+
+
+######################################################################################
+
+arithmatic operations 
+#########################
+
++ adition
+- substract
+* multiplication (we have to use \ character for multiplication)
+/ division
+% modulus   it works like 20x10
+= assingment
+== equality
+
+!= not equality
+
+‘ ‘,
+
+
+ex :
+
+expr 2 + 3
+expr 2 -3 
+expr 2 \* 3
+expr 10 /2 
+expr 20 % 3
+
+
+why do we use inverted commas
+
+below is the example
+ex:
+
+echo "The addition of 2 and 3 is : expr 2 + 3 (without invertted commas)
+output : 
+     the addition of 2 and 3 is : expr 2 + 3 
+
+with inverted commas
+output for above input
+echo "The addition of 2 and 3 is : `expr 2 + 3`
+         out put   
+		 The addtion of 2 and 3 is : 5
+		 
+    the addition 	
+	 
+, command
+' single quotes
+""  Double quotes
+` inverted comma
+
+
+
+= assigning the value of right operand in left operand 
+
+ex : a =$b (assigning the value of b value to a)
+			it will assinningn the b value to a 
+			
+== (equality and equality )
+to compare the each value is same or not
+$a == $b it should get match with a b with same vlaue comparing the values of a and b value
+
+
+!= (not equal)
+(compare two numbers if both are diffrent the  return )
+if not equal we can add another values to it
+
+
+relational operators :
+-eq (if checks for the value is equal or not if yes then condition becomes true0)
+- ne (it checks for the two operands are not equal or notif values are not eqal condition becomes true)
+-gt (greater than it check the values of left operand is greater than the values of right operand ; if yes condition becomes true)
+
+-lt (less than it checks for the values is less than to right operand right operand should more than the left side value <)
+ if right hand side value is more than condition becomes true
+-ge ( it checks for the value is greater than or not it means left side value should be more)
+
+
+in arthamatic value both are same
+
+`expr  $a + $b`
+
+
+or
+
+echo $(( a + b )) 
+when we are using expr multiplecation becomes like \*
+
+what is expr ?
+
+expression
+
+
+boolean operators
+#################
+! negation
+-o or
+-a and 
+
+above or the logical operators 
+
+
+	 
+##########################################
+string operators
+################
+
+=
+
+!=
+
+-z 
+
+-n 
+
+str
+
+##########################################################################################
+if elif else
+
+if condition
+then 
+  statement
+  statement
+elif condition
+then 
+   statement 
+   statement
+else
+   statement
+fi
+#####################################
+echo "Enter a number"
+read a
+echo "Enter a number"
+read b
+if [ $a -eq $b ]
+then
+echo "a value is equal to b value"
+elif [ $a -gt $b ]
+then
+echo " $a is greater than $b"
+else
+echo $a is less than $b
+fi   
+
+#################################################################################################################################################
+
+what is an array? (scara)
+
+array is a collections of variables
+
+
+read  -a (it means it is an array it will store the values as a index like 0 1 2 3 4 5 6 )
+
+[root@ip-172-31-45-211 ~]# cat readcommands3.sh
+echo "Please enter the tools"
+
+read -a tools
+
+echo "the tools which you have type is " ${tools[*]}
+echo "the 4th elment is :" ${tools[3]}
+[root@ip-172-31-45-211 ~]# ./readcommands3.sh
+Please enter the tools
+1 2 3 4 5 6 7 8 9
+the tools which you have type is  1 2 3 4 5 6 7 8 9
+the 4th elment is : 4
+[root@ip-172-31-45-211 ~]#
+
+
+in above example we have entered from 1 to 9 and we havve metnioned 3 [3] because array considering from 0 and if we want all the arry's to display we have to use [*]
+
+REPLY IS THE DEFAULT VARIABLE FOR READ COMMAND if we are not specifying any  to the read command that's goinng to take it as variable for read command
+
+	 
+to silence the password while typing we can use -s 
+
+
+
+#!/bin/bash
+NAME[0]="orange"
+NAME[1]="apple"
+NAME[2]="Grape"
+echo "First index : ${NAME[0]}"
+echo "Second index : ${NAME[1]}"
+echo "third index : ${NAME[2]}"
+
+
+
+######################################################
+[root@ip-172-31-45-211 ~]# cat readcommands5.sh
+read -p "User name which you have entered is :" username
+read -sp "password name which you have entered is :" password
+echo ""
+echo "the username which you have entered is :" $username
+echo "the password which you have entered is :" $password
+
+[root@ip-172-31-45-211 ~]#
+#############################################################################
+using "" it will display whatever we have entered after the input
+
+
+itrationn means repeating
+
+it is the repetition of a process within a bash script. For example, you can run UNIX command or task 5 times or read and process list of files using a for loop. A for loop can be used at a shell prompt or within a shell script itself
+
+what is shell?
+
+shell is a program that will take the command and communicate with the kernal 
+
+shell is a interface between user and kernal
+
+type of shell
+###############
+bash  (it's advance shell and default shell)
+sh (older version)
+csh
+zsh
+ksh
+tiny
+
+
+cat /etc/shells
+
+[root@ip-172-31-13-136 ~]# cat /etc/shells
+/bin/sh
+/bin/bash
+/usr/bin/sh
+/usr/bin/bash
+
+to install the another shell we can install like below
+
+sudo yum install csh
+
+what is shell scripting
+#######################
+shell scripting nothing but a it's simple file, which contains all the command and to make automate also
+
+to display the current shell type
+echo $SHELL
+echo $0
+ps -p $$
+################################################################################
+
+why do we need shel scripting
+#############################
+
+to automate the job's 
+take the backup'scripting
+monitoring several server resources like cpu utilization and memory utilization
+portable (it can be executed in any unix like operating system without modification)
+
+
+pre requisites
+###################
+
+knowledge on linux
+knowledge on commands
+basic programing language 
+
+
+#!/bin/bash (it's called she-bang line which will execute the commands but it's not a mandatory field because default shell will read them and will execute)
+
+
+how we can execute a shell
+./hello.sh
+sh hello.sh
+bash hello.sh
+csh hello.sh
+
+to change the file permissions recurivily
+chmod -R /foldername/filename.txt
+
+
+to run a file in debug mode
+
+sh -x samplefile.sh
+
+how to run a specific lines in debug mode in shell scripting
+
+set -x
+set +x
+
+example :
+#!/bin/bash
+echo "good morning"
+set  -x
+date
+set +x
+
+above file will run date command in debug mode
+
+and if we run with sh -x samplefile.txt (it will run in debug mode until where we have asked to stop)
+
+example :
+
+#!/bin/basj
+echo "sample shell scriptin"
+set -x
+echo "good morning"
+set +x
+echo "shell"
+date
+
+there is a diffrence between runing a file with sh sample.sh and sh -x  sample.txt
+sh sample.sh ( it will execute the file only in required places where we have mentioned like set -x +x (it means it will get stop the debug runnning till +x and))
+sh -x sample.sh (it will run a file till +x and it will run as normal)
+
+shell scripting file naming we can give 255 characters
+							################
+							
+it can contain alphabets and digits dots and underscore
+
+
+system command names and linux server words can not be used for naming
+
+ex:
+harsha.sh
+Harsha.sh
+harsha_01.sh
+harsha05.sh
+
+
+we can run a file without .sh also
+
+comments 
+#######
+single line comments (#)
+multi line comments
+
+ways to comment the script
+
+<<comment
+ "Code" or "Comments"
+comment
+
+: '
+
+Code or Comment here
+ '
+ 
+ without execute permission also it will run 
+ 
+ sh sample.sh
+ it is running throguh sh shell 
+ 
+ 
+ variables
+ #########
+ 
+ initilization :
+ #############
+ creating a values and assining
+ example 
+ 
+ int a = 1;
+ int b = 2;
+ int c; -- declaration variables 
+ 
+  
+  there are two types of variables
+  1. system defined variables (bash shell) (env or printenv)
+  2. user defined variables 
+  
+  
+  variable will be in left side
+  value will be in right side
+  
+  HISTSIZE=1000
+  
+  source ~/.bash_profile (to reload the default values of system defind variables)
+  
+  how we can defind the variables 
+  ##################################
+  
+  typees of it 
+  
+ HISTSIZE=-1 HISTFILESIZE=-1 (to make history size unlimited)
+ to make history size for some limit
+ 
+ export HISTSIZE=2000
+ 
+ 2 . user defined variables 
+  example :
+  a=10
+  b=20
+  name="this is harsha"
+  
+  echo $a
+  echo $b
+  echo $name
+  
+	camelcase meaning first letter should be a uppercase should'nt be uppercase next words
+	 
+	 
+a=10
+b=20
+name="this is harsha"
+#echo the first line a variabble value is $a
+#a=30
+echo The a variable value is : $a
+echo The b variable value is: $b
+echo The name variable value is : $name
+date
+
+
+
+there is a diffrence between using $ and using ${} in variables
+###############################################################
+
+the diffrence beween using $ symbol we can'nt spacify the word without space like below
+
+with only $ 
+
+
+#!/bin/bash
+NAME="Harsha"
+SPORT="Foot"
+echo "The most popular sport is $SPORTball"
+
+
+output : The most popular sport is we can't specify ball along with foot 
+
+with ${}
+#!/bin/bash
+NAME="Harsha"
+SPORT="Foot"
+echo "The most popular sport is ${SPORT}ball"
+
+
+output : The most popular sport is Football
+
+with ''
+#######
+
+it will display along with $
+
+
+if we specify like without providing the varrible and values and providing the echo command it will give like blank
+
+ex :
+a=10
+echo "first line $a"
+echo "second line $b"
+b=20
+
+arguments values both are same
+
+
+
+
+
+
+
+
+
+
+
+
+on above example it will take a valuue which is next to it
+	 
+
+what is command line arguments?
+while executing the script passing the value to command promt called command line arguments we can called it as positional parameters in Linux also
+ 
+ 
+ single quotes '' : if we use single quotes then variable substitution won't be happend.
+###################
+
+ command substitution :
+########################
+
+execute command ans substitute it's results 
+old style `commmand`
+back quotes ``
+new style : $(it's called paralasis command)
+
+eg:to display command
+
+##########################################################################################
+command line arguments :
+############################
+while executinng the script passing the values in command promt  called command line arguments 
+
+ 
+echo $0 (gives scriptt name)
+echo $1 (gives first argument)
+echo $2 (gives second argument)
+echo $3 (gives thrid argument)
+
+if we pass more than one number it's going to consider as $1 example (sh dbbackup.sh dbname /opt/ (here dbbackup name is the scriptname dbname is the first argument /opt/ is the second argument it should not be the duplicates ))
+
+to get the particular more than 1 number we should use ${11}
+arguments and values both are same
+
+
+echo $# (it gives the number of arguments)
+echo $* (it gives the all the arguments it gives all tthe arguent in one string)
+echo $@  (it also gives the all the arguments it gives each argument is  in one string)
+echo $$ (it gives the process id(PID))
+echo ($? it gives the either command is success or not like exit status )
+            0 - success 
+			127- standard error code  for command not found
+			1 - catchall for general errors
+			2 - misuse of shell builtins (according to bash documentation)
+			126 - command invoked cannot executte
+			128 - invalid argument to exit command
+			128+n - Fatal error sign "n"
+			130 - bash scripting exit by control-C
+			255* exit status out of range
+			
+			
+ex : 
+
+echo "C L args demo"
+echo $0 
+echo $1
+echo $2
+echo $3
+echo ${11}
+echo $#
+echo $*
+echo $@
+echo $$
+date
+echo $?
+
+			
+			positional arguments or command line arguments both are same+
+
+
+
+	diffrence between $* and $@
+Diffrence will come in to picture only when we use in quotes
+example
+"$* = "$1 IFS $2 IFS $3 IFS"
+"$@" = "$1" "$2 "$3"
+
+
+   a value and b value
+
+eq == (equal to)   10 ==10 (it should get the equal number a should be having the same number and b should be having the same number )
+###################################################################################################################################
+
+[root@ip-172-31-45-211 ~]# cat lessthan.sh
+#!/bin/bash
+
+echo "Enter first value : "
+
+read a
+
+echo "Enter second value : "
+
+read b
+
+if [ $a -eq $b ]
+
+then
+   echo "the statment become is true"
+else
+
+   echo "the statment become false"
+fi
+
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+50
+Enter second value :
+50
+the statment become is true
+[root@ip-172-31-45-211 ~]#
+
+
+
+
+########################################################################################################################################## 
+lt < ( less than) a value should be less than b value like a should be having 10 value b should be having 20 here 10 is less means a b should be having 20 here b value is higher than a value)
+
+ex : 
+
+the statment become false
+[root@ip-172-31-45-211 ~]# cat lessthan.sh
+#!/bin/bash
+
+echo "Enter first value : "
+
+read a
+
+echo "Enter second value : "
+
+read b
+
+if [ $a -lt $b ]
+
+then
+   echo "the statment become is true"
+else
+
+   echo "the statment become false"
+fi
+
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+10
+Enter second value :
+20
+the statment become is true
+[root@ip-172-31-45-211 ~]#
+##################################################################################################################################################################
+  
+le <= (Less than or equa) 10 < 50 ( left side value should be less and right side value is more ) (it should be having a value and b value is same or less than right value b should be a more number )
+##########################################################################################
+
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+10
+Enter second value :
+10
+the statment become is true
+[root@ip-172-31-45-211 ~]# cat lessthan.sh
+#!/bin/bash
+
+echo "Enter first value : "
+
+read a
+
+echo "Enter second value : "
+
+read b
+
+if [ $a -le $b ]
+
+then
+   echo "the statment become is true"
+else
+
+   echo "the statment become false"
+fi
+
+[root@ip-172-31-45-211 ~]#
+
+
+
+
+
+########################################################################################################################################################
+gt > (greater than) (left side value should be big value than the b value example right side value is 10 left side value should be 20)
+########################
+
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+10
+Enter second value :
+9
+the statment become is true
+[root@ip-172-31-45-211 ~]# cat lessthan.sh
+#!/bin/bash
+
+echo "Enter first value : "
+
+read a
+
+echo "Enter second value : "
+
+read b
+
+if [ $a -gt $b ]
+
+then
+   echo "the statment become is true"
+else
+
+   echo "the statment become false"
+fi
+
+[root@ip-172-31-45-211 ~]#
+########################################################################################################################################################
+ge >= (Greater than or equal)	same it should get same value a value b value should be the same or equal
+#########################################
+
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+50
+Enter second value :
+50
+the statment become false
+[root@ip-172-31-45-211 ~]# vi lessthan.sh
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+50
+Enter second value :
+50
+the statment become is true
+[root@ip-172-31-45-211 ~]# cat lessthan.sh
+#!/bin/bash
+
+echo "Enter first value : "
+
+read a
+
+echo "Enter second value : "
+
+read b
+
+if [ $a -ge $b ]
+
+then
+   echo "the statment become is true"
+else
+
+   echo "the statment become false"
+fi
+
+[root@ip-172-31-45-211 ~]#
+###################################################################################################################################
+
+
+ne != (Not equal) (it should not be not equal)
+
+#############################
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+50
+Enter second value :
+20
+the statment become is true
+[root@ip-172-31-45-211 ~]# cat lessthan.sh
+#!/bin/bash
+
+echo "Enter first value : "
+
+read a
+
+echo "Enter second value : "
+
+read b
+
+if [ $a -ne $b ]
+
+then
+   echo "the statment become is true"
+else
+
+   echo "the statment become false"
+fi
+
+[root@ip-172-31-45-211 ~]#
+###################################################################################################### 
+we can use any one of them either alphabets or symbols
+
+fi means closing the conditions
+ 
+
+string meaning :
+################
+
+set of characters / group of characters enclosed in a single ot double quotes.
+
+name="harsha"
+location='Bangalore' 
+
+
+
+ 
+
+ 
+, and space consider as a one character 
+
+to ignore the string (means a characters)
+
+we can use below commmand`
+
+echo ${variablename:10} shell scripting (if we mention :10 it's going to display after 11th character)
+
+to see variable legnth we can use like below
+
+echo ${#variablename} 
+
+if we keep like below ${variablename#value} (if we write like #andmention like variablevalue that will be commented in output) if value not matched output will be the same  
+
+
+echo ${variablename:10:5} it will display first 5 letters 
+
+echo ${variablename (-5)} it will display last five letters 
+
+echo ${variablename 0:2} it will display first two letters 
+
+
+
+######################################################################################
+
+arithmatic operations 
+#########################
+
++ adition
+- substract
+* multiplication (we have to use \ character for multiplication)
+/ division
+% modulus   it works like 20x10
+= assingment
+== equality
+
+!= not equality
+
+‘ ‘,
+
+
+ex :
+
+expr 2 + 3
+expr 2 -3 
+expr 2 \* 3
+expr 10 /2 
+expr 20 % 3
+
+
+why do we use inverted commas
+
+below is the example
+ex:
+
+echo "The addition of 2 and 3 is : expr 2 + 3 (without invertted commas)
+output : 
+     the addition of 2 and 3 is : expr 2 + 3 
+
+with inverted commas
+output for above input
+echo "The addition of 2 and 3 is : `expr 2 + 3`
+         out put   
+		 The addtion of 2 and 3 is : 5
+		 
+    the addition 	
+	 
+, command
+' single quotes
+""  Double quotes
+` inverted comma
+
+
+
+= assigning the value of right operand in left operand 
+
+ex : a =$b (assigning the value of b value to a)
+			it will assinningn the b value to a 
+			
+== (equality and equality )
+to compare the each value is same or not
+$a == $b it should get match with a b with same vlaue comparing the values of a and b value
+
+
+!= (not equal)
+(compare two numbers if both are diffrent the  return )
+if not equal we can add another values to it
+
+
+relational operators :
+-eq (if checks for the value is equal or not if yes then condition becomes true0)
+- ne (it checks for the two operands are not equal or notif values are not eqal condition becomes true)
+-gt (greater than it check the values of left operand is greater than the values of right operand ; if yes condition becomes true)
+
+-lt (less than it checks for the values is less than to right operand right operand should more than the left side value <)
+ if right hand side value is more than condition becomes true
+-ge ( it checks for the value is greater than or not it means left side value should be more)
+
+
+in arthamatic value both are same
+
+`expr  $a + $b`
+
+
+or
+
+echo $(( a + b )) 
+when we are using expr multiplecation becomes like \*
+
+what is expr ?
+
+expression
+
+
+boolean operators
+#################
+! negation
+-o or
+-a and 
+
+above or the logical operators 
+
+
+	 
+##########################################
+string operators
+################
+
+=
+
+!=
+
+-z 
+
+-n 
+
+str
+
+##########################################################################################
+if elif else
+
+if condition
+then 
+  statement
+  statement
+elif condition
+then 
+   statement 
+   statement
+else
+   statement
+fi
+#####################################
+echo "Enter a number"
+read a
+echo "Enter a number"
+read b
+if [ $a -eq $b ]
+then
+echo "a value is equal to b value"
+elif [ $a -gt $b ]
+then
+echo " $a is greater than $b"
+else
+echo $a is less than $b
+fi   
+
+#################################################################################################################################################
+
+what is an array? (scara)
+
+array is a collections of variables
+
+
+read  -a (it means it is an array it will store the values as a index like 0 1 2 3 4 5 6 )
+
+[root@ip-172-31-45-211 ~]# cat readcommands3.sh
+echo "Please enter the tools"
+
+read -a tools
+
+echo "the tools which you have type is " ${tools[*]}
+echo "the 4th elment is :" ${tools[3]}
+[root@ip-172-31-45-211 ~]# ./readcommands3.sh
+Please enter the tools
+1 2 3 4 5 6 7 8 9
+the tools which you have type is  1 2 3 4 5 6 7 8 9
+the 4th elment is : 4
+[root@ip-172-31-45-211 ~]#
+
+
+in above example we have entered from 1 to 9 and we havve metnioned 3 [3] because array considering from 0 and if we want all the arry's to display we have to use [*]
+
+REPLY IS THE DEFAULT VARIABLE FOR READ COMMAND if we are not specifying any  to the read command that's goinng to take it as variable for read command
+
+	 
+to silence the password while typing we can use -s 
+
+
+
+#!/bin/bash
+NAME[0]="orange"
+NAME[1]="apple"
+NAME[2]="Grape"
+echo "First index : ${NAME[0]}"
+echo "Second index : ${NAME[1]}"
+echo "third index : ${NAME[2]}"
+
+
+
+######################################################
+[root@ip-172-31-45-211 ~]# cat readcommands5.sh
+read -p "User name which you have entered is :" username
+read -sp "password name which you have entered is :" password
+echo ""
+echo "the username which you have entered is :" $username
+echo "the password which you have entered is :" $password
+
+[root@ip-172-31-45-211 ~]#
+#############################################################################
+using "" it will display whatever we have entered after the input
+
+
+itrationn means repeating
+
+it is the repetition of a process within a bash script. For example, you can run UNIX command or task 5 times or read and process list of files using a for loop. A for loop can be used at a shell prompt or within a shell script itself
+
+
+$##################################################################################################
+
+Continuous integration
+Continuous delivery
+continuous deployment
+
+
+if we see any error like "Public key for jenkins-2.387.2-1.1.noarch.rpm is not installed"we can follow the steps
+
+sudo vi /etc/yum.repos.d/jenkins.repo
+[generic]
+name=Jenkins-stable
+baseurl=https://pkg.jenkins.io/redhat-stable/
+gpgcheck=0
+
+set gpgcheck=1 to 0
+
+2004 (Hudson) released 
+
+
+2012
+
+
+
+CI : (continous integration is tha process of automating the build and testing the code when developer push the code or source code management )
+#####
+
+process of creating a package
+CI benefits
+##############
+
+1. immediate bug detection
+
+
+CI : 
+
+CI is the process of automating the build and testing the code when developer push the code to the SCM
+
+
+to deploy ear files we should use jfrogg server or wildfly
+
+
+Continuous Delivery --> is a manul process (deployment) (Production) (External project)
+Continuous deployment --> Automation process (Internal Projects)
+
+
+Continuous Delivery --> will be used for external projects
+Continous Deployment --> will be used for internal projects
+
+
+Dev Env--> QA --> Prod
+
+Java code coverage
+
+Jacoco --> Java code coverage (it's going to test the unit test cases)
+
+
+Jenkins we have some option to customize the threshold for code coverage to not to deploy when threshold not reached
+
+
+
+
+Plugin :
+   piece of softare,which will add feature to the jenkins
+1800 + are avaiable
+
+we can follow the using CI, CD 
+we can notify to the stakeholders through the emails or slack notifications
+
+Jenkins we can create a jira ticket
+
+
+if we download any plugin that's going to download from jenkins plugin repository
+
+
+
+-----> jenkins default port number is 8080
+
+
+
+
+----> if we get error like failed to connect to the repository that means git is not installed in the jenkins server 
+
+
+
+-->
+  freestyle
+  --> we need to install git in jenkins server 
+				--> sudo yum install git -y 
+  --> we need to install maven in jenkins UI
+     1. manager Jenkins --> Global tool configuration there we can add maven version is 3.9.1 once we configure then we should configure in the job as well
+	 
+	 to build application we should mention like clean package sonar:sonar
+	 
+	 as a manual step we should configur ethe nexus and sonarqube credentials path in jenkins server it self
+	 
+	 
+	 but goals we should mention like 
+	 
+	 clean package sonar:sonar deploy
+	 
+  Jenkins Home directory
+-------------------------
+ --> /var/lib/jenkins 
+      source code will get store under /var/lib/jenkins/workspace
+	  
+	 
+if we install any tools those will be stored under 
+  --> /var/lib/jenkins/tools/
+
+  we should install deploy to container for tomcat 
+  we should mention war file in jenkins under 
+
+post build section like below
+
+-- > **/maven-web-application.war  
+	 to deoloy to tomcat we should follow below steps
+	--> we need to add the manager-script in tomcat/tomcat-users.xml 
+	 <user username="govardhan" password="password" roles="manager-gui,admin-gui,manager-script" />
+	 
+	 
+	 There are 3 ways to automate the job when developer push the code
+	 1 . Poll SCM -- same
+	 2. Build periodically  -- Jenkins will check for the latest code
+	 3. Github Webhook -- when there is a new code updated it will give an update
+ It's going to check the revision (commit id) to trigger new job
+
+
+
+
+--> When we use bill periodically it will trigger the build as per the schedule time
+--> Poll scm will work when there is change in git
+--> process to configure webhook
+   http://3.17.180.243:8080/github-webhook/ this is the context path 
+   we should add above URL in github repository in settings tab below are the options 
+   --> application/json
+   --> just push the event
+    
+
+--> Delete workspace begore it starts a build 
+
+  -- option under build environment
+ Jacoco plugin for code coverage 
+
+diffrence between jacoco and sonarqube is that 
+--> we can stop deploying by using jacoco when it's not reaching to the threshold 
+--> in sonarqube it's not possible
+
+many companies are using declarative pipeline
+ 
+	 SLACK INTEGRATION
+	 ######################
+	 
+-- Need to download plugin called "slack notification"
+-- in slack need to select settings& administration we can add the slackintegration 
+
+
+JENKINS DIRECTORY STRUCTURE : 
+#############################
+
+
+Default Home Directory : /var/lib/jenkins
+#######################################
+Jobs -- it container's the job's information
+
+
+in jenkins also there is a one context.xml (that contain's job configuration)
+
+--> workspacecontainer's source code
+
+what is plugin?
+
+plugin is a piece of software which addes extra features to the jenkins 
+
+
+tools :
+#######
+
+the softares which we add from globl tool configuration those will get save here
+
+
+plugin extension
+##################
+.jpi
+ 
+ 
+ if we forgot jenkins password steps to recovery
+ 
+ we can go to the 
+ 
+ 
+ cd jobs/projectname
+     under this we can find file called config.xml
+	 there we can change security properity true to false then we can restart the server 
+	 
+	 
+	 maven integration plugin --> we can create only for maven project's java
+	 
+ one more way to restart the jenkins server
+ http://3.17.180.243:8080/restart --> it will restart forcufully 
+ http://3.17.180.243:8080/SafeRestart --> it will restart saferly
+ 
+--> webshere App server --> we can use urban code deploy
+--> Audit trail plugin
+--> job config history plugin to restore the deleted project's 
+--> schedule build 
+-->  Build number description seter "we can modify the build details with ENV and description" (custome name along with build number)
+--> Build with parameter
+ */${BranchName}
+ 
+ 
+ ################################################
+ 
+ manage the jenkins access
+ 
+ we should we create a user's from 
+    --> manage users 
+	
+	then we can modify the required access from --> configure global security 
+	
+	
+#########################################################
+
+--> How to take a back up
+ Create a folder and specify in Thinback up settings and give permission to customized folder permissions 
+   chown -R jenkins:jenkins jenkins_backup/
+   ########################################################
+   
+   to add a timestamp to the build status we can do like below
+   pipeline syntax generator
+     --> snippet generator
+	 
+	 
+#######################################################
+
+to do the choice paramters (choosing the which branch like master or development)
+
+	 -->  Directive Generator
+	      --> parameters
+		    --> we can mention the branches 
+			
+			we should configure nexus credentials in settings.xml and we should keep the URL in pom.xml
+			for sonarqube report we should keep in pom.xml along with token 
+			for tomcat deploy to container
+			
+			
+			sshagent(['67f17b7b-d810-4497-a895-d66a8cff52b9']) {
+    // some block
+}
+
+
+
+pipeline{
+agent any
+
+parameters {
+  choice choices: ['master', 'development'], description: 'This is choice parameter', name: 'Branch'
+}
+
+triggers {
+  pollSCM '* * * * *'
+}
+options {
+  timestamps()
+  buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '10', numToKeepStr: '5')
+}
+
+tools{
+maven "maven_software"
+
+}
+//Getting the code from github
+stages{
+    stage ('CheckoutCode'){
+	steps{
+	
+	git credentialsId: 'Github_repo', url: 'https://github.com/HarshaVenkatTechnologies/maven-web-application.git'
+	}
+	
+	
+	
+	}
+	// This will build the war file
+	
+	stage('Build'){
+	steps{
+	sh "mvn clean package" 
+	
+	}
+	}
+	
+//Executing sonar qube report
+stage('Execute sonarqube report'){
+    steps{
+        sh "mvn clean package"
+    }
+}
+// This will execute the shell script
+stage('shell script'){
+    steps{
+        sh "echo 'Hello This is declarative pipeline'"
+    }
+}
+// This will generate the Build number
+stage('Build_name'){
+    steps{
+      echo "The build number is: ${env.BUILD_NUMBER}"
+    }
+}
+// This step is for to uploading the artifact to nexus server
+stage('uploading artifactory'){
+    steps{
+        sh "mvn clean deploy"
+    }
+}
+// This is for tomcat server
+stage('deploying artifact to the application server'){
+    steps{
+        sshagent(['67f17b7b-d810-4497-a895-d66a8cff52b9']) {
+   sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Jenkins_pipeline/target/Govardhan-Technologies.war ec2-user@3.136.19.22:/opt/tomcat9/webapps/"
+}
+
+    }
+}
+}// stage closing
+post {
+  success {
+      notifySlack(currentBuild.result)
+    // One or more steps need to be included within each condition's block.
+  }
+  failure {
+      notifySlack(currentBuild.result)
+    // One or more steps need to be included within each condition's block.
+  }
+}
+
+}// pipeline closing
+
+def notifySlack(String buildStatus = 'STARTED') {
+    
+    buildStatus = buildStatus ?: 'SUCCESS'
+
+    def color
+
+    if (buildStatus == 'STARTED') {
+        color = '#D4DADF'
+    } else if (buildStatus == 'SUCCESS') {
+        color = '#BDFFC3'
+    } else if (buildStatus == 'UNSTABLE') {
+        color = '#FFFE89'
+    } else {
+        color = '#FF9FA1'
+    }
+
+    def msg = "${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL}"
+
+    slackSend(color: color, message: msg)
+}
+
+node {
+    try {
+        notifySlack()
+
+        // Existing build steps.
+    } catch (e) {
+        currentBuild.result = 'FAILURE'
+        throw e
+    } finally {
+        notifySlack(currentBuild.result)
+    }
+}
+############################################################################
+
+bill wave off
+ 
+	 
+ 
+pipeline two types
+
+scripted way -- writing manually 
+declarative way -- mentioning in github jenkinsfile
+
+
+
+scripted :
+########
+
+def 
+  --> def is the keyword to define the variables
+  configure the maven 
+  def mavenHome = tool name: "/var/lib/hudson.tasks.Maven_MavenInstallation/maven_software"
+
+
+
+node
+{
+def mavenHome = tool name: "maven_software"
+stage('Checkout the code from github'){
+git credentialsId: 'Github_repo', url: 'https://github.com/HarshaVenkatTechnologies/maven-web-application.git'
+}
+stage('Building a artifactory'){
+sh "${mavenHome}/bin/mvn clean package" 
+}
+}
+
+
+Note :   -->   def is keyword for defining the variables 
+         --> mavenHome (we can define any name)
+		 --> maven_software (it's the name which we have mentioned in global tool configuration)
+		 
+		 
+
+
+
+
+node
+{
+def mavenHome = tool name: "maven_software"
+properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '10')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
+
+
+echo "The Job name is: ${env.JOB_NAME}"
+echo "The node name is: ${env.NODE_NAME}"
+echo "The workspace path is: ${env.WORKSPACE}"
+echo "The node label is: ${env.NODE_LABELS}"
+echo "The build number is: ${env.BUILD_NUMBER}"
+stage('Checkout the code from github'){
+git credentialsId: 'Github_repo', url: 'https://github.com/HarshaVenkatTechnologies/maven-web-application.git'
+}
+stage('Building a artifactory'){
+sh "${mavenHome}/bin/mvn clean package" 
+}
+stage('Generating a sonarqube report'){
+sh "${mavenHome}/bin/mvn sonar:sonar"
+
+}
+stage ('Upload artifactory'){
+sh "${mavenHome}/bin/mvn deploy"
+}
+stage ('deploying to tomcat server'){
+sshagent(['67f17b7b-d810-4497-a895-d66a8cff52b9']) {
+   sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Jenkins_pipeline/target/Govardhan-Technologies.war ec2-user@3.136.19.22:/opt/tomcat9/webapps/"
+}
+
+}
+stage('Executing a shell'){
+sh '''
+            #!/bin/bash
+            echo "Hello, world!"
+            echo "This is a shell script executed in Jenkins."
+            # Add your shell commands here
+            # ...
+        '''
+}
+post{
+
+ success{
+ emailext to: 'govardhang4455@gmail.com',
+          subject: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
+          body: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
+          replyTo: 'govardhang4455@gmail'
+ }
+
+}
+}
+
+comments
+#########
+
+single line comment \\ -->
+multi line comment /*    */
+
+
+Slack notifications
+########################
+
+def notifySlack(String buildStatus = 'STARTED') {
+    
+    buildStatus = buildStatus ?: 'SUCCESS'
+
+    def color
+
+    if (buildStatus == 'STARTED') {
+        color = '#D4DADF'
+    } else if (buildStatus == 'SUCCESS') {
+        color = '#BDFFC3'
+    } else if (buildStatus == 'UNSTABLE') {
+        color = '#FFFE89'
+    } else {
+        color = '#FF9FA1'
+    }
+
+    def msg = "${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL}"
+
+    slackSend(color: color, message: msg)
+}
+
+node {
+    try {
+        notifySlack()
+
+        // Existing build steps.
+    } catch (e) {
+        currentBuild.result = 'FAILURE'
+        throw e
+    } finally {
+        notifySlack(currentBuild.result)
+    }
+}
+
+
+cache(e){
+ currentBuild.result = "FAILURE"
+ throw e 
+}
+finally{
+    slacknotifications(currentbuild.result)
+}
+
+
+
+
+There are two types of jenkins pipeline
+
+scripted pipeline -->
+delcarative pipeline -->
+
+
+
+
+
+
+DECLARATIVE Pipeline                                (IMPORTANT)
+######################################################################################################################
+
+pipeline{
+agent any
+
+tools{
+maven "maven_software"
+
+}
+
+def mavenHome = tool name: "maven_software"
+stages{
+    stage ('CheckoutCode'){
+	steps{
+	
+	git credentialsId: 'Github_repo', url: 'https://github.com/HarshaVenkatTechnologies/maven-web-application.git'
+	}
+	
+	
+	
+	}
+	
+	stage('Build'){
+	steps{
+	sh "mvn clean package" 
+	
+	}
+	}
+
+}
+
+}
+
+############################################################################
+pipeline {
+
+agent any
+
+
+stages{
+   stage ('Checkout the code from github'){
+   steps{
+   
+   
+   }
+   
+   
+   
+   }
+
+}
+
+
+}
+
+
+
+########################################################################################################################################################
+
+pipeline{
+agent any
+
+tools{
+maven "maven_software"
+
+}
+stages{
+    stage ('CheckoutCode'){
+	steps{
+	
+	git credentialsId: 'Github_repo', url: 'https://github.com/HarshaVenkatTechnologies/maven-web-application.git'
+	}
+	
+	
+	
+	}
+	
+	stage('Build'){
+	steps{
+	sh "mvn clean package" 
+	
+	}
+	}
+	
+//Executing sonar qube report
+stage('Execute sonarqube report'){
+    steps{
+        sh "mvn clean package"
+    }
+}
+stage('shell script'){
+    steps{
+        sh "echo 'Hello This is declarative pipeline'"
+    }
+}
+  
+
+}// stage closing
+
+}// pipeline closing
+
+###########################################################################################
+
+Complete declarative
+#####################
+
+
+pipeline{
+agent any
+tools{
+maven "maven_software"
+
+}
+//Getting the code from github
+stages{
+    stage ('CheckoutCode'){
+	steps{
+	
+	git credentialsId: 'Github_repo', url: 'https://github.com/HarshaVenkatTechnologies/maven-web-application.git'
+	}
+	
+	
+	
+	}
+	// This will build the war file
+	
+	stage('Build'){
+	steps{
+	sh "mvn clean package" 
+	
+	}
+	}
+	
+//Executing sonar qube report
+stage('Execute sonarqube report'){
+    steps{
+        sh "mvn clean package"
+    }
+}
+// This will execute the shell script
+stage('shell script'){
+    steps{
+        sh "echo 'Hello This is declarative pipeline'"
+    }
+}
+// This will generate the Build number
+stage('Build_name'){
+    steps{
+      echo "The build number is: ${env.BUILD_NUMBER}"
+    }
+}
+// This step is for to uploading the artifact to nexus server
+stage('uploading artifactory'){
+    steps{
+        sh "mvn clean deploy"
+    }
+}
+// This is for tomcat server
+stage('deploying artifact to the application server'){
+    steps{
+        sshagent(['67f17b7b-d810-4497-a895-d66a8cff52b9']) {
+   sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Jenkins_pipeline/target/Govardhan-Technologies.war ec2-user@3.136.19.22:/opt/tomcat9/webapps/"
+}
+
+    }
+}
+}// stage closing
+
+}// pipeline closing
+
+
+sshagent(['3abe7966-da47-442c-9c75-41b3759f15b6']) {
+    // some block
+}
+
+
+stage('deploying artifact to the application server'){
+    steps{
+        sshagent(['67f17b7b-d810-4497-a895-d66a8cff52b9']) {
+   sh "scp -o StrictHostKeyChecking=no /home/ec2-user/slave_one/workspace/Jenkins_declarative/target/Govardhan-Technologies.war ec2-user@3.136.19.22:/opt/tomcat9/webapps/"
+}
+
+    }
+}
+
+
+node ('built-in'){
+complete code here
+
+}
+
+
+#########################################################################################
+
+
+process to configure the nexus credentials in settings.xml
+
+   <passphrase>optional; leave empty if not used.</passphrase>
+    </server>
+    -->
+    <server>
+          <id>nexus</id>
+          <username>admin</username>
+          <password>password</password>
+  </server>
+  </servers>
+
+
+######################################################
+
+we need to get the tomcat credentials
+
+
+if we want to trigger multiple job's in slaves we should configure the number of executes in slave configurations
+#####################################################
+
+
+
+below is for nodejs
+################################################
+
+//Checkout the code
+node {
+
+stage ('checkout the code') {
+git credentialsId: 'Github_repo', url: 'https://github.com/Harsha-venkat/nodejs-app-mss.git'
+}
+
+//it will generate the package .json package
+stage('build the application'){
+nodejs(nodeJSInstallationName: 'nodejs20.2.0'){
+sh "npm install"
+}
+}
+stage('generating sonar report'){
+    nodejs(nodeJSInstallation Name: 'nodejs20.2.0'){
+      sh "npm run sonar"
+    }
+}
+}
+
+
+Note : for node js we should configure the sonarqube details in sonar-project.js file
+  for nexus we should configure under package.json only for URL 
+    credentials : for maven settings.xml 
+	for node js :  for nodejs .npmrc file to generate a password we should use this command  echo -n 'admin:password' | openssl base64
+														//registry.npmjs.org/:_auth=YWRtaW46ZGV2b3Bz
+	--> we should install the nodejs where jenkins is running
+	
+	developers will create server.js or app.js 
+	
+	#################################
+	
+	Jenkins CLI
+	
+	we should download the jenkins.jar file and we should navigate to that path and we should fire below command
+	
+	
+	java -jar jenkins-cli.jar -auth Govardhan:password -s http://18.188.25.74:8080/ -webSocket help
+	        at hudson.cli.CLI.main(CLI.java:103)
+[venkat@ip-172-31-31-36 ~]$ java -jar jenkins-cli.jar -auth Govardhan:112fdb8e2fc7e4198e08e0fa1756323da7 -s http://18.188.25.74:8080/ list-jobs
+--> to get the token we can go to manage jenkins and manager users there we can generate the token
+
+
+
+
+
+
+
+
+
+
+
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+
+
+
+
+
+scripted pipeline
+
+
+###################
+
+
+node {
+    
+    
+    def mavenHome = tool name: "Maven"
+    stage ("Checkout code from git") {
+        
+        git credentialsId: 'Git_hub', url: 'https://github.com/AMLSDEVOPS/maven-web-application.git'
+
+    }
+
+    stage ("Build the artifactory") {
+       
+       sh "${mavenHome}/bin/mvn clean package"
+       
+    }
+    
+    
+    stage("Code coverage") {
+        
+        
+        sh "${mavenHome}/bin/mvn sonar:sonar"
+        
+    }  
+    stage("Nexus") {
+        
+        sh "${mavenHome}/bin/mvn clean deploy"
+    }
+   
+    stage("Deploy") {
+        
+        sshagent(['6547dba0-bc05-4cb3-8368-de0dd7dafcc6']) {
+    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.109.153.130:/opt/apache-tomcat-9.0.85/webapps"
+}
+        
+    }
+}
+
+#########################################################################################
+
+Ansible is a open source tool provided by Redhat
+#####################################################
+
+
+
+
+
+
+
+Redhat bought by IBM
+
+
+Configuration management tool :
+##############################
+
+Installing,Uninstalling,Updating packages
+
+creating users 
+copying files 
+#################################
+
+chef is a pull based archicture means agents will check the master instance for any changes when there is a change that going to be applied 
+
+ansible is a push based archicture when there is a change that going to push to the agents
+
+
+###############################################
+
+host inventory
+/etc/ansible/hosts
+
+two types of inventory :
+    1. statastic inventory
+	2. dynamic inventory
+##############################################################
+
+
+--> there will be in-built modules
+	
+--> custome modules which we can create --> without python we can't write
+
+
+
+
+
+
+
+
+master node 172.31.93.58
+slaveone 172.31.95.139 (44.206.224.88)public
+slavetwo 172.31.89.253  (54.163.128.164) 54.163.128.164
+
+####################################################################################################
+
+instllation 
+
+need 3 servers    
+
+      one is master server
+	  two is server1
+	  three is server2
+	  
+	  1. sudo useradd ansible
+      2.sudo passwd ansible
+	  3.visudo
+	  4. ansible ALL=(ALL) NOPASSWD: ALL
+	  5. vi /etc/ssh/sshd_config 
+	  6. PasswordAuthentication yes
+	  7.vi /etc/ssh/sshd_config
+	  8. sudo service sshd restart
+	  9.sudo yum install python3 -y
+	  10.sudo alternatives --set python /usr/bin/python3
+	  11.python --version
+	  12.sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y
+	  13.sudo yum -y install ansible
+	  14.ansible --version
+##############################################################
+
+we should keep the hosts names under /etc/ansible/hosts
+ --> to check the status below is the command
+ 
+   ansible all -m ping
+
+
+
+
+
+
+
+
+#########################################################
+
+
+custome file instead of hosts :
+
+    /etc/ansible/ansible.cfg
+	            there we can create a file and we can mention some names
+
+to make customized host inventory we can add one line like
+inventory = /etc/ansible/govardhan
+
+
+to provide the host inventory dynamicall
+#########################################
+
+ansible -all -i /etc/ansible/govardhan -m ping
+
+[ansible@ip-172-31-93-58 ansible]$ ansible all -i /etc/ansible/govardhan --list-hosts -m ping -v
+
+webservers tomcat
+wildfly app servers 
+
+--> we can keep one ip under multiples groups
+
+[webservers]
+
+
+[applicationserver]
+
+--> ungroup servers we can specify in top 
+
+--> to call specific group of hosts
+   ansible appserver -m ping
+   
+   
+   [ansible@ip-172-31-93-58 ansible]$ ansible 172.31.89.253 -m ping
+   
+   we can call specific host also
+   
+   
+   to connect local host below are the steps
+   
+   ssh-copy-id ansible@localhost
+   
+   and ping 
+   before that we should add local in host inventory file
+   
+
+
+multiple group pings
+
+ansible webserver,appserver -m ping
+[ansible@ip-172-31-93-58 ~]$ ansible all -b -m yum -a "name=git"
+ ansible all -b -m yum -a "name=httpd state=present"
+[ansible@ip-172-31-93-58 ~]$ ansible all -b -m service -a "name=httpd state=started"
+[ansible@ip-172-31-93-58 ~]$ ansible all -m copy -a "src=file.txt dest=/tmp/file.txt"
+ansible all -m setup
+
+
+Idipassword*16@_
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tomcat is a web application server 
+
+
+#################################
+
+
+ansible tower is a GUI
+
+
+Core module -- like a inbuild modules
+
+
+##########################################################
+
+we can call it as
+
+master node
+conroler
+ansible enginee
+
+
+--> we can find the location of the inventory file in ansible.cfg
+
+
+
+
+advantages of ansible
+
+
+--> it's a free source automation tool and simple
+--> Using existing openSSH
+--> anget-less- No Need to install any agent on ansible remote nodes
+
+--> python/Yaml based
+--> highly flexible and configuration management of system
+--> large number of ready to use module for system
+
+
+
+
+windows is not supported for the control node
+
+#########################################################################
+
+
+installation
+-------------------
+Ansible version 2.4 and later can manage earlier operating systemcs that contain python 2.6 or higher
+###################################
+
+
+
+extra packages for enterprise 
+
+to install latest verson
+
+################################
+
+yum install https:dl.fedeoraproject.org/epel-release-latet-7.noarch.rpm 
+###########################################
+
+yum install ansible
+
+
+##########################
+
+
+/etc/ansible/ansible.cfg (config file of ansible where we can define everythig)
+
+ansible python module location : /usr/lib/python2.7/site-packages/ansible
+
+
+where ansible has installed path : /bin/ansible
+
+Python 2 (version 2.6 or later) or python 3 (3.5 or later)
+
+-- >  we can work with remote nodes without python also no need to install python in remote nodes
+--> fqdn or host full address
+
+
+
+make sure that passwordauthentication yes in all servers under /etc/ssh/sshd_config file
+
+
+
+
+##########################
+
+
+--> we should create a user and password
+--> we should add into visudo file
+--> we should login with ansible user 
+--> e should try to generate the keys by using ssh-keygen -- in master node and should use below command 
+
+ --> ssh-copy-id <ip address here>
+
+
+
+==> if we are modifying or customizing we should mention in /etc/ansible/ansible.cfg
+==> default location of inventory file is /etc/ansible/hosts
+#########################################
+
+
+
+
+we can modify the default hosts files (inventory file)
+
+we should open ansible.cfg file and we should add like below
+
+[defaults]
+inventory = /etc/ansible/herecustomizedfilename
+
+
+
+
+
+we should not modify the ansible.cfg name
+
+
+
+ansible all -m ping -i <we can give our inventory file here next to i>
+ansible all -m ping -i inventory
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+disabling host key checking
+
+export ANSIBLE_HOST_KEY_CHECKING=FALSE
+
+we can add like below in ansible.cfg as a second method
+
+[defaults]
+host_key_checking = False
+
+
+
+
+#######################################################
+
+
+ansible ipaddress -m ping  
+
+
+==> we can ping the particular ip address but that should present in the inverntory file
+
+
+ below command is for two hosts
+
+ansible ipaddress:ipaddress -m ping
+
+
+#####################################
+
+
+groups:
+
+[group1]
+ipaddresshere
+
+[group2]
+ipaddresshere
+
+
+we should mention in hosts(file)
+
+command is
+ansible group1 -m ping
+
+###########################################
+
+group of groups
+
+[groups:children]
+group1
+group2
+############################################
+
+
+
+
+diffrent location of ansible.cfg
+
+
+EPEL packages]
+
+
+##########################################################
+
+what is ad-hoc command
+
+ 	command is one liner command that perfome one task on target nodes
+
+
+
+ansible your_remote_nodes_group -i your_inventory_file -m copy -a "src=/path/to/your/local/file.txt dest=/path/on/remote/machine/file.txt"
+
+
+above command is to copy the files
+
+##################################
+
+ansible -i inventory group1 -m shell -a "uptime"
+
+
+command to check the modules
+
+
+ansible-doc -l
+######################################
+
+ansible all -m ansible.builtin.file path=/home/ansible/testdir state=directory
+ansible all -m ansiblebuiltin.file "path=/home/ansib/testfile.sh state=touch"
+
+
+
+
+
+ansible adhoc command syntax:
+
+ansible [-i prod_inv] server_name:group1:group2 -m module [-a argument_value]
+ansible all group1:group2 -m shell [-a uptime]
+
+##################################################
+
+when we execute some command of modules from master node in targer server a folder will get create called .ansible where master machine modules will be pushed into it 
+ANSIBLE_KEEP_REMOTE_FILES=1 ansible all -m shell -a "uptime"
+
+
+
+forks:
+
+if we have 100 servers and want to perfome in all the server at a time we should mention like belo
+
+forks = 100 in ansible.cfg file we should mention
+
+it means one by one
+
+if we mention 100 it will go as 100 at a time or if we want to configure like 5 by 5
+
+by default forks value is 5
+
+###############################################
+
+ansible is a push machanism
+
+it means agentless archatecture
+
+
+[ansible@ip-172-31-24-101 my_ansible_home]$ ansible all -m copy -a "content='hello this is from copy module' dest=/tmp/hello.txt backup=yes"
+[ansible@ip-172-31-24-101 my_ansible_home]$ ansible all -m copy -a "content='this is from copies module\n' dest=/tmp/hello.txt backup=yes"
+
+ansible all -m fetch -a "src=/home/ansible/demo.txt dest=./newdemo/{{inventory_hostname}}_demo.txt flat=yes"
+
+ansible all -m fetch -a "src=/home/ansible/my_ansible_home/demp.txt dest=/home/ansible/{{inventory_hostname}}_demo.txt flat=yes"
+[ansible@ip-172-31-24-101 my_ansible_home]$ ansible all -m file -a "path=/home/ansible/samples.txt state=absent"
+
+
+[ansible@ip-172-31-24-101 my_ansible_home]$ ansible all -m ansible.builtin.shell -a "cat /home/ansible/thisis_worker_node_one.txt"
+
+
+
+ansible -i inventory all -a "uptime"
+
+@#####################################################
+
+Ansible facts are nothing but gathering the information about the worker nodes it can be distribution release procesor etc
+ansible all -m setup 
+#### 
+
+there are two types of facts
+
+default facts
+custome fact
+#####################################
+
+
+path to create custome facts
+
+/etc/ansible/facts.d
+
+custome facts like below
+
+httpd_v.fact
+
+git_v=git --version | awk '{print $3}'
+
+
+
+sudo apachectl configtest
+
+
+pidoff httpd
+
+[ansible@ip-172-31-24-101 my_ansible_home]$ ansible all -m ansible.builtin.shell -a "pidof httpd  | xargs kill -9 ;systemctl start httpd" -b
+[ansible@ip-172-31-24-101 my_ansible_home]$ ansible all -m ansible.builtin.shell -a "pidof httpd ;systemctl start httpd" -b
+
+[ansible@ip-172-31-24-101 my_ansible_home]$ ansible -i inventory all -m setup -a "filter=ansible_local"
+
+ansible all -m shell -a "tree /home/ansible" -b
+
+
+#################################################
+
+
+two types of inventory
+
+1. static inventory
+2. dynamic inventory
+
+
+
+
+static inventory : 
+
+     coping manually called static inventory
+
+dynamic inventory :
+
+1.cloud is dynamic environment
+
+to work with aws we need module clled boto or boto3 priority is boto
+###################################################
+
+we should configure in AMIrole
+by clicking on images
+
+and also we should create AMI role and we should attach
+ec2.py
+ec2.ini this are the scripts from ansible github to configure dynamic inventory
+
+
+#####################################################################
+
+creating custome inventory skipped
+##########################################
+
+
+-k (it will establish the connection )
+-K (it's for establishing the connection and sudo password)
+
+
+ansible all -m file -a "path=xyx.txt state=touch" -k -u username
+
+######################################################################
+
+variables:
+############
+
+Default Variables
+Inventory Vars (Host Vars and Groups vars)
+register variables
+Facts and local facts
+##################################
+default 
+
+ansible all -m debug -a "msg='This is a debug module'"
+
+debug is like a printing the output or to display the variable value
+
+ansible all -m debug -a "var=inventory_hostname"
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+
+
+
+
+
+
+
+
+
+ansible all -m debug -a "msg={{inventory_hostname}}"
+
+ansible all -m debug -a "msg={{groups}}"
+ ansible all -m debug -a "var=groups.keys()" --> to list the groups without ip's
+
+##########################################################
+
+host variables
+
+when we have password autnetication we can pass the password along with the host in hosts file like below
+
+[passwordless]
+92.6.4.6.43.9
+[password]
+7635.276.28 ansible_ssh_user=xyz ansible_ssh_pass=passwordhere
+
+[passwordless:vars]
+ansible_ssh_user=anibleuser
+ansible_ssh_pass=passwordhe
+#############################################################################
+
+Playbooks:
+
+
+--> Playbooks are the configuration,deployment and orachestration language of Ansible and it' expressed in YAML format
+
+structure of playbooks
+
+-- Concepts:
+  - Task
+  - Play  ----> tasks or targets
+  - Playbook
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+/usr/bin/ansible-playbook this we can use instead of ---
+[ansible@ip-172-31-24-101 my_ansible_home]$ cat installpkg.yml
+---
+ - name: Installing a packges
+   hosts: all
+   become: yes
+   gather_facts: yes
+   tasks:
+   - name: installing wget command
+     yum:
+       name: wget
+       state: latest
+   - name: installing httpd
+     yum:
+       name: httpd
+       state: latest
+   - name: enabling the service
+     service:
+       name: httpd
+       state: restarted
+[ansible@ip-172-31-24-101 my_ansible_home]$
+
+
+./installpkg.yml --syntax-check
+#######################################
+
+
+dryrun playbook
+
+
+./installpkg.yml --check
+
+it means actuall playbook will not install but it will show you what would happend if you run like this
+############################################
+
+to change the verbose colour we can modify in ansible.cfg by default verbose is blue colour to make change we shold make change like below
+
+[colors]
+verbose = blue
+############################################################################
+
+
+
+print a message
+
+debug module
+
+####################################
+
+This module prints statements during execution and can be ueful for debugging variable or expressins
+--> Debug module accept three parameters
+
+  - msg
+  - var
+  - verbosity
+
+
+##################################################
+#!/bin/ansible-playbook
+ - name: Usage of debug module
+   hosts: all
+   tasks:
+   - name: Printing a variable
+     debug:
+       msg: "This is host name is : {{inventory_hostname}}"
+
+
+
+
+
+when we are using 
+
+var no need to take {{}} curly braces
+like example
+
+#!/bin/ansible-playbook
+ - name: Usage of debug module
+   hosts: all
+   tasks:
+   - name: Printing a variable
+     debug:
+       var: inventory_hostname
+
+
+
+verbosity
+
+-----
+
+ -vvv
+#######################################################
+variables:
+###############
+
+
+
+[ansible@ip-172-31-24-101 my_ansible_home]$ cat var_file.yml
+---
+ - name: "executing the variables"
+   hosts: all
+   become: true
+   vars:
+     x: 1
+     my_name: venkat
+   
+   tasks:
+     - debug:
+         msg:
+         - "the message is {{x}}"
+         - "the variable is and name here that is {{my_name}}"
+
+[ansible@ip-172-31-24-101 my_ansible_home]$
+###############################################################
+
+
+to premopt the popup while exeucitng the playbook
+
+
+---
+ - name: "executing the variables"
+   hosts: all
+   become: true
+   vars:
+     x: 1
+     my_name: venkat
+   vars_promt:
+   - name: user_name
+     prompt: Please enter your username here
+     private: no  
+   - name: pass_word
+     prompt: Please enter your password here
+     private: yes  
+   tasks:
+     - debug:
+         msg:
+         - "the message is {{x}}"
+         - "the variable is and name here that is {{my_name}}"
+         - "The value of y is {{user_name}}"
+         - "The password is {{pass_word}}"
+##############################################################
+
+
+---
+ - name: gathering the facts
+   hosts: all
+   become: yes
+   gather_facts: yes
+   tasks:
+     - name: gathering the facts and system info
+       debug: 
+         msg:
+           - "The system info like this is {{ansible_system}}"
+           - "The ansible sytem os family {{ansible_os_family}}"
+
+
+######################################################################
+
+
+---
+ - name: arthamatic
+   hosts: all
+   gather_facts: yes
+   become: yes
+   vars:
+    x: 1
+    z: 2
+
+   tasks:
+     - name: perfoming arthamatic operators
+       debug:
+         msg:
+         - "The value of arthamatic operator is {{x}}"
+         - "The {{x}} + {{z}} = {{x+z}}"
+         - "The {{x}} - {{z}} = {{x-z}}"
+         - "The {{x}} * {{z}} = {{x*z}}"
+
+##############################################################################
+
+comparision operators
+##########################
+
+
+Ansible is a open source tool provided by Redhat
+#####################################################
+
+
+
+
+
+
+
+Redhat bought by IBM
+
+
+Configuration management tool :
+##############################
+
+Installing,Uninstalling,Updating packages
+
+creating users 
+copying files 
+#################################
+
+chef is a pull based archicture means agents will check the master instance for any changes when there is a change that going to be applied 
+
+ansible is a push based archicture when there is a change that going to push to the hostmachines
+
+
+
+###############################################
+
+host inventory
+/etc/ansible/hosts
+
+two types of inventory :
+    1. statastic inventory
+	2. dynamic inventory
+##############################################################
+
+
+--> there will be in-built modules
+	
+--> custome modules which we can create --> without python we can't write
+
+
+
+
+
+
+
+
+master node 172.31.93.58
+slaveone 172.31.95.139 (44.206.224.88)public
+slavetwo 172.31.89.253  (54.163.128.164) 54.163.128.164
+
+####################################################################################################
+
+instllation 
+
+need 3 servers    
+
+      one is master server
+	  two is server1
+	  three is server2
+	  
+	  1. sudo useradd ansible
+      2.sudo passwd ansible
+	  3.visudo
+	  4. ansible ALL=(ALL) NOPASSWD: ALL
+	  5. vi /etc/ssh/sshd_config 
+	  6. PasswordAuthentication yes
+	  7.vi /etc/ssh/sshd_config
+	  8. sudo service sshd restart
+	  9.sudo yum install python3 -y
+	  10.sudo alternatives --set python /usr/bin/python3
+	  11.python --version
+	  12.sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y
+	  13.sudo yum -y install ansible
+	  14.ansible --version
+##############################################################
+
+we should keep the hosts names under /etc/ansible/hosts
+ --> to check the status below is the command
+ 
+   ansible all -m ping
+
+
+
+
+
+
+
+
+#########################################################
+
+
+custome file instead of hosts :
+
+    /etc/ansible/ansible.cfg
+	            there we can create a file and we can mention some names
+
+to make customized host inventory we can add one line like
+inventory = /etc/ansible/govardhan
+
+
+to provide the host inventory dynamically
+#########################################
+
+ansible -all -i /etc/ansible/govardhan -m ping
+
+[ansible@ip-172-31-93-58 ansible]$ ansible all -i /etc/ansible/govardhan --list-hosts -m ping -v
+
+webservers tomcat
+wildfly app servers 
+
+--> we can keep one ip under multiples groups
+
+[webservers]
+
+
+[applicationserver]
+
+--> ungroup servers we can specify in top 
+
+--> to call specific group of hosts
+   ansible appserver -m ping
+   
+   
+   [ansible@ip-172-31-93-58 ansible]$ ansible 172.31.89.253 -m ping
+   
+   we can call specific host also
+   
+   
+   to connect local host below are the steps
+   
+   ssh-copy-id ansible@localhost
+   
+   and ping 
+   before that we should add local in host inventory file
+   
+
+
+multiple group pings
+
+ansible webserver,appserver -m ping
+[ansible@ip-172-31-93-58 ~]$ ansible all -b -m yum -a "name=git"
+ ansible all -b -m yum -a "name=httpd state=present"
+[ansible@ip-172-31-93-58 ~]$ ansible all -b -m service -a "name=httpd state=started"
+[ansible@ip-172-31-93-58 ~]$ ansible all -m copy -a "src=file.txt dest=/tmp/file.txt"
+ansible all -m setup
+
+
+Idipassword*16@_
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tomcat is a web application server 
+
+
+#################################
+
+
+ansible tower is a GUI
+
+
+Core module -- like a inbuild modules
+
+
+##########################################################
+
+we can call it as
+
+master node
+conroler
+ansible enginee
+
+
+--> we can find the location of the inventory file in ansible.cfg
+
+
+
+
+advantages of ansible
+
+
+--> it's a free source automation tool and simple
+--> Using existing openSSH
+--> anget-less- No Need to install any agent on ansible remote nodes
+
+--> python/Yaml based
+--> highly flexible and configuration management of system
+--> large number of ready to use module for system
+
+
+
+
+windows is not supported for the control node
+
+#########################################################################
+
+
+installation
+-------------------
+Ansible version 2.4 and later can manage earlier operating systemcs that contain python 2.6 or higher
+###################################
+
+
+
+extra packages for enterprise 
+
+to install latest verson
+
+################################
+
+yum install https:dl.fedeoraproject.org/epel-release-latet-7.noarch.rpm 
+###########################################
+
+yum install ansible
+
+
+##########################
+
+
+/etc/ansible/ansible.cfg (config file of ansible where we can define everythig)
+
+ansible python module location : /usr/lib/python2.7/site-packages/ansible
+
+
+where ansible has installed path : /bin/ansible
+
+Python 2 (version 2.6 or later) or python 3 (3.5 or later)
+
+-- >  we can work with remote nodes without python also no need to install python in remote nodes
+--> fqdn or host full address
+
+
+
+make sure that passwordauthentication yes in all servers under /etc/ssh/sshd_config file
+
+
+
+
+##########################
+
+
+--> we should create a user and password
+--> we should add into visudo file
+--> we should login with ansible user 
+--> e should try to generate the keys by using ssh-keygen -- in master node and should use below command 
+
+ --> ssh-copy-id <ip address here>
+
+
+
+==> if we are modifying or customizing we should mention in /etc/ansible/ansible.cfg
+==> default location of inventory file is /etc/ansible/hosts
+#########################################
+
+
+
+
+we can modify the default hosts files (inventory file)
+
+we should open ansible.cfg file and we should add like below
+
+[defaults]
+inventory = /etc/ansible/herecustomizedfilename
+
+
+
+
+
+we should not modify the ansible.cfg name
+
+
+
+ansible all -m ping -i <we can give our inventory file here next to i>
+ansible all -m ping -i inventory
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+disabling host key checking
+
+export ANSIBLE_HOST_KEY_CHECKING=FALSE
+
+we can add like below in ansible.cfg as a second method
+
+[defaults]
+host_key_checking = False
+
+
+
+
+#######################################################
+
+
+ansible ipaddress -m ping  
+
+
+==> we can ping the particular ip address but that should present in the inverntory file
+
+
+ below command is for two hosts
+
+ansible ipaddress:ipaddress -m ping
+
+
+#####################################
+
+
+groups:
+
+[group1]
+ipaddresshere
+
+[group2]
+ipaddresshere
+
+
+we should mention in hosts(file)
+
+command is
+ansible group1 -m ping
+
+###########################################
+
+group of groups
+
+[groups:children]
+group1
+group2
+############################################
+
+
+
+
+diffrent location of ansible.cfg
+
+
+EPEL packages]
+
+
+##########################################################
+
+what is ad-hoc command
+
+ 	command is one liner command that perfome one task on target nodes
+
+
+
+ansible your_remote_nodes_group -i your_inventory_file -m copy -a "src=/path/to/your/local/file.txt dest=/path/on/remote/machine/file.txt"
+
+
+above command is to copy the files
+
+##################################
+
+ansible -i inventory group1 -m shell -a "uptime"
+
+
+command to check the modules
+
+
+ansible-doc -l
+######################################
+
+ansible all -m ansible.builtin.file path=/home/ansible/testdir state=directory
+ansible all -m ansiblebuiltin.file "path=/home/ansib/testfile.sh state=touch"
+
+
+
+
+
+ansible adhoc command syntax:
+
+ansible [-i prod_inv] server_name:group1:group2 -m module [-a argument_value]
+ansible all group1:group2 -m shell [-a uptime]
+
+##################################################
+
+when we execute some command of modules from master node in targer server a folder will get create called .ansible where master machine modules will be pushed into it 
+ANSIBLE_KEEP_REMOTE_FILES=1 ansible all -m shell -a "uptime"
+
+
+
+forks:
+
+if we have 100 servers and want to perfome in all the server at a time we should mention like belo
+
+forks = 100 in ansible.cfg file we should mention
+
+it means one by one
+
+if we mention 100 it will go as 100 at a time or if we want to configure like 5 by 5
+
+by default forks value is 5
+
+###############################################
+
+ansible is a push machanism
+
+it means agentless archatecture
+
+
+[ansible@ip-172-31-24-101 my_ansible_home]$ ansible all -m copy -a "content='hello this is from copy module' dest=/tmp/hello.txt backup=yes"
+[ansible@ip-172-31-24-101 my_ansible_home]$ ansible all -m copy -a "content='this is from copies module\n' dest=/tmp/hello.txt backup=yes"
+
+ansible all -m fetch -a "src=/home/ansible/demo.txt dest=./newdemo/{{inventory_hostname}}_demo.txt flat=yes"
+
+ansible all -m fetch -a "src=/home/ansible/my_ansible_home/demp.txt dest=/home/ansible/{{inventory_hostname}}_demo.txt flat=yes"
+[ansible@ip-172-31-24-101 my_ansible_home]$ ansible all -m file -a "path=/home/ansible/samples.txt state=absent"
+
+
+[ansible@ip-172-31-24-101 my_ansible_home]$ ansible all -m ansible.builtin.shell -a "cat /home/ansible/thisis_worker_node_one.txt"
+
+
+
+ansible -i inventory all -a "uptime"
+
+@#####################################################
+
+Ansible facts are nothing but gathering the information about the worker nodes it can be distribution release procesor etc
+ansible all -m setup 
+#### 
+
+there are two types of facts
+
+default facts
+custome fact
+#####################################
+
+
+path to create custome facts
+
+/etc/ansible/facts.d
+
+custome facts like below
+
+httpd_v.fact
+
+git_v=git --version | awk '{print $3}'
+
+
+
+sudo apachectl configtest
+
+
+pidoff httpd
+
+[ansible@ip-172-31-24-101 my_ansible_home]$ ansible all -m ansible.builtin.shell -a "pidof httpd  | xargs kill -9 ;systemctl start httpd" -b
+[ansible@ip-172-31-24-101 my_ansible_home]$ ansible all -m ansible.builtin.shell -a "pidof httpd ;systemctl start httpd" -b
+
+[ansible@ip-172-31-24-101 my_ansible_home]$ ansible -i inventory all -m setup -a "filter=ansible_local"
+
+ansible all -m shell -a "tree /home/ansible" -b
+
+
+#################################################
+
+
+two types of inventory
+
+1. static inventory
+2. dynamic inventory
+
+
+
+
+static inventory : 
+
+     coping manually called static inventory
+
+dynamic inventory :
+
+1.cloud is dynamic environment
+
+to work with aws we need module clled boto or boto3 priority is boto
+###################################################
+
+we should configure in AMIrole
+by clicking on images
+
+and also we should create AMI role and we should attach
+ec2.py
+ec2.ini this are the scripts from ansible github to configure dynamic inventory
+
+
+#####################################################################
+
+creating custome inventory skipped
+##########################################
+
+
+-k (it will establish the connection )
+-K (it's for establishing the connection and sudo password)
+
+
+ansible all -m file -a "path=xyx.txt state=touch" -k -u username
+
+######################################################################
+
+variables:
+############
+
+Default Variables
+Inventory Vars (Host Vars and Groups vars)
+register variables
+Facts and local facts
+##################################
+default 
+
+ansible all -m debug -a "msg='This is a debug module'"
+
+debug is like a printing the output or to display the variable value
+
+ansible all -m debug -a "var=inventory_hostname"
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+
+
+
+
+
+
+
+
+
+ansible all -m debug -a "msg={{inventory_hostname}}"
+
+ansible all -m debug -a "msg={{groups}}"
+ ansible all -m debug -a "var=groups.keys()" --> to list the groups without ip's
+
+##########################################################
+
+host variables
+
+when we have password autnetication we can pass the password along with the host in hosts file like below
+
+[passwordless]
+92.6.4.6.43.9
+[password]
+7635.276.28 ansible_ssh_user=xyz ansible_ssh_pass=passwordhere
+
+[passwordless:vars]
+ansible_ssh_user=anibleuser
+ansible_ssh_pass=passwordhe
+#############################################################################
+
+Playbooks:
+
+
+--> Playbooks are the configuration,deployment and orachestration language of Ansible and it' expressed in YAML format
+
+structure of playbooks
+
+-- Concepts:
+  - Task
+  - Play  ----> tasks or targets
+  - Playbook
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+/usr/bin/ansible-playbook this we can use instead of ---
+[ansible@ip-172-31-24-101 my_ansible_home]$ cat installpkg.yml
+---
+ - name: Installing a packges
+   hosts: all
+   become: yes
+   gather_facts: yes
+   tasks:
+   - name: installing wget command
+     yum:
+       name: wget
+       state: latest
+   - name: installing httpd
+     yum:
+       name: httpd
+       state: latest
+   - name: enabling the service
+     service:
+       name: httpd
+       state: restarted
+[ansible@ip-172-31-24-101 my_ansible_home]$
+
+
+./installpkg.yml --syntax-check
+#######################################
+
+
+dryrun playbook
+
+
+./installpkg.yml --check
+
+it means actuall playbook will not install but it will show you what would happend if you run like this
+############################################
+
+to change the verbose colour we can modify in ansible.cfg by default verbose is blue colour to make change we shold make change like below
+
+[colors]
+verbose = blue
+############################################################################
+
+
+
+print a message
+
+debug module
+
+####################################
+
+This module prints statements during execution and can be ueful for debugging variable or expressins
+--> Debug module accept three parameters
+
+  - msg
+  - var
+  - verbosity
+
+
+##################################################
+#!/bin/ansible-playbook
+ - name: Usage of debug module
+   hosts: all
+   tasks:
+   - name: Printing a variable
+     debug:
+       msg: "This is host name is : {{inventory_hostname}}"
+
+
+
+
+
+when we are using 
+
+var no need to take {{}} curly braces
+like example
+
+#!/bin/ansible-playbook
+ - name: Usage of debug module
+   hosts: all
+   tasks:
+   - name: Printing a variable
+     debug:
+       var: inventory_hostname
+
+
+
+verbosity
+
+-----
+
+ -vvv
+#######################################################
+variables:
+###############
+
+
+
+[ansible@ip-172-31-24-101 my_ansible_home]$ cat var_file.yml
+---
+ - name: "executing the variables"
+   hosts: all
+   become: true
+   vars:
+     x: 1
+     my_name: venkat
+   
+   tasks:
+     - debug:
+         msg:
+         - "the message is {{x}}"
+         - "the variable is and name here that is {{my_name}}"
+
+[ansible@ip-172-31-24-101 my_ansible_home]$
+###############################################################
+
+
+to premopt the popup while exeucitng the playbook
+
+
+---
+ - name: "executing the variables"
+   hosts: all
+   become: true
+   vars:
+     x: 1
+     my_name: venkat
+   vars_promt:
+   - name: user_name
+     prompt: Please enter your username here
+     private: no  
+   - name: pass_word
+     prompt: Please enter your password here
+     private: yes  
+   tasks:
+     - debug:
+         msg:
+         - "the message is {{x}}"
+         - "the variable is and name here that is {{my_name}}"
+         - "The value of y is {{user_name}}"
+         - "The password is {{pass_word}}"
+##############################################################
+
+
+---
+ - name: gathering the facts
+   hosts: all
+   become: yes
+   gather_facts: yes
+   tasks:
+     - name: gathering the facts and system info
+       debug: 
+         msg:
+           - "The system info like this is {{ansible_system}}"
+           - "The ansible sytem os family {{ansible_os_family}}"
+
+
+######################################################################
+
+
+---
+ - name: arthamatic
+   hosts: all
+   gather_facts: yes
+   become: yes
+   vars:
+    x: 1
+    z: 2
+
+   tasks:
+     - name: perfoming arthamatic operators
+       debug:
+         msg:
+         - "The value of arthamatic operator is {{x}}"
+         - "The {{x}} + {{z}} = {{x+z}}"
+         - "The {{x}} - {{z}} = {{x-z}}"
+         - "The {{x}} * {{z}} = {{x*z}}"
+
+##############################################################################
+
+comparision operators
+##########################
+
+ungroup nodes
+
+we should mention in starting of the headers
+
+
+
+tasks: tasks  means action to perfome 
+play means order for the task
+
+
+if directory not created it will create the directory or file
+
+
+
+to pass the variable values in playbook while executing the playbook we can follow below command 
+
+ansible-playbook playbook.yml --extra-vars name=venkat
+#####################################################################################
+
+
+
+---
+- name: installing the packages
+  hosts: all
+  become: yes
+  vars_files:
+   - varfile.yml
+
+  tasks:
+  - name: installing the httpd server
+    yum:
+      name: httpd
+      state: latest
+  - name: executing the commands to kill the process
+    shell: "sudo pkill -9 httpd"
+  - name: starting the service
+    ansible.builtin.service:
+      name: httpd
+      state: started
+  - name: copying the file
+    template:
+      src: /home/ansible/my_ansible_home/index.html
+
+
+
+
+
+
+in above file we are executing the variables through a file so we should defined like below
+
+vars_files
+ - varfile.yml     --> we shoudl mention the variables in this file
+
+
+if we specfy any variables that's not going to take if we given the variable file 
+
+
+#####################################################################################################
+
+---
+- name: installing the packages
+  hosts: all
+  become: yes
+  vars_files:
+   - "{{env}}_vars.yml"
+
+  tasks:
+  - name: installing the httpd server
+    yum:
+      name: httpd
+      state: latest
+  - name: executing the commands to kill the process
+    shell: "sudo pkill -9 httpd"
+  - name: starting the service
+    ansible.builtin.service:
+      name: httpd
+      state: started
+  - name: copying the file
+    template:
+      src: /home/ansible/my_ansible_home/index.html
+      dest: /var/www/html/index.html
+
+
+in this we have mention like vars_files:
+                             - "{{env}}_vars.yml"
+
+command 
+
+ansible-playbook playbook.yml --extra-vars env=prod
+############################################################################
+
+to take a env as a default we should make some changes in this file like to create a var file
+
+ ---
+- name: installing the packages
+  hosts: all
+  become: yes
+  vars:
+    env: prod
+  vars_files:
+   - "{{env}}_vars.yml"
+
+  tasks:
+  - name: installing the httpd server
+    yum:
+      name: httpd
+      state: latest
+  - name: executing the commands to kill the process
+    shell: "sudo pkill -9 httpd"
+  - name: starting the service
+    ansible.builtin.service:
+      name: httpd
+      state: started
+  - name: copying the file
+    template:
+      src: /home/ansible/my_ansible_home/index.html
+      dest: /var/www/html/index.html
+################################################################################
+
+we can pass either --extra-vars env=prod 
+
+or
+-e env=prod
+
+
+###################################################
+
+
+handlers
+
+############
+
+
+
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: installing httpd
+      yum:
+        name: httpd
+        state: latest
+
+    - name: copying index file
+      copy:
+        src: /home/ansible/my_ansible_home/index.html
+        dest: /var/www/html/index.html
+    - name: killing the process
+      shell: pkill -9 httpd   
+      notify:
+        - Restart the server
+
+  handlers:
+    - name: Restart the server
+      service:
+        name: httpd
+        state: restarted
+
+################################################################
+
+group variables:
+
+to use this variable let's say for example we have two servers in each server if we want to install diffrent versions then we can use group variables
+
+but we should create files under /etc/ansible/group_vars
+we should create the group_vars folder
+
+
+and we should create the file name as group names with group names we should create the files  under group_vars folder
+
+below play is the example for group variables
+
+
+--- 
+- name: insalling java versions on multiple groups
+  hosts: all
+  become: yes
+  tasks: 
+   - name: installing the java package 
+     yum: name={{javaVersion}} state=present
+   - name: checking the java version
+     shell : java -version | grep -i version 
+   - register: javaver
+     debug: 
+       var: javaver.stdout
+
+##########################################################################################
+
+
+assume like in we have 5 servers
+
+in 5 servers 
+
+server1
+server2
+server3
+server4
+server5
+
+server4
+server5
+
+[group1]
+server1
+
+[group2]
+server2
+[group3]
+server3
+
+## remaining two servers called ungrouped hostnames 
+
+to install diffrent versions on diffrent nodes which is in ungroupped nodes we can do one thing we should create the file with hotnames like below
+
+server4.yml
+server5.yml
+ inside of the files we can specify the variable name and their the version we want to install like below
+
+javaVersion: java-1.8.0-openjdk
+
+
+
+the variable preferences like below
+
+--extra-vars env=prod --> ansible playbook --> host_variable --> group variables
+
+
+
+[ansible@ip-172-31-24-101 my_ansible_home]$ cat groupvar.yml
+---
+- name: working with groups variables
+  hosts: all
+  become: yes
+  tasks:
+   - name: working with multi groups
+     yum : name={{javaVersion}} state=present
+   - name: executing the commands
+     shell: java -version | grep version | awk '{print $3}'
+     register: javaver
+   - name: getting the information about the version
+     debug:
+       msg: "{{javaver.stdout}}"
+
+
+
+#############################################################################################################################
+
+
+
+Tags:
+#####
+
+
+we can specify number of tags no limit
+
+
+
+
+
+---
+- name: this is about tags
+  hosts: all
+  become: yes
+  tasks:
+    - name: this is starting of the play
+      tags:
+        - installing
+      yum:
+        name: httpd
+        state: latest
+    - name: copying the file into the location
+      tags:
+        - copying tags
+      copy:
+        src: /home/ansible/my_ansible_home/index.html
+        dest: /var/www/html/index.html
+
+
+
+
+#############################
+
+we can execute by passing the tags while executing
+
+ansible-playbook tags.yml --tags tagnamehere
+
+
+we can pass the multiple tags like below
+
+ansible-playbook tags.yml --tags 'tagname,tagname'
+
+
+below command for skiping the tags
+
+ansible-playbook --skip-tags "tagname here"
+########################################################################################
+
+
+
+
+loops:
+######
+
+
+[ansible@ip-172-31-24-101 my_ansible_home]$ cat loops.yml
+---
+- name: installing multiple packages
+  hosts: all
+  become: yes
+  tasks:
+    - name: installing play
+      yum:
+        name: [ 'wget', 'zip', 'unzip' ]
+##########################################################################################
+
+---
+- name: adding new users in the file
+  hosts: all
+  become: yes
+  tasks:
+    - name: adding play
+      user:
+        name: "{{item}}"
+        password: "{{ 'Idipassword*9' | password_hash('sha512') }}"
+        create_home=no
+      with_items:
+        - bhaskhar
+        - balaji
+
+
+
+#############################################################################################
+
+when condition
+#################
+
+
+
+---
+- name: it's a when conditon here
+  hosts: all
+  gather_facts: yes
+  become: yes
+  tasks:
+    - name: this is first play for the playbook
+      yum:
+        name: httpd
+        state: latest
+      when: ansible_distribution == "Redhat"
+
+      #notify:
+        #- this is handlers
+  #handlers:
+    #- name: this is handlers
+      #file:
+       # path: "/home/ansible/handlers"
+       # state: directory
+       # ignore_errors: yes
+
+########################################################################################################
+
+
+
+Roles concept 
+
+#################
+
+command to init the roles
+
+ansible-galaxy init apacheserver
+
+
+---
+- name: this is about roles
+  hosts: all
+  gather_facts: yes
+  become: yes
+  roles:
+    - 
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+##########################################################################################
+
+
+
+---
+# tasks file for tomcat
+- name: Install Java
+  yum:
+    name: java-1.8.0-openjdk-devel
+    state: present
+- name: add tomcatuser
+  user:
+    name: tomcat
+    shell: /sbin/nologin
+- name: Tomcat-9 Installation
+  get_url:
+    url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.85/bin/apache-tomcat-9.0.85.tar.gz
+    dest: /tmp/
+- name: copy
+  copy:
+    src: /tmp/apache-tomcat-9.0.85.tar.gz
+    dest: /usr/local/
+    remote_src: yes
+- name: Unpacking the archive
+  unarchive:
+    src: /usr/local/apache-tomcat-9.0.85.tar.gz
+    dest: /usr/local
+    remote_src: yes
+- name: Change file ownership, group and permissions
+  file:
+    path: /usr/local/apache-tomcat-9.0.85
+    owner: tomcat
+    group: tomcat
+    recurse: yes
+    state: directory
+- name: make tomcat symbolic link
+  file:
+    src: /usr/local/apache-tomcat-9.0.85
+    dest: /usr/local/tomcat9
+    owner: tomcat
+    group: tomcat
+    state: link
+- name: make tomcat.service
+  file:
+    path: /etc/systemd/system/tomcat.service
+    state:  touch
+- name: edit tomcat.service
+  blockinfile:
+    dest: /etc/systemd/system/tomcat.service
+    insertafter:
+    block: |
+          [Unit]
+          Description = Apache Tomcat 9
+          After = syslog.target network.target
+          [Service]
+          User = tomcat
+          Group = tomcat
+          Type = oneshot
+          PIDFile =/usr/local/apache-tomcat-9.0.85/tomcat.pid
+          RemainAfterExit = yes
+          ExecStart =/usr/local/apache-tomcat-9.0.85/bin/startup.sh
+          ExecStop =/usr/local/apache-tomcat-9.0.85/bin/shutdown.sh
+          ExecReStart =/usr/local/apache-tomcat-9.0.85/bin/shutdown.sh;/usr/local/apache-tomcat-9.0.85/bin/startup.sh
+          [Install]
+          WantedBy = multi-user.target
+- name: chmod 755 tomcat.service
+  file:
+    path: /etc/systemd/system/tomcat.service
+    mode:  0755
+- name: start tomcat
+  systemd:
+    name: tomcat.service
+    state: started
+    daemon_reload: yes
+    enabled: yes
+########################################################################################
+
+Hashicrop vault
+
+
+ansible-vault create filename
+
+ansible-vault decrypt filename
+
+ansible-vault edit filename
+
+
+ansible-vault edit filename
+
+
+ansible-vault view filename
+
+ansible-vault encrypt filename
+
+ansible-vault encrypt_string filename
+ansible-vault rekey filename
+#########################################################################
+
+
+
+--ask-vault-password   --> this is to ask for the password it means when we route the password to a vault password then that will ask for the password by using this command
+
+in host group next to if we mention like below 
+
+1039.39.380-48 ansible_user=ec2-user ansible_password={{ec2_user_password}} --> this variable we should mention in common variable file called all.yml
+
+
+ --vault-password-file
+
+
+ansible-playbook playbookfile.yml --vault-password-file=/home/ansible/my_ansible_home/passwordfile.txt
+
+for that file we should make only owner should have read all the permisison we should not give read permission
+########################################################################################################################
+
+
+Ansible integration with Jenkins
+
+
+
+Dynamic inventory
+
+#############################################
+
+
+
+--
+  - name: This is about membership operators
+    hosts: localhost
+    gather_facts: false
+    vars:
+      x: [3, 4, 5]
+      y: 5
+    tasks:
+      - debug:
+          msg:
+            - "The list or sequence x is: {{x}} and y value is: {{y}}"
+            - "y  in x: {{ y in x}}"
+            - "10 in x: {{ 10 in x }}"
+            - "20 not in x: {{ 20 not in x }}"
+            - " y not x:  {{ y not in x }}"
+
+############################################################################
+
+
+
+Logical operators 
+
+and
+in 
+not
+#####################
+
+
+if we club two values in one place that's going to be false 
+
+like below
+
+(4<5) and (5>1) and (2<5) and ( 9 ==0 )
+
+
+
+and 
+
+#############
+and operator help to combind multiple values 
+if any one value is false complete output goint to get as false
+
+
+
+[ansible@ip-172-31-34-169 ~]$ cat logicaloperator.yml
+---
+- name: logical operators
+  hosts: all
+  become: yes
+  vars:
+    x: 1
+    y: 10
+    p: [1, 3, 4, 5, 6]
+  tasks:
+    - debug:
+        msg:
+          - The x value is {{x}}
+          - The y value is {{y}}
+          - The value of p is {{p}}
+          - The {{ x>y and y in p }}
+          - "{{(4 < 5) and (5>1) and (5 > 2) and (9 != 0)}}"
+
+[ansible@ip-172-31-34-169 ~]$
+  
+
+#########################################################################
+
+################################
+
+or 
+
+####
+
+if any one value is true the output going to get as true
+
+
+---
+- name: logical operators
+  hosts: all
+  become: yes
+  vars:
+    x: 1
+    y: 10
+    p: [1, 3, 4, 5, 6]
+  tasks:
+    - debug:
+        msg:
+          - The x value is {{x}}
+          - The y value is {{y}}
+          - The value of p is {{p}}
+          - The {{ x>y and y in p }}
+          - "{{(4 < 5) or (5>1) or (5 > 2) or (9 == 0)}}"
+######################################################################
+
+
+Error handling
+
+################
+
+---
+- name: error handling
+  hosts: all
+  gather_facts: yes
+  become: yes
+  tasks:
+    - command: ls /home/ansible
+      #ignore_errors: yes
+      register: lscommand
+    - debug: var=lscommand
+
+
+#######################################
+
+
+
+---
+- name: error handling
+  hosts: all
+  gather_facts: yes
+  become: yes
+  tasks:
+    - name: intalling sarted
+      yum:
+        name: nginx
+        state: latest
+      ignore_errors: yes
+    - name: making a directory
+      file:
+        path: /home/ansible/testdirectory
+        state: directory
+
+###############################################
+
+failed_when
+
+---
+- name: failed the task 
+  hosts: all
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: working on the task failed
+      command: "ls /home"
+      register: commandout
+    - debug: var=commandout
+in above file we are executing the command and storing the output into a module called register and we are checking the through a debug module and var
+
+
+
+##############################################     
+same thing by using we can make this failed
+
+
+---
+- name: failing the task
+  hosts: all
+  gather_facts: yes
+  become: yes
+  tasks: 
+    - name: command executing
+      command: "ls /home"
+      register: output
+      failed_when: output.rc==0
+    - debug: var=output
+
+
+####################################
+
+
+
+---
+- name: fail the task
+  hosts: all
+  gather_facts: yes
+  become: yes
+  tasks: 
+    - name: failed the task
+      command: "ls /home/ansible"
+      register: out
+      fail:
+        msg: failing the command
+      when: out.rc==0
+
+##########################################################
+
+Reusable tasks with import and include
+############################################
+
+---
+- name: reusable task
+  hosts: all
+  become: yes
+  gather_facts: yes
+  tasks:
+    - import_tasks: "redhatfile.yml"
+      when: ansible_os_family|lower == "redhat"
+
+
+
+
+we are calling the task from redhatfile.yml 
+
+---
+- name: installing httpd server
+  yum:
+    name: httpd
+    state: latest
+
+####################################
+
+asume like we have two files called
+java_Debian.yml
+java_Redhat.yml
+
+we can mention like
+
+---
+- name: name of the task here
+  hosts: all
+  become: yes
+  gather_facts: yes
+  tasks:
+    - include_tasks: install_webserver_{{ansible_os_family}}.yml
+	- include_tasks: install_java_{{ansible_os_family}}.yml
+	
+	
+	##############################################################
+	
+	
+	Discovery scripts/local_action and delegat_to
+	
+	
+	
+	 

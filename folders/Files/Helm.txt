@@ -1,0 +1,150 @@
+Helm is the package manager for kubernetes. it allows you to install/deploy application on kubernetes cluster in similar manager we have like yum /apt for linux distributions
+
+-- helm lets you fetch,deploy and manager the lifecycle of applications, both 3rd party products and your own
+
+Helm introduces several familiar concepts such as:
+ -- Charts which are the Helm Packages (like deb/rpm)
+ -- Helm Repo
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+Helm Charts (Package contains k8s manifests (Template))
+Helm Repo -- Place to manage the helm charts
+Helm CLI -- with help of CLi we can update install remove
+-------------------------------------------------------
+
+why use Helm ?
+
+-- Helm greatly simplifies the process of creating,managing,and deploying appliations using Helm Charts.
+-- it will maintain the all the versions if required we can roll out back to the previous versions
+-- These templates and values go through a template rendering engine, producing a manifest that is easily digestible by Kubernetes
+-- Charts are similar to RPM and DEB packages for Linux machines
+
+
+
+-------------------
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: springappConfig
+data:
+  username: {{db_username}}
+  password: {{db_password}}
+resources:
+  requestcpu: 1
+  requestmemory: 1Gi
+---------------------------------------------------------------------------------------------------------
+
+Helm concepts | Charts
+
+Javawebapp
+  - Chart.yaml --> Meta data information about chart.
+  - chart  # define dependent helm chart names
+  - templates # will maintain k8 manifest files which is required for our applicatin
+     - deployment.yml
+	 - hpa.yaml
+	 - ingress.yml
+	 - service.yml
+	 - serviceaccount.yaml
+#####################################################################################
+
+we have two types of versions
+
+Helm 2 (old versions)
+Helm 3 (Latest Version)	 
+
+diffrence between helm 2
+------------------------------
+
+in helm 2 kubernetes can't talk to the kubernetes cluster directly without tiller
+tiller needs a permissin to connect to the api server
+
+helm 3
+------------------------------------
+helm will directly connects to the kubernetes without tiller
+it will use kube-config
+
+
+Tiller is a agent that will talk to the helm and kubernetes it's a application   
+
+ helm repo add <name> <reponame>
+ helm repo ls
+ helm search repo
+ helm ls --all-namespaces
+ helm template stable/metrics-server
+ helm search repo stable | grep -i grafana
+ helm install stable/metrics-server metricsserver
+ helm install stable/metrics-server metricsserver -n kube-system --set readinessprobe.initialDealyseconds=40
+ helm show values stable/metrics-server >> metricsservervalue.yml
+helm install stable/metrics-server metricsserver -n kube-system -f metricsservervalues.yml 
+helm rollback metricsserver -n kube-system
+helm uninstall metricsserver
+---------------------------------------------------------------------------------------------------
+
+
+we can have local folder also 
+- we can get repo from the helm repo
+
+helm we can install like below
+
+-- $ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+$ chmod 700 get_helm.sh
+$ ./get_helm.sh
+
+------------------------------------------------------
+
+# helm ls
+  to list the deployments using helm
+
+helm ls -n <NameSpace>
+
+helm ls -A (Any NameSpace)
+
+
+=====================================================================
+
+
+to deploy the application using helm
+
+helm install <AppName/ReleaseName> Chartname 
+
+we can install local chart(Helm Chart Folder/Package) using Helm CLI
+
+
+
+javawebapp
+  Chart.yml
+  charts
+   templates.
+     deployment.yml
+     service.yml
+     ingress.yml
+     hpa.yml
+     configmap.yml
+     secrets.yml
+
+ values.yml
+----------
+
+
+
+
+
+
+charts -- if one application is depending on another application so we can maintain in charts   it's like a dependency
+
+
+artifactoryhub
+
+helm repo ls
+helm search repo metrics-server
+helm install --> first time installing
+helm update --> update with existing applications
+
+helm upgrade metricserver metricserver/metrics-server -n kube-system
+helm upgrade metricserver metrics-server/metrics-server -n kube-system --set replicas=2
+helm lint
+helm template javawebapp --set image.tag=2 --set autoscaling.enabled=true
+

@@ -1,0 +1,121 @@
+ubuntu@ip-172-31-0-12:~$ cat javawebapp.yml
+apiVersion: v1
+kind: Pod
+metadata:
+        name: javawebapppod
+        labels:
+          app: javawebapp
+spec:
+  containers:
+  - name: javawebappcontainer
+    image: ashoknagari/javawebapp:9
+    ports:
+    - containerPort: 8080
+ubuntu@ip-172-31-0-12:~$
+
+#######################//////////////////////////##########################
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: javawebappsvc
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: javawebapp
+ ################################################################################
+ 
+ Replication
+ 
+ apiVersion: v1
+ kind: ReplicationController
+ metadata:
+   name: <Replication Name>
+   namespace: <nameSpace>
+spec:
+  replicas: <Number of Replicas we want>
+  template: <POD Info>
+    metadata:
+      name: <PODNAME>
+      labels:
+         Key: <Value>
+    spec:
+      containers:
+      - name: <Nameof the container>
+        image: <nameofImage>
+		ports:
+		- containerPort: <ContainerPort>
+	  - name: <Nameof the container>
+        image: <ImageName>
+        ports:
+        - containerPort: <ContainerPort>
+		################################################################
+		
+		swapoff -a
+sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+
+# Install Containerd
+wget https://github.com/containerd/containerd/releases/download/v1.6.16/containerd-1.6.16-linux-amd64.tar.gz
+tar Cxzvf /usr/local containerd-1.6.16-linux-amd64.tar.gz
+wget https://raw.githubusercontent.com/containerd/containerd/main/containerd.service
+mkdir -p /usr/local/lib/systemd/system
+mv containerd.service /usr/local/lib/systemd/system/containerd.service
+systemctl daemon-reload
+systemctl enable --now containerd
+
+# Install Runc
+wget https://github.com/opencontainers/runc/releases/download/v1.1.4/runc.amd64
+install -m 755 runc.amd64 /usr/local/sbin/runc
+
+# Install CNI
+wget https://github.com/containernetworking/plugins/releases/download/v1.2.0/cni-plugins-linux-amd64-v1.2.0.tgz
+mkdir -p /opt/cni/bin
+tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.2.0.tgz
+
+# Install CRICTL
+VERSION="v1.26.0" # check latest version in /releases page
+wget https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.22.0/crictl-v1.22.0-linux-amd64.tar.gz
+sudo tar zxvf crictl-$VERSION-linux-amd64.tar.gz -C /usr/local/bin
+rm -f crictl-$VERSION-linux-amd64.tar.gz
+
+cat <<EOF | sudo tee /etc/crictl.yaml
+runtime-endpoint: unix:///run/containerd/containerd.sock
+image-endpoint: unix:///run/containerd/containerd.sock
+timeout: 2
+debug: false
+pull-image-on-create: false
+EOF
+
+# Forwarding IPv4 and letting iptables see bridged traffic
+# Reference: https://kubernetes.io/docs/setup/production-environment/container-runtimes/#forwarding-ipv4-and-letting-iptables-see-bridged-traffic
+cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+overlay
+br_netfilter
+EOF
+sudo modprobe overlay
+sudo modprobe br_netfilter
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-iptables = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.ipv4.ip_forward = 1
+EOF
+sudo sysctl --system
+sysctl net.bridge.bridge-nf-call-iptables net.bridge.bridge-nf-call-ip6tables net.ipv4.ip_forward
+modprobe br_netfilter
+sysctl -p /etc/sysctl.conf
+
+# Install kubectl, kubelet, and kubeadm
+apt-get update && sudo apt-get install -y apt-transport-https curl
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
+deb https://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+apt update -y
+apt install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
+
+
+######################################################

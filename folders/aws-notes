@@ -1,0 +1,918 @@
+high avaialbility
+Fault torence
+scalability
+elasticity
+
+
+high availability
+################
+
+
+creating the achitecture in such a way that your system is always HA ensure that we can always access our data in cloud
+
+
+
+Fault Torerant
+##############
+
+The ability of our system to withstand failures in one/more of it's compoents will remain available FT ensure that if one of our webserver failed,the backup server imeediately took over
+
+Scalability
+###########
+
+
+Scalability handles the charging needs of an appliction within the confines of the infrastruture via staticaly adding or removing resources to meet applications demands if needed
+
+Elasticity
+########
+
+Dynamically we will able to scale down our infra without human interaction
+##########################################################
+
+
+
+capital expendeture --
+Operation expendeture --
+####################################################################################
+
+
+Types of service moders
+
+laaS -- infrastructure as a service ec2
+
+PasS -- Platfrom as a service
+Ex:  EKS
+SaaS -- software as a service
+Ex: 
+
+
+
+AWS is subsitary of amazon.com it provides on demand cloud platform
+
+
+Cost-effectivieness 
+
+
+what is regions:
+
+amazon services are hosted in multiple locations world wide 
+these locations are cmposed of regions logical name and availability zones 
+each region is a separate geographic area
+each region has multiple,isolaed locations know as avaialability zones
+##########################################
+
+
+
+AMI -- amazon machine image
+
+AMI come in 2 main categories:
+community AMI's
+ -- Free to use
+ -- Generally it contains only the OS
+2 AWS marketplace AMI's
+-- pay to use
+-- generally comes packaged with additional licensed software
+3 MyAMI's
+
+- AMI's that you can creat yourself
+
+######################
+
+instance type of our CPU power(compute power)
+Family(exL:t2 )
+
+when we are adding storge that's like  harddisk which is being used by EBS service in behind 
+
+Perfomance depends on 
+#####################
+
+number of input operates and how output which will carry
+
+-- magnetic standard it's old model
+
+
+Provisioned IOPS SSD(io2)
+IOPS -- input output per sec
+	
+
+
+we will have VPC by default when we launch the istance
+
+VPC will have subnets
+
+
+ --VPC
+   -- subnetworks
+###############
+
+what is delte on termination
+
+ -- when we check this when we delte the instance data also will be erased
+
+
+Tags are key value pairs
+
+name Tomcatserver
+
+Env DevEnv
+
+
+
+##########################
+
+Security groups?
+network firewall
+designed to prevent unauthorized access
+
+we can use this security groups to another server as well
+
+best practice to allow which is required ports
+
+############################################
+
+
+Server will have two pairs of Pemfile
+
+instance will have public key pair
+we will have private ip
+
+so when we login it will check eighther right key or not
+
+we can't access private ip from our laptop ue to we are not there in the same network
+
+
+
+by default we will get private ip as well
+
+a server can be created without public ip
+
+private servers called private ip when we want to create private
+
+ elastic ip :
+  static public ip address for the instance
+  fixed ip address
+##########################
+
+reerved instance means buyig the servers for the time period either you are using or not 
+
+
+EBS means
+elastic block store volume
+########################
+
+EC2 = Elastic cloud computing --> CPU & memory
+
+Storage 
+ - Block storage --> Block storage -- EBS --> it will be maintained as a blocks we will mount the data
+
+
+ - File storage --> EFS 
+
+ - Object storage --> S3 -- each object will have uniauie id & endpoint we can access from anywhere
+
+instance store will erase amutomatically
+
+
+EBS block storage
+###############
+
+Elastic Block Store
+
+Each ec2 will have EBS volume as a root volume
+
+It's relly fast
+it's reltively cheap
+with the new announcements from Amazon, you can store up to 16TB data per storage on SSD's 
+
+-- you can snapshot an EBS (while it's running) for backup reasons
+
+
+we can't attach to another instance only one instance can attach
+
+From diffrence avaialability zone also we can't attach 
+ 
+Provisioned IOPS SSD io2
+
+
+command --> lsblk
+
+to see the block storage
+basically it's a raw storage
+
+command to format the raw storage
+
+sudo mkfs.ext4 /dev/xvdf
+
+
+create snapshot lifecycle policy --> it's like a cron entry to take a backup
+
+
+we can't move the storage one region to another region 
+
+but we can take a snapshot and move
+
+
+
+we shuld create a volume from snapshot to one avaiability zone to another avaiability zone 
+
+and we can attach
+
+sudo mount /dev/xvdf volumetwo
+
+cat etc/fstab
+
+
+to move one region to another region we should copu the snapshot
+
+
+what is the capacity of EBS volume?
+16TB/16000GB
+
+How can we recover (ssh access) if you lost your pem file?
+##########################################################
+
+we can create EBS in same availability zone with new keypair
+#################################################################
+ 	
+-- we should create a new intance with new keypair
+-- we should detach the root volume from lost instance and we should attach to new instance
+-- we should coppy and we should attach it back 
+
+
+how can we share file system with multiple regions
+#######################################################
+
+
+shared file system
+#################
+NFS -- Network file system
+EFS  -- Elastic file system
+#############################
+
+Netive NFS implumentation
+
+we should install a network by using below command
+
+in unbuntu -- sudo 
+
+sudo apt-get install nfs-common -y
+
+Redhat -- sudo yum install nfs-utilizy -y
+
+once installed
+
+-- sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-0b655a89b7c0d8045.efs.us-east-2.amazonaws.com:/ testefs
+
+we should enable one ip address
+
+with same security groups we should add the port called NFS - 2049
+
+for EFS there is no capacity limitation
+#####################################################
+
+
+S3
+
+#########
+No need to mount the data
+
+while creating a s3 we should select regions
+name should unique
+
+
+we can upload the data using
+
+GUI -- Graphical user Interface
+
+CLI -- Commandline Interface
+
+API/SDK -- Software Development Kit (Boto/Boto3)
+Other IAAS Code (Terraform)
+ 	
+
+
+Kubernates
+18.117.161.42
+172.31.24.55
+
+Volume server
+13.59.53.31
+172.31.20.16
+
+we can make that public then we will able to access
+
+Bucket polocies --> we can grant permissions to specific aplications or specific ip addres / range using bucket policies
+ 
+ACL --> access control lists
+
+what is ARN --> amazon resource name.
+each aws resource unique ARN ARN is used to identify AWS resouce uniqucly 
+
+arn:aws:servicename:regionname:avaialabilityzone:resoucename
+
+avialability zone is optional in s3 the reason is unique accross the aws
+
+
+storageclass --> standard by default file which are accessing frequently we can maintain in standard storage class 
+IAS--> infrequest access , we can maintain files which are not acces freqnelty
+RRS --> Reduced Redudency storage,Non critical re producable data we can maintain in RSS
+Glacier --> we can maintain archived data. if we retrive it will be charged
+
+Object lifecycle --> using ovject life cycle rule we can transit object from one storage class to another storage class . we also define expiration of objects.
+
+
+we can set the rules under management then we can create the lifecycle 
+
+
+Replication:
+kind of duplicate of bucket
+
+we can create the replication in same account or another account as well
+
+sameregionreplication
+crossregionreplication
+
+
+we can create the replication when there is a file in source automatically destination also will have the image
+
+From GUI we can only upload 160GM of file
+
+s3 limit is 5000GB/5TB
+
+
+what is the use for s3	?
+
+Best plan to maintain applications logs
+
+when we developed a application that can be streamed from s3 
+
+
+
+#####################################
+
+Snow ball
+############
+
+To migrate on premise to cloud
+physical data transport solution.
+
+
+EBS
+SSD
+Magnetic
+HDD
+#######################################
+
+
+
+Load balancer 
+##############
+
+Load balancer is the service to distribute the load to multiple instances it can be distributed to within the same region but it can be diffrent availability zone
+but we can route the traffic to another region using route 53 we can do multi region load balancing
+#################################################
+
+loadbalancer family
+######################
+
+
+network load balancer -- layer 4 -- TCP
+application load balancer -- layer 7 -- HTTP/HTTPS
+classic load balancer -- lagacy TCP HTTP/HTTPS protocal
+##################################
+
+
+network load balancer is like tcp port to tcp port for some application (Transmission Control Protocol)
+---------------------
+Application load balancer:
+########################
+
+  -- two tyes of routing
+-- host based routing
+-- path based routing
+
+each load balancer will have listener
+http : 80
+https: 443
+these will listern the income load
+it should route the traffic based on the rule we defined
+listener will have rules to route the traffic
+rules will associated with target groups
+   --> logical grouping of targets (servers) behind the load balancer 
+
+
+internet-facing
+internal -- within the network
+
+when we give the user data while creating instance we can check their logs under
+
+/var/log/cloud-init-output.log
+
+DNS will be managed by internet service provider
+
+
+godady is a service provider 
+
+we should go to reoute -- hosted zones
+and we should take value route traffid to values and we should update in provider websites
+-- create a record for sub domain
+-- sub domain and we should select the load balancer as well
+
+########################################################### 
+
+
+success code 200
+
+
+Host based routing is like 
+
+javawebapp.mithun.co.in/java-web-app ==javawebappTG
+mavenebapp.mithuntechnologies./maven-web-ap --mavnwebapp
+
+Pathbased routing
+same url but path will be changes
+mithun.com/java-web-app 
+mithun.com/maven-web-app
+#############
+
+RoudRobin -algoridham
+
+StickySession -- -- whatever server is process is request same server has to process till user session
+
+weighted
+
+#################################################
+
+Auto scalling dynamically scalling up and scalling down
+###########################################################
+
+
+
+
+components
+-----------
+
+launchconfigurations
+autoscalingroup
+scalingpolicies
+-  Manual scalling
+-  Auto scalling dynamically
+health
+##############################################
+
+
+launch configuration 
+desired configuration what is the AMI and storage capacity we should configure under launch configuration
+
+-- EC2 instance type & size
+-- amazon machine image AMI
+-- security groups,ssh keys, IAM instance profile
+-- User data
+Bootstapping
+############
+
+-- Installation & setup needs to be fully automated.
+-- Use amazon machine image  AMI with all required configuration & software (gold image)
+-- Base AMI + Install code & configuration as needed
+ -- Via User data
+-- Via chef/puppet/anible
+-- usng AWS code deploy
+
+
+auto scaling group -- we can define minimum instance maximum instances
+autoscalling group will use launch configuration to launch the instances
+
+Scalling plan -- it's to define when to scale how to scale
+ -- based onCPU metrix 
+ -- network metrics
+it supports horization scalling == increasing the servers
+vertical measn capacity will change -- changing the capacity 
+
+healthcheck -- it will check the either instance is healthy or not
+
+
+what is golden image or myami or AMI ?
+ 
+
+we can create our own image which has all required configuration & software
+-- we can create a AMI using existing instance
+-- no need to stop the instance 
+
+	
+	
+	
+	Steps to create auto scalling
+	###################################
+	
+	we should create AMI first
+	then we can create an auto scalling group configuration   
+	
+	
+Auto Scalling group:
+########################
+
+by using auto scalling group we can application high avaialability Faultorarance and 0 down time
+
+steps to create the auto scalling group
+
+we can take a golden image for launch template 
+
+we can define the rules like capacity of instance type and user data and security grops 
+
+-- and now we can attach this launch template to auto scalling groups 
+-- last process is to configure the auto scalling group there we can define the rules to launc the instance and CPU utilization and also we can define avaiability zone 
+
+-- and we can integrate the load balancer as well so when instance launched that will get registered under target groups
+
+
+
+@@@@@@@@@@@@############################################
+
+VPC virtual private cloud
+#########################
+
+-- VPC is a private sub-section of AWS that you can control, in which you place aws resources,
+-- you have full control over who has access to the aws resources tha tyou place inside our VPC
+-- VPC lets you provision a logically isolated section of the AWS cloud where you launch AWS resources in a virtual network
+-- when we create an AWS account a default VPC is created for you
+
+########################################################################################
+
+
+ VPC will have subnets
+   -- Sub nets
+        -- Public subnets -- This wil have Internet connection \
+	      (IGW)  a logical device enable traffic to be routed from public internet
+		-- private subnets -- 
+   -- IGW internet gate way
+   -- ROutable
+   -- NAT gateway/NAT instance
+   -- ACL network access control list
+
+
+first step 
+
+while creating a VPC we shuld define the network ip range
+
+CIDR --> class less inter domain routing is a method for alliating IP address & it's
+
+sider block should be within 16-28 range
+Maven-web=applications::
+############################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 32-n       32-16    16
+2       = 2       =2    = 65536
+ 
+NAT instance :
+#################
+
+
+it's subnet level
+
+Internetgate way
+
+Our Default VPC already has an IGW attached
+
+Only 1 IGW can be attached to a VPC at any time
+an IGW cannot be detached from a VPC while there are active resources in the VPC
+
+
+
+
+  
+  
+  
+################################################################
+
+
+
+we can asign the ICMP internet control message protocal 
+
+
+
+IAM --> identify and access management 
+
+AWS Resources
+ - EC@
+ - VPC
+ - ELB
+ - S3
+ - ECR
+ - EKS
+ ... etc
+ 
+ ############################
+
+user -- we can create a user in AWS , which can be used to access aws resources
+    -- we can attach the polices directly to the users,or user can be added to group
+	-- so user have get permissions based on the policies based on groups
+	
+	
+group --  webdevelopment group, devopsgroup
+policies -- permissions read,write,create,delete to specific aws resources ec2,vpc,s3
+
+roles -- we can create role by attaching policies (permissions) roles can be used to give aws permissions to the aws resources like ec2
+	
+
+there are two types of access
+-- Programatic access -- CLI,API,SDK etc.... it required accesskey and secretkey
+	 
+-- console accesss (Username & password)
+
+========================================================================================================================
+
+when we developed a one application that need some server to host that includes 
+
+data base os hard ware networking storage etcc..
+
+when we go for on-premise infrastructure 
+
+ disadvantages:
+ -------------
+ 
+ consuming of more man power maintainance it will take more time to deploy and scalability
+ 
+ -- time consuming
+ -- Dedicated Space
+ - high Bandwidth
+ -- Redundant Power supply
+ -- Support availability
+ -- Leadershipp Experience
+ -- Time consuming
+ -- Higher Maintanace effort
+ -- capacity planning
+============================================
+
+advantages of Cloud
+
+--  High avaialability
+-- fault tolernce -- if failure there should be way to replace 
+-- Scalability
+-- Elasticity
+
+
+IAAS
+Host
+EC2
+
+PasS
+----
+Build
+EKS
+RDS
+
+SaaS
+----
+
+Cloud Watch
+
+
+======================================
+
+EC2
+----
+
+Purchaging options
+
+1. On Demand --> Most Expensive and more fexlible, charges will be applicable when instance is running
+2. Reserver --> when purchage we should be pay entire time period
+
+3. Spot Instances --> Aws sells lot of unused servers for very short time at less price
+-------------------------------
+
+Instance Family & Types
+-----------------------
+
+General Purpose
+Compute Optimized
+GPU optimized
+Storage Optimizes
+==========================
+
+Type - micro
+Family - t2
+
+General Purpose
+Computer Optimized
+GPU Optimized
+Memory Optimized
+Storage Optimizes
+-------------------
+
+EBS Optimized (Optional for higher IOPS perfomance)
+
+AMI Type ()
+Price varies on (distribute/software packages)
+  - Linux
+  - Windows
+5.
+
+
+AMI --> amazon machine imagge
+ community AMI
+  - Free to use
+  - Generally it contains only the OS
+ MarketPlace AMI
+   - pay to use
+   - generally comes packaged with additonal software
+ MyAMIS
+ - AMI's that we create ourself
+ 
+ ==========================================
+ 
+ 
+ Instance Type
+ -----------------
+ 
+ Multiple instance type 
+ 
+ 
+ t2,m4,m3 General Purpose -- Websites , web application ,Dev, Code Repos, micro
+ c3,c4,cc2 -- computer optimized - Front-end fleets , webserver, batch processing
+ 
+g2,p2 GPU optimized Amazon appStream 2.0 Video encoding
+r3,r4,x1,cr1 memory optimized -- data mining 
+d2, i2,i3,hi1,hs1 --> storage optimized data ware house
+
+Security groups --> is a virtual fire wall 
+============================================
+
+pemfile is a key pair
+
+we will have one key system will have publich key 
+
+one instance has to communicate one istance then we can use private ip without internete
+
+
+Public IP:
+----------
+  By default every ec2 instance will be provided with a private IP address 
+  private IP address allow instance to communicte as long as they located in the same VPC
+  
+public IP:
+---------
+Ec2 Instance can be launched with / without public IP address
+Public IP address is required for the instance to communicate to the internet
+
+
+Elastic IP:
+------------
+
+Statuc Public IP address for the instance.
+chargeable for each elastic IP,
+
+
+
+
+
+
+Instance Storage temporary storage
+
+==================================||||||||||||==============||||||||||=====
+
+ EBS --> elastic block store
+ 
+ each ec2 will have ebs storage as a root volume
+ 
+each ebs volume capacity is 16TB/16000GB	
+
+ebs can't attached to multiple instances
+
+it should be on same avaialabilityzone
+
+command to format 
+
+
+sudo mkfs.ext4 /dev/xvdf
+
+sudo mount /dev/xvdo ebsdemo
+
+from volume we should create the snapshot from snapshot we should create the volume we can attach
+ sudo mount /dev/xvdf /home/ec2-user/fileinternal/
+
+
+=================================================
+
+
+nfs --> Network file system
+
+whatever we create in ebsdemo those will get maintain under /dev/xvdf
+
+
+s3
+====
+
+arn format
+
+arn:<ServiceName>:<Regionname>:<AvailabilityZone>:<ResourceName/id>
+ 
+ we can create and give the permissions as json format
+ 
+ we can do the versioning as well
+ 
+ storage Classes
+ 
+ =============
+ based on the storageclass we will get the perfomance
+ 
+ standard (Default) -->
+   - The files which we are access frequently we can maintain in standard storage class so that our object is hightly avaialbe and fast and retrival.
+   3 copies 
+ IAAS 
+   == Infrequest Access. We can maintain files which we are not access frequently in IA.
+   
+ RRS
+   == Reduced Redundency storage. non critical & Re Producable data we can maintain in RRS
+   
+   there is a chances of los the data (Data will be maintain in only one avaiability zones)
+   
+   
+ Glacier
+ -- 
+ in glacier we can maintain the archived data for very less price
+
+
+ Object lifecycle: Using Object Lifecycle we can define the expiration of objects.
+ we can move from one storageclass to another storage class
+ 
+ Replication:
+ -------------
+ 
+ 
+ limits
+ ------
+ (5000GB/5TB) each file limit
+ 
+ best place to maintain application logs
+ Best place to maintain your applicaion images doc static content
+ 
+ 
+ snow Ball
+ ---------
+ 
+ Migratuion physical machine
+ 
+ EBS
+ SSD 
+ Magnetic -- low cost
+ ====================================================
+ 
+ 
+ ELB --> it can be in same region and in diffrent avaiability zones
+ 
+ 3 types of load balancers
+ 
+ 1. Network Load Balancer - layer 4 - TCP -- it works with ports
+ 
+ 2. Application LoadBalancer -- Layer 7 HTTP/HTTPS -- it will work with path based route based
+   - 
+ 3. Classic Load Balancer -- HTTP/HTTPS
+ 
+ Gateway Load Balancer
+ 
+ 
+ every node has listener 
+ 
+ the traffic will come to the listenrs listernes will route the traffic target groups
+ 
+targetGroup
+
+ Logical grouping of targer servers 
+ it works with round robin 
+ 
+ 
+ ====================================
+ 
+ Auto Scalling
+ -------------
+ 
+ Launch Configurations 
+ AutoScallingGroup
+ ScalingPolicies
+ Manual
+ AutoScalling
+ HealthChecks
+ 

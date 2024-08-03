@@ -1,0 +1,183 @@
+.ne0t -
+nodejs  -- back end -- v8
+angular  
+nginx 
+jfrogg
+
+
+
+npm means node packagge manager
+
+npm install --> node js
+
+npm install -- it will download the all the dependencies required to run the application
+
+
+npm test
+
+npm run sonar
+sonarqube we can configure in sonar.proeprty
+
+npm publish
+
+package.json
+
+we should configure the artifactory in package.json like below
+
+publishCOnfig registry there we can configure the nexus repo details
+
+for password we can store in .npmrc 
+_auth=  YWRtaW46cGFzc3dvcmQ= # base64 like below
+
+
+echo -n "admin:password" | openssl base64
+YWRtaW46cGFzc3dvcmQ=
+
+node_modules (.m2)
+
+that will generate the .tgz 
+
+we will store the sonarqube credentials in sonar-sonar-project.js
+nexus repositories are stored in package.json
+
+makefile --> A standard GNU make Makefile is provided to help with running and building locally
+
+alpine --> it' light weight
+
+
+
+
+
+
+
+.npmrc --> _auth
+
+echo -n "admin:password" | openssl base64
+ we should keep the nexus credentials in .npmrc 
+
+ local node_modules 
+
+
+
+ nginx -t
+
+ nginx -s reload
+
+
+setsebool -P httpd_can_network_connect true
+down;
+weight=4;
+backup; 
+
+
+nginx uses the master-slave architecture
+
+Master --> worker--> proxy cache --> cache Loader --> cache manager
+
+why should we use nginx?
+
+1. Easy of Installation and maitenance
+2. Improves Performance 
+3. offers scalability --> number of cocurent also manages 
+4. Reduces the wait time for users
+5. Load Balancing
+6. On the fly upgrades -- that can be patch without down time
+=====================================
+
+configuration settins
+====================================
+worker_processes 
+  
+  nginx -v
+  sudo ufw app list
+
+  docker run -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=secret -e MONGO_INITDB_DATABASE=my_db mongo
+
+  connection string to run 
+
+  mongodb://mongoadmin:secret@34.125.254.139:27017/?retryWrites=true&w=majority
+
+  docker run -d -p 1004:1004 -e MONGO_URL="mongodb://mongoadmin:secret@34.125.254.139:27017/?retryWrites=true&w=majority" -e ADMIN_EMAIL="admin@deekshithsn.live" user-api
+
+  docker logs <containerID>
+
+ - components
+ - data binding
+ - services
+ - routing
+ - forms
+ - HTTP clients
+ - Dependencies Injection
+ - Obseravle 
+ - Testing
+
+app -> app.component.html where actual code will store
+
+in index.html will have app rout components 
+ng generate component task-list
+
+build pipeline
+
+
+
+# Use the official Node.js image as a base image
+FROM node:14-alpine as builder
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the application code
+COPY . .
+
+# Build the Angular app for production
+RUN npm run build -- --prod
+
+# Use Nginx image as the base image for the final stage
+FROM nginx:alpine
+
+# Copy the built Angular app from the 'builder' stage to the NGINX web server directory
+COPY --from=builder /app/dist/<your-angular-app-name> /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# Start NGINX when the container starts
+CMD ["nginx", "-g", "daemon off;"]
+
+
+version: '3'
+services:
+    nodejs-app:
+        build:
+          context: /home/ubuntu/nodedocker_app
+        container_name: nodejsserver
+        hostname: nodejsserver
+        ports:
+          - "8888:8888"
+        networks:
+          - example-net 
+    nginx:
+       build:
+         context: ./nginx
+       container_name: nginx
+       hostname: nginx
+       ports:
+         - "80:80"
+       depends_on:
+         -nodejs-app
+       networks:
+         - example-net
+networks:
+  example-net:
+    external: true
+
+
+
+
+

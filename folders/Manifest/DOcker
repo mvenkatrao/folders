@@ -1,0 +1,6 @@
+docker run --name prometheus \
+    -v /opt/bitnami/prometheus/data:/opt/bitnami/prometheus/data \
+    bitnami/prometheus:latest
+    aws eks create-addon --cluster-name ${EKS_Cluster} --region ${us-east-1} --addon-name grafana-labs_kubernetes-monitoring
+    curl -u admin:admin123 http://nexushelrepourl/ --upload-file javawebapp-0.1.0.tar.gz
+    

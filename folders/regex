@@ -1,0 +1,461 @@
+
+
+paranthesis (()) integer
+bc flot num
+
+
+we can run particular lines like below
+
+set -x
+
+set +x  
+
+sh -x file.sh
+
+to increase the history size
+export HISTSIZE=2000 -- PERMANENT
+
+vi ~/.bash_profile
+
+
+variable will consider only latest values
+------------------------------------------------------------
+
+command line arguments
+--------------------------
+
+sh hello.sh
+h comments
+sh udvars.sh
+
+-------------------------------------
+
+
+to get 11th argument
+
+echo ${11}
+if it's more than one digit we can use above command
+to calculate the arguments $#
+$* gives the all the arguments -- as a one string
+$@ gives all the arguments --  each argument as a one string
+$$ gives the current process id
+$#: Represents the number of arguments passed to the script.
+
+127 command not found
+
+if [$# -eq 2]
+
+
+-eq --> ==
+-lt <
+-le <=
+-gt >
+-ge >=
+-ne !=
+----------------------------------------------------------
+
+to calculate the characters
+echo ${#string_var:20}
+echo ${#string_Var: (-8)}
+echo ${string_Var:0-2}
+---------------------------------------------
+
+[ec2-user@ip-172-31-33-47 ~]$ cat calculator.sh
+#!/bin/bash
+
+expr 2 + 2
+
+expr 2 - 2
+
+expr 2 \* 2
+
+expr 2 % 2
+
+echo "Please enter your tools: "
+
+read -a tools
+
+echo "The tools which you have entered is ${tools[*]}"
+echo the 4th elimnet is: ${tools[3]}
+
+default variable for read command is $REPLAY
+
+
+if [ condition ]
+
+then 
+
+commands
+
+else
+
+commands
+
+fi 
+--------------------------
+
+a=10
+b=10
+
+if [ $a -gt $b ]
+
+then 
+echo "$a is biggerthan $b"
+
+else
+
+echo "$a is smallerthan $b"
+fi
+[O
+
+-----------------------------
+echo "Please enter the file name"
+read filename
+
+if [ -f $filename ]
+then 
+echo "The $filename is existed in current directory.."
+else
+echo "The $filename is not existed in current directory.."
+-------------------------
+
+((sum=x+y))
+bc<<<$x+$y
+-------------------------
+to calculate the numbers only 
+  -eq
+! -ne
+  -lt
+  -le
+  -gt
+  -ge
+! -eq
+
+
+to calculte the sring 
+
+[[ -z $variablename ]] -- either for particular variable is having string or not
+[[ -nt $variable ]] -- it's to calculate the string if it's not equal .
+
+
+ubuntu@ip-172-31-42-201:~$ netstat -tulnp
+-------------------------------------------
+
+docker home directory
+---------------------
+cd /var/lib/docker
+-------------------------
+TO CHECK the inside of the process
+
+docker top containeridorname
+
+----------------------------------------------
+
+
+file operator:
+---------------
+
+[[ -d ]] -- directory
+[[ -f ]] -- file
+[[ -e ]] -- exist
+[[ -r ]] -- readable
+[[ -w ]] -- writable
+[[ -x ]] -- executable
+------------------------------------------------------------------------
+
+command chaining operators
+-------------------------------
+
+Semicolon ; if command one failed second command will execute
+logical AND &&  if command one failed second will not execute
+Logical OR || if command one failed only second command wil execute 
+  -- sudo systemctl status || sudo systemctl start httpd
+
+--------------------------------------------
+
+
+which httpd
+httpd_v=$?
+
+if [[ $httpd_v -eq 0 ]]
+
+then
+
+echo "it's installed"
+
+else
+
+sudo systemctl start httpd
+
+fi
+
+ date '+%b_%Y_%M_%H_%d'
+-----------------------------------------------------------------------
+
+
+read -p "Enter your action: " user_action
+
+echo "executing user action on httpd"
+sudo systemctl $user_action httpd
+sudo systemctl status httpd 2>&1 /dev/null
+
+cron entry types we can save
+
+at 8:00 
+bash filename.txt
+cntro d
+------------------------------------------------------
+
+backup.sh
+
+minute hours day  month weekdays command/script
+--------------------------------------------------
+
+mail -s "subject"
+#!/bin/bash
+
+given=$1
+for each in $(ls $given) 
+do
+ if [[ -x $each ]]
+  then 
+    echo "$each is having execution permissions"
+ else
+   echo "$each is not having execution permissions"
+fi
+done
+-----------------------------------------------------
+
+infinity for loop
+
+echo "" This is fo loop
+
+for ((;;))
+do
+  echo "This is firs line"
+  sleep 1
+done
+_________________________________________________________________________
+
+
+diffrence between $* and $@
+[ec2-user@ip-172-31-33-47 ~]$ ./dollar.sh 1 2 3 ab
+it's to represting with $* (This will treak as a argument )
+1 2 3 ab
+Represting of $@ (if we use "" that will consider as a one argument )
+1
+2
+3
+ab
+[ec2-user@ip-172-31-33-47 ~]$
+------------------------------------------------------------------------
+
+command to exute without loggin 
+ssh -t -o StrictHostKeyChecking=No username@ip "date"
+
+----------------------------------------
+
+#!/bin/bash
+
+
+echo "" This is fo loop
+
+for ((;;))
+do
+  echo "This is firs line"
+  sleep 1
+if [[  This is firs line -eq 10 ]]
+
+then
+
+  break
+fi
+
+done
+-----------------------------------------------------
+
+Sed -- Stream editor
+syntax 
+
+sed options commands file
+Read - Read a line from input strea
+execute - execute sed commands on line
+display display result on output stream
+------------------------------------------
+
+sed '' file.txt
+sed 'p' file.txt -- this will show double content
+sed -n 'p' file.txt --> this will show only the orginal file content not double
+sed -n '3p' file.txt --> this will execute the only 3rd line
+sed -n '1,3p' file.txt --> this will show the 1 line and 3rd line
+sed -n '1,+5p' file.txt --> this will show from 1st line to 5th line
+sed -n '1~1p' whiloop.sh --> this will skip each line after 1 after 
+sed '4d' this will remove the 4th line only
+sed '4,$d' this will delete the from 4th line to last line number 
+sed '10,45' this will remove only from 1 to 40th line
+sed 10,+12d this will remove 12 lines after the 10th
+sed -e '1d;5d' file.txt this will delete 1st line and 5th line
+
+----------------------------------------------------------------
+
+sed -i '4d;5d' file.txt
+
+sed -i.back '4d;5d' file.txt -- this will remove and this will create a backup of the file
+sed -n '/echo/p' file.txt -- this will show the lines which are having echo
+sed -n -e "/echo/p" -e "/echo/p" file.txt -- we can use "" to search the multiple words help of -e
+----------------------------
+
+to substitute the variable we should use "" to get the exact variable to search 
+------------------------------------------
+
+sed '10,$!d' file.txt this will delte from 1 to 10th line
+
+to delete which are not having echo we can follow below command
+sed -i '/echo/!d' file.txt
+--------------------------------------------------
+
+find and replace
+---------------------------------------
+
+to replace we can use below command
+
+sed -i '/root/venkat' file.txt --> this will look for the first appearance to replace overall all the files we can use like below
+sed -i 'root/venkat/g' file.txt --> to replace all
+sed -i //\/ '/root/venkat/' file.txt
+sed -i '/root/venkat/2' file.txt -- this will execute second occurance 
+sed -i '/devOps/s/bash/ksh' file.txt --> we are searching for devops and replacing in place of shell with ksh
+---------------------------------------------------------------------------------
+
+insertion and deletion
+--------------------
+
+
+i - before line number
+a - after line
+d - deletion
+---------------------------
+sed '1i S/N Name Salary' emp.sh
+ sed -i '/Raju/a 3 John 90000' emp.sh
+-------------------------------------------
+
+regex -- regular expression
+----------------------------
+sed -n '/p[uo]t/p' ex.sh | awk 'NR == 1'
+sed -n '/\\s/p' file.txt -- /\s means to match space with help of /\ if we combain \ that will match with s also escaped character
+sed -n '/p.t/p' ex.txt
+[abcd] it will look for a or b or c or d
+{} we will use to display the variabvle value
+sed -n '/This/{3\}/p' file.txt
+
+
+cat /etc/shells
+
+ps $$
+-x for debug mode
+
+
+[I---------------
+
+set -x --> debug started
+set +x --> debug ended
+
+set -n --> syntax check
+
+export is the command to export the environment varibles to the new shell as well
+
+to see both system and userdefined variables
+
+set | less
+
+echo ${HELLO=john ali}
+unset HELLO
+--------------
+school=dpsnoida
+echo ${school:amity}
+
+:=  to use undefined variables
+unset school
+[O
+echo ${school:=amity}
+
+==============================
+
+quoting
+---------
+three types of quotes
+
+"" --> 
+
+echo "$HOME"abc --> VARIABLE with string
+
+'' --> disabling the commands and variables 
+echo '$ABC' --> this will not refer any variables directly prints the output
+
+"\" --> backslash
+[^abc]
+
+[j-mJ-Mz]
+
+'x*\.y*'
+------------
+x [#:.]y
+
+x [#:\^] y
+
+^[0-9]{3}$ --> this will repeat [09 three times]
+
+^[a-z]{4,6}$
+
+grep -i '(ha) {4,}' --> this will check the unlimited haha matches
+
+^(ha){,2}$ --> to match one or two string
+
+grep-E 'fooa+baar' one or more occurance +
+
+a? --> single occurance
+
+(a|b) --> either a or b
+
+([0-9]+)x([0-9]+)   \1 pix by \2 pix
+
+sed -r 's/([a-zA-Z]+)\s([a-zA-Z]+)/\2,\1/g' filename --> reversing 
+([0-9]{1,2}):([0-9{2}]) \2 mins past \1
+==============================================================================================
+fooaaaabar / fooabar / foobar/ | foo
+1. a* ==> zero or more occurances | grep -E
+2. .  ==> it represents any latter 
+3. .* ==> any latter one or more occurances
+4. \s*  ==> space 
+5. [fcl]oo ==> that can match anything fcl or oo
+6. [fldld]oo ==> same like above
+7. [^mh]oo ==> will ignore these will display everything
+8. [j-m]oo ==> this is dispaly from j to m
+9. [j-mz]oo ==> this will include z also
+10. [j-mJ-Mz]oo ==> including lower case and upper case
+11. 'x*\.y*' ==> escaping the .
+12. [x#:\.]y
+13. [#:\^]y
+14. [#\\\^]y
+15. ".*bar$"
+16. ^foo ==> anchor symbol
+17. ^foo$ --> only this will match
+=============================================
+18. ^[0-9]{3}$ --> this will match only three digits not 4 latters
+19. '^[a-z]{4,6}$' 
+20. '(ha){4,}'
+21. '(ha){3,7}'
+22. 
+23.a+ one or zero occurances of only a when we use along with +
+24. loo|wood
+==================================================
+
+find and replace
+25.  sed -r 's/([0-9]+)x([0-9]+)/\1 pix by \2 pix/g' regex25.txt
+
+26. cat regex26.txt | sed -r 's/([a-zA-Z]+)\s([a-zA-Z]+)/\2,\1/g'
+27. $ sed -r 's/([0-9]{1,2}):([0-9]{2})/\2mins past \1/g' regex27.txt
+28. $ sed -r 's/[0-9]{3}\.[0-9]{3}\.([0-9]{4})/xxx.xxx.\1/g' regex28.txt
+29. sed -r 's/([a-zA-Z]{3})\s([0-9]{1,2})\s[0-9]{2}([0-9]{2})/\2-\1-\3/g' regex29.txt
+30. sed -r 's/\(([0-9]{3}\)(\.[0-9]{3}\.[0-9]{4})/\1\2/g'
+
+ 

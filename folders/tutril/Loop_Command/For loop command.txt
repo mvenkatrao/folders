@@ -1,0 +1,179 @@
+#!/bin/bash
+
+if [[ $# -ne 1 ]]
+then
+  echo "uage : $0 <any path>"
+fi
+
+given_path=$1
+for each in $(ls $given_path)
+do
+ if [[ -x $each ]]
+then
+
+ echo "$each is having execution permissions"
+else
+ echo "$each is not having execution permissions"
+fi
+done
+
+
+########################################################################
+
+
+#!/bin/bash
+
+for each in httpd_info.sh httpd_ver_port.sh check_ex_per.sh
+
+do
+ if [[ -x $each ]]
+ then
+   echo "$each is having execution permission"
+ else
+   echo "$each is not having execution permision"
+fi
+done
+
+
+######################################################################################
+
+#!/bin/bash
+for each in 1 2 3 4 5
+do
+  echo "Welcome to shell scripting"
+  echo "we done with very basics"
+  echo "Now we are starting loops concepts"
+done
+
+
+
+
+#########################################################################################
+
+Most languages have the concept of loops and they are very usseful to execute series of commands for n number of times
+
+Types of loops :
+* for loops
+* while loops
+* until loops
+* select loops
+
+c_type for loop :  
+################
+
+#!/bin/bash
+
+clear
+for((cnt=1;cnt<=20;cnt++))
+do
+  echo "$cnt"
+done
+echo "we completed for loop"
+
+
+############################################################
+
+inifinity loops
+#################
+
+#!/bin/bash
+echo "This is a for loop"
+cnt=1
+for ((;;))
+do
+  echo "This is infinity for loop"
+  ((cnt++))
+  sleep 1
+  if [[ $cnt -eq 10 ]]
+  then
+     break
+   fi	 
+done
+
+
+
+for each in zip unzip; do
+   if yum list installed $each >/dev/null 2>&1; then
+      sudo yum remove $each -y
+   fi
+   sudo yum install $each -y
+done
+
+
+################################################################################
+
+#!/bin/bash
+
+if [[ "$EUID" -ne 0 ]]
+then
+ exec sudo "$0" "$@"
+fi
+
+sudo yum install zip unzip tree -y
+
+
+############################################################
+
+
+#!/bin/bash
+
+if [[ $(id -u) -ne 0 ]]
+then
+ echo "Please run from root user or with sudo privilage"
+exit 1
+fi
+
+if which vim &> /dev/null
+then
+ echo "Already vim is installed"
+else
+  echo "Installing vim....."
+  yum install vim -y &> /dev/null
+ if [[ $? -eq 0 ]]
+ then
+  echo "Successfully installed  pkg"
+  else
+   echo "Unable to install pkg"
+fi
+
+
+
+
+
+
+
+###################################################################
+
+ for each in zip unzip; do sudo yum install $each -y; done
+ 
+ for each in zip unzip; do sudo yum install $each -y; done 
+ 
+ #######################################################################################
+ 
+ 
+ #!/bin/bash
+
+if [[ $(id -u) -ne 0 ]]
+then
+  echo "Please run fro mroot user or with sudo privilage"
+  exit 1
+fi
+
+for each in vim httpd nginx
+do
+  if which $each &> /dev/null
+  then
+    echo "$each is installed"
+  else
+     echo "Installing $each ......"
+  sudo yum install $each -y &> /dev/null
+  if [[ $? -eq 0 ]]
+  then
+     echo "Successfully installed $each"
+ else
+     echo "Unable to install $each"
+  fi
+  fi
+done
+
+

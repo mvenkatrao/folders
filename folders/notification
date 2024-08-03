@@ -1,0 +1,101 @@
+pipeline {
+    agent any
+    
+    tools {
+        maven 'Maven'
+    }
+
+    stages {
+        stage('Hello') {
+            steps {
+                script {
+                    // Notify build start with the same color as SUCCESS
+                    slackSend(
+                        channel: 'deployment-test',
+                        color: 'good', // Using 'good' color for SUCCESS
+                        message: "STARTED: ${env.JOB_NAME} #${env.BUILD_NUMBER} by ${currentBuild.getBuildCauses()[0].userId}"
+                    )
+                }
+            }
+        }
+        
+        stage('Git Checkout') {
+            steps {
+                git credentialsId: 'GithubCred', url: 'https://github.com/AMLSDEVOPS/java-web-app-docker.git'
+            }
+        
+            
+        
+            
+        }
+        
+        stage('maven package') {
+            steps {
+                sh "mvn clean package"
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Slack Notification'
+            slackSend(
+                channel: 'deployment-test',
+                color: currentBuild.currentResult == 'SUCCESS' ? 'good' : (currentBuild.currentResult == 'FAILURE' ? 'danger' : 'warning'),
+                message: "${currentBuild.currentResult}: Job ${env.JOB_NAME} #${env.BUILD_NUMBER} by ${currentBuild.getBuildCauses()[0].userId}\n<${env.BUILD_URL}|Open>"
+            )
+        }
+    }
+}
+
+#############################################################################################################################
+
+Libraries
+
+@Library('my-shared-library') _
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven'
+    }
+
+    stages {
+        stage('Hello') {
+            steps {
+                script {
+                    // Notify build start using the shared library script
+                    started()
+                }
+            }
+        }
+
+        stage('Git Checkout') {
+            steps {
+                git credentialsId: 'GithubCred', url: 'https://github.com/AMLSDEVOPS/java-web-app-docker.git'
+            }
+        }
+
+        stage('maven package') {
+            steps {
+                sh "mvn clean package"
+            }
+        }
+
+        stage("Shared Library") {
+            steps {
+                helloWorld()
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Slack Notification'
+            // Notify post build using the shared library script
+            post()
+        }
+    }
+}
+
+

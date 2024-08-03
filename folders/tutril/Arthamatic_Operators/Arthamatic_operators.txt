@@ -1,0 +1,45 @@
+Arthametic operators 
+
+* shell script variables are default treated as strings, not numbers which adds some complexity to doing math in shell scirpt
+* there are diffrent ways to perfome arithmetic operation :
+     - using declare
+     - using expr 
+     - using let
+above are the old model
+
+below are the advance level arithmetic operators :
+
+Using (()) (for integers)
+using be (for integer and float numbers)
+
+
+examples for modules ( or remainder )
+
+#!/bin/bash
+
+# Example 1: find the remainder when 14 is divided by 3
+num1=14
+num2=3
+result=$((num1 % num2))
+echo "The remainder when $num1 is divided by $num2 is $result."
+
+# Example 2: find the remainder when 27 is divided by 4
+num1=27
+num2=4
+result=$((num1 % num2))
+echo "The remainder when $num1 is divided by $num2 is $result."
+
+# Example 3: find the remainder when 39 is divided by 6
+num1=39
+num2=6
+result=$((num1 % num2))
+echo "The remainder when $num1 is divided by $num2 is $result."
+
+output : 
+
+The remainder when 14 is divided by 3 is 2.
+The remainder when 27 is divided by 4 is 3.
+The remainder when 39 is divided by 6 is 3.
+
+ ((x++)) (this meaning adding one additional number to the variables for this value)
+

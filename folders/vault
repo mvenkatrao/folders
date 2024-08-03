@@ -1,0 +1,221 @@
+Secrets
+
+
+Passwords
+PKI certificates
+ssh keys
+key values
+API key
+Encryption keys
+Time-based one-time Password TOTP
+TLS certificates
+etc
+
+
+Features
+
+Secure Secret Storage -- Integrated storage (Local or consul)
+                         External Storage (AWS,Azure,GCP)
+
+Dynamic Secrets - Secrets on-demand for aws TOTP _ Revoke after
+
+
+Data Encryption  --> Encrypt & Decrypt data without storing it creation encryption Keys
+
+Leasing and Renewal --> Lease -- allow & Revokes the secret
+Renew - the secret
+
+Revocation --> Revoke secrets
+based on - user,bulk,type
+
+
+-- Use Cases --
+
+
+-- General secret storage
+Store it
+Read in plan text - Support Audit
+
+-- Employee Credential Storage
+ Manage employee Credentials
+ Cretae,ROllout, Manage,Revoke etc
+ -- API Key Generation for scripts
+Ideal for scripts -dynamic 
+AWS,Azure,GCP -- access & IAM
+
+Data encryption
+-- Encrypt/decrypt of somewhere data
+worry free encryption
+ 
+
+ Use cases -2 
+
+ --Automated PKI Infrastructure ==> Creating, rotating,and managing certificates
+
+ -- Data Encryption & Tokenization
+ Data across clouds , applications, and systems encrypt and tokenize
+Database credential Rotation
+-- Each DB credentials for apps, services, and users automated shared DB credentials rotation
+
+Dynamic Secrets -- Organizations - avoid long living credentials
+Generate time-based access credentials
+
+Key Management
+-- Centrally manage & automate encryption keys 
+across environments
+
+kuberentes secrets 
+-- No sharing of creds/token to pods 
+  Valut to secrutly inject secrets to stack
+
+  secrets management
+  == Key,and tokens
+  across diffrenets clouds & environments
+  ============================================
+
+  valut architecture
+
+  Core -- Storage - Secret Engine
+              - Raft Storage
+              - Consul
+              RDBMS
+              Cloud  Backends
+              Spanner
+
+we can store who has accessed the aws and we can store that information in splunk or elasticsearch
+
+
+ways to use Valut
+
+CLI (Valut & API)
+hashicrop CLoud Platform
+UI
+
+How to install Valut 
+
+Install a Linux package
+Use a Precompiled binary
+Install from source
+
+
+
+Valut Server
+1. Install Vault Server -- Installing as per the doc
+
+2. Valut Configuration 
+    - Storage (Local DB or Consul etc)
+    - Listener (HTTPS)
+    - Telemetry
+    - Replication
+3. Valut Started
+   - check valut status
+
+
+   Valut Configuration
+
+   HCL or JSON file
+
+   Located at /etc/valut.d/valut.hcl
+
+   All Configuration settins
+   Default - No write & execute
+
+   File permissions can disable using
+   VALUT_DISABLE_FILE_PERMISSION_CHECK
+
+
+   By default it's Sealed
+   1st Step in valut
+   unseal must be perfomed
+
+
+
+
+
+
+   key1+ key2+key3  master key
+
+   master key decrypt the key 1 
+   encryptionkey1 will decrypt encryption 2
+   encryptionkey2 the actual data
+
+   1. shamir's secret sharing algorithm
+
+ 
+   valut opertor unseal 9v4ZEr1RncKI/wd9SKIpCxIJoFE+dbsecn7gkPs8Z9rL
+
+   Auth methods - token
+
+   vault auth enable = <<token>>
+
+   vault token create
+   vault login token=<<token>>
+   vault auth disble =<<token>>
+
+
+   ====================
+
+
+   vault operator init
+   vault token create
+   vault login token=<<token>>
+   vault auth disable = <<token>>
+
+
+   creating another token
+
+   to check either enable or not
+
+   vault auth list --> types of enable 
+
+   vault token create --> this will create the token
+   vault token revoke 
+
+
+   vault write auth/aws/config/client \
+       secret_key=xxxxx
+       access_key=xxxxx
+
+
+       Token => for admins
+       GitHub => for developers
+       LDAP => for users/svc accounts
+       AppRole => for Machines or Apps
+       Kuberentes => for Apps
+       JWT(java web token) => for authorized users
+
+
+
+       About secret Enginee
+
+       - Store, Generate or Encrypt the secrets
+       - In the vault,secrets will be stored in a "path"
+       - Every secret has configuration
+       - can be in versioned (v2 API)
+       - Every secret has lease TTL
+       - Put,list,get, patch,delete,undelete & destroy
+
+
+
+
+{
+"bootstrap": true,
+"server": true,
+"log_level": "DEBUG",
+"enable_syslog": true,
+"datacenter": "server1",
+"addresses" : {
+"http": "0.0.0.0"
+},
+"bind_addr": "your-server-ip",
+"node_name": "ubuntu2004",
+"data_dir": "/var/lib/consul",
+"acl_datacenter": "server1",
+"acl_default_policy": "allow",
+"encrypt": "25z0L4LQcBJw5Qj/T96yUir37hoi5/kMEONE3AgCAHk"
+}
+
+
+vault kv put gvr/webui user=admin pass=xyz
+
+

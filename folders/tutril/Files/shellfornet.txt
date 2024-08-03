@@ -1,0 +1,385 @@
+samplefile with quotes
+
+#!/bin/bash
+echo 'Hello shellscripting programe'
+WORD='scriptf'
+echo "This is a shell $WORD"
+
+we can defind like below also
+
+echo "this is a shell ${WORD}"
+
+
+or 
+
+echo "this is shell ${WORD}"
+1. variables
+2. command line arguments
+
+there is a diffrence betweek command substrution and variable substrution
+
+# Test for number of argument
+
+if [ "$#" -eq 0 ] ; 
+then
+  echo -e "No argument."
+  echo -e "Write a number between 1 and 12."
+  exit 1
+elif [ "$#" -gt 1 ] ;
+then
+  echo -e "More than 1 argument."
+  echo -e "Write a number between 1 and 12."
+  exit 1
+else
+  numb=$1
+  case "$numb" in
+    1) echo "Month: January";;
+    2) echo "Month: February";;
+    3) echo "Month: March";;
+    4) echo "Month: April";;
+    5) echo "Month: May";;
+    6) echo "Month: June";;
+    7) echo "Month: July";;
+    8) echo "Month: August";;
+    9) echo "Month: September";;
+   10) echo "Month: October";;
+   11) echo "Month: November";;
+   12) echo "Month: December";;
+    *) echo -e "You wrote a wrong number. Try again with writing number between 1 and 12.";;
+  esac
+fi
+exit 2
+exit 0
+
+to see variable legnth we can use like below
+
+echo ${#variablename}
+
+
+
+arthimatic opeations 
+######################
+
++ addition
+- subtraction
+* multiplication
+/ division
+% modulus
+= assignment
+== equality
+!= not equality
+
+
+[root@ip-172-31-45-211 ~]# cat 1_arthamatic.sh
+#!/bin/bash
+
+echo "Enter the first number: "
+
+read a
+
+echo "Enter the second number : "
+
+read b
+
+echo "Addition of the above to numbers is `expr $a + $b`"
+echo "the value of substraccion number is `expr $a - $b`"
+echo "multiplication of both the above number `expr $a \* $b`"
+echo "division of the above number is `expr $a / $b`"
+echo "the above modulus values is `expr $a % $b`"
+echo "the equality of the above value is `expr $a = $b`"
+
+#`expr $a == $b`
+echo "both values are not same of $a $b"
+
+
+###############################################################################################################
+
+[root@ip-172-31-45-211 ~]# cat 2_arthamatic.sh
+#!/bin/bash
+number1=10
+number2=20
+
+echo $((number1 + number2))
+echo $((number1 - number2))
+echo $((number1 * number2))
+echo $((number1 / number2))
+echo $((number1 % number2))
+
+[root@ip-172-31-45-211 ~]
+
+########################################################################################################################
+
+[root@ip-172-31-45-211 ~]# cat 3_arthamatic.sh
+#!/bin/bash
+
+echo "Enter two numbers"
+read a
+read b
+c=`expr $a % $b`
+
+echo "additional value is : $c "
+[root@ip-172-31-45-211 ~]#
+
+####################################################################################################################
+[root@ip-172-31-45-211 ~]# cat 3_arthamatic.sh
+#!/bin/bash
+
+echo "Enter two numbers"
+read a
+read b
+c=`expr $a % $b`
+
+echo "additional value is : $c "
+[root@ip-172-31-45-211 ~]# cat relational_operand.sh
+#!/bin/bash
+
+<<comments
+echo "first number"
+read a
+echo "second number"
+read b
+if [ $a -eq $b ]
+ then
+     echo "both values are equal"
+else
+     echo "both values are not equal"
+fi
+comments
+echo "Hi"
+[root@
+
+#############################################################################################################################
+
+[root@ip-172-31-45-211 ~]# cat 2_relational_operand.sh
+#!/bin/bash
+
+# -eq or == equal to
+# -ne or != not equal to
+
+v1=5
+v2=6
+
+if [ $v1 -eq $v2 ]
+then
+echo "in the IF clause"
+#do some statement
+elif [ $v1 -ne $v2 ]
+then
+echo "in the else if clause"
+#do another statement
+#echo "in the else clause"
+fi
+[
+
+
+
+#!/bin/sh
+
+a=10
+b=20
+
+val=`expr $a + $b`
+echo "a + b : $val"
+
+val=`expr $a - $b`
+echo "a - b : $val"
+
+val=`expr $a \* $b`
+echo "a * b : $val"
+
+val=`expr $b / $a`
+echo "b / a : $val"
+
+val=`expr $b % $a`
+echo "b % a : $val"
+
+if [ $a == $b ]
+then
+   echo "a is equal to b"
+fi
+
+if [ $a != $b ]
+then
+   echo "a is not equal to b"
+fi
+#############################################################
+[root@ip-172-31-45-211 ~]# cat 2_bigarthamatic.sh
+#!/bin/bash
+a=10
+b=20
+
+Val=`expr  $a + $b`   val=`expr $a + $b`
+echo "a + b : $val"    echo "a + b : $val"
+
+val=`expr $a - $b`
+echo "a -b : $val"
+
+vale=`expr $a \* $b`
+echo "a * b $val"
+
+val=`expr $a % $b`
+echo "a % b $val"
+
+val=`expr $a / $b`
+echo "a / b $val"
+
+if [ $a == $b ]
+then
+  echo "condition become true"
+else
+  echo "condition become false"
+fi
+
+
+
+######################################################################
+Arithmetic Operators + -
+Relational Operators -eq -nt
+Boolean Operators -o -a
+String Operator 
+File Test Operators
+
+^^ we use to make upper case
+
+
+
+above need to get 
+###################################################################################################################
+
+
+#!/bin/bash
+
+read -p "Please enter a string :"
+echo "values you have entered is $REPLY" (here REPLY is default variable for read command)
+
+read -p "Please enter a value :" $variable1
+echo "the value you have entered is $variable1
+
+
+
+utilities means commands
+
+process : 
+
+whatever kernel is doing which we asked to do that's going to create a one process that's called as process
+
+
+how output will be distributed in shell if two persons login's to the same server
+shell is goingg to determine from which shell this response is coming than that's going to give the output
+
+38:14
+
+what is variable?
+
+variable is nothing but the place where values will be stored
+
+PPID
+####
+
+parent process id
+
+[ec2-user@ip-172-31-45-211 ~]$ ps -f
+UID          PID    PPID  C STIME TTY          TIME CMD
+ec2-user  284056  284055  0 03:54 pts/0    00:00:00 -bash
+ec2-user  284115  284056  0 03:57 pts/0    00:00:00 ps -f
+[ec2-user@ip-172-31-45-211 ~]$
+
+
+frrom PID process will get createdd like above
+
+
+
+export commmand
+
+it will export the variables from parent process to child process
+
+
+from child to parent it's not possible
+
+
+
+ cat /dev/pts/0
+
+
+\ (back slash)
+
+if we want to print the same exact value we have to user back slach \ like below
+[root@ip-172-31-45-211 shellscript]# cat file.sh
+#!/bin/bash
+
+name="harsha"
+var1="10"
+
+echo "\$name = $name"
+echo "$var1 = $var1"
+[root@ip-172-31-45-211 shellscript]# ./file.sh
+$name = harsha
+10 = 10
+[root@ip-172-31-45-211 shellscript]#
+
+
+arthamatic operator
+
+#systax: `expr val11 <operator> val12`
+
+#!/bin/bash
+val1=30
+val2=20
+
+add=`expr $val1 + $val2`
+echo "add value : $add"
+
+sub=`expr $val1 - $val2`
+echo "sub value : $sub"
+
+#negate * with \ #
+mul=`expr $val1 \* $val2`
+echo "Mult value is $mul"
+
+
+div=`expr $val1 / $val2`
+echo "div value is : $div"
+
+modv=`expr $val1 % $val2`
+echo "Mod value is : $modv"
+
+var3=`expr $val1 = $val2`
+echo "var3 value : $var3"
+
+noteq=`expr $val1 != $val2`
+echo "not equal $noteq"
+
+
+to get the average value
+#!/bin/bash
+
+var1=1
+var2=2
+var3=3
+
+sum=`expr $var1 + $var2 + $var3`
+avg=`expr $sum / 3`
+echo "the average of $var1, $var2, $var3 is : $avg"
+#############################################################################################################
+
+Decision making
+
+we should always [ ] for if else statements 
+
+
+elif
+####
+
+if [ $a = $b ];then
+echo "a equal to b"
+elif [ $a -nq $b ];then
+echo " a is not equal to b"
+else
+"both are non-zero"
+fi
+ 
+ 
+34:36 
+
+Pending https://phoenixnap.com/kb/bash-case-statement#:~:text=The%20bash%20case%20statement%20is,readable%20than%20nested%20if%20statements.
+

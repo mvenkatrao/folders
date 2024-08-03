@@ -1,0 +1,883 @@
+Advantages of kubernates
+
+Kubernates master slave concept
+
+
+-- Automated Sceduling
+-- Self healing capabilities -- reschedule or replace or restart the container
+-- Automated rollouts & rollback
+-- Horizontal scalling & Load balancing
+-- Auto scalling of PODS (Containers)
+-- Service Discovery & Load balancing
+
+
+Open source 
+Brand & Community
+
+Kubernate works in declarative mode -- we should declare what we need
+###################################
+
+on each machine we should have container run time -- Docker,Core OS , Rocket,Container-d including master machine
+kubelet is node agent.
+
+
+
+Master machine components
+####################
+-- API Server
+-- Controll Managers  -- it's responsible for hen node goes down
+   -- Node Control
+   -- Replication Control Manager
+   -- EndPoint ControlManager
+
+-- Scheduler
+   -- Scheduler will schedule un Scheduled PODS in nodes with help of kubelet
+
+-- ETCD -- key value data store, where it wil maintain about the cluster how many clusteres are there how many nodes are there thise information
+   - nodes data pods services volumes
+
+    - when API server request it will persist the info in ETCD
+
+-- Container Run Time Docker -- It makes sure that containers are running in pod, The kubelet does't manage containers which were not created bykubernates
+
+##################################
+
+WWorker machine compoenents
+#####################
+
+Kubelet  -- it 'ss an agent it will check with container run time and it will crate the pods
+
+kubeproxy
+######
+Docker Run time
+
+
+################################
+
+
+Kubernates Objects/Resources/Workloads
+
+
+POD
+ReplicatinController
+ReplicaSet 
+DaemonSet
+Deployment
+PersistantVolumes
+PersistantVolumeClaims
+Services
+######################################
+
+When we give a request delaration API Server will process the request
+
+
+Control managersMpde
+
+Kube-proxy
+###############
+
+Kube-proxy maintans network rules
+it helps us to have network proxy and load balancer for the esrvices in single worker node
+it redirect requests from cluster ip to pod ip
+
+########################################################
+
+Kubernates types
+ -- self managed k8s cluster
+    -- Kubeadm
+    -- minikube 
+
+-- managed k8's cluster (cloud services)
+   -- EKS -- Elastic Kubernetes services (AWS)
+   -- AKS -- Azure kubernates servuces
+   -- GKS -- Google kubernates services
+   -- IKE -- IBM Kubernates engine
+
+
+
+KOPS -- Kubernetes operations is software using which we can set up highly avaialbe production ready k8 cluster in aws, KOPS will leverage clou concepts like autoscalling groups & Launch configuratins to set up highly avaialbe K8s cluster.
+
+2 Auto scaling group2
+  masters
+  workers
+2 Launch configuration
+  workers
+what swap memory
+
+if ram is full it will try to write to the files
+##################################
+
+Pod-to-Pod Communication:
+Pod-to-Service Communication:
+Network Policies:
+Pod IP Address Assignment:
+Overlay Networks:
+Load Balancing:
+Integration with External Networks:
+Scalability and Performance:
+
+#####################################
+
+
+Containers are wrapped under pods
+we are not creating container directly
+Pod - runtime smallest building block
+	
+
+
+
+what is namespace
+#######################
+
+
+cluster inside the cluster
+ group of related 
+grouping our k8 objects into a namespace
+they are logically isolated
+kubectl get namespaces
+all kube system controlplane internal logically grouping into a namespace
+##############
+
+-- Default : is for depployments that are not given a namespace, which is a quickly way to create a mess that will be hard to clean up if you do too many deployments without the proper info
+
+-- Kube-system is for all thing relating to the kubernetes system, any deployments to this namespace are playinga dangerous game and can accidentally cause irreparable damage to the system itself
+
+-- kube-public is readable by everyone,but the samespace is reserved for system usage.
+###########################################
+
+we can create our own name space and deploy into it 
+############################################################
+
+
+flipkartcc -- flipkartcustomercare -- name space
+flipkartenduser -- name space
+#########################################
+
+
+-- a POD is the smellest building block or basic unit of scheduling in kubernetes.
+-- in kubernetes cluster, a pod represents a running process,
+-- POD is a group of one or more containers which will be running on some node
+
+
+everypod will have unique ip 
+
+
+or any obhect we can deploy in two ways
+
+-  Interactive 
+    - we shuld create in interactive way
+     kubectl run --name javawebapppod --image=ashoknagari/java-web-app --generator=run-pod/v1
+   
+
+
+-  Declarative
+####################
+
+
+apiVersion:
+kind:
+metadata:
+spec:
+
+
+##################################################
+
+kind
+-----
+ -- POD -- v1
+ -- ReplicationController -- v1
+ -- Service --v1
+ -- Replicaset --apps/v1
+ -- Deployment -- apps/v1
+ -- DaemonSet -- apps/v1
+ -- Job -- batch/v1
+#########################################################
+
+
+Delarative
+###################
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: <PODNAME>
+  labels:
+    key: value
+spec:
+
+
+###########################################################################
+
+
+
+
+
+apiVersion: v1
+kind: Pod
+metadata
+  labels:
+    key: pair
+spec:
+  containers:
+  - name: containername
+    image: <imagename?
+    ports: 
+    - containerPort: ContainerPort
+################################################################################
+
+
+Manifestfile
+
+##########################
+
+Pod scheduling
+
+Taints
+Tolerances
+nodeselector
+nodeaffinity
+
+
+
+
+
+#################
+
+Service -- (only for communicaton)Service makes pod accessable /discovarble with inthe network (cluster) or outside the network (internet) when we create a service we will get one virtual ip (clusterip) this is IP will be registered in kubernetes dns with it's name(service).
+
+
+ - clusterip
+ - nodeport -- it's like a port forwarding
+ - loadbalancer
+
+
+what is docker service & k8's service
+
+docker service --> groupof container + communication
+#
+
+services will identify the pods using labels selectors
+####################################
+
+we can attach the storage to pod containers will use that volume within a pod
+
+
+
+one-container-per-pod.
+ -- this model is the most popular.pod is the wrapper for a single container since pod is the smallest object that k8 recognizes 
+
+multi-container-pod or sidecar
+ -- in this model a pod can hold multiple co-located containers primary container and utility container that helps or enhances how an applicatin functions
+
+
+
+shared network name space
+pending to write
+
+kubectl describe <object> <objectname>
+
+kubectl describe pod javawebapppod
+################################################################
+
+
+Pod concept :
+  Pod is epheral (lasting for a very short time) it will won't be rescheudled to a new node once it dies
+
+we should'nt create the the pod directly because once it dies it won't reschedule
+
+ -- Kubernetes have controllers like relica sets deployment Deamon sets to keep pod alive
+ 
+kubectl get rs --> kubectl get replica set
+kubectl get ds --> kubectl get daemonset
+kubectl get deployment 
+
+when we deploy using control controler will take care of to recreate the pod
+
+
+################################################################################################################################################################
+
+
+static pod:
+
+  -- static pod wil be managed by kubelet and API server will not have any control over the static pod 
+  -- kubectl will be responsible for to watch static pod if it goes down it will restart
+  -- static pod does'nt have any accociated replicatin controller
+  -- kubelet service it self manages it will restarts the pod if required to restart 
+  -- there is no health check for static pod
+  -- static pod is visable but it can't be controller for API server
+  
+  
+  ubuntu@ip-172-31-0-12:~$ kubectl get all -n kube-system
+NAME                                         READY   STATUS    RESTARTS      AGE
+pod/coredns-5dd5756b68-h69xx                 1/1     Running   0             41h
+pod/coredns-5dd5756b68-xssxm                 1/1     Running   0             41h
+pod/etcd-ip-172-31-0-12                      1/1     Running   0             41h
+pod/kube-apiserver-ip-172-31-0-12            1/1     Running   0             41h
+pod/kube-controller-manager-ip-172-31-0-12   1/1     Running   0             41h
+pod/kube-proxy-44ftc                         1/1     Running   0             32h
+pod/kube-proxy-crthl                         1/1     Running   0             40h
+pod/kube-proxy-j7tmk                         1/1     Running   0             41h
+pod/kube-scheduler-ip-172-31-0-12            1/1     Running   0             41h
+pod/weave-net-7p6b4                          2/2     Running   1 (41h ago)   41h
+pod/weave-net-ft49m                          2/2     Running   0             40h
+pod/weave-net-wgxtc                          2/2     Running   0             32h
+
+NAME               TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
+service/kube-dns   ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   41h
+
+NAME                        DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE 
+            AGE
+daemonset.apps/kube-proxy   3         3         3       3            3           kubernetes.io/os=linux   41h
+daemonset.apps/weave-net    3         3         3       3            3           <none>                   41h
+
+NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/coredns   2/2     2            2           41h
+
+NAME                                 DESIRED   CURRENT   READY   AGE
+replicaset.apps/coredns-5dd5756b68   2         2         2       41h
+ubuntu@ip-172-31-0-12:~$
+
+
+
+-- we can create a static pod under /etc/kubenetes/manifests/
+
+
+###################################################################################################################################################
+
+replication controller will identify the using selectors:
+
+
+
+
+  Kubelet is an agent
+  
+ 
+ 
+ 
+ kubectl get svc javawebappsvc
+ kubectl get all
+ kubectl get pods -n kube-system
+ kubectl get ds -n kube-system
+ kubectl get deployment -n kube-system
+ 
+ 
+ 
+   467  vi javawebService.yml
+  468  kubectl get pods
+  469  kubectl kubectl delete rc javawebapprc --force --grace-period=0
+  470  kubectl delete rc javawebapprc --force --grace-period=0
+  471  kubectl delete pods --selector=app=javawebapp --force --grace-period=0
+
+
+kubectl delete rc javawebapprc --force --grace-period=0
+
+kubectl delete pods --selector=app=javawebapp --force --grace-period=0
+
+kubectl delete svc javawebappsvc --force --grace-period=0
+
+#############################################################################
+
+kubectl scale rc javawebapprc --replicas 3
+
+two types of selectors:
+
+equality based selecgor
+
+
+app: javawebapp
+
+
+
+set based selector
+
+
+selector:
+  matchExpression:
+  - key: app
+    operator: in
+	values:
+	- javawebapp
+	- javawebapp
+	
+	
+	
+####################################################################################################
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: javawebapprc
+spec:
+  replicas: 2
+  selector: 
+    matchLabels:
+	  app: javawebapp
+  template:
+    metadata:
+      name: javawebapp
+      labels:
+        app: javawebapp
+    spec:
+      containers:
+      - image: ashoknagari/javawebapp:9
+	  
+  	  
+	  
+
+selectors are like conditions
+########################################
+
+Replica Set  --> it's next generation of replicaion controller Replica set will also manages pod life cycle, we can scale up and scale down down PODS, only diffrences comes in it's selector support
+kubectl get nodes
+kubectl get ns
+kubectl get pods -o wide -n kube-system
+kubectl get all -n kube-system
+  <podname>
+ kubectl get pods -o wide
+  kubectl token create --print-join-command
+kubectl get pods --all-namespaces
+
+kubectl get pods --show-labels
+
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+
+we are trying to setup kubectl to connect to API server which is there as a root user
+
+
+weave-net-wgxtc                          2/2     Running   0             27h   172.31.15.111   ip-172-31-15-111   <none>           <none>
+ubuntu@ip-172-31-0-12:~$ kubectl get pod javawebapppod -o wide
+NAME            READY   STATUS    RESTARTS   AGE   IP          NODE              NOMINATED NODE   READINESS GATES
+javawebapppod   1/1     Running   0          25h   10.44.0.1   ip-172-31-6-160   <none>           <none>
+ubuntu@ip-172-31-0-12:~$
+
+
+
+ ubuntu@ip-172-31-0-12:~$ kubectl describe service javawebappsvc
+Name:              javawebappsvc
+Namespace:         default
+Labels:            <none>
+Annotations:       <none>
+Selector:          app=javawebapp
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                10.105.109.116
+IPs:               10.105.109.116
+Port:              <unset>  80/TCP
+TargetPort:        8080/TCP
+Endpoints:         10.44.0.1:8080
+Session Affinity:  None
+Events:            <none>
+ubuntu@ip-172-31-0-12:~$
+
+kubectl run -it --rm testpod --image=ubuntu
+apt update -y
+apt install curl
+curl javawebappservicename
+#####################################
+
+
+what is the node port range in k8?
+
+node port is a service type when we create service type of node port it will give one node port which we can access out side of the network
+
+port range 30000-32767
+within this range we will get the service port for that service
+
+we can access by using that port out side of the network
+###################################################
+sudo iptables-save | grep 32362
+
+
+###############################################################
+
+Replication control 
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: replicationControlName
+  name: NameSpace
+  
+ we can follow below command to edit 
+ 
+ kubectl edit svc mavensvc
+ 
+ 
+ kubectl exec -it <containerName> -- pwd --> to fire the command inside the container
+ kubectl exec -it <containerName> -- bash
+ 
+ kubectl exec -it <containerName> --c mavenwebapp -- pwd (this is to fire the command in particular command
+ 
+ 
+ ##############################################################################################################
+ 
+ 
+ Daemonset 
+ 
+ it's like a Global mode
+ 
+ 
+ diffrence betweek 
+ 
+ kubectl create -- it will create the objects
+ 
+ kubectl update -- it will update if any changes is there
+ 
+ kubectl apply -- it will apply the changes if any modification is done
+ 
+ to make default name space
+ kubectl config set-context --current --namespace=flipkartapp
+ 
+ to delete all
+ kubectl delete all -all
+ 
+ 
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ 
+ kubernates deployment way is the best practice and recommandation 
+ 
+command to view in yaml format
+
+kubectl get rs javawebapprs -o yaml
+
+kubectl rollout history deployment javadeployment
+
+kubectl rollout status deployment javadeployment
+
+kubectl get deployment
+
+
+
+kubectl rollout history deployment javawebappdeployment
+kubectl rollout status deployment 2
+watch kubectl get pods (it will watch the pods every 2 seconds)
+kubectl apply -f javawebappdeployment.yml --record=true
+
+
+kubectl rollout undo deployment javawebappdeployment --revision 1
+
+
+kubectl delete -f javawebapp.yml (whaterver we created using that file everything will get deleted)
+
+
+###########################################################################################################################################
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javawebappdeployment
+spec:
+  replicas: 4
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 2
+  minReadySeconds: 60
+  selector:
+    matchLabels:
+      app: javawebapp
+  template:
+    metadata:
+      name: javawebapppod
+      labels:
+        app: javawebapp
+    spec:
+      containers:
+      - name: javawebappcontainer
+        image: ashoknagari/javawebapp:10
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: javawebappsvc
+spec:
+  type: NodePort
+  selector:
+    app: javawebapp
+  ports:
+  - port: 80
+    targetPort: 8080
+	
+	
+	################################################################################################
+	
+	
+	by default type will take as rollingUpdate instead of recreate
+	rollingUpdate:
+	  maxUnavailable : 1 (it means it will make sure to cancel the only one node which will not be taking traffic)
+	  maxSurge: 2 (new containers will be created first 2 then it will update the remaining containers)
+	  
+	  #####################
+	  
+	  kubectl rollout history deployment deploymentName
+	  
+	  
+	  
+	  and also we can do this by using below command imperative 
+	  
+	  kubectl set image deployment javawebappdeployment javawebappcontainer=ashoknagari/java-web-app:10 --record
+################################################################################################################################################################
+
+
+what is blue green deployment?
+	  
+	  it's kind of a approach
+	  
+	  
+	  when we deploy new image if there is any prolem with new deployment end users wil be having issue with it in that time we can swith the traffic bychaning service labesls
+	  
+	  
+HPA -- Horizontal POD Auto scaller
+VPA -- we don't use this 
+
+two types of scalling
+Horizontal scalling
+virtical scalling
+	  
+	  
+	  
+	  while creating the pod we can set
+	  requests: 
+	  resources: 
+	  limits: 
+	  
+	  
+	 resources:
+	   requets:
+	   cpu: 500m
+	   
+	 memory: 512MI
+	   limits:
+	   cpu: 1000m
+
+HPA --> horizantal POD autoscaller which will scale up/down number of pod replicas of deployment,replicasset or replication controller dynamically based on the observed metric (CPU or Memory) Utilization.
+RABC --> Role Based Access Controll
+ClusterRole
+what is ServiceAccount - all about permissions metrix server required permissions 
+
+Deployment
+
+steps to install the metrics
+
+git@github.com:MithunTechnologiesDevOps/metrics-server.git
+
+kubectl apply -f deploy/1.8+/
+
+kubectl top nodes
+kubectl top pods
+
+
+
+resource -- Minimum requirement
+limits -- Maximum requirement
+1000m = 1 core
+1/10 1 Core CPU
+
+ requests 
+   cpu: "100m"
+   memory: "64Mi"
+ limits:
+   cpu: "100m"
+   memory: "256Mi"
+   
+	   
+	   
+	   
+
+
+kubectl autoscale deployment javawebappdeployment --cpu-percent=50 --min=2 --max=5
+		  
+		
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javawebappdeployment
+spec:
+  replicas: 2
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: javawebapp
+  template:
+    metadata:
+      name: javawebapppod
+      labels:
+        app: javawebapp
+    spec:
+      containers:
+      - name: javawebappcontainer
+        image: ashoknagari/javawebapp:10
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 200m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: javawebappsvc
+spec:
+  type: NodePort
+  selector:
+    app: javawebapp
+  ports:
+  - port: 80
+    targetPort: 8080
+
+
+##########################################################################################
+
+
+Volume
+statefull 
+stateless
+###################################
+
+types of volumes:
+hostPath --> it will use host(node) file system.We can mount container directory with host(node) file system.
+emptryDir --> temporary storage when pod got delete data will be lot
+###################
+nfs -- network file system
+
+elasticBlockStore 
+googlePersistantDisk
+configMap & secrets -- wecan attachj a file as a volume
+  -- prometheus
+     - prometheus.yml
+azureFile
+azureDisk
+		
+persistantVolumeClaim & PersistantVolum
+
+we should create persistantVolume 
+  two sections:
+  - volume mounts
+
+   
+
+to check the syntax everything below is the command to check
+kubectl apply -f originalvoluem.yml --dry-run=client
+#########################################################################
+
+
+hostpath we can only mention like below
+ volumeMounts:
+        - name: mongodbhostpath
+          mountPath: /data/db  # Fix indentation
+      volumes:
+      - name: mongodbhostpath
+        hostPath:
+          path: /tmp/mongodbdata
+nfs is for on premious 
+
+to access nfs 
+command to install the nfs in all the nodes 
+
+we should configure the master machine like below
+
+sudo apt-update -y
+sudo apt-get update -y
+sudo apt install nfs-common -y # on worker nodes
+sudo apt install nfs-kernel-server      
+sudo mkdir -p /mnt/share
+sudo chown nobody:nogroup /mnt/share    
+sudo chmod 777 /mnt/share/
+sudo vi /etc/exports
+/mnt/share *(rw,sync,no_subtree_check,no_root_squash)  
+sudo exportfs -a
+sudo vi /etc/exports
+sudo exportfs -a
+sudo systemctl restart nfs-kernel-server   
+#################################################################################
+
+persistantVolume
+#####################
+
+persistent volumes are simply a piece of storate in your cluster, similar to how you have a disk resource in a server a persistent volume provides
+storage resources for objects in the cluster, at the most simple terms you can think of a PV as a disk drive it should be noted that this storage resouces exists independently from any pods that may consume it meaning that if the pod dies, the storage should remain intact assuming the daim policies are correct persistent volumes are provisioned in two ways statically or dynamically
+
+static: a static PV simly means that some k8s administrator
+
+
+PV : persistent volume is a piece of storage. PV exists independently from the pods 
+    which consumes PV
+	- PV represents some storage which can be 
+	- hostPath
+	- nfs
+	- ebsBlockStore
+	- azureFile
+	- azureDisk...etc/
+static volumes: which is a created manullay , as a k8's admin we can create PV manually, which can be used/claimed by PODS whatever required some storage,
+
+
+dynamic volumes:
+
+ -- when pod requires a persistent volume that does'nt exist, in those casess it is possible to have k8 provision the volume as need if storage classes were configured to demonstrate where the dynamic PVs should be built, this post will focus on static volumes for now
+ 
+ 
+ storageClass: (volume provisoner)
+#############
+
+it's piece of code (driver) which will create volumes (PV) when ever we have pvc request and we dont have pv in aviable in the cluster
+
+nfs provisoner
+aws-ebs
+azure
+gpe
+
+in eks cluster by default it will create  the ebs storage classes
+
+
+without creating volume PV will not work
+
+
+ 
+PVC: 
+
+if pod requires storage (volume), POD will get an access to the storage (volume) with help of PVC , we need to make volume request by creating PVC by specifying , size , access modes
+
+ - no need to create PV manually 
+
+when PVC is create claim request if PV is not avilable  
+
+we access have modes like below 
+
+ReadWriteOnce -- Only one node/pod can read and write data.
+
+ReadWriteMany -- Multiple nodes/pods can read and write data,
+
+ReadOnlyMany -- Readonly volumes
+
+apiVersion: v1
+kind: PesistentVolume
+metadata:
+  name: pvhostpath
+spec:
+  storageClass: manual
+  capacity: 1Gi
+  accessModes:
+  - ReadWritOnce:
+  hostpath:
+    path: "/kube/volumeone"  
+	
+	
+	
+	pvc's will be accociated with accessmodes and storage requests  based on this it will accocaited
+	####################################################################################################################
+	
+	

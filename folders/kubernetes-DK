@@ -1,0 +1,455 @@
+1. What is kubernetes?
+Ans: Kubernetes is an orchestraion engine and open-source platform for managing containerized applications
+ it's responsibilities responsible for scaling & descaling of containers load balancing and so on 
+
+=================================================================================================================================
+Deekshith SN
+
+ Docker kuberentes ansible jenkins and also git ?
+
+1. why do we need container archastration tools ? can you explain them?
+ Ans: 
+ 1.container is nothing but a sandbox environment basically
+ 2.They don't need any dedicated operating systems or virtual machines
+ 3. no need to give full flex operating system to them
+ 4. Those are basically isolated spaces those are created using name space concept or C group concept
+ 5. When we want to run any application we want to containerized the app
+*6. when we containarized the application if that is able to sureve the traffic we keep using that when traffic increases that will may not sufficient to survver the traffic  we want that to be replicate as needed to surver the traffic
+ 7. in order to deploy as many we want one instance will may not relaining on those containers if we go also that will be single point of failure in in order to make sure for fault tolarance we want the application to deploy on multiple hosts even when instance fail also that should replace the instances but who can do all these things 
+*8. if container fail also who will take care so we need archastration which will manage the current state and desired state
+====================================================================================================================================================================
+
+2. any orchastration tool ?
+Ans:
+ Docker Swarm
+ Console
+    what is the POD?
+   Pod is nothing but obstration of the container we can't directly run the container we should wrap the container under Pod 
+    Pod host the containers
+    why pods will not be scheduled in master node
+    it has taints because master node is the responsible for to manage the entire cluster it's deicated to run the run the control plane control plane deicated to run the important components
+
+====================================================================================================================================================================
+3. why kubernetes why not other applications? why not docker swam?
+Ans:
+ 1. basically docker swam and kubernetes does the same job when container goes down that will bring back
+ 2. kubernetes have dash boards 
+ 3. kubernetes supports the auto scalling 
+ 4. auto scalling 
+ 5. advanced scheduling 
+
+4. Archastration?
+  Ans: 
+  we will Master node component and worker node component
+Master: Master is the responsible for to take care of complete cluster
+
+API SERVER:
+      --> 
+         it acts a fronted to the complete cluster it's like master to the master
+         if i want to talk to the entire cluster i should talk to the API SERVER we can't talk to the any of the component in k8's by using utility called kubectl we can talk to the API SERVER
+  	 
+	
+SCHEDULER:
+
+    it's the responsible for the manage the workloads, this is the responsible for to take care of the where our pods should run 
+    scheduler have the logic to schedule the pods according the resources we define
+    and it has advanced scheduling options
+    
+CONTROLLERS
+Controller manager runs the controllers in background which runs different tasks in Kubernetes cluster. Performs 
+cluster-level functions (replication, keeping track of worker nodes, handling nodes failures…
+
+   --> 
+      There are many controllers all are run as a single binary called conttroller
+             - Deployment controller
+             - Replication controller
+             - Replica Set controller
+             - ENdpoint Controller
+             - StatefulSet
+             - DaemonSet
+	     - Namespace
+             - cron
+             - Services
+             - Ingress 
+
+
+ETCD
+   -->  we have many componets in kubernetes
+       ETCD is distubueed key value store component in master  ETCD is the responsible for store the entire cluster information like whereour pods are running what is the clusters 
+ 	job scheduling information, pods, state information and etc what is the image running on which container 
+-------------------------------------------------------------------------------------------------------------------------
+
+Worker Node:
+===========
+
+Kubelet
+------
+    kubelet is a agent that talks to the master no other component can talk to the master 
+status of the pod health checks of the pods status of the pods
+ what all the pods it's running it will response to the master the status of the pods containerruntime
+in every node we will this kubelet
+
+Container Run Time
+----
+   Docker will the pulling creating the container deploying the containers   
+
+kubeproxy
+------------
+it's responsible for to take care of the ip table routes in each of the workers
+kube-proxy enables the Kubernetes service abstraction by maintaining network rules on the host and performing connection forwarding
+kube-proxy maintains network rules on nodes. These network rules allow network communication to your Pods from inside or outside of your cluster.
+It redirect requests from Cluster IP(Virtual IP Address) to Pod IP.
+
+CNI: 
+--- 
+when pod to pod communication is required we use CNI let's say if a one pod is in 1st node next pod is in 10th node those should communicate each other using CNI -- wavenet
+====================================================================================================================================================================================================
+
+5. what if master node goes down?
+---------------------------------5
+
+basically in production we will not have one master node, if one master node goes down one of them will take a leadership to manage the entire cluster
+
+we have a one concept called corum we should have odd numbers like we should have one or three 5 7 so on 
+
+6.how many masters are there?
+Ans: for testing purpose we have used kubeadm clusters 1 master node 6 worker nodes
+    for production we are using eks 
+
+7. what is the version you are using?
+ 1.29 
+
+
+8. how to check what are the pods are there in environments? which cluster i have connected how can i check?
+Ans: Using kube-config or cluster info
+
+9. what happens when you request to create a pod?
+Ans: kubectl run nginx --image-nginx
+   1. when i run kubectl run or this will reach to the api-server before reaching to it this will validate the command from client side
+   2. whaterver we request that will be convert as API call 
+   3. API Server does does authenticate and authorization either you have right permissions or not
+   4. whaterver we request this will persist the data into ETCD
+   5. Now Scheduler will see the ETCD there is a information which is unscheduled 
+   6. Once it's scheduled this will persist the data into ETCD through API-Server where it's scheduled
+   7. now controller will come into picture
+   8. kubelet will get in touch with API-Server for the work loads
+   9. kubelet will take the workload and that will give to the container run time that will create the pod's for us
+=============================
+
+10. what are the objects you have worked on?
+ Pod
+ Deployments
+ service
+ daemonsets
+staticpods
+statefulsets
+configmaps
+secret maps
+HPA
+clusterrole
+cluster role binding
+PV
+PVC
+Service account
+namespace
+ingress
+Networkpolicies
+ResourceQuota and LimitRange
+ServiceMonitor
+Volume
+Endpoint
+Custom Resource Definitions 
+PSP
+
+
+11. how to get the objects all in there kuberentes what is the command?
+Ans: kubectl api-resources
+
+12. how to check documations in kubernetes?
+Ans: kubectl explain pod spec
+
+13.  frontend we have api-server backend db? i want high availability and more security
+Ans: for frontend i will choose deployment service is loadbalancer/Nodeport/Ingress
+  backend i can have db as statefulsets 
+let's says i have db0 db1 db2 db3 when user account create that might be store in db1 that should replicate in db1 and db2 and db3
+
+statefulset:
+-----------
+
+- this will have unique naming convention when a pod is going down that will come up with same naming convention
+- what is the advantage of the same naming convention easy can be identification
+- when a user data persist in db-0 that should replicate  in db-01 db-02 db-03 from the db-0 
+- and when we scale down in statefulset deletion happens from the end 
+  
+to read Headless services
+writing ClusterIP
+---------------------------------------
+
+Incoming policies i will use ingress concept for outgoing traffic i will use egress
+
+==================================================================================
+
+14. we have more traffic based on the traffic that should scale which object you will use?
+
+Ans: we can go for HPA we can set minimum replicas desired replicas maximum replicas
+ we can set the threshold when that should scale automatic scalling descalling we can use HPA
+============================================================================
+
+15. what is restart policy?
+Ans: Pod will host the container as soon as container runs fine Pod will alive 
+   1. basically this restart policy for container not for the pod 
+   2. either that should restart or not we will define for the restart policy when container exist with non zero code
+   3. let's say some of the use cases where our pod should exit with non zero code or positive exit code in that cenarion we don't want our pod to be restarted in that case we can go for restart policy
+      restart policies Always,OnFailure,Never,
+=======================================================================================
+
+16, what is the reason for pod is in pending state?
+Ans:   can be many issues
+    not scheduled , scheduler might be busy , pod might be asking for the too many resources hosts might not have sufficient resources to provide to the pod
+- scheduler might be down
+- due to taints and tollerances
+=============================================================================================
+17.  POD is crashing with OOM? how do you resolve?
+Ans:
+ we can have the resource requests and limits so that pod can use only certain resources
+  
+18. imagepullbackoff?
+Ans:
+  when container run time is unable to pull the docker image
+we might have defined wrong repo or image name or version name 
+===================================================================================================
+19. how can you pull the images from private repo how can you do that?
+Ans:
+  we should store this as a secret as a docker registry type 
+imagePullSecrets we should mount when we mount this docker registry basically use this secrets to authenticate with private repo
+
+20. a pod can have multiple containers?
+Ans: it can have and for the best practices we should'nt have but there are certain cases to have 
+maximum 2 we can have
+
+21. what is init container? let's say i have one file which is stored in s3 i want to download that file and use but my application container shoul't have any utilities ?
+we can go for the init container which will download the and keep and then our main application can use it
+we can have the key words like initContainers
+  spec:
+  initContainers:
+  - name: init-container-1
+    image: busybox
+    command: ['sh', '-c', 'echo "Init container 1"']
+
+volume we can have emptyDir which will does the temporary 
+
+22. can we have multiple init containers in a pod ?
+Ans: yes
+
+23. how this init containers will execute ?
+
+Ans:
+  this will execute one after the other
+
+24. what happens when one of the init container get failed?
+Ans:
+  this will restart and pod will get restart this init contianer will start from begining
+
+25. i want to take logs and push into central logs and my application image should be light weight?
+  Ans: 
+  we can have side cars pattern this will do parel work accessing the logs
+
+26. ephermal contaienrs?
+  when we create the container and we can do the trouble shooting with one cntainer to another container
+
+27.  what is the approach of one app is generating the json format and two app should need xml ? how do you handle it
+
+
+Ans: We can use adopter containers they take the input and converting to xml we called it as exporter
+
+28. can we have all the containers in same deployments?
+Ans: Yes we can have but mostly we will have only init container and normal container
+
+29. why we will create replica set ?
+Ans: 
+  basically this will monitor in infinity loop which will balance the current state and desired state whenever a pod goes down this will bring back to the desired state
+
+30. why we will use deployment?
+Ans: Basically ReplicaSet and Deployment is used for the same purpose to manage the desired state 
+ 1. it generates the roll out or rolling updates
+and we can set the how many can be unavaialble how can run with new version we can define
+
+31. wha happens when you create a deployment or replica set when pod goes down will this create a new pod?
+Ans: Yes
+
+32. what is the command to roll back to the previous version
+Ans:
+kubectl set image deployment javawebappdeployment javawebappcontainer=dockerhandson/java-web-app:2 --record	
+kubectl rollout undo  deployment <deploymentName> --to-revision 1
+
+
+33. Types of deployment strategies
+
+Ans:
+
+we have almost 5 of them
+
+1. ReCreate
+2. Rolling Update
+3. Blue Green
+4. Canary Deployment
+5. Abibe deployment
+
+which one is better ?
+for testing purpose we can go for the Recreate
+rolling Update
+how many pods we can upgrade how many maxisurge maxUnailable 
+
+canary 
+-------
+we can deploy both versions at the same time
+we can divert the 90% of the traffic just diverting the 10% of the traffic to v2 to just to see   
+
+disadvantage is with canary is whenever a user refresh he mostly seeing the v1 but suddenly users experience the v2 it's kind of surprise to the user 
+
+blue green deployment
+---------------------
+we will have both versions of the code
+if v2 is going fine we can keep that and we can bring back the v1 basically this happens by changing the labels and selectors 
+if any issues with v2 we can quicky route the traffic to v1
+================================================================================================================================================================
+
+
+
+
+
+
+1.  what is load balancers:
+   two types internal 
+             external
+
+2. purpose of the operaters?
+Ans: it will help
+
+3. we can go for the RBAC to give the access
+
+
+4. what is ingress?
+Ans: ingress does what to do the for the incoming traffic where to route based the ingress we defined 
+
+5.what is kubernetes?
+Ans:  kubernetes is an open-source container orchestration platform desinged to automate the deployment scalling, and management of containerized applications
+
+6. what is Pod?
+Ans: 
+A Pod is the smallest deployable unit in kubernetes, representing one or more containers that share the same network and storage context.
+basically this conatiner wrapped under this pod.
+
+7. How does kuberentes ensure high availability and scalability of application?
+Ans:
+
+kubernes ensures high avaialability and scalability through features like replicattion controllers which will maintain specified number pods
+
+Horizontal pod auto scalling which automatically adjust the number of pods in a deployment based on resource usages 
+readiness and liveness probes which ensure the health of application instances
+
+8.what is kubernetes service and how does it work?
+Ans: 
+A service is responsible for making our Pods discoverable inside the network or exposing them to the internet. A Service identifies Pods by its LabelSelector.
+
+
+9. diffrence between deployment and statefulsets in kubernetes?
+Ans:
+Deployments:
+-----------
+
+Basically deploymes are used to manage the stateless applications and provide featuers like rolling updates and scalling
+
+statefulsets:
+------------
+statefulsets are used to mange the sateful applications which is required stable unique network idenfiifiers and persistent storage
+when we create a statefulsets applications basically it will create like pod-0 pod-1 pod-2 and each pod will have their own PV
+
+
+10. what is the kuberentes namespace and why it's useful?
+
+Ans:
+
+it provides a way to logically divide cluster resources between multiple users or teams
+
+avoiding naming collisions
+
+11. explain the concept of PVC and PV?
+
+Ans: 
+- A PersistentVolume is a piece of storage in the cluster that has been provisioned by an administrator
+- PVs are storage resources provided by an administrator in the cluster'
+- PVCs are request which will made by a user for the storage this will identity and bind by accessModes and requests
+
+12. what are kuberentes labels and selectors how are they used?
+Ans: 
+
+kubernetes labels are key-value pairs attached to objects like pods, services and deployments
+
+selectors: are used to query the objects
+
+13. Explain Kubernetes Rolling Update and Roll Back
+
+Ans: 
+
+Basically when we don't want a downtime to happen we can go for the Rolling Update what happens when we go for the Rolling Updates
+ we can define the how this deployment can happen like how many pods can be unavailbe how many pods can be deloyed with newer version 
+basically this will go and deploy with one after the other
+
+- applying the new changes
+- Minimal Down time
+- Replacing old pods with new pods
+
+when we go for the ReCreate - It will just Terminae the older version and deploying the new version what happens in this case our entire application will may go down for the termination of the older version
+
+- Previous version
+- update verison
+- Failure issues
+
+
+14. what is the kuberentes configMaps and how it's used?
+Ans:
+ConfigMap is an API object basically used to store non- sensitive configuration data in key-value pairs
+configMaps can be mounted as volumes or exposed as environment varriables in pods alowing application to consume configuration data without hardcoding it
+
+
+15. what is kubernetes ingress?
+Ans: it manages external access to services within a kuberentes cluster
+it provides http and https routing and load balancing the based the rules we define in the ingress rules
+ingress allow external traffic to reach into internal cluster
+
+16. Explain the kuberentes HPA?
+Ans:
+basically it does automatically adjust the number of replicas of the deployment or replica set based on CPU utilization or custom metrics.
+
+17. How does Kuberentes handles the container networking?
+Ans:
+
+- every pod will have unique IP address, and pods can communicate with each other across nodes using this ip address
+- kubernetes also supports service networking which provides stable end point for accessing pods and allow for load balancing and service discovery
+
+18. Explain kuberentes RBAC and it's importances
+Ans:
+
+it is the security mechanism that regulates access to kuberentes resources based on roles and permissions
+This ensure RBAC ensures that only authorized users or service can perfome certain operations within the cluster,
+enhancing security and governance
+
+it allows administrators to define fine-grained access controls and enforce the principle of least privilages
+
+
+ =========================================================================================================================
+
+
+startupprobe we not using it geenrally delay the 
+
+initialdeplayseconds
+ 
+what is crashlookbackup?
+
+imagenot found
+Volume Mount Issues
+Incorrect Liveness or Readiness Probes
+Permissions and Security Context:
+Image Issues:
+

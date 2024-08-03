@@ -1,0 +1,248 @@
+
+ grep command syntax:
+ grep [options] “string/pattern” file/files
+ Basic options: -i -w -v -o -n -c -A -B -C -r -l -h 
+ Advanced Options: -f -e and –E
+ -f Takes search string/pattern from a file, one per line
+ -e To search multiple strings/patterns
+ Pattern is a string and it represents more than one string.
+ -E To work with patterns
+ grep -E[options] “pattern” file/file
+
+
+
+-f 
+
+to match a string from one file to another file example
+
+grep -f string.sh grepcommand.sh
+
+we are trying to match the strings which are there in string.sh to grepcommand.sh
+
+
+
+-e
+
+with option -e we can seach multiple strings
+
+grep -e "line" -e "above" -e "lines" grepcommand.sh
+
+
+-E 
+
+grep -E "line|above|lines|bash|shell|" grepcommand.sh
+
+
+
+##################################################################################
+
+xy|pq Matches for xy or pq   --------------------- to match multiple strings
+ ^xyz Matches for the lines which are starting with “xyz” --------------------------------------- to match a string which is starting with xyz
+ xyz$ Matches for the lines which are ending with “xyz” ------------------------------------------- to match a string which is ended with xyz
+ ^$ Matches for the lines which are empty ------------------------------------------- to match the empty line 
+ \ To remove the special purpose of any symbol. Ex: \^ \$ -------------------------------------- to match special character also
+ . Matches any one character --------------------------------- match any thing 
+ \. Matches exactly with . ------------------------------------------------------to match . also to print . 
+ \b Match the empty string at the edge of word ------------------------------------------ to match with is empty at the end of the word
+ ? The preceding character is optional and will be matched, at most, once. ----------------------- matches a string which is having empty space at the start
+ * The preceding character will be matched zero or more timesh 
+ + The preceding character will be matched one or more times
+ [xyz] Matches for the lines which are having x or y or z 
+ [a-d] is equal to [abcd] Matched for the lines which are having a/b/b/d
+ [a-ds-z] is eqal to [abcdstuvwxyz]
+ ^[abc] Matches for the lines which are starting with a/b/c
+ [^abc] Matches for the lines which are not starting with a/b/c
+ {N} The preceding string matched exactly N times
+ {N,} The preceding string matched N or more times
+ {N,M} The preceding string matched at least N times but not more than M time
+ 
+ 
+ 
+ 
+ xy|pq --- to match multiple string by using -E
+ 
+ Ex : grep -E "|live|above|" grepcommand.sh
+ 
+ ###############################################
+ 
+ ^ this option is to match a string which is started like below
+ 
+  grep -oE "|^1.*|2.*" number.sh
+  
+  above it will match the string which is starrted with 1
+  #############################################################################
+  
+  grep -E "^$" grepcommand.sh
+  
+  above command is used to match the empty space
+  
+  
+ ex :
+ 
+ grep -nE "^$" grepcommand.sh
+ 
+ [root@ip-172-31-43-228 grepcommand]# grep -nE "^$" grepcommnad.sh
+2:
+[root@ip-172-31-43-228 grepcommand]#
+
+
+second line is empty
+#############################################################################################
+
+grep  \^$ it will ignnore that as it is having \ to ignnore special purpose
+
+
+
+ex :
+
+grep -E "\^$" grepcommand.sh 
+
+#####################################################################################
+
+. is used to match a any string
+
+
+Ex :
+
+ grep -oE "|^1.*|^2.*" number.sh
+
+Output 
+
+[root@ip-172-31-43-228 grepcommand]# grep -oE "|^1.*|^2.*" number.sh
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+[root@ip-172-31-43-228 grepcommand]#
+
+
+
+
+##############################################################################################
+
+
+?
+
+this option is used to option like below
+
+
+[root@ip-172-31-43-228 grepcommand]# grep -E "abo" grepcommnad.sh
+Two lines above this line is empty.
+[root@ip-172-31-43-228 grepcommand]#
+
+################################################################################################
+*
+
+this option is to match some string howmany times it is there those many times it wll print
+
+
+
+grep -E "yf*" grepcommand.sh
+
+output :
+
+[root@ip-172-31-43-228 grepcommand]# grep -E "yf*" grepcommnad.sh
+Two lines above this line is empty.
+yffffffffffffffffffffffff
+empty
+yffff
+[root@ip-172-31-43-228 grepcommand]# grep -E "yf*" grepcommnad.sh
+
+
+
+ awk '{print $7}' localhost.2022-12-23.log | grep -onE "\()$"
+####################################################################################################################
+
+
+1. xyz|pq
+
+
+ex :  grep -E "|above|this|" grepcommnad.sh
+
+2.  ^xyz
+
+
+
+ex :  grep -E "^This" grepcommnad.sh
+
+
+
+3 .xyz$ 
+
+ex :  grep -E "file$" grepcommnad.sh
+
+4 . \ 
+
+ex : grep -E "\^" grepcommnad.sh 
+
+5. . 
+
+ex :  grep -E "l...s" grepcommnad.sh (ignoring ... characters)
+
+
+
+6. \. 
+
+ex : grep -E "\." grepcommand.sh (to match only dot (.)) 
+
+7. \b 
+
+grep -E "\bline" grepcommand.sh (to match the empty string before the or edge (left side or right side))
+
+8. ?
+
+ex : grep -E "yf?" grepcommand.sh (yf f will ignore it may or it may not)
+
+9. *
+
+ ex : grep -E "yf*" grepcommand.sh (it will match how many times f is there those willprint )
+
+
+
+10 . + 
+ ex :  grep -E "y+f+" grepcommnad.sh 	
+ 
+ 11 . [abcd] 
+ 
+ ex : grep -E "[this]" grepcommand.sh (it will try to match the words with t or h or i or s it will try to match with single word)
+ 
+ 12 . [1-9]
+ 
+ ex : [root@ip-172-31-43-228 grepcommand]# grep -E "[1-9]" grepcommnad.sh
+THIS LINE IS THE 1ST UPPER CASE LINE IN THIS FILE.
+12345678
+this line is the 1st lower case line in this file.
+[root@ip-172-31-43-228 grepcommand]#
+
+
+13 . 
+
+[a-ds-z] is eqal to [abcdstuvwxyz] 
+
+ex : 
+
+[root@ip-172-31-43-228 grepcommand]# grep -E "[1-35-9]" grepcommnad.sh ( it will print 1 to 3 and 5 to 9)
+THIS LINE IS THE 1ST UPPER CASE LINE IN THIS FILE.
+12345678910
+this line is the 1st lower case line in this file.
+[root@ip-172-31-43-228 grepcommand]#
+
+
+ 
+##############################################################################################################################################

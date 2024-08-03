@@ -1,0 +1,130 @@
+Deployment
+
+it's the recommanded way to deploy 
+when there is a change in the code replication controller replicaset will not update the pods
+
+kubectl config set-context --curent --namespace=flipkart
+
+
+above command to set the default namespace
+
+
+in replicaController and ReplicaSet laetst version of the image will not be updated
+in Deployment we can do that
+
+in Deployment no need to delete and update the version we can directly update 
+kubectl get rs mavenwebapprs -o yaml
+------------------------------------------
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mavendeployment
+spec:
+  replicas: 2
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: maven
+  template:
+    metadata:
+      name: maven
+      labels:
+        app: maven
+    spec:
+      containers:
+      - name: mavencontainer  # Correct indentation
+        image: ashoknagari/maven-web-application:5
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1  # Corrected apiVersion to v1
+kind: Service
+metadata:
+  name: mavensvc
+spec:
+  type: NodePort
+  selector:
+    app: maven
+  ports:
+  - port: 80
+    targetPort: 8080
+
+----------------------------------------------------------------------------------
+
+kubectl rollout history deployment mavendeployment
+kubectl rollout status deployment mavendeployment
+
+if we use Recreate this will delete all the pods at same time
+to make a hisory entry we can use below command
+
+kubectl apply -f javawebappdeployment.yml --record=true
+-----------------------------------------------------------
+
+kubectl rollout undo deployment javawebappdeployment --to-revision 1
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+deployment with rollout strategy
+Default Deployment Strategy -- Rolling Update
+
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mavendeployment
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  minReadySeconds: 60
+  selector:
+    matchLabels:
+      app: maven
+  template:
+    metadata:
+      name: maven
+      labels:
+        app: maven
+    spec:
+      containers:
+      - name: mavencontainer  # Correct indentation
+        image: ashoknagari/maven-web-application:5
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1  # Corrected apiVersion to v1
+kind: Service
+metadata:
+  name: mavensvc
+spec:
+  type: NodePort
+  selector:
+    app: maven
+  ports:
+  - port: 80
+    targetPort: 8080
+----------------------------------------------------------------------------------------------------------------------------------------
+
+we can do imperative also like below with command
+kubectl set image deployment deployment deploymentnamehere containername=imagename --record
+---------------------------------------------------------------------------------------------------
+
+
+kubectl rollout history deployment deploymentname --revision 2 (This will list the pod template)
+
+types of deployments
+
+
+Recreate
+RollingUpdate
+BlueGreen Deployment
+Canary Deployment
+------------------------------------
+Blue Green deployment 
+----------------------
+we can create a new deployment and we can have multiple selectors and we can route the trafffic once we are ok then we can scale down the old pods

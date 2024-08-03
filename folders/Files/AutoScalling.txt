@@ -1,0 +1,129 @@
+we have two types of autoscalling
+
+VPA -- Vertical Pod scalling
+
+HPA -- Horizontal Pod scalling
+---------------------------------------
+
+steps to install the metrics server
+
+$ git clone https://github.com/MithunTechnologiesDevOps/metrics-server.git
+$ cd metrics-server
+$ kubectl apply -f deploy/1.8+/
+
+Usage
+kubectl top nodes
+kubectl top pods
+
+
+- this metrics server required authorization and permissions 
+- this has to communicate with apiserver and other kubernets resources to get the nodes and pods information
+
+resource requests:
+-----------------
+
+this is the resources we are reserving minimum cpu
+Nodeport is to expose to outside
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hpadeployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: hpapod  # Corrected label to match the pod template
+  template:
+    metadata:
+      labels:
+        name: hpapod
+    spec:
+      containers:
+        - name: hpacontainer
+          image: k8s.gcr.io/hpa-example  # Removed extra dot from the image path
+          ports:
+          - name: http
+            containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "64Mi"
+            limits:
+              cpu: "100m"
+              memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hpaclusterservice
+  labels:
+    name: hpaservice
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    name: hpapod  # Corrected selector to match the pod template
+  type: NodePort
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+command to creat the HPA
+
+kubectl autoscale deployment hpadeployment --cpu-percent=50 --min=2 --max=5
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javawebappdeployment
+spec:
+  replicas: 2
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: javawebapp
+  template:
+    metadata:
+      name: javawebapppod
+      labels:
+        app: javawebapp
+    spec:
+      containers:
+      - name: javawebappcontainer
+        image: ashoknagari/javawebapp:10
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 200m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: javawebappsvc
+spec:
+  type: NodePort
+  selector:
+    app: javawebapp
+  ports:
+  - port: 80
+    targetPort: 8080
+---------------------------------------------------------------------------------------------------------
+
+
+ kubectl run -it --rm loadgenerator --image=busybox
+
+kubectl top nodes
+kubectl top pods
+ kubectl run -it --rm loadgenerator --image=busybox
+watch kubectl get hpa

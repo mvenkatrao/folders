@@ -1,0 +1,1089 @@
+ssh -- secure shell
+ftp -- fire zill (file transffer protocal)
+
+linux torlvads he is the founder of unix
+
+Open source :
+ does it mean like whatevver code is there we can customize the code as per our requirements 
+AIX is a IBM product as os linux
+
+bin / can be accessed by normal users
+sbin can be accessed by root user
+
+
+bin contents mkdir ls logins 
+sbin contents shutdown start
+
+
+etc contents
+sudeors
+passwd
+shadow
+group
+cron.allow
+ssh_config
+
+
+opt
+it's empty folder 
+we use to install the third party applicatioons in this folder 
+
+
+DEVICE DIRECTOR: 
+
+-i or inode
+i node means data structure it holdes the information about the file or directory
+
+it contents file information date of the creation and size of the file 
+
+but it does'nt content the file name or folder name 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            crontab: usage error: file name must be specified for replace
+Usage:
+ crontab [options] file
+ crontab [options]
+ crontab -n [hostname]
+
+Options:
+ -u <user>  define user
+ -e         edit user's crontab
+ -l         list user's crontab
+ -r         delete user's crontab
+ -i         prompt before deleting
+ -n <host>  set host in cluster to run users' cront4abs
+ -c         get host in cluster to run users' crontabs
+ -s         selinux context
+ -V         print version and exit
+ -x <mask>  enable debugging
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+
+uname options
+$uname  -a
+1. (uname  -a)
+        -a option: It prints all the system information in the following order: Kernel name, network node hostname, kernel release date, kernel version, machine hardware name, hardware platform, operating system
+2. (uname  -s)
+        -s option: It prints the kernel name.
+3. (uname -n)
+        -n option: It prints the hostname of the network node(current computer).
+4.(uname  -r)
+        -r option: It prints the kernel release date.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  5. (uname -v)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           -v option: It prints the version of the current kernel.  
+6.(uname -m)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              -m option: It prints the machine hardware name.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+7. uname -p
+         -p option: It prints the type of the processor
+8.uname -i
+        -i option: It prints the platform of the hardware.
+9.uname -o
+ 	-o option: It prints the name of the operating system.
+
+path to add the sudo's permission
+
+ /etc/sudoers
+
+
+find command cheatsheet : https://quickref.me/find
+
+* it indicates evverything 
+& -- run a command in the baground. it will run the PID of the newly running process to you and won't show you the output
+
+example : sudo apt update &
+
+
+&& -- it indicates to run the multiple commands 
+
+\ allows you to continue writing commands 
+
+\\ $ echo Hello \\ World
+Hello \ World (here double bask slash is to print one single back slash)
+
+
+
+important symbols : https://fosspost.org/linux-command-line-basics-examples/
+
+
+| This is called "Piping", which is the process of redirecting the output of one command to the input of another command. Very useful and common in Linux/Unix-like systems.
+
+
+
+
+umask value
+############             default dir permissions file permissions 
+for root user : 022        0777 			0666
+			(-)0022                      (-)0022			
+			--------		     --------	
+			   0755			        0644	
+
+umask value
+############             default dir permissions file permissions
+for normal user : 002      0777
+			(-)0002                      0666
+			--------		(-)  0002				
+			   0775			 ----------  		
+					             0664			
+
+base file permission : 0666
+		
+stat test
+
+
+
+chmod cheatshet : https://quickref.me/chmod
+
+
+diffrence between sudo su - and sudo su
+########################################
+
+sudo su - it will switch to the root user and it will poin to the root user home directory and it will load the root user configuration
+
+sudo su - it will switch to the root user and it will not point to the root user and it will not load the root user configuration
+
+################################################################################################################################
+
+chgrp
+
+example command 
+
+-rwxrwxr-x. 1 ec2-user root    0 Nov  6 07:52 inixfile.txt
+
+[root@ip-172-31-47-2 ~]# chown -v root inixfile.txt
+changed ownership of 'inixfile.txt' from ec2-user to root
+
+
+-rwxrwxr-x. 1 root root    0 Nov  6 07:52 inixfile.txt
+
+
+to see the all the groups
+#############################
+
+cat /etc/group/
+
+
+changing the ownername and grup name at same time
+##########################
+
+chown ec2-user:ec2-user inixfile.txt
+
+CP command 
+############
+
+
+
+Option	Description
+-a	archive files
+-f	force copy by removing/overriding the destination file (if already present)
+-i	interactive mode override (asks before overwrite)
+-l	linkes the files instead copy
+-L	follows symbolic links
+-n	no file overwrite, if destination file already exists
+-R	recursive copy (this includes hidden files)
+-u	update mode i.e copy only when source is newer than dest
+-v	verbose mode i.e prints more information
+
+
+
+mv command
+#########
+mv command is used to renaming the filename or directory name and to move the filename or directory
+
+
+
+
+wc command
+###########
+
+Option	Description
+-l	prints lines count
+-c	prints byte count
+-m	prints character count
+-L	prints length of longest line
+-w	prints word count
+
+
+
+wc command
+
+wc -l (howmany lines are there)
+wc -w (how many words are there)
+wc -m (how many characters are there)
+wc -L (which is the longest line in the code)
+
+
+###########################################################################################################################
+
+to see how many lines are there in a file by vi editior 
+
+:set number
+
+
+:set nu!
+
+
+##################################################################################################################################
+
+hard link and soft link
+
+hard link : 
+###########
+
+hard link mean we are going to create a new file if we modify in any one of them it reflect in both files 
+
+example : 
+
+hardlink.txt
+new_hardlink.txt
+
+ln hardlink.txt new_hardlink.txt
+
+if we modify in both of them it will show in both of them
+#################################################################
+
+
+
+vi editor 
+
+#############
+
+vi -- visual instument
+
+to search
+
+/want to search
+and n for next occurance
+N for back
+ ### STILL IS THERE ############
+
+my_name="shell"
+my_name_up=${my_name^^}
+my_name_lo=${my_name,,}
+
+echo "Upper data : $my_name_up"
+echo "lower data : $my_name_low"
+echo "my_name"
+
+
+nano 
+####
+
+nano nanoedit.txt
+for saving ctrl + o
+for quiet Ctrl +  x
+
+
+head command 
+#############
+
+head is default for 10 lines
+
+
+tail 
+#####
+
+tail command is used for last 10 lines 
+
+
+
+
+
+more 
+
+#########
+
+see as page 
+
+more filename.txt
+
+less 
+####
+
+less command is used to go back and forward
+
+less filename.txt
+
+CTRL + F forward
+CTRL + B back
+
+CTRL + D for middle forward
+
+CTRL + U for middlb back
+
+
+sed command
+############
+
+to the specific line number
+
+
+sed -n "15p" filename,txt
+
+to display 15th line
+
+below command is used for to dispaly from particualr line number to particualr line number
+
+sed -n "10,20p" filename.txt
+
+ to relace in file
+
+
+sed -i "s/red/blue/" filename.txt
+sed -i "s/red/blue/1" filename.txxt
+
+
+
+###############################################
+
+sort command 
+
+##############
+
+it's used to displayy the assigning order 
+
+example: file with a,b,c,d,e,f
+
+we can disaply from assiging order or reverse order also
+
+ex : sort filename.txt
+
+it will diaply a to z
+
+if we use sort -r filename.txxt
+itwill display z-a
+
+to make upper case
+
+we can use one command
+
+cat filename.txt | sort | tr [a-z] [A-Z]
+
+
+load avergage means CPU
+
+
+		1st 2nd   3rd
+ load average: 0.00, 0.00, 0.00
+
+ cat /proc/cpuinfo
+
+
+who ami
+
+
+
+[ec2-user@ip-172-31-47-2 ~]$ whereis sort
+sort: /usr/bin/sort /usr/share/man/man1/sort.1.gz
+
+
+ex : regarding to sort command binary files are avaialbe in /usr/bin/sort
+ex : regarding to sort command manual page is avaiabble in /usr/share/man/man1/sort.1.gz
+
+
+
+
+#################################################################################################
+
+du - disk utilization
+df - disk free
+
+
+du -sh
+
+to check disk free 
+ -s summary
+ - h human readable
+
+commands
+
+df -h (human readable)
+df -T (file system type)
+df -t (to specify the particular file system)
+     example : df -t tmps
+df -i (to display inode)
+df -x (to not to display for the output)
+     example: df-x tmps
+#################################################################################################################################
+
+hostname
+############
+to display the hostname
+
+to display the ip
+ hostname -i
+
+[root@ip-172-31-47-2 ~]# hostname -i
+172.31.47.2
+
+###ip a ###
+above command will show the all the details related to inet also like below
+
+[root@ip-172-31-47-2 ~]# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9001 qdisc fq_codel state UP group default qlen 1000
+    link/ether 02:dc:26:ac:3e:d0 brd ff:ff:ff:ff:ff:ff
+    inet 172.31.47.2/20 brd 172.31.47.255 scope global dynamic noprefixroute eth0
+       valid_lft 2627sec preferred_lft 2627sec
+    inet6 fe80::dc:26ff:feac:3ed0/64 scope link
+       valid_lft forever preferred_lft forever
+[root@ip-172-31-47-2 ~]#
+
+
+
+###########################################################
+
+if we want to set the hostname we can use hostname hostname.com
+it will display the hostname which we mentioned above
+
+like below
+
+[root@ip-172-31-47-2 ~]# hostname google.com
+[root@ip-172-31-47-2 ~]# hostname
+google.com
+[root@ip-172-31-47-2 ~]#
+
+
+###########################################################################################
+
+man command
+#############
+
+man command is for manul page about the commands
+
+ex : man mkdir
+###############################################################################################
+
+info mkdir command
+#########################
+
+it's used to get the infomartion about the command information
+##############################################################
+
+help command
+#############
+
+it's used to get the help of the command like information
+
+ex : mkdir --help
+########################################################################################################
+whatis mkdir command
+#########################
+whatis command for disply the short discrption
+####################################################################################################
+systemctl command (service)
+##################
+
+systemctl status servicename
+
+Ref : https://access.redhat.com/sites/default/files/attachments/12052018_systemd_6.pdf
+
+timestamp : 1 hr 18 mins (1:18)
+
+
+service crond start 
+service crond status 
+####################################################
+wildcards
+
+? == to match the possible matching
+ls file?== it should havve some character or digits after the filename
+###########################################################################################################
+
+top command 
+##########
+PID: It is the task's unique process ID.
+USER: It shows the owner of the tasks.
+PR: It is the priority of a task.
+NI: The nice value of a task. A negative value means higher priority, whereas a positive value means lower priority.
+VIRT: The total amount of virtual memory used by the task.
+RES: The non-swapped physical memory used by a task.
+SHR: The amount of shared memory used by a task.
+S: The process status of a task:
+D = uninterruptible sleep
+I = idle
+R = running
+S = sleeping
+T = stopped by job control signal
+t = stopped by debugger during trace
+Z = zombie
+%CPU: The percentage of CPU usage of a task.
+%MEM: The percentage of memory used by a task.
+TIME+: Total CPU time the task has used since it started.
+COMMAND: The command line which is used to start a task.
+
+##########################################################
+
+
+mkdir command
+################
+
+mkdir -p (to create a parent directory)
+mkdir -m (to set the permissions while create a folder)
+mkdir -v (verbose mode)
+
+
+zip and unzip command
+########################
+
+zip wishfilename.zip sourcefolders
+
+example : zip newzipfile existingfolder
+
+to extract in diffrent directory
+ex : unzip zipfile.zip -d /root/extractedpath
+################################################################
+tar command
+############
+
+c - create
+v -verbose
+f -file system
+x - extract
+
+####################################################
+
+tar -cvf wishfolder.tar foldername orherefillename
+
+tar -xvf wishfolder.tar
+tar -xvf wishfolder.tar -C /path/
+
+to view the tarfilew whhich are present in tar file
+
+tar -tf wishfolder.tar
+
+to add a specific file into it 
+
+tar -rf wishfolder.tar extrafile.txt
+
+
+to extract the single file or folder
+
+tar -xvf tarfile.tar whichfolder
+
+touch foo bar
+tar cf archive.tar foo bar --transform 's,^,bazdir/,'
+
+
+to create .ttar.gz
+
+tar -czvf tarfilename.tar.gz foldername
+tar -xzvf tarfilename.tar (z is added)
+########################################################################################
+
+useradd command 
+###############
+cat /etc/passwd
+from RHL 7.
+UID  starts with 1000 is common for normal user
+
+where password is going to save
+
+cat /etc/shadow
+
+what is the UID for root user 
+
+A) 0
+###########
+can we give the password for two user
+A) yes 
+
+useradd harsha
+passwd harsha
+
+attributes
+
+command is chage
+################
+
+        Minimum Password Age [0]: 90
+        Maximum Password Age [99999]: 90
+        Last Password Change (YYYY-MM-DD) [2022-11-10]:
+        Password Expiration Warning [7]: 30
+        Password Inactive [-1]:
+        Account Expiration Date (YYYY-MM-DD) [-1]:
+
+######################
+
+useradd harsha
+passwd (This file stores essential information about the users on the system)
+chage : it's used to set the inactive dates and expiration of the password
+groupadd :  it used to create a group
+  usermod -g Devops harsha (Devops is the group name and harsha is the name )
+  to view the details of the group
+
+cat /etc/group
+##############
+
+to view the how many users are there in the group below is the command
+#############################
+
+lid -g Groupname
+to view the information entry related to a user below is the command
+
+getent passwd ec2-user
+
+we can lock the user below is the command
+##########################################
+usermod -L ec2-user
+usermod -U ec2-user
+
+to view a useer howmany groups he is part of 
+
+id username
+or groups username
+
+usermod -a -G usernmae (he can part of many groups)
+
+if we lock a person we can see ! in cat /etc/shadow
+ex : newuser:!$6$zhW7
+
+if we unlock a user we can $ symbol in cat /etc/shadow
+ex : newuser:$6$zhW7JlFqg
+ 
+
+Date:
+11/11/2022
+#############
+
+
+
+RU --> NU -->   password not required
+NU --> RU --> password is required
+
+NU --> NU --> password is required
+ec2-user --> root --> password is not required
+
+if we try to login as only su - root (it will ask the password because we used onnly su (if we user sudo su - it will not ask for the password))
+
+if some user get sudo access how he can add a user?
+####################################################
+
+sudo useradd newuser_1
+
+path to give the sudo access to another user
+
+visudo or vi /etc/sudoers (best one is visudo)
+
+
+newuser ALL=(ALL) ALL
+
+#######################################################
+
+userdel  command
+################
+
+Ref : https://linuxcommandlibrary.com/basic/usersgroups
+
+
+12/11/2022
+###############
+
+passwd -d username (it will delete the user password which is existing)
+
+chage -E username (it will never expire the password)
+
+usermod -e username (on particular date account will get expire)
+
+Below command is used to switch one group to another another group
+
+newgrp newgroupname
+
+id : it's used to show the details about a user
+###
+
+lid -g groupname (only root user)
+###################
+to get the group details 
+##########################
+groups username (we can display how many groups he is part of )
+################
+
+
+userdel - it will delete the user
+
+userdel -r username
+
+groupdel groupname
+
+
+to rename the group name 
+
+groupmod -n newgroupname oldgroupname
+usermod -l newusername oldusername
+
+
+grant a sudo access to a existing user 
+
+usermod -a -G username
+
+add a user to existing group
+
+usermod -aG groupname username
+
+
+delete the user from a group
+gpasswd -d username groupname
+
+
+##############################################################################
+
+crontab command
+#################
+
+crond.service (we can see the service)
+
+systemctl status crond.service
+
+to restrict the cron job we should create a file under /etc/cron.allow
+
+if we create a mention the names over that file only those user can access the croon and alreay cron.deny file will be existing we should remove cron.deny file
+
+
+crontab -l (to list the crontab details and it will display the only current user cron details)(l mean list)
+crontab -e ( to edit the crontab ) (e means edit)
+
+crontab -r ( to remove the crontab)
+
+crontab -l -u (to display another user cron details)
+
+
+
+crontab format 
+
+minutes    hours   dayofthemonth    month             day of the week command    commandorpathdetails 
+(0-59)      (0-23)    (1-31)      1-12 or Jan-Dec            0-6 Sun-Sat          
+
+
+> it will redirect the standard output 
+
+>> it will redirecct the append the standard outputt 
+
+crontab -ir (it will ask for the confirmation to delete and it will delete (i mean interactive mode r means remove))
+
+sample cronjob :
+*/1 * * * * /root/harsha.sh >> /root/crontabfolder/cronjob.log 2>&1
+
+
+
+File descriptors like below
+#############################
+
+0 -- standard input
+1 -- standard output
+2 -- standard error
+
+12 AM (00)
+
+00 0 18 1 MON
+At 12:00 AM, on day 18 of the month, and on Monday, only in January
+
+15 midnight and 11AM Morning
+
+there are two types of cron's
+
+1. system wide crontable path is (/etc/crontab)
+2. user's specified crontab files /var/spool/cron/crontabs/username
+
+1-7 sun-sat
+
+0-sunday
+1-monday
+2-tues
+3-wed
+4-turs
+5-friday
+6-saturday
+
+(example 5#2)
+
+
+Ref : https://stackoverflow.com/questions/39328351/is-there-a-difference-between-and-in-cron-expressions-strange-example
+
+* (“all values”)
+
+used to select all values within a field. For example, “” in the minute field means *“every minute”.
+
+? (“no specific value”)
+
+useful when you need to specify something in one of the two fields in which the character is allowed, but not the other. For example, if I want my trigger to fire on a particular day of the month (say, the 10th), but don’t care what day of the week that happens to be, I would put “10” in the day-of-month field, and “?” in the day-of-week field.
+
+/
+used to specify increments. For example, “0/15” in the seconds field means “the seconds 0, 15, 30, and 45”. And “5/15” in the seconds field means “the seconds 5, 20, 35, and 50”. You can also specify ‘/’ after the ‘’ character - in this case ‘’ is equivalent to having ‘0’ before the ‘/’. ‘1/3’ in the day-of-month field means “fire every 3 days starting on the first day of the month”.
+
+to restart the crontab
+sudo service cron reload
+ 
+ or 
+ 
+ /etc/init.d/cron reload
+ 
+
+
+
+dev/pts
+
+
+L - (Last)
+w - (week)
+
+
+Examples
+
+0 7,17 * * *
+
+above one runs at 7 AM and 7 PM ( if we mention * in first field it considers as a evvery minute so we mentioned ((0)) 0 indicates at particular timestamp
+
+examples given below
+
+
+to run a job every 5 minutes
+*/5 * * * *
+
+
+to run a job every 3 minutes
+
+*/3 * * * *
+
+
+to run a job on particular month for every 5 minutes
+
+*/5 * * 2,6,9 *
+
+to run a job on 5 PM particlar day on MON and wednesday
+
+0 17 * * MON,WED
+
+to run a multiple tasks in same cron
+* * * * * /scripts/script.sh; /scripts/scripts2
+
+
+5#3 ( 3rd saturday
+         first should mention the 5#3 (first comes friday and 3rdfriday
+
+L-3 ( last to 3 day's)
+
+1/5 ( first 1 it indicates starting day of the month / every 5 days )
+
+to mention only on last friday 
+
+
+days 
+####
+last five days 
+
+we can mention L-5 in days coloum
+
+question mark symbol will be used only on day of the month day of the week fileds 
+
+###########################################################################################
+
+
+ssh connection
+
+to make passwordless login
+we should follow below steps orelse we will get below error
+
+ ssh ec2-user@3.110.209.85
+ec2-user@3.110.209.85: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+
+below are the steps
+
+we should go to the sudo vi /etc/ssh/sshd_config
+
+it should be like below
+PasswordAuthentication yes
+
+and need to restart the service
+sudo systemctl restart sshd
+
+ssh means secure shell
+
+scp command :
+############
+
+scp filename ec2-user@ip/HN:/temp/ ( to move the foler we should mentioon -r also like scp -r fileorfolder ec2-user@ip:path)
+#######################################
+
+to work above steps we need to do sshd things which is mentioned above
+###########################################################################
+
+below are the options
+######################
+-r      # transfer directory 
+-v      # see the transfer details
+-C      # copy files with compression
+-l 800  # limit bandwith with 800
+-p      # preserving the original attributes of the copied files
+-P      # connection port
+-q      # hidden the output
+########################################
+
+below is the command to share the file with multiple hosts
+
+scp -v sharingfile.txt ec2-user@3.110.172.124:/home/ec2-user ec2-user@35.154.16.155:/home/ec2-user
+
+default port number is 22
+
+when swap memory will use?
+it will be used when memory is full
+
+if Ram size is 8 GB
+your swamp memory should be 16GB
+
+command is for to check which memory it's hard disk details 
+###############################################################
+
+
+
+free  -h
+if it's on premission servers will be like ddr1 ddr2 SDRAM
+
+to get the memory details or system details we can use below command
+
+dmidecode -t 17
+
+to get the virtual memory
+vmstat
+
+SMTP server details :
+simple mail transfer protocal
+pop3 : post office protocal (verions 3)
+##################################################
+
+cal command 
+
+cal -3 
+cal month year
+
+
+################################
+
+wget command
+############
+
+wget -O(Uppercase) customized.tar http://ftp.gnu.org/gnu/wget/wget-1.15.tar.gz
+
+wget -P (Uppercase) /root/folder2/ https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip (it's used to download in particualr path)
+
+wget -b https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip ( to download a file in baground and it will create a file)
+
+wget -c  https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip  (it used to countiue the downloading if previous one got failed)
+wget --limit-rate=1m https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip ( to restrict the speed basically it's for sec)
+
+wget -m https://maven.apache.org/download.cgi ( it is used to download the complete website)
+
+wget  --user=(put username here) --password='(put password here)' http://example.com/ 
+
+wget --user=ec2-user --password='password123' http://example.com/ 
+
+wget -q https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip (to hide the output)
+wget -e robots=off http://www.example.com/
+
+
+
+(wget -O (customized name)
+(wget -P (customized path))
+(wget -b (it's for run in baground)
+(wget -c it's used for to download which was paused previous)
+(wget -m to download the complete website)
+(wget --limit-rate=1m URL)
+(wget ---user=ec2-user --password='password123' URL)
+(wget -q URL)
+
+rm -rf /root/* (it will delte the all the files in current directory)
+
+
+
+by using curl command we can call api (application interface)
+
+diffrence betweek wget and curl
+
+
+wget                                                       							       curl
+#####																						################
+
+
+it will support to download the software's 													it will support to dowload the software's 
+it will support for limited protocal's 													    it wil suppports for all the protocal's 
+wget will not support for calling API															it will support for calling API's
+##########################################################################################################################################################
+[command] | tee -a [filename]
+mkdir folder2 | tee -a filename3.txt
+
+above command is used for to display and store into one file
+
+#############################################################
+
+script command is used for like recording the all it will create default filename called typescript
+
+script outputfile.txt
+
+to append the output
+#######################
+script -a  outputfile.txt
+
+
+##########################################################
+
+ping command
+##############
+
+ping google.com
+ping -c 5 google.com 
+
+above command is used to check the connectivity
+
+telnet (telnet google.com 20)
+##########
+history -c 
+###########################
+
+to check the version of redhat below is the command
+
+cat /etc/redhat-release
+cat /etc/*release ( to display the version)
+
+redhat version 7x
+lower version 7.6
+###############################################################
+
+
+port numbers
+
+0-65535
+0-1023 -- reserved port numbers
+
+80 - Http
+443 - https
+25 - smpt
+21 - ftp
+ssh -  22
+
+
+port number range we can use
+1024- 65535
+
+t - tcp
+u - udp
+n - number
+l - listen
+a - all
+
+#####################################################
+
+watch command
+
+sudo yum install bind-utils
+
+command to install nslookup
+
+
+printenv or env to display the all the variables
+printenv or env to display the all the variables
+
+cd /root/newfolder1/newfolder2/newfolder3/newfolder4/newffolder5/;sh shellfile.sh
+
+ mkdir -p newfolder1/newfolder2/newfolder3/newfolder4/newffolder5 && touch  newfolder1/newfolder2/newfolder3/newfolder4/newffolder5/file.txt
+ 
+ two commands same time
+ 

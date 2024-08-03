@@ -1,0 +1,790 @@
+what is shell?
+
+shell is a program that will take the command and communicate with the kernal 
+
+shell is a interface between user and kernal
+
+type of shell
+###############
+bash  (it's advance shell and default shell)
+sh (older version)
+csh
+zsh
+ksh
+tiny
+
+
+cat /etc/shells
+
+[root@ip-172-31-13-136 ~]# cat /etc/shells
+/bin/sh
+/bin/bash
+/usr/bin/sh
+/usr/bin/bash
+
+to install the another shell we can install like below
+
+sudo yum install csh
+
+what is shell scripting
+#######################
+shell scripting nothing but a it's simple file, which contains all the command and to make automate also
+
+to display the current shell type
+echo $SHELL
+echo $0
+ps -p $$
+################################################################################
+
+why do we need shel scripting
+#############################
+
+to automate the job's 
+take the backup'scripting
+monitoring several server resources like cpu utilization and memory utilization
+portable (it can be executed in any unix like operating system without modification)
+
+
+pre requisites
+###################
+
+knowledge on linux
+knowledge on commands
+basic programing language 
+
+
+#!/bin/bash (it's called she-bang line which will execute the commands but it's not a mandatory field because default shell will read them and will execute)
+
+
+how we can execute a shell
+./hello.sh
+sh hello.sh
+bash hello.sh
+csh hello.sh
+
+to change the file permissions recurivily
+chmod -R /foldername/filename.txt
+
+
+to run a file in debug mode
+
+sh -x samplefile.sh
+
+how to run a specific lines in debug mode in shell scripting
+
+set -x
+set +x
+
+example :
+#!/bin/bash
+echo "good morning"
+set  -x
+date
+set +x
+
+above file will run date command in debug mode
+
+and if we run with sh -x samplefile.txt (it will run in debug mode until where we have asked to stop)
+
+example :
+
+#!/bin/basj
+echo "sample shell scriptin"
+set -x
+echo "good morning"
+set +x
+echo "shell"
+date
+
+there is a diffrence between runing a file with sh sample.sh and sh -x  sample.txt
+sh sample.sh ( it will execute the file only in required places where we have mentioned like set -x +x (it means it will get stop the debug runnning till +x and))
+sh -x sample.sh (it will run a file till +x and it will run as normal)
+
+shell scripting file naming we can give 255 characters
+							################
+							
+it can contain alphabets and digits dots and underscore
+
+
+system command names and linux server words can not be used for naming
+
+ex:
+harsha.sh
+Harsha.sh
+harsha_01.sh
+harsha05.sh
+
+
+we can run a file without .sh also
+
+comments 
+#######
+single line comments (#)
+multi line comments
+
+ways to comment the script
+
+<<comment
+ "Code" or "Comments"
+comment
+
+: '
+
+Code or Comment here
+ '
+ 
+ without execute permission also it will run 
+ 
+ sh sample.sh
+ it is running throguh sh shell 
+ 
+ 
+ variables
+ #########
+ 
+ initilization :
+ #############
+ creating a values and assining
+ example 
+ 
+ int a = 1;
+ int b = 2;
+ int c; -- declaration variables 
+ 
+  
+  there are two types of variables
+  1. system defined variables (bash shell) (env or printenv)
+  2. user defined variables 
+  
+  
+  variable will be in left side
+  value will be in right side
+  
+  HISTSIZE=1000
+  
+  source ~/.bash_profile (to reload the default values of system defind variables)
+  
+  how we can defind the variables 
+  ##################################
+  
+  typees of it 
+  
+ HISTSIZE=-1 HISTFILESIZE=-1 (to make history size unlimited)
+ to make history size for some limit
+ 
+ export HISTSIZE=2000
+ 
+ 2 . user defined variables 
+  example :
+  a=10
+  b=20
+  name="this is harsha"
+  
+  echo $a
+  echo $b
+  echo $name
+  
+	camelcase meaning first letter should be a uppercase should'nt be uppercase next words
+	 
+	 
+a=10
+b=20
+name="this is harsha"
+#echo the first line a variabble value is $a
+#a=30
+echo The a variable value is : $a
+echo The b variable value is: $b
+echo The name variable value is : $name
+date
+
+
+
+there is a diffrence between using $ and using ${} in variables
+###############################################################
+
+the diffrence beween using $ symbol we can'nt spacify the word without space like below
+
+with only $ 
+
+
+#!/bin/bash
+NAME="Harsha"
+SPORT="Foot"
+echo "The most popular sport is $SPORTball"
+
+
+output : The most popular sport is we can't specify ball along with foot 
+
+with ${}
+#!/bin/bash
+NAME="Harsha"
+SPORT="Foot"
+echo "The most popular sport is ${SPORT}ball"
+
+
+output : The most popular sport is Football
+
+with ''
+#######
+
+it will display along with $
+
+
+if we specify like without providing the varrible and values and providing the echo command it will give like blank
+
+ex :
+a=10
+echo "first line $a"
+echo "second line $b"
+b=20
+
+arguments values both are same
+
+
+
+
+
+
+
+
+
+
+
+
+on above example it will take a valuue which is next to it
+	 
+
+what is command line arguments?
+while executing the script passing the value to command promt called command line arguments we can called it as positional parameters in Linux also
+ 
+ 
+ single quotes '' : if we use single quotes then variable substitution won't be happend.
+###################
+
+ command substitution :
+########################
+
+execute command ans substitute it's results 
+old style `commmand`
+back quotes ``
+new style : $(it's called paralasis command)
+
+eg:to display command
+
+##########################################################################################
+command line arguments :
+############################
+while executinng the script passing the values in command promt  called command line arguments 
+
+ 
+echo $0 (gives scriptt name)
+echo $1 (gives first argument)
+echo $2 (gives second argument)
+echo $3 (gives thrid argument)
+
+if we pass more than one number it's going to consider as $1 example (sh dbbackup.sh dbname /opt/ (here dbbackup name is the scriptname dbname is the first argument /opt/ is the second argument it should not be the duplicates ))
+
+to get the particular more than 1 number we should use ${11}
+arguments and values both are same
+
+
+echo $# (it gives the number of arguments)
+echo $* (it gives the all the arguments it gives all tthe arguent in one string)
+echo $@  (it also gives the all the arguments it gives each argument is  in one string)
+echo $$ (it gives the process id(PID))
+echo ($? it gives the either command is success or not like exit status )
+            0 - success 
+			127- standard error code  for command not found
+			1 - catchall for general errors
+			2 - misuse of shell builtins (according to bash documentation)
+			126 - command invoked cannot executte
+			128 - invalid argument to exit command
+			128+n - Fatal error sign "n"
+			130 - bash scripting exit by control-C
+			255* exit status out of range
+			
+			
+ex : 
+
+echo "C L args demo"
+echo $0 
+echo $1
+echo $2
+echo $3
+echo ${11}
+echo $#
+echo $*
+echo $@
+echo $$
+date
+echo $?
+
+			
+			positional arguments or command line arguments both are same+
+
+
+
+	diffrence between $* and $@
+Diffrence will come in to picture only when we use in quotes
+example
+"$* = "$1 IFS $2 IFS $3 IFS"
+"$@" = "$1" "$2 "$3"
+
+
+   a value and b value
+
+eq == (equal to)   10 ==10 (it should get the equal number a should be having the same number and b should be having the same number )
+###################################################################################################################################
+
+[root@ip-172-31-45-211 ~]# cat lessthan.sh
+#!/bin/bash
+
+echo "Enter first value : "
+
+read a
+
+echo "Enter second value : "
+
+read b
+
+if [ $a -eq $b ]
+
+then
+   echo "the statment become is true"
+else
+
+   echo "the statment become false"
+fi
+
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+50
+Enter second value :
+50
+the statment become is true
+[root@ip-172-31-45-211 ~]#
+
+
+
+
+########################################################################################################################################## 
+lt < ( less than) a value should be less than b value like a should be having 10 value b should be having 20 here 10 is less means a b should be having 20 here b value is higher than a value)
+
+ex : 
+
+the statment become false
+[root@ip-172-31-45-211 ~]# cat lessthan.sh
+#!/bin/bash
+
+echo "Enter first value : "
+
+read a
+
+echo "Enter second value : "
+
+read b
+
+if [ $a -lt $b ]
+
+then
+   echo "the statment become is true"
+else
+
+   echo "the statment become false"
+fi
+
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+10
+Enter second value :
+20
+the statment become is true
+[root@ip-172-31-45-211 ~]#
+##################################################################################################################################################################
+  
+le <= (Less than or equa) 10 < 50 ( left side value should be less and right side value is more ) (it should be having a value and b value is same or less than right value b should be a more number )
+##########################################################################################
+
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+10
+Enter second value :
+10
+the statment become is true
+[root@ip-172-31-45-211 ~]# cat lessthan.sh
+#!/bin/bash
+
+echo "Enter first value : "
+
+read a
+
+echo "Enter second value : "
+
+read b
+
+if [ $a -le $b ]
+
+then
+   echo "the statment become is true"
+else
+
+   echo "the statment become false"
+fi
+
+[root@ip-172-31-45-211 ~]#
+
+
+
+
+
+########################################################################################################################################################
+gt > (greater than) (left side value should be big value than the b value example right side value is 10 left side value should be 20)
+########################
+
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+10
+Enter second value :
+9
+the statment become is true
+[root@ip-172-31-45-211 ~]# cat lessthan.sh
+#!/bin/bash
+
+echo "Enter first value : "
+
+read a
+
+echo "Enter second value : "
+
+read b
+
+if [ $a -gt $b ]
+
+then
+   echo "the statment become is true"
+else
+
+   echo "the statment become false"
+fi
+
+[root@ip-172-31-45-211 ~]#
+########################################################################################################################################################
+ge >= (Greater than or equal)	same it should get same value a value b value should be the same or equal
+#########################################
+
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+50
+Enter second value :
+50
+the statment become false
+[root@ip-172-31-45-211 ~]# vi lessthan.sh
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+50
+Enter second value :
+50
+the statment become is true
+[root@ip-172-31-45-211 ~]# cat lessthan.sh
+#!/bin/bash
+
+echo "Enter first value : "
+
+read a
+
+echo "Enter second value : "
+
+read b
+
+if [ $a -ge $b ]
+
+then
+   echo "the statment become is true"
+else
+
+   echo "the statment become false"
+fi
+
+[root@ip-172-31-45-211 ~]#
+###################################################################################################################################
+
+
+ne != (Not equal) (it should not be not equal)
+
+#############################
+[root@ip-172-31-45-211 ~]# ./lessthan.sh
+Enter first value :
+50
+Enter second value :
+20
+the statment become is true
+[root@ip-172-31-45-211 ~]# cat lessthan.sh
+#!/bin/bash
+
+echo "Enter first value : "
+
+read a
+
+echo "Enter second value : "
+
+read b
+
+if [ $a -ne $b ]
+
+then
+   echo "the statment become is true"
+else
+
+   echo "the statment become false"
+fi
+
+[root@ip-172-31-45-211 ~]#
+###################################################################################################### 
+we can use any one of them either alphabets or symbols
+
+fi means closing the conditions
+ 
+
+string meaning :
+################
+
+set of characters / group of characters enclosed in a single ot double quotes.
+
+name="harsha"
+location='Bangalore' 
+
+
+
+ 
+
+ 
+, and space consider as a one character 
+
+to ignore the string (means a characters)
+
+we can use below commmand`
+
+echo ${variablename:10} shell scripting (if we mention :10 it's going to display after 11th character)
+
+to see variable legnth we can use like below
+
+echo ${#variablename} 
+
+if we keep like below ${variablename#value} (if we write like #andmention like variablevalue that will be commented in output) if value not matched output will be the same  
+
+
+echo ${variablename:10:5} it will display first 5 letters 
+
+echo ${variablename (-5)} it will display last five letters 
+
+echo ${variablename 0:2} it will display first two letters 
+
+
+
+######################################################################################
+
+arithmatic operations 
+#########################
+
++ adition
+- substract
+* multiplication (we have to use \ character for multiplication)
+/ division
+% modulus   it works like 20x10
+= assingment
+== equality
+
+!= not equality
+
+‘ ‘,
+
+
+ex :
+
+expr 2 + 3
+expr 2 -3 
+expr 2 \* 3
+expr 10 /2 
+expr 20 % 3
+
+
+why do we use inverted commas
+
+below is the example
+ex:
+
+echo "The addition of 2 and 3 is : expr 2 + 3 (without invertted commas)
+output : 
+     the addition of 2 and 3 is : expr 2 + 3 
+
+with inverted commas
+output for above input
+echo "The addition of 2 and 3 is : `expr 2 + 3`
+         out put   
+		 The addtion of 2 and 3 is : 5
+		 
+    the addition 	
+	 
+, command
+' single quotes
+""  Double quotes
+` inverted comma
+
+
+
+= assigning the value of right operand in left operand 
+
+ex : a =$b (assigning the value of b value to a)
+			it will assinningn the b value to a 
+			
+== (equality and equality )
+to compare the each value is same or not
+$a == $b it should get match with a b with same vlaue comparing the values of a and b value
+
+
+!= (not equal)
+(compare two numbers if both are diffrent the  return )
+if not equal we can add another values to it
+
+
+relational operators :
+-eq (if checks for the value is equal or not if yes then condition becomes true0)
+- ne (it checks for the two operands are not equal or notif values are not eqal condition becomes true)
+-gt (greater than it check the values of left operand is greater than the values of right operand ; if yes condition becomes true)
+
+-lt (less than it checks for the values is less than to right operand right operand should more than the left side value <)
+ if right hand side value is more than condition becomes true
+-ge ( it checks for the value is greater than or not it means left side value should be more)
+
+
+in arthamatic value both are same
+
+`expr  $a + $b`
+
+
+or
+
+echo $(( a + b )) 
+when we are using expr multiplecation becomes like \*
+
+what is expr ?
+
+expression
+
+
+boolean operators
+#################
+! negation
+-o or
+-a and 
+
+above or the logical operators 
+
+
+	 
+##########################################
+string operators
+################
+
+=
+
+!=
+
+-z 
+
+-n 
+
+str
+
+##########################################################################################
+if elif else
+
+if condition
+then 
+  statement
+  statement
+elif condition
+then 
+   statement 
+   statement
+else
+   statement
+fi
+#####################################
+echo "Enter a number"
+read a
+echo "Enter a number"
+read b
+if [ $a -eq $b ]
+then
+echo "a value is equal to b value"
+elif [ $a -gt $b ]
+then
+echo " $a is greater than $b"
+else
+echo $a is less than $b
+fi   
+
+#################################################################################################################################################
+
+what is an array? (scara)
+
+array is a collections of variables
+
+
+read  -a (it means it is an array it will store the values as a index like 0 1 2 3 4 5 6 )
+
+[root@ip-172-31-45-211 ~]# cat readcommands3.sh
+echo "Please enter the tools"
+
+read -a tools
+
+echo "the tools which you have type is " ${tools[*]}
+echo "the 4th elment is :" ${tools[3]}
+[root@ip-172-31-45-211 ~]# ./readcommands3.sh
+Please enter the tools
+1 2 3 4 5 6 7 8 9
+the tools which you have type is  1 2 3 4 5 6 7 8 9
+the 4th elment is : 4
+[root@ip-172-31-45-211 ~]#
+
+
+in above example we have entered from 1 to 9 and we havve metnioned 3 [3] because array considering from 0 and if we want all the arry's to display we have to use [*]
+
+REPLY IS THE DEFAULT VARIABLE FOR READ COMMAND if we are not specifying any  to the read command that's goinng to take it as variable for read command
+
+	 
+to silence the password while typing we can use -s 
+
+
+
+#!/bin/bash
+NAME[0]="orange"
+NAME[1]="apple"
+NAME[2]="Grape"
+echo "First index : ${NAME[0]}"
+echo "Second index : ${NAME[1]}"
+echo "third index : ${NAME[2]}"
+
+
+
+######################################################
+[root@ip-172-31-45-211 ~]# cat readcommands5.sh
+read -p "User name which you have entered is :" username
+read -sp "password name which you have entered is :" password
+echo ""
+echo "the username which you have entered is :" $username
+echo "the password which you have entered is :" $password
+
+[root@ip-172-31-45-211 ~]#
+#############################################################################
+using "" it will display whatever we have entered after the input
+
+
+itrationn means repeating
+
+it is the repetition of a process within a bash script. For example, you can run UNIX command or task 5 times or read and process list of files using a for loop. A for loop can be used at a shell prompt or within a shell script itself
+
+
+ 
+	 

@@ -1,0 +1,2424 @@
+Kubernetes is an orchestration engine 
+- it's open-source platfom for managing the containerized applications
+- Responsibilites include container deployment,scalling & descalling of container container load balancing
+- Actually, Kubernetes is not a replacement for docker, but it's replacement of docker swarm k
+- BOrn in Google, written in Go/Golang, Donated to CNCF (Cloud Native computing)
+- kubernetes v1.0 was released on july 21,2015
+
+
+#############################################
+
+Features of Kubernetes
+##########################
+
+- Automated Scheduling 
+  #######################
+  kubernetes provides advanced scheduler to launch container on cluster node
+  based on their resource requirements and other constraints, while not sacrifing avaialability
+  
+- Self Healing capabilities:
+############################
+
+- Kubernetes allows to replaces and reschedules containers when nodes die, it also kills containers that don't responded to user defined health check
+- it will be avaialbe when they are ready to server
+- Automated rollouts & Rollback:
+ ##############################
+kubernetes rollout changes to the application or it's configuration while monitoring application health to ensure it does'nt kill all yur instances at the same time, if something goes wrong ith kubernetes you can rollback the changes
+
+horizontal scalling & load balancing:
+####################################
+
+-- it has horizontal scalling option means that can be scale up and scale down the application as per the requirement with simple command  
+###############################################################################
+
+Service Discovery & Load balancing
+####################################
+
+-- with kubernetes there is no need to worry about the networking and communication because kubernetes will automatically asign IP address to containers 
+   and single DNS name for the set of containers,
+   
+-- that can load balance traffic inside the cluster
+--container get their own ip sos you can put a set of container behind a singel DNS name for laod balancing
+
+########################################################
+
+
+Kubernetes Architecture:
+
+Kubernetes Master:
+###################
+
+API Server
+Scheduler
+Controll-Manager
+etcd
+ContainerRuntime
+
+
+###########################
+slavenode or worker node
+
+Kubectl
+kubeproxy
+##########################
+
+Kubectl :
+Kubectl is a command line configuration tool kubernetes used to interact with master node of kubernetes, Kubectl has a config file called kubeconfig, this file has the information about the server and authentication information to access API Server
+##########################################################
+
+Masternode is the responsibility to manage the cluster and worker nodes master ode can be one or more nodes to maintaine the high tolerance, for high avaialability
+##########################################################
+
+
+Container Runtime
+####################
+
+Docker,Core,OS,Rocket,Containerd
+
+
+we should have any container RUn time on every machine 
+
+Kubectl -- we can contact the master using kubectl kubectl will contact the API Server
+########   
+
+
+
+API Server
+###########
+
+Application Programming Interface
+----------------------------------
+-- we can interact with API server by using kubectl 
+-- API server will it's like a interacts with API it's frontend of the kubernetes control plane communication center
+-- like update , create, delete
+
+-- API server will process our requet from the kubectl 
+-- API Server persist the request with ETCD
+
+ETCD:
+#######
+
+-- ETCD key value data store it stores the pods information
+-- it's kind of data based
+-- how many nodes we have 
+-- it's maintaiun work load information and resouce information in ETCD
+
+Schduler
+#######
+-- it will try to schedule unschedule pods
+-- when we request process will go to apiserver api server will persist the data with ETCD scheduler will contact ETCD and it will schdule
+-- scheduler will check for the unscheduler pods and it will schdule
+-- with help of kubelet with help of kubelet
+-- it will check do you have any avaiable resource and it will scheduler
+
+
+kubelet
+#######
+
+-- kubelet is a node agent 
+-- master machine will contact to kubelet 
+-- it will be running on everynode
+-- it's a primary node agent runs on each nodes and reads containers are running and health 
+-- it makes sure that containers are up and running in pod,
+-- it will talk to container runtime and it will schdule
+-- container run time is to create the containers
+################################
+
+Control manager
+-- Node controll manager
+-- Replication Control Manager
+-- Endpoint ControlManager
+-- Deployment control manager
+###########################################
+Replication manager:
+Control Mnager will take of the replicate the pods
+node controllmanager
+###################
+it 's responsible for noticing and responding when nodes go down,
+Replication controller:
+#####################
+  -- it maintains the number of pods, it control is how many identical copies of a pod should be running
+EndPoint Controllers -- Joins services and pods together
+####################
+
+Replicaset:
+############
+
+controllers ensure number of replication of pods running at all time
+
+Deployment:
+#############
+    controller provides declarative updates for pods and replicaets
+Daemonsets:
+---------
+Controller ensure all nodes run a Copy of specific pods,
+job controller is a supervisor process for pods carrying out batch jobs
+########################################################
+
+worker nodes:
+-- worker nodes are the nodes where the application actually running in kubernees cluster
+-- These each worker nodes are controlled by the master machine usng kubelet
+######################################
+
+
+Kube-proxy
+############
+
+it will maintain the network rule
+###################################
+
+
+kube-proxy enable the kubernets  service abstraction by maintaining network rules on the host and performing connections forwarding
+
+-- it will maintain the network rules and nodes, 
+-- it will main the network communicatin inside the pods or outside of your cluster
+-- it will route the  as per the network proxy
+	
+
+types in kubernetes
+#######################
+
+ two types
+ -----------
+ 
+     - self managed k8s cluster
+	  we should install and setup
+	   -- kubeadm
+	   -- minikube
+	  -- managed k8's cluster(cloud service)
+         -- EKS
+		 -- AKS
+		 -- GKE
+		 -- IKE
+#######################################################
+
+command to init the master
+--- 
+kube init
+to get the token if we lost
+==    kubectl token create --print-join-command
+#########################################################
+
+container networking iterface for overlying
+CNI
+== weavenet
+-- calico
+-- flannel
+##############################
+
+to use kubectl we can install kubectl and setup as a nn user like below
+mkdir ~/.kube
+vi ~/.kube/config
+#########################################
+
+Objects/resources
+########################
+
+PODS
+Services
+ReplicatinControllers
+ReplicaSets
+Daemonsets
+PersistentVolume
+PeristantVolumeClaims
+statefullsets
+Role
+ClousterRole
+RoleBinding
+ClusterRoleBinding
+
+##########################
+
+
+POD
+####
+NameSpace:
+#########
+
+
+name space is like a inside the cluster grouping a logically grouping
+
+POD represents pods will check all exists
+POD represents
+#############
+
+Name spaces are isolated 
+###########################
+
+Default name spaces are there to check
+@###################################
+kubectl get namespaces
+ -- to check all(kubectlget pods-n kube-system)
+ ###############################
+ 
+ 
+ to checkall the resouces
+ --kubectl get all -n kube=system
+########################################## 
+to create our own namespace as a default
+command to create 
+kubectl delete nv namespacename
+
+
+kubctl config set-context --curent --namespace=<namespace>
+ex:
+kubectl config set-context --curent --namespace=flipkart
+###############################################################
+
+POD
+#######
+
+-- POD always runs on a Node,
+-- a pod is a smallest building block or schedulling in kubernees
+-- insde a pod we we can have one or more containers
+-- it wll have unique ip 
+##########################################
+
+
+two types to deply the application:
+  -- interactive -- name javawebapppod --image=dockerhan/javawebapp'Delaragive'
+  -- Delarative
+     -- kubernetes manifest file
+############################################
+
+sample file
+##############
+
+apiVersion: v1
+kind: Pod
+metadata:
+ name: <PODNAME>
+ labels: 
+   key: <value>
+spec:
+  containers:
+  - name: <containerName>
+    image: <ImageName>
+    ports:
+    - containerPort: <ContainerPort>
+################################################	
+ vi javawebapp.yml
+ 
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: javawebapppod
+  labels: 
+  app: javawebapp
+spec: 
+  containers: 
+  - name: javawebappcontainer
+  ports:
+  - containerPort: 8080  
+################################################################################################
+
+kubectl get pods
+kubectl get pods -o kube-systemsystem
+kubectl get nodes
+kubectl  get pods -o wide
+
+we can access above sample file within a cluster
+to access on all the nodes we should enable the service
+##########################################
+
+Service:
+####################
+
+Service makes pods accessable discovarable within network or outside the network
+-- whe  we create a service we will get one virtual ip (clusterIP) address, This is IP will be registered in kubernetes dns with it's name (service)
+-- service only for communication
+-- other applications can communicate using service name 
+-- service is a logical name but actuall work will done by kube-proxy maintaining the network rules
+-- default service port is 80
+-- but it identify using labels or selectors
+-- service will act as load balancer
+-- when we defines the service that wil be accesable to everyone in particular network
+-- one pod can communicate to another pod using helm  
+   -- service types
+      - ClusterIP -- within a cluster
+	  - NodePort -- it's like a portwarding to expose the application
+	  - LoadBalancer 
+service will identify the pods based it's labels & selectors:
+to check the labels:
+kubectl get pods --show-labels
+###################################
+-- container to container can happen using labels and selectors
+-- within one pod we should not have same ports
+
+one-container-per-pod:
+this model is most popular pod is the wrapper for single container 
+multicontainer pod or sidecar containers
+-- in this model a pod can hold multiple co-located containers
+##################################################
+
+
+kubectl describe <object> <objectName>
+kubectl describe pod podname
+kubectl get svc
+
+	  
+docker service: Groupof Containers+ communication
+kubernetes service: it's only for communicaiton
+	  
+################################################
+
+samplefile for as a service
+##############################
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: <SvcName>
+  namespace: <namespace>
+spec: 
+  type: <TypeOfService>
+  selector: 
+    <Key>: <name>
+  ports:
+  - port: <ServicerPort>
+    targetPort: <containerTargetPort>
+############################################
+vi javawebappsvc.yml
+
+apiVersion: v1
+kind: Service
+metadata: 
+  name: javawebappsvc
+spec:
+  type: ClusterIP
+  ports: 
+  - port: 80
+  selector
+    app: javawebapp                 
+----------------------------------------------------------------------------
+vi javawebappsvc.yml
+
+apiVersion: v1
+kind: Service
+metadata: 
+  name: javawebappsvc
+spec:
+  type: NodePort
+  ports: 
+  - port: 80
+    targetPort: 8080
+	nodePort: 30032
+  selector
+    app: javawebapp	
+-----------------------------------------------------
+endpoint is like cluster ip address
+
+if service is identifying more labels we will be having more endpoints 	
+######################################################	
+--   interactively to create a container
+ --   kubectl run -it --rm --name testservice --image=ubuntu
+apt get-update -y
+ 
+ -- clusterIP is to have only inside the cluster but not for outside
+ -- 
+	
+
+Node port range is min 30000 - 32767
+ 
+
+
+##############################################################
+
+pods labels are identifying using selectors
+####################################################################
+
+Pod can go down any time
+###########################################################
+
+
+
+--> we should not directly create the pod 
+
+we should have controller like replicas Sets, Deployments, Daemon sets to keep pod alive
+
+----------------------------------------------------------------------------------------------
+
+Replication Controller
+#########################
+
+Replication Controller is one of the key features of kubernetes , which is responsible for managing the POD lifecycle it's is resposibl for makng sure that the specified number of pod replicas are running
+
+
+-----------
+
+-- Replication Controler will take care of the POD life cycle
+--  it will make sure required pods will be running at any time
+-- when pod goes down it will create the POD's 
+-- we can specify how many pods we want
+######################################################
+
+
+ReplicationController
+---------------------------
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: javawebapprc
+  namespace: <namespacename>
+spec:
+  replicas: <NoPodReplicas>
+  template: # POD template (POD information)
+    metadata:
+	  name: <POD NAME>
+	  labels:
+	    key: <value>
+	spec:
+      containers:
+      - name: <ContainerName>
+        image: <ImageName>
+        ports:
+        - containerPort: <ContainerPort>
+############################################################################
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: javawebapprc
+spec:
+  replicas: 1
+  selector:
+    app: javawebapp
+  template:
+    metadata:
+      name: javawebapppod
+      labels: 
+        app: javawebapp
+    spec:
+      containers:
+      - name: javawebappcontainer
+        image: ashoknagari/javawebapp:1
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: javawebappsvc
+spec:#
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: javawebapp
+####################################################################################
+kubectl scale rc javawebapprc --replicas 2
+---------------------------------------------
+
+
+how many pods we wil have those many end points we will have
+--- one object will identify using labels and selectors
+--- it's like a condition
+-- for replication control selector not a mandatory
+####################################################################
+
+
+Replica controller
+ReplicaSet -- it's next generato of replication controller, Replica Set will also manages pod life cycle, we can scale up and down
+           -- it will have advance selectors (This is the major diffrence between replica controller and replica set)
+		   
+		   
+Daemon Set 
+Deployment
+
+kubectl log podname
+kubectl exec -it podname bash -- <it's to go inside the podname>
+################################################################
+
+
+ReplicaSet
+##############
+
+
+
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: javawebapprs
+spec:
+  replicas: 2
+  selector:
+    matchLabels: javawebapp # Equality Based Selector
+	  app: javawebapp
+  template:
+    metadata:
+      name: javawebapppod
+      labels:
+        app: javawebapp
+    spec:
+      containers:
+      - image: ashoknagari/javawebapp:9
+        name: javawebappcontainer
+        ports:
+        - containerPort: 8080
+-----------------------
+Equality Based Selector
+  selector:
+    app: javawebapp
+set based selector
+it's like a in condition
+selector:
+  matchExpressions:
+  - key: app
+    operator: in
+    values:
+    - javawebapp
+    - javaweb
+	
+
+---------------------------------		
+ReplicaSet for mavenapp
+
+#######################
+
+apiVersion: apps/v1
+kind: Replicaset
+metadata:
+  name: mavenwebapprs
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mavenwebapp
+  template:
+    metadata:
+      name: mavenwebapppod
+      labels:
+      app: mavenwebapp
+    spec:
+      containers:
+      - name: mavenwebappcontainer
+        image: ashoknagari/mavenwebapp:10
+        ports:
+        - containerPort: 8080
+---
+apiVersion:
+kind: Service
+metadat:
+  name: mavenewbappsvc
+spec:
+  type: NodePort
+  selector:
+    app: mavenwebapp
+   ports:
+   - port: 80
+     targetPort: 8080
+###################################################	 
+------------------------------------------------
+kubectl edit svc servicename -- this is to edit only service
+sudo netstat -tulnp
+
+kubectl scale rs mavenwebapprs --replicas 6
+kubectl describe svc servicename
+kubectl exec containerName ls (we are executing the commands on container)
+kubectl exec mavenwebapprs -c mavenwebapp --pwd (if we have more than one container)
+kubectl log podname
+kubectl exec -it podname /bin/bash (go to the inside of the pod container)
+
+
+----------------------------------------------------------	
+    
+
+
+static pod's are managed by kubelet which are running as etcd,API Server default pods
+############
+-- static pods are managed directly by the kubelet and the API server does not have any control over these pods,
+-- the kubelet is responsible to wath each static pod and restart it if it crashes,
+-- The static pods running on a node are visible on the API Server cannot be controlled by the API server
+--> weave-net 
+--> kube-proxy
+--> control plane are running as a static pod
+-- to create we should go to below path
+path >>>>>>> sudo ls /etc/kubenetes/manifest
+
+kubectl get ds -n kube-system
+#####################################
+
+kubectl describe pod mavenwebapppod
+###############################################################################
+
+Daemonsets
+###################------------------------##########################-----------########################
+
+docker we have two types of services
+---- 
+ --- Replication model
+ -- Global Mode
+ 
+-- DaemonSet it's like a Global Mode when a node join to the cluste that will have copy of pods to a cluster
+########################################################
+vi DaemonSet.yml
+
+
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: nodeappds
+spec:
+  selector:
+    matchLabels:
+      app: nodeapp
+  template:
+    metadata:
+      name: nodeapppod
+      labels: 
+      app: nodeapp
+	spec: 
+      containers:
+      - name: nodeappcontainer
+        image: ashoknagari/nodeapp:1
+        ports:
+        - containerPort: 9981	
+###############################################################
+----------------------------------------------------------
+
+kubectl create  -- need to update
+kubectl update --> it's combination of create and update 
+
+kubectl apply -- it will check for if there is a changes
+
+kubectl delete 	
+we can make default name space
+
+kubectl config set-context --current --namespace=flipkart
+	
+--------------------------------------------------------------------
+
+we can deploy Deamonset 
+
+internal applications like monitor applications log agents
+
+
+
+##################################################################
+
+Deployment
+#########################------------------#######################----------------------###########################
+
+-- it's the recommandation way to deploy the application
+-- when there is a new code another controllers will not update
+-- if we wnat to update with last code we shuld delete and deploy
+-- if we wnat to upate we should delte and redeploy
+-- we have few features in deployment 
+-- when we deploy it will create replicat set
+-- we can mainte zero downtime
+
+##########################################################
+
+keypoints
+-- it will deploy a RS
+-- updates pods (POD templateSpec)
+-- Rollback to older Deployment Version
+-- Scale Deployment up or down
+-- Pause and Resume the deployment
+-- Use the status of the deployment to determine the status of replicas
+-- Clean up older RS that you don't need any more
+-- when pod got delete only new version will get update
+----------------------
+Strategy:
+--------
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: <DeploymentName>
+ namespace: <NameSpaceName>
+ labels:
+   key: <Value Optional>
+spec:
+  replicas: <Number Of Replicas> 
+  strategy: 
+    type: ReCreate
+  selector:
+    matchLabels:
+      <Key>: <Value>
+  template: 
+    metadata:
+      name: <PODNAME>
+      labels:
+        key: <Value>
+    spec: 
+      conainers:
+      - name: <ContainerName>
+        image: <ImageName>
+        ports:
+        - containerPort: <containerPort>
+########################################################################################
+
+vi recreate.yml
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javawebappdeployment
+
+spec:
+  replicas: 2
+  strategy:
+  type: ReCreate
+  selector:
+    matchLabels:
+      app: javawebapp
+  template:
+    metadata:
+      name: javawebapppod
+      labels: 
+        app: javawebapp
+    spec:
+      containers:
+      - name: javawebappcontainer
+        image: ashoknagari/javawebapp:1
+        ports:
+        - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: javawebappsvc
+spec:
+  type: NodePort
+  selector:
+    app: javawebapp
+  ports:
+  - port: 80
+    targetPort: 8080
+	#########################################################################
+	
+	
+  
+ 
+ 
+  
+  
+  
+  
+#########################################################################
+kubectl rollout history deployement deploymentname --revision 1
+kubectl rollout history deployment javawebappdeployment -- it will list the what causes this deployment revision
+to go back to the previous version below is the comman
+
+--> kubectl delete -f deployment.yml
+
+$ kubectl rollout undo deployment deploymentname --to-revision 1 
+#####################################################################################
+rolling updae
+##################################
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javawebappdeployment
+spec: 
+  replicas: 
+  strategy:
+    type: RollingUpdate
+	rollingUpdate:
+	  maxUnavailable: 1 ## max it will be shutdown the one pod
+	  maxSurge: 1             ## it will create first this one new pod
+  minReadySeconds: 60
+  selector:
+    matchLabels:
+      app: javawebapp
+  template:
+    metadata:
+      name: javawebapppod
+      labels: 
+        app: javawebapp
+    spec: 
+      containers:
+      - name: javawebappcontainer
+        image: ashoknagari/javawebapp:
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: javawebappsvc
+spc:
+  type: NodePort
+  selector:
+    app: javawebapp
+  ports:
+  - port: 80
+    targetPort: 8080
+	
+####################################################################################################
+
+---------------------------------
+
+kubectl rollout status
+or we can update by using imperative command as well
+
+kubectl set image deployment javawebappdeployment javawebappcontainer=ashoknagari/javawebapp:2 --record
+
+kubectl apply -f javawebappdeployment --record=true
+kubectl scale deployment javawebappdeployment --replicas 2
+
+kubectl rollout history deployment deploymentname --revision 1
+######################################################################################
+-----------------------------------------------------------------------------------------------
+
+
+
+what is blue green deployment 
+#########################################
+
+-- when we deploy the application if a new new is having a issue if already users faced the issues
+-- we can edit the 	selector name so that we can delete the old version
+-- or we can scale out zero the old version
+##########################################################
+
+AutoScalling 
+
+HPA --> Horizontal Pod AutoScaler
+
+###################
+
+two types of scalling
+-- HPA --> Horizantal Pod Auto scaller
+-- VPA --> Vertical pod scaler
+====================================================
+
+HPA and metrics set up  we can adjust the metrics
+-- Horizantal POD AUTOScaler, which will scale up/down number of POD replicas of Deployment,
+ -- ReplicaSet or Replication Controller dynamically based on the observed metrics (CPU or memory) nutilization.
+ #######################################
+ 
+ 
+ HPA will interact with metrics server and it will increase the pods
+ --
+ -- targetAvergeutilization: 50 so minReplicas should have avg CPU utilization is 50 then it will create new pod
+ 
+ kubectl top nodes
+ kubectl top pods
+ 
+ 
+ we can deploy like below
+ ############################
+ 
+ using manifest file we can deploy to see the cpu and load memory utilization
+ 
+ 
+ 
+ 1. git clone https://github.com/MithunTechnologiesDevOps/metrics-server.git
+ 
+ 2. cd metrics-server
+  
+ 3. kubectl apply -f deploy/1.8+/
+
+	
+
+##################################################################################
+
+DEMO HPA
+############
+
+vi hpademo.yml
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hpadeployment
+spec:
+  replicas: 2
+   selector:
+     matchLabels:
+	   name: hpapod   	  
+	spec:
+      containers:
+	    - name: hpacontainer:
+		  image: k8s.gcr.io/hpa-example
+		  ports:
+		  - name: https
+		    containerPort: 80
+		  resources:
+            requests:
+              cpu: "100m"
+              memory: "64Mi"
+            limits:
+              cpu: "100m"
+              memory: "256Mi"
+apiVersion: v1
+kind: Service
+metadata: 
+  name: hpaclusterservice
+  labels:
+    name: hpaservice
+spec: 
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:	  
+    name: hpapod
+  type: NodePort
+  
+  (This is not a HPA)
+  
+################################################################
+
+
+we can create the one image for to generate the load
+
+
+kubectl run -it --rm loadgenerator --image=busybox
+(when we come out from this it will get delete the this temporary pod)
+$ kubectl run -i --tty load-generator --rm  --image=busybox /bin/sh
+$ while true; do wget -q -O- http://hpaclusterservice; done (hpaclusterservcie is a service name)
+watch kubectl get hpa
+
+
+
+kubectl autoscale deployment javawebappdeployment --cpu-percent=50 --min=2 --max=5 we can use this also command to create the auto scalling 
+##################################################################################################
+
+			  
+
+Below is the actual HPA
+##############################
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hpadeployment
+spec:
+  replicas: 2
+   selector:
+     matchLabels:
+	   name: hpapod   	  
+	spec:
+      containers:
+	    - name: hpacontainer:
+		  image: k8s.gcr.io/hpa-example
+		  ports:
+		  - name: https
+		    containerPort: 80
+		  resources:
+            requests:
+              cpu: "100m"
+              memory: "64Mi"
+            limits:
+              cpu: "100m"
+              memory: "256Mi"
+apiVersion: v1
+kind: Service
+metadata: 
+  name: hpaclusterservice
+  labels:
+    name: hpaservice
+spec: 
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:	  
+    name: hpapod
+  type: NodePort
+---
+apiVersion: autoscalling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpadeployment
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hpadeployment
+  minReplicas: 2
+  maxReplicas: 5 
+    resource:
+	  name: cpu
+	  targetAvergeutilization: 50
+	type: Resource
+	##########################################################################################
+	
+	Volumes
+	
+	types of volumes
+	
+	-- Hostpath -- self managed file store (it will use host node) we can mount container directo ith host node file system
+	
+	-- emptryDir -- It's temporary storage when container restart data will get erased
+	
+	-- nfs -- for self managed file store network file system
+	
+	-- configmap -- it's to attach to the file to the pod (prometheus.yml) whaterver we want we can configure
+
+    
+	-- elaticBlockStore: eks
+	
+	
+	-- GooglePersistantDisk
+	
+	-- azureFile
+	
+	-- azureDisk
+	
+	#########################-----------------###################_------------------###############################
+	
+Spring Boot (Frontend (UI) & Middle (Java Code)) & Mongo (Backend DB)
+
+volume.yml
+##################
+
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: springappdeployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: springapp
+  template:
+    metadata:
+      name: springapppod
+      labels:
+        app: springapp
+    spec:
+      containers:
+      - name: springappcontainer
+        image: ashoknagari/spring-boot-mongo
+        ports:
+        - containerPort: 8080
+        reources:
+          requests:
+            cpu: 200m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+        env:
+        - name: MONGO_DB_HOSTNAME
+          value: mongo
+        - name: MONGO_DB_USERNAME
+          value: devdb@123
+		  
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: springapsvc
+spec:
+  type: NodePort
+  selector:
+    app: springapp
+  ports:
+  - port: 80
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metaata:
+  name: mongodbrs
+spec:
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      name: mongodbpod
+      labels: 
+        app: mongo
+    spec: 
+      containers:
+      - name: mongodbcontainer
+        image: mongo
+        ports:
+        - containerPort: 27017
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: devdb@123
+        - name: MONGO_INITDB_ROOT_USERNAME_PASSWORD
+		  value: devdb@123
+		volumeMounts:
+        - name: mongodbhostpath
+		   mountPath: /data/db
+		volumes:
+        - name: mongodbhostpath
+          hostPath:
+            path: /tmp/mongodbdata
+			
+			
+		  
+---
+apiVersion: v1
+kind: Service
+metadat:
+  name: mongo
+spec:
+  type: ClusterIP
+  selector:
+    app: mongo
+  ports:
+  - port: 27017
+    targetPort: 27017
+
+
+
+
+
+#######################################################
+ Kubernetes will maintain the PV and PVC 
+ kubectl get nodes
+ kubectl apply -f javaweb.yml --dry-run=client 
+ ##################################################
+ 
+ to take a back up outside from the host we should enable the 2049 ip
+ sudo apt-update -y
+sudo apt-get update -y
+sudo apt install nfs-kernel-server      
+sudo mkdir -p /mnt/share
+sudo chown nobody:nogroup /mnt/share    
+sudo chmod 777 /mnt/share/
+sudo vi /etc/exports
+/mnt/share *(rw,sync,no_subtree_check,no_root_squash)  
+sudo exportfs -a
+sudo vi /etc/exports
+sudo exportfs -a
+sudo systemctl restart nfs-kernel-server
+
+and for nfs client server i will create a one file 
+
+#############################################################################################################
+
+PV (PersitentVolume)
+PVC (PersistentVolumes)
+
+---------------
+PersistentVolumes has two types:
+------------------------------
+  1. static Volumes -- manually 
+      - which is a create manually, as k8's admin we can create PV manually, which can be used/claimed by PODs whaterve
+        required some storage	  
+  2. Dynamic Volumes -- storage class when we request for PV dynamically it will create the dynamil
+  
+PV :
+----
+
+-- Persistent Volumes are simpl a piece of storage in your cluster, similar to how to you have disk resource in a server ,
+-- at the most simple terms we can think of a PV as a disk drive 
+-- it should be noted that this storage resources exists independently from the any pod that may consume it
+-- when pod got delete still we will have our data
+
+-- PV repreents some storages which can be 
+    -- hostPath
+	-- nfs
+    -- ebsBlockStore
+	-- azureFile
+	-- azureDisk..etc/
+	
+
+  
+PVC: 
+--> 
+if pod requires storage (volume), POD will get an access to the storage(volume) with help of PVC, we need to make a volume request by creating PVC by specifing size, access mode.,
+PVC will be associated by identifying the access modes and storage capacity
+
+
+storageClass:
+###########
+
+Volume Provisoner
+it's a piece of code(driver) which will create the volumes (PV) when ever we have pvc request nd we don't have pv it will create the the PV
+#############################################################################
+
+without PV PVC will not work
+
+what is access modes
+
+ReadWriteOnce -- Only one node /pod can read and write data,'
+ReadWriteMany -- Multiple nodes/Pods can read and write data many nodes
+ReadOnlyMany -- ReadOnly Volumes -- it can only read
+#################################
+
+vi persistentVolum
+
+apiVersion: v1
+kind: PesistentVolume
+metadata:
+  name: pvhostpath
+spec:
+  storageClass: manually
+  capacity: 1Gi
+  accessModes:
+  - ReadWriteOnce
+  hostpath:
+  path: "/kube/voluemeone"
+  ############################
+  
+  PVC: 
+  apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    name: pvcone
+spec: 
+  StorageClassName: manually
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+	  storage: 1Gi
+####################################################################################################
+
+apiVersion: v1
+kind: Service
+metadata: 
+  name: springapsvc
+spec:
+  type: NodePort
+  selector:
+    app: springapp
+  ports:
+  - port: 80
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metaata:
+  name: mongodbrs
+spec:
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      name: mongodbpod
+      labels: 
+        app: mongo
+    spec: 
+      containers:
+      - name: mongodbcontainer
+        image: mongo
+        ports:
+        - containerPort: 27017
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: devdb@123
+        - name: MONGO_INITDB_ROOT_USERNAME_PASSWORD
+		  value: devdb@123
+		volumeMounts:
+        - name: mongodbhostpath
+		   mountPath: /data/db
+		volumes:
+		- name: mongodbhostpath
+		persistentVolumeClaim:
+          claimName: mongodbpvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadta:
+  name: mongodbpvc
+spec: 
+  storageClassName: manually
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+	  
+---		  
+apiVersion: v1
+kind: Service
+metadat:
+  name: mongo
+spec:
+  type: ClusterIP
+  selector:
+    app: mongo
+  ports:
+  - port: 27017
+    targetPort: 27017
+		  
+
+
+vi hostpathPV.yml
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: hostpathPV
+spec:
+  storageClassName: manually
+  capacity: 1Gi
+  accessModes:
+  - ReadWriteOnce
+  hostPath:
+    path: "/kube/mongo"
+######################################################
+
+
+we have few reclaim policies 
+
+########################################
+
+another object we have 
+
+StatefullSets
+
+statefullset
+
+----------
+kubectl api-resources | grep -i Persistent
+
+-- Deployments are used for mostly stateless applicatons
+
+-- we can save the state of deployment by attaching a Persistent Volume to it and make stateful,
+
+-- all the pods deployments will be sharing the same volume and data across all of them will be same
+-- stateful Sets also manages the pods and scalling
+
+-- will get a unique network identifier (POD names will be unique)
+ 
+-- state fullset will create pods one after the other,
+--  each pod in statefull will get it's own volume
+-- like data base 
+-- like jenkins 
+-- stable,peristent storage (it will have own storage)
+-- it will creat one after one
+
+
+unique identified like below naming 
+
+mong-0
+mongo-1
+mongo-2
+
+#################################################
+
+vi statefulSet.yml
+
+
+
+
+
+
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+spec:
+  ports:
+    - port: 27017
+      targetPort: 27017
+  clusterIP: None # headless service 
+  selector:
+    role: mongo
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongo
+spec:
+  selector:
+    matchLabels:
+      role: mongo
+  serviceName: "mongo"
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        role: mongo
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: mongo
+        image: mongo
+        ports:
+          - containerPort: 27017
+        env:
+          - name: MONGO_INITDB_ROOT_USERNAME
+            value: devdb
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            value: devdb@123
+        volumeMounts:
+          - name: mongo-persistent-storage
+            mountPath: /data/db
+  volumeClaimTemplates:
+    - metadata:
+        name: mongo-persistent-storage
+      spec:
+        #storageClassName: "gp2"
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springappdeployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: springapp
+  template:
+    metadata:
+      name: springapppod
+      labels:
+        app: springapp
+    spec:
+      containers:
+      - name: springappcontainer
+        image: ashoknagari/springboot:1
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MONGO_DB_USERNAME
+          value: devdb
+        - name: MONGO_DB_PASSWORD
+          value: devdb@123
+        - name: MONGO_DB_HOSTNAME
+          value: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springapp
+spec:
+  selector:
+    app: springapp
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: LoadBalancer
+			   
+             			 
+------------------------------------
+
+headless serviceName
+----------------------
+
+HeadLess
+---------
+-- it liek without load balancer
+-- it will send the load to first pod
+-- it will create the pods one after other
+
+mongo-0
+mongo-1
+mongo-2
+
+		   
+#################################################
+
+ConfigMap
+Secrets
+--> it's kubernetes object using which we can create /define configuration files or configuration values as key pair values
+
+
+
+
+#########################################################################
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: springappconfig
+data:
+  mongousername: devdb
+  mongopasswrd: devdb@123
+  
+  
+  
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+spec:
+  ports:
+    - port: 27017
+      targetPort: 27017
+  clusterIP: None # headless service 
+  selector:
+    role: mongo
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongo
+spec:
+  selector:
+    matchLabels:
+      role: mongo
+  serviceName: "mongo"
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        role: mongo
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: mongo
+        image: mongo
+        ports:
+          - containerPort: 27017
+        env:
+          - name: MONGO_INITDB_ROOT_USERNAME
+            valueFrom:
+			  configMapKeyRef:
+			    name: springappconfig
+				key: mongousername
+	      - name: MONGO_INITDB_ROOT_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: mongopassword
+                key: mongopassword				
+        volumeMounts:
+          - name: mongo-persistent-storage
+            mountPath: /data/db
+  volumeClaimTemplates:
+    - metadata:
+        name: mongo-persistent-storage
+      spec:
+        #storageClassName: "gp2"
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springappdeployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: springapp
+  template:
+    metadata:
+      name: springapppod
+      labels:
+        app: springapp
+    spec:
+      containers:
+      - name: springappcontainer
+        image: ashoknagari/springboot:1
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MONGO_DB_USERNAME
+          valueFrom:
+		    configMapKeyRef:
+			  name: springappconfig
+			  value: mongousername
+	    - name: MONGO_DB_PASSWORD
+          valueFrom:
+             configMapKeyRef:
+               name: springappconfig
+               value: mongopassword			   
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springapp
+spec:
+  selector:
+    app: springapp
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: LoadBalancer
+##################################################################################  
+---------------------
+usingcommand secretkey
+------------
+kubectl create secret generic springappsecret --from-literal=mongopassword=devdb@123 --
+apiVersion: v1
+kind: Secret
+metadata:
+  name: springappsecret
+type: opaque
+stringData:
+  mongousername: devdb
+  mongopasswrd: devdb@123
+#####################################################################################################################
+
+vi secretkey.yml
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: springappsecret
+type: opaque
+stringData:
+  mongousername: devdb
+  mongopassword: devdb@123
+
+##############################################################
+
+vi springappwithsecret.yml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+spec:
+  ports:
+    - port: 27017
+      targetPort: 27017
+  clusterIP: None
+  selector:
+    role: mongo
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongo
+spec:
+  selector:
+    matchLabels:
+      role: mongo
+  serviceName: "mongo"
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        role: mongo
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: mongo
+          image: mongo
+          ports:
+            - containerPort: 27017
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: springappsecret
+                  key: mongousername
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: springappsecret
+                  key: mongopassword
+          volumeMounts:
+            - name: mongo-persistent-storage
+              mountPath: /data/db
+  volumeClaimTemplates:
+    - metadata:
+        name: mongo-persistent-storage
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springappdeployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: springapp
+  template:
+    metadata:
+      name: springapppod
+      labels:
+        app: springapp
+    spec:
+      containers:
+        - name: springappcontainer
+          image: ashoknagari/springboot:1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGO_DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: springappsecret
+                  key: mongousername
+            - name: MONGO_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: springappsecret
+                  key: mongopassword
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springapp
+spec:
+  selector:
+    app: springapp
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: LoadBalancer
+####################################################
+
+what is configmaps
+
+so in configmaps we can provide the configurations as a environmental variables which we can externalize from the manifest file and we can refer from config maps
+
+ 
+ Liveness Probe & Readyness Probe
+ 
+############################################################################################################################
+
+kubectl get secret springappsecret -o=jsonpath='{.data.mongousername}' | base64 --decode -- this is to decrypt the alogardidham of username and pasword
+
+ ####################################################################################################################
+ Liveness And Readiness probes
+##################################
+
+Liveness Probe:
+  Suppose that a pod is running our application inside a contaner , but due to some reason let's say memory leak,CPU usage application deadlock etc,
+  the application i not rsponding to our requets, and stuck in error state
+
+
+Liveness probe checks the container health as we tell it do, and if for some reason the liveness probe fails it restarts the container
+
+Readiness probe:
+######################
+
+-- This type of probe is used to detech if a container is ready to take the 
+-- it will remove from the end point
+-- if it's success
+
+httpGet 
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: javawebapprs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+       app: javawebapp
+  template:
+    metadata:
+      name: javawebapppod
+      labels:
+        app: javawebapp
+    spec:
+      containers:
+      - name: javawebappcontainer
+        image: ashoknagari/javawebapp:10
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /java-web-app  ###(we can set if it's the root context like this /)
+            port: 8080
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 15
+        livenessProbe:
+          httpGet:
+            path: /java-web-app
+            port: 8080
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          periodSeconds: 15
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: javawebappsvc
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: javawebapp
+###########################################################################################################################################
+
+##############################################################################################################################################
+
+Schedulling
+#################
+
+nodeSelector
+nodeaffinity
+taints& toleracnes
+-- basically scheduler will schdule the pods where it's has sufficient resources CPU and RAM
+-- when we want to attach to some specific nodes below features will help
+   - nodeSelector:
+   
+nodeSelector: 
+we can define the like below 
+
+we can add the labels like below as well
+
+kubectl label nodes ip-172.10.43.76 name=workerone
+#####################################################
+
+
+
+nodeSelector: 
+##########
+
+after labels section we can define like below
+nodeSelector:
+  name: workerone
+  name: workerTwo
+ ############################################################
+
+ apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javawebappdeployment
+spec:
+  replicas: 2
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: javawebapp
+  template:
+    metadata:
+      name: javawebapppod
+      labels:
+        app: javawebapp
+    spec:
+      nodeSelector:
+        name: workerOne  ################# nodeSelector
+        name: workernodetwo
+      containers:
+      - name: javawebappcontainer
+        image: ashoknagari/javawebapp:10
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 200m
+            memory: 250Mi
+          limits:
+            cpu: 200m
+            memory: 500Mi
+        readinessProbe:
+          httpGet:
+            path: /java-web-app
+            port: 8080
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 15
+        livenessProbe:
+          httpGet:
+            path: /java-web-app
+            port: 8080
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          periodSeconds: 15
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: javawebappsvc
+spec:
+  type: NodePort
+  selector:
+    app: javawebapp
+  ports:
+  - port: 80
+    targetPort: 8080
+###############################################################################
+
+Node affinity
+
+
+-- node affinity is a advanced feature then Node Selector
+-- we can define more expressively
+-- more operational logical name
+-- we can make soft scheduling rules
+-- Node selector is hard way to schdule because when labels does't match it will not schdule but in node affinity we can still schdle the pods
+-- in node affinity we can define soft schduling and hard way of schduling 
+    we can have two types of rules
+    1. Prefered rules 
+    2. required rules
+1. Prefered rules
+---------------
+	in preferred rule , a pod will be assigned on a non-matching node if and only if no other node in the cluster matches the specified labels
+	preferredDuringSchedulingIgnoredDuringExecution
+	
+	
+		A preferred rule is a soft constraint that suggests the scheduler to prioritize placing Pods on nodes that match the specified affinity rules. However, it is not a strict requirement, and the scheduler can still place the Pod on a node that doesn't match the preference if needed.
+
+
+	
+2. Required rules:
+--------------------
+   in Required rules, if there are no matching nodes, then pod wont be scheduled there are copule of required rule affinities namely 	
+   requiredDuring SchedulingIgnoreDuringExecution 
+   
+   A required rule is a strict constraint that mandates Pods to be scheduled only on nodes that meet the specified affinity rules. If a suitable node is not found, the Pod won't be scheduled.
+   
+   
+   
+   Nodselector :
+   ###################################################################################################################################################
+   
+   apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javawebappdeployment
+spec:
+  replicas: 2
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: javawebapp
+  template:
+    metadata:
+      name: javawebapppod
+      labels:
+        app: javawebapp
+    spec: 
+     nodeSelector:
+       name: Workerone
+
+
+      containers:
+      - name: javawebappcontainer
+        image: ashoknagari/javawebapp:10
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 200m
+            memory: 250Mi
+          limits:
+            cpu: 200m
+            memory: 500Mi
+        readinessProbe:
+          httpGet:
+            path: /java-web-app
+            port: 8080
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 15
+        livenessProbe:
+          httpGet:
+            path: /java-web-app
+            port: 8080
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          periodSeconds: 15
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: javawebappsvc
+spec:
+  type: NodePort
+  selector:
+    app: javawebapp
+  ports:
+  - port: 80
+    targetPort: 8080
+---
+######################################################################################################################################################################
+
+
+requiredDuringSchedulingIgnoredDuringExecution 
+###################
+----------------
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javawebappdeployment
+spec:
+  replicas: 2
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: javawebapp
+  template:
+    metadata:
+      name: javawebapppod
+      labels:
+        app: javawebapp
+    spec:
+      affinity:       ######################affinity
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:                      
+            - matchExpressions:
+              - key: name
+                operator: In
+                values:
+                - workerOne
+
+      containers:
+      - name: javawebappcontainer
+        image: ashoknagari/javawebapp:10
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 200m
+            memory: 250Mi
+          limits:
+            cpu: 200m
+            memory: 500Mi
+        readinessProbe:
+          httpGet:
+            path: /java-web-app
+            port: 8080
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 15
+        livenessProbe:
+          httpGet:
+            path: /java-web-app
+            port: 8080
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+          periodSeconds: 15
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: javawebappsvc
+spec:
+  type: NodePort
+  selector:
+    app: javawebapp
+  ports:
+  - port: 80
+    targetPort: 8080
+	
+	
+	##########################################################################################################################################################
+
+this should get match the labels first then if we remove also this will get schdule --
+
+requiredDuringSchedulingRequiredDuringExecution :
+##################################################
+
+This must and should get match with labels
+
+
+
+
+
+Taints
+############
+
+
+Due to Taients it will not schdle in master
+
+
+-- Taint is a property of node that allows you to repel a set of pod unless those pods explicitly tolerates that said taints&
+00 Taint has three parts, A Key, a value and an effect
+
+
+kubectl taint nodes <node> node=HatesPods=NoSchedule
+
+in above example node is the key
+hatesPods value
+effect -- effect has three things
+
+-- NoSchedule -- Doesn't schedule a pod without matching toleration  (wihout tolerance it wil lnto schedule)
+ 
+-- PreferNoSchedule -- Prefers that the pod without matching toleration be not scheduledon the node it is a softer version of No schedule effect (it will look for the tolerance if not then also it will schdule)
+
+-- NoExecute -- Evicts the pods that don't have matching tolerations. (this is will remove when don't have matching tolerations)
+
+#################################################################################################################################################
+
+
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: mavenwebapprs
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mavenwebapp
+  template:
+    metadata:
+      name: mavenwebapppod
+      labels:
+        app: mavenwebapp
+    spec:
+      tolerations:
+      - key: "HatesPods"
+        operator: "Exists"
+        effect: "NoSchedule"
+      containers:
+      - name: mavenwebappcontainer
+        image: ashoknagari/maven-web-application:5
+        ports:
+        - containerPort: 8080
+#####################################################################
+
+
+EKS
+##############################################################
+##############################################################
+
+Service
+  ClusterIP
+  NodePort: 30000 - 32767
+  LoadBalancer --> 
+  ClusterIP: None ######## Headless Service
+  
+ EKS advances 
+ ----------------
+ 
+-- it will be managed by cloud provider 
+-- we can integrate with other cloud services (like EBS,ELB)
+
+
+KOPS --> kubernetes Operations is a software using which we can setup productin ready highly aviable k8 cluster
+-- KOPS create launch configurations & Auto Scalling Groups in cloud (AWS) for master and workers.
+
+--  KOPS will creat the launch configurations
+    it will create for one group for master 
+    it will create for one group for workernodetwo
+##############################
+
+EKS 
+
+Amazon Elatic Kubernetes Service is fully managed kubernetes service
+######################################################################
+-- EKS is the best place to run kubernetes applications because of it's security , repliability, and scalability
+-- We can integrate with below services
+   - ELB, amazon Cloud wath , auto scalling
+-- no need to install the control plane
+-- no need to maintane the control plane
+
+-- we will have control to create the worker node group (like auto scalling group)   
+#####################
+
+
+diffrence between KOPS and EKS
+----------------------------------
+EKS -- control plane will be managed by aws we will not have control on this we will have only control to create the worker node groups
+KOPS -- we will have control on control plane of master 
+
+Controlplane charges
+######################
+Controlplane charges ($0.10 per hour for each amazon eks cluster that you create + worker node charges)
+it's based on instancetype & Number of nodes
+####################################
+
+Step by step procedure using aws console
+#########################################
+
+service
+  ClusterIP
+NodePort
+LoadBalancer
+ClusterIP: None (headless service)
+
+
+NodeIP: 30000-32767   
+	
+#################################################
+
+1. creating IAM role 
+   - EKS --> EKS-Cluster--AmazonEKSClusterPolicy
+
+2.Create Dedicated VPC For EKS Cluster Using CloudFormation:
+
+   https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-06-05/amazon-eks-vpc-sample.yaml
+3. Create EKS Cluster
+  (Stacks)   --EKS_Cluster_Role_New (IAM Role first step)  --> Select CloudFormationDemoVPC((Which is creatd above) -->  
+
+ 
+	
+
+4. Create Instance to acces the cluster
+    --    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+   -- sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+5. install the aws CLI to get the config file of kubernetes
+    -- curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+	-- unzip awscliv2.zip (need to install the yum install zip unzip)
+	-- sudo ./aws/install
+    -- aws configure
+	   -- give access key and secret key region as well
+   -- aws eks update-kubeconfig --name EKS_DEMO
+6. Need to add the worker nodes to do that we should go to IAM role for worker nodes and add below policies
+   -- EC2
+          -- AmazonEKSWorkerNodePolicy
+          -- AmazonEKS_CNI_Policy
+          -- AmazonEC2ContainerRegistryReadOnly
+7. Need to create NodeGroup
+  -- t3 Medium
+   select Minim Need maximum and Desired
+  - All Remote access
+  
+   
+#######################
+
+We should create one IAM role before createing a cluster
+EKS version . 1.28
+
+
+	
+	
+when we deploy a applicatin we will get one external ip and with that we can asign the domain 
+
+
+
+-- when node goes down automatiicaly aws will asign the one node with launc configurations
+
+
+
+how requests will get from end users to pods
+
+when end users will browse requets go tot the DNS lookup likely ISP (Internet Service Provider) it will look for the ips then it will go to the Load Balancer
+
+load balancer wil have listener litenre will have pod service ip's 	service to pod
+
+##################################################
+
+in eks first class to setup like above
+second class of auto scaller like below
+###################################
+#####################################################################################
+
+
+
+
+       
+      
+
+
+6. step to get the config file from the cluster (EKS)
+	
+	
+	
+	
+	
+5. create IAM Role For EKS Worker Nodes
+    -- AmazonEKSWorkerNodePolicy
+    -- AmazonEKS_CNI_Policy
+    -- AmazonEC2ContainerRegistryReadOnly
+6. Create Worker Nodes
+7. Create An Instance Install AWS CLI IAM and KUBE CTL on one instances
+   -- curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+      unzip awscliv2.zip
+	  sudo ./aws/install
+	  sudo ./aws/install
+
+
+	
+   to autoscalling in aws we should deploy the cluster auto scaller in aws so that it wil increase the desired nodes when pods are in pending state or due to insufficent memory
+   to make a bridge between aws ans kubernetes to increase the instances whenever there is a hight load we can deploy a application like cluster-autoscalling.yml
+   
+   we should create the policy and attach to worker group that policy and we can apply cluster-autoscalling.yml
+   ###################################################################################################################
+   
+   
+   kubectl logs defaultclustername -n kube-system
+   ########################################################################################################
+   
+   apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mavenwebappdeployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mavenwebapp
+  template:
+    metadata:
+      name: mavenwebapppod
+      labels:
+        app: mavenwebapp
+    spec:
+      containers:
+      - name: mavenwebappcontainer
+        image: ashoknagari/maven-web-application:5
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 200m
+            memory: 1Gi
+          limits:
+            cpu: 500m
+            memory: 2Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mavenwebappsvc
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: mavenwebapp
+####################################################################################################################################################################
+##############################################################################################################################################################
+	
+Ingress
+#################	
+	
+we will have one single external load balancer where it will be routing the traffic to ingress
+#######################
+
+-- kubernetes ingress is a native kubernetes resource where you can have rules to route traffic from an external source to service endpoints residing inside the cluster.
+-- it requires an ingress controller for routing the rules specified in the ingress object
+-- we can define the routing rules to the ingress ingress will route the traffic to appropriate service
+   
+
+ we have few resources in Ingress
+   1. Ingress Controller (Webserver com loadbalancer)
+   2. Ingress resources
+   
+1. Ingress Controller is typically a proxy service deployed in the cluster, it's nothing but a kubernetes deployment exposed to serivce
+
+
+it's like a application this kubernetes igress controller 
+  we have few implumentions or controllers
+
+1. Traefik
+2. HPproxy
+3. contour
+4. GKE Ingress controller
+5. Istio
+
+-- ingress is a layer 7
+
+====== Ingress will support below features
+  -- content-based routing
+
+Host-based rouring for example , rouring requests with the host header foo.example.com to one group of services and the host header bar.example.com to another group
+-- path based routing for example routing requets with the URL that starts with /serviceA  toservice A and requets with URL that starts with /service B to Service B.
+
+
+-- host based routing
+-- path based routing
+
+-- ingress pods means controllers
+-- this controllers will use the resources of ingress where we have defined the rules
+  

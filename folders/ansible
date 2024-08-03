@@ -1,0 +1,236 @@
+we can use template module for to refer the variable 
+
+ansible-playbook var.yml --extra-vars 'companyName=MT location=HYD'
+if we defined first preference is file and vars will be the second preference
+
+
+handlers are soecial tasj wgucg wukk sjed bt another task
+
+notify
+- Restart the server
+
+handlers
+- Restart the server
+
+notify will pass the message to handlers handlers will start
+
+to install multiple version in multiple hosts we can create a folder called group_Vars
+we can defined like below
+
+---
+- hosts: all
+  become: true
+  gather_facts: yes
+  tasks:
+    - name: Installing Java
+      yum:
+        name: "{{javaVersion}}"
+
+    - name: Getting the java version
+      shell: java -version 2>&1 | grep version | awk '{print $3}' | sed 's/"//g'
+      register: javav
+
+    - name: Displaying Java Version
+      debug:
+        var: javav.stdout
+-----------------------------------
+
+host_vars
+for undefined hosts
+
+we can install as per the host base ungroup
+
+variable preference is 
+--extra-vars javaVersion=java-8.10-openjdk -- host_Vars --group_vars
+
+
+tags:
+------
+
+
+---
+- hosts: all
+  become: true
+  gather_facts: yes
+  tasks:
+   - name: Install Apache HTTP server
+     tags:
+     - install
+     yum:
+      name: httpd
+   - name: Copy index.html
+     tags:
+     - copy
+     template:
+       src: index.html
+       dest: /var/www/html/index.html
+   - name: Start the Apache HTTP Server
+     tags:
+     - start
+     - install
+     service:
+       name: httpd
+       state: started
+...
+
+
+command: ansible-playbook --tags 'install,copy'
+command: ansible-playbook --skip-tags 'copy'
+
+
+remote_user: root
+----------------------------------------------------------------------
+
+
+
+---
+- hosts: all
+  become: true
+  gather_facts: yes
+  tasks:
+    - name: Adding users
+      user:
+        name: "{{ item }}"
+        create_home: no
+      with_items:
+        - bhaskhar
+        - balaji
+
+    - name: Set passwords for users
+      user:
+        name: "{{ item }}"
+        password: "{{ 'password123' | password_hash('sha512') }}"
+      with_items:
+        - bhaskhar
+        - balaji
+
+    - name: Add users to sudoers file
+      lineinfile:
+        dest: /etc/sudoers
+        line: "{{ item }} ALL=(ALL) NOPASSWD: ALL"
+        validate: 'visudo -cf %s'
+      with_items:
+        - bhaskhar
+        - balaji
+----------------------------------------------------
+
+ansible all -m setup --> setup the all the information
+
+
+file
+shell
+command
+user
+copy
+
+get_url
+
+-------------------------------------------------------------------------------
+
+what is the architecture of ansible?
+
+Ans: ansible control machine and slave nodes
+
+what are the roles you have used?
+Ans: file
+shell
+command
+user
+copy
+get_url
+apt 
+yum
+user 
+shell 
+command
+dockercontainer
+debug
+
+explain the ansible roles? and structure?
+
+what is the ansible galary?
+
+how to write a conditions in ansible playbook
+
+when
+what is the inventory file can you please explain?
+
+how to set a limit?
+--limit @failed (VM ip's as well)
+------------------------------------------------------
+
+
+ansible-galaxy init apachehttpserver
+
+[ansible@ip-172-31-11-209 ~]$ tree apachehttpserver/
+apachehttpserver/
+├── defaults
+│   └── main.yml
+├── files
+├── handlers
+│   └── main.yml
+├── meta
+│   └── main.yml
+├── README.md
+├── tasks
+│   └── main.yml
+├── templates
+├── tests
+│   ├── inventory
+│   └── test.yml
+└── vars
+    └── main.yml
+
+8 directories, 8 files
+[ansible@ip-172-31-11-209 ~]$
+
+
+roles to call to 
+
+p
+
+---
+- hosts: all
+  become: true
+  roles:
+   - apachehttpserver
+...
+
+
+
+Hashicrop Vault
+
+ansible-vault create file.yml
+ansible-vault encrypt file.yml
+ansible-vault rekey file.yml
+--------------------------------
+
+clubing two groups
+[group1:group2]
+onegroup
+twogroup
+-------------
+forks to execute the ansible execution 
+defualt 5 servers
+push machanism
+
+fetch to download the files from remote server ip
+
+flat=yes --> 
+ansible all -m setup
+
+to make custome modules we should create a one shell script and we should make like .fact for that file 
+
+ansible -i inventory localhost -m setup -a "filter=ansible_local"
+-k -u 
+
+types of variables 4
+Default
+Inventory
+facts and local facts
+registered vars
+
+ansible all -m debug -a "msg={{inventory_hostname}}"
+
+host variable are hightest prioerity
+

@@ -1,0 +1,25 @@
+^^ it will make the sentase UPPERCASE like below
+
+#!/bin/bash
+my_name="NareNdrA"
+my_name_up=${my_name^^}
+echo "your name is in upper case : $my_name_up"
+
+######################################################################
+
+to convert the lower to upper by the input
+
+Ex : #!/bin/bash
+read  "name_here"
+name_variable=${name_here^^}
+echo "your name is in upper case : $name_variable"
+~
+
+##################################################################################
+
+read - p "Enter your name"
+
+echo "REPLY"
+
+above command is for the default to take the read variable
+ 

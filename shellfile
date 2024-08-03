@@ -951,6 +951,9 @@ minutes    hours   dayofthemonth    month             day of the week command   
 
 >> it will redirecct the append the standard outputt 
 
+> overwrites the file if it exists, whereas >> appends to the file.
+
+
 crontab -ir (it will ask for the confirmation to delete and it will delete (i mean interactive mode r means remove))
 
 sample cronjob :

@@ -1,0 +1,143 @@
+Private Cloud -- 
+
+ex: Century Link Cloud,IBM cloud,Oracle Cloud
+
+Hybrid Cloud
+
+ex: mix of private and public AWS and century cloud 
+ 
+Public Cloud -->
+------------
+
+ex: AWS,GCP,Azure
+----------------------
+hibrnate mode it's to taking the backup of the current memory state
+
+cat /proc/cpuinfo
+
+-----------------
+
+On Demand
+-------------
+  Hourly Billing
+  Un Predicatable Load
+  Pay as you go
+ 
+
+---------------------------------
+Decicated Host -- Physical server
+                  Hourly Billing
+                  Control Instance on the host
+
+
+Reserved
+----------
+
+  1 year/3 year term
+  predicatable load
+  Up Front Payment
+------------------------
+
+
+Spot:
+-----
+
+Bid for unused capacity
+-----------------------------------------------
+
+Networking 
+============
+
+
+aws iam list-users
+
+ENI is pending 
+
+hibranate mode example uptime
+
+
+-----------------------------------------------------------
+
+Generatl Purpose
+
+-- balanced cpu and memory
+ t2. micro 
+ t2.small
+ t2.medium
+---------------
+compute optimized
+which is required to process more batches 
+
+memory optimized
+required more memory 
+in data kafka hadoop
+--------------------
+
+storage optimized
+----------------
+storagge optimized
+
+5 VPC we can create in one region
+200 subnets
+
+
+
+192.168.0.0/16
+
+
+32 -n  32-16
+
+=2       =2 
+
+lsblk --> list block storages
+we should go to volumes and create and attach
+
+Max size of EBS --> 16 TB 16384 Gib
+
+sudo file -s /dev/xvdf
+sudo mkfs.ext4 /dev/xvdf
+(UUID)
+sudo mount /dev/xvdf /var/lib/jenkins
+sudo cp /etc/fstab /etc/fstab.orig
+sudo blkid --> to get the id
+sudo /etc/fstab -- to update the id
+sudo mount -a -> to check the errors
+java-8
+
+if we increase we should resize the storage
+-------------------------------------------
+sudo resize2fs /dev/xvdf
+#	sudo resize2fs /var/lib/jenkins
+
+s3 life cycle
+tomcat application server
+
+how many cab be s3 buckets create 100
+
+5 TB can be uploades single file
+
+From 160 GB is the max size
+---------------------------
+--------
+
+s3 perfect place for images,doc mp3 mp4 store logs
+
+what is versioning in s3
+
+if we upload that should maintain the versions
+
+
+object life cycle
+
+standard
+standardIA (Infrequent access)
+RRS (One zone access) Reduced Redundancy storage (non-critical)
+Glacier (standard logs or archive data)
+
+Replication --> Duplication
+
+
+
+----------------------
+
+

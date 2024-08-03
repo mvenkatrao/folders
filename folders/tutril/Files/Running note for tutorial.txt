@@ -1,0 +1,4 @@
+ cat installation.txt | grep ^Running | wc -l
+ 
+ yum install java -y 
+  yum remove java -y > java.txt | awk '{print $1}'

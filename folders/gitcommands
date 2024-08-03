@@ -1,0 +1,888 @@
+sGit is a source code management tool or version control tool 
+
+
+GitHub
+Gitlab
+Bitbucket
+SVN --> (Subversion)
+CVS --> Concurrent Version
+TFS --> Team Foundation server
+############################################################################
+
+
+Repository : The place where we can store the source code or contributing place 
+###############################################################################
+
+Create an organization 
+
+Create a Repository
+
+Create a Team
+
+Add the users to the team
+
+Repo Access to the Team
+#####################
+
+if we have two repositary we can provide the access by using organization
+###########################################################################
+
+https://github.com/HarshaVenkatTechnologies/Management-tool-Repo.git (HTTPS)
+git@github.com:HarshaVenkatTechnologies/Management-tool-Repo.git (SSH)
+###########################################################################
+
+
+We can rename the organization name as well
+settings rename organization
+
+############################################################################
+
+Second Repo
+##########
+https://github.com/HarshaVenkatTechnologies/Second-Repository.git (HTTPS) 404 error code
+
+git@github.com:HarshaVenkatTechnologies/Second-Repository.git (SSH)
+
+#############################################################################
+Team URL : https://github.com/orgs/HarshaVenkatTechnologies/teams/harsha-venkat-team
+###################################################################################
+
+HarshaVenkatTechnologies (Organization name)
+
+Management-Tool (Repository)
+
+Management Team (Team)
+########################################################################################
+
+git config --global user.name "Username"
+git config --global user.email "email"
+############################################
+git config --list
+git config --global --list
+git config --global --edit
+#################################################################
+
+git merge master
+
+
+git show --pretty <commit id>
+git show --pretty="" --name-only <commit id>
+#######################################################################
+
+git log -2 (it will display last two logs)
+#################################################
+
+we can add the file and commit once without adding step with one command
+git commit -a -m "commit message"
+################################################################
+
+(HEAD -> main (it means it's up to date it should navigate to the lastest commit id)
+#####################################################################
+
+key chain access (for to store the token)
+cridential manager ( for windows to store this token)
+#########################################################################
+
+diffrence between 
+git branch -d branchname (if it's merged it will work)
+git branch -D branchname (if not merged it wil work)
+#####################
+ git show --pretty --only-one 56b0b9d8f74a6c41ac9eb96d6fe50e4f5e599fcb
+############################################################
+
+f
+git reset file.txt
+git restore <file>.. (it will restore back the file discard the changes ) (it will work only for exisiting file)
+
+################################################################
+
+below is the command to rename the branch 
+##########################################
+git branch -m <old_branch_name> <new_branch_name>
+
+
+#####################################################################
+
+git restore (it's working only for exisiting files)
+git revert (both are same) (we can use to remove from Remote repo as well )
+git reset (it will revert the changes from stagig area to working area)
+#########################################################
+
+when file is removed we can do below steps :
+   rm -rf file.txt
+   git add .
+   git commit -m "removed a file"
+
+###########################################################
+
+when we create a files and if we want to clean them we can use below commands
+
+git clean -n (for preview)
+git clean -f (for force remove)
+#######################################################
+
+gitignore (when developer is working with his project that will may generate the file )
+.class
+.modules
+those files can we added into gitignore files so that those will not be tracked 
+########################################################
+
+
+once we commit the code then itself we can swithc the another branch
+##############################################################
+
+git diff main
+git diff march_07_2
+#########################################################
+
+
+merge
+
+Hello this is the new line in master branch..
+======
+hello this line is upated in dev branch
+>>>>>>> development
+Hello Guys
+
+db logic added.
+
+(above example which is mentioned till ======= that's main branch code which is after that is another branch code)
+##################################################################
+
+git push origin --all (to push the code to all the branches)
+
+
+
+alias name will be same for all the repositories
+
+we can't delte the current branch
+
+if we want to be set as a default branch
+###################################################
+
+
+peer to peer code review
+----------------------------
+
+
+Branch							Tag
+###########					#################
+
+
+Branch is mutable 					Tag is immutable
+git branch <branch name>				git tag <tag name>
+git branch						git tag
+git branch -d <branch name>				git tag -d <tag name>
+							----- we can use tag from another branches also
+version
+#######
+v1.0.0 
+1 (it represents major)
+0.(minor)
+0 (batch)
+#######################################################
+
+below is the comman to delte the tags in remote repo
+
+git push --delete origin v1.0
+
+
+there are two types of tags
+##############################
+light weight tag
+annoate tags
+
+
+command for annoate tag
+
+git tag -a v1.1 -m "annoated tag v1.1"
+#####################################################################
+
+stpes to rename the branch
+git branch -m old_branch new_branch
+
+git branch -m new_branch
+
+git push origin --delete old_branch
+git push origin new_branch
+
+without commit we should not swith to the another branch
+###################################################################
+git stash save <comments>
+
+git stash (taking back up) thi scenario is for when we are working on something on one branch without completing the code we shoul'nt suppose to switch the another branch then we have a option to save those without commit 
+
+
+git stash list
+git stash apply
+git stash@{0}
+git stash@{1}
+git stash@{2}
+git stash@{3}
+
+
+git stash apply (it's for to release the modifications i mean ready to contiou)
+
+git stash drop
+git stash pop (it release the most recent saved data)
+
+master branch
+
+DC1 DC2 DC3 DC4
+####################################################
+
+git cherry-pick 
+
+################
+
+master git cherry-pick <commit id>
+
+
+if we want to merge only one commit id we can use git cherry-pick below are the steps for this 
+
+
+in Development branch we modified few files like below
+
+file1.txt
+file2.txt
+if we want to merge one file we can get the git log files<commit id's> then switch to main branch and follow below command
+
+git cherr-pick <commit id>
+###########################################################################################
+403 forbidden
+401 unauthroized
+#############################################################
+git fetch and git pull
+######################
+
+git pull 
+
+git pull = git fetch + git merge origin main
+git fetch (it will get the code into the local repo but it does not update the code)
+
+
+rsa is a encrypt algaridham
+(Rivest-Shamir-Adleman)
+############################
+
+ssh-keygen -t dsa (t means type of algaridham)
+
+dsa  (Digital Signature Algorithm) 
+
+##################################
+
+
+ssh config file for active 
+
+Host *
+    ServerAliveInterval 120
+
+
+
+
+ssh -T git@github.com
+##################################################################
+
+git remote add name <remote url>
+git remote add origin <remote url>
+
+in a repository for ssh and https both alias names should'nt be the same 
+
+
+apache jmeter to test the application
+
+
+Readme file contains about repository
+
+(Rebase is pending)
+
+
+git commit --amend -m "TaskNo - Login feature"
+
+
+
+git rebase
+
+
+asume like in development branch we have done commit1 commit2 commit3 
+
+if we swith to main branch and merge them it will come as a one commit if we use rebase it will come as  all the commit messgages\
+
+
+git push origin --tags
+
+(tags is like a creating zip files)
+
+
+#######################################################################################################################################################################################################
+						Maven -----------------------Maven-----------------------------------Maven
+
+
+There are few build tools
+
+ANT
+Maven
+Gradle
+
+For . net
+########
+ Nant
+MSBuild
+
+Ruby
+########
+Rake
+
+
+javascript/NodeJS/AngularJS
+#############################
+Gulp/grunt
+
+
+maven is developed by apache maven
+
+build : procees of automate the creating the packages 
+
+
+based on project type we are going to generate the packages like ear war jar
+
+javac helloworld.java c means compile
+after compile it will generate like helloworld.class
+
+
+helloworld.java --> source code it can be understand
+
+helloworld.class --> byte code this is generated by java compiler it can't be read and understand
+java helloworld
+
+
+
+A . Standalone Applications (.jar -->java archive)
+(it contains only java class)
+ex : helloworld.java
+standalone application examples:
+java classes
+  
+
+B . Web Applications        (.war --> Web archive)
+(java classes + webcontent (html/css/javascript/images/xml))
+
+
+C . Enterprise Applications (.ear --> Enterprise archive)
+
+java code + webcontent
+one mandatory .war file is required for .ear file
+and also it contents .jar .war files
+
+
+.ear is big packages
+
+#####################################################
+
+maven directory structure
+#########################
+boot :
+    maven commands 
+ 
+bin  : 
+  mvn  : binary files are there
+lib  :
+   it contents libraries
+   jar files
+conf : configuration files
+   settings.xml files
+
+
+jdk 1.8 java development kit
+jre java runtime environment
+
+
+java development maven 3.3+ require JDK 1.7 or above
+
+
+export M2_HOME=/opt/apache-maven-3.9.0
+export PATH=$PATH:$M2_HOME/bin
+
+
+default names 
+below are the build files
+
+
+HTML (hypetric mark up langue)
+
+
+<> (it's for html)
+
+xml --> extensible mark up language
+
+
+<openingtag>
+
+</closingtag>
+
+ANT --> build.xml
+Maven --> pom.xml
+Gradle --> build.gradle
+
+we can customize the name as well
+
+
+
+groupid >com.mss<
+
+artificat id >projectname<
+version>1.0< (version of it)
+packaging >jar<
+
+
+
+dependencies will download fro many one of the repository below
+
+maven local repo (it's like a folder in our laptop) (it will create a folder and keep it in repo) cd ~/.M2/repo)
+
+ --> we can give custome directory 
+
+maven central repo
+remote repo
+
+for sameple project
+
+mvn archetype:generat
+
+
+
+
+groupid 
+
+In Maven, groupId is a unique identifier for a project's group or organization. It is often used in combination with artifactId and version to identify a specific project and its corresponding artifacts (such as JARs, WARs, etc.).
+
+The groupId should follow a reverse domain name convention, where the elements of the domain name are reversed and separated by dots. For example, if the organization's domain name is example.com, the groupId would typically be defined as com.example. This helps ensure that the groupId is globally unique and avoids naming conflicts with other organizations.
+
+The groupId is typically defined in the Maven project's pom.xml file, which is the project's configuration file. It is one of the required fields in the pom.xml file, along with artifactId and version.
+
+
+
+what is jar,war and ear
+##########################
+
+jar stands for Java Archive, and it is used to package Java classes and resources into a single archive file. JAR files are used for packaging libraries and standalone applications that can be executed using the java command.
+
+war stands for Web Archive, and it is used to package Java web applications that can be deployed to a web server. WAR files contain Java classes, JSPs, HTML, CSS, JavaScript, and other resources required by a web application.
+
+ear stands for Enterprise Archive, and it is used to package Java enterprise applications that can be deployed to an application server. EAR files contain multiple Java modules, such as EJBs, web applications, and resource adapters.
+
+
+
+
+what are the repository types in maven 
+########################################
+
+
+
+In Maven, there are two main types of repositories: local repositories and remote repositories.
+
+Local repository:
+The local repository is a cache of all the artifacts (such as JAR, WAR, and EAR files) that Maven has downloaded from remote repositories. When you build a Maven project, Maven first looks for the required artifacts in the local repository. If an artifact is not found in the local repository, Maven will download it from a remote repository and store it in the local repository for future use. The local repository is located in the .m2 directory in your home directory, and it can be configured in the Maven settings.xml file.
+
+Remote repository:
+A remote repository is a repository that is not located on your local machine. Remote repositories can be used to share and distribute artifacts across different development teams and organizations. Maven supports several types of remote repositories, including:
+
+Maven Central: This is the default remote repository that Maven uses to download artifacts. It contains a large number of open-source artifacts that can be used in Maven projects.
+
+Private remote repository: This is a remote repository that is set up by a development team or organization to share and distribute internal artifacts. Private remote repositories can be hosted on a web server or a repository manager tool such as Nexus, Artifactory, or Archiva.
+
+Proxy remote repository: This is a remote repository that is set up to cache artifacts from other remote repositories. Proxy repositories can help reduce the network traffic and download time when building Maven projects.
+
+Remote repositories are specified in the Maven settings.xml file or in the project's pom.xml file. Maven will automatically download the required artifacts from remote repositories when you build your project using mvn package or other Maven commands.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+in pom.xml required dependencies will be configured
+#####################
+
+<localRepository>Users/mithun/custome_maven_repo/<localRepository> this is the path where we can mention local repostiroy instead of .m2 this property will be avaiable in settings.xml
+
+
+jar files will be developed by developers will keep them in nexys
+
+#############################################################################
+
+
+
+maven life cycles			goals
+
+ 
+clean					clean --> (clean up the previous build files)
+
+
+site 					site --> it will create the document for java source code
+default					
+
+ 
+	validate --> it will validate the directory structure it will check for the all the sources files
+
+	compile --> it will compiles the java source code and any test cases 
+	test -->  it will run the test cases 
+	package --> it will generates the .jar .war and .ear pacakges
+	install --> it will store the build artificats in maven local repo
+	deploy
+
+unit test cases
+Java --> Junit
+.Net --> Nunit
+C --> Cunit
+C ++ --> CUnit
+python --> Pyunit
+Javascript --> Jasmine
+
+
+compile
+###########
+
+
+
+In Java, compile refers to the process of translating Java source code into bytecode that can be executed by the Java Virtual Machine (JVM). The javac command, which is included with the Java Development Kit (JDK), is used to compile Java source code into bytecode.
+
+In Java, compile refers to the process of translating Java source code into bytecode that can be executed by the Java Virtual Machine (JVM). The javac command, which is included with the Java Development Kit (JDK), is used to compile Java source code into bytecode.
+
+During the compilation process, the javac command checks the syntax and semantics of the source code to detect any errors. If there are no errors, the javac command generates one or more .class files that contain the bytecode for the classes defined in the source code.
+
+The compiled bytecode is platform-independent, which means that it can be executed on any system that has a JVM installed. This is one of the main advantages of using Java for developing applications, as it allows developers to write code once and run it on multiple platforms.
+
+In the context of Maven, the compile phase is one of the default phases of the Maven build lifecycle. During the compile phase, Maven compiles the Java source code in the project's src/main/java directory into bytecode and generates the necessary class files in the target/classes directory of the project.
+
+
+
+################################
+
+
+mvn clean 
+#########
+
+ 
+swager for documentation
+
+##############################
+
+IDE --> integrated development 
+Eclipes --> 
+
+##########
+
+NPM node package manager
+
+if one test case failed also package will not create
+
+mvn clean package -DskipTests (it will skip the test units)
+mvn clean package -Dmaven.test.skip=true
+
+we can run specific module as well like below
+
+mvn clean package -pl mavenEnterpriseApp,MavenEnterpriseApp-web,MavenEnterprise-app-web
+
+mvn archetype:generate default command to create a sample project
+
+we will be configure under distributionmanagement remote repo \\\\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##############################################################################################
+
+
+
+
+Installation
+
+$ sudo yum install java-1.8.0-openjdk-devel
+
+$ sudo yum install java-11-openjdk-devel
+
+cd /opt/
+ wget https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.zip
+unzip <packagename>
+
+
+For specific user
+#################
+
+vi ~/.bash_profile
+
+export M2_HOME=/opt/apache-maven-3.9.6
+export PATH=$PATH:$M2_HOME/bin
+source ~/.bash_profile
+
+For all  users
+###############
+
+vi /etc/profile
+
+export M2_HOME=/opt/apache-maven-3.8.6
+export PATH=$PATH:$M2_HOME/bin
+############################################################################################################################################################################################################
+
+					Nexus----------------------------Nexus---------------------------------------Nexus
+
+
+403 forbiden
+400 -- bad request which means from our side doing wrong
+404 -- that's not found  
+
+maven2proxy
+
+#############
+
+when we are 
+
+<!--  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+-->     allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
+  <Manager sessionAttributeValueClassNameFilter="java\.lang\.(?:Boolean|Integer|Long|Number|String)|org\.apache\.catalina\.filters\.CsrfPreventionFilter\$LruCache(?:\$1)?|java\.util\.(?:Linked)?HashMap"/>
+</Context>
+[root@ip-172-31-10-63 META-INF]#
+
+
+#########################################################################################################################################################################
+
+
+					Sonarqube--------------------------------Sonarqube------------------------------------------Sonarqube
+
+Code Review : Verifying the code against the standards
+
+Code Coverage : How many lines of source code is tested by unit test cases
+
+Employeeservice.java
+100 lines 
+
+
+
+90 % code coverage
+80 % should get pass
+
+
+it's a code quality management tool
+continuous code quality
+
+it's open source for some languages 
+
+cross platform means it can be executed in any platform
+
+#######################################################################
+
+
+sonarqube (previously called sonar) is an open source software quality management tool
+it will continously analyze and measures quality of the source ce
+it will generate the report if any issues in html format / pdf format
+it is a web based tool supports multiple lanaguages (java, C#, Js..)
+it will support multi OS platfome (Windowsx`, MAC, Linux..)
+it will support multiple databases (My sql, Oracle, Microsoft SQL server, Postgretsql)
+supports multiple browsers (IE, Microsoft Edge, FF, Chrome,safar)
+it will identifies the below catefory of issues,
+
+
+Duplicated code
+Coding standards
+Unit tests
+Complex code
+comments
+potential Bugs
+Architecture & Design
+
+
+
+
+Relatinal Databases (bank)
+###################
+
+Oracle
+MY SQL server
+
+my sql
+postgre sql
+
+tables 
+######
+rows and columns
+
+
+No SQL DBs
+##########
+
+Mongo DB
+Un structed
+Json Format
+Documents
+
+
+3 tier UI
+
+
+
+
+
+
+complex code means should'nt be same formula's 
+
+above 20 langues
+
+
+Java 1.8 X required
+Sonarqube 7.8
+
+Sonarqube 7.9 to 9X java 11 supports 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sonarqube scanner
+#################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sonarqube server
+###################
+
+compute engine
+it does varnabulities 
+Bugs
+Code smells
+
+sonarqube server generates the report and it stores in the data base
+in built data base called H2 in sonarqube 
+
+
+web server it's going to get the report and it will show by using webserver as a default
+
+
+Search enginee one of the component to get something in sonarqub server
+
+
+######################################################
+
+sonarqube we need to start it as a sonar user 
+
+
+####we should mention the sonar credentials in pom.xml under properties
+
+
+to generate the mvn package
+mvn sonar:sonar
+
+
+
+sonar:sonar {first sonar is for plugin name second sonar is goal name}
+sqa_436492b7d6e33cdd3b737b1f30bab2f294480224
+
+ <sonar.login>sqa_7658a94730c8e09b9e6a11b9ab7fdf2c5ef8bbee</sonar.login>
+
+one sonar token can be used for only one time
+
+npm run sonar
+or node sonar-project.js
+
+to run node js project's
+
+
+instead of pom.xml we should use sonar-project.js file to modify for ip address of sonar
+
+to install 
+yum install nodejs -y
+install npm
+
+
+HAMEVh#%%195
+HAMEVv#%%195
+
+
+to add extra rules we should add under quality profiles tab
+
+
+when we add the custome rules we can specify as a default by clicking in settings symbol 
+
+
+quality gates : collections of conditions 
+
+
+we can change the port number in /conf/sonar.properties 
+
+
+sonar.projectName=harsha
+sonar.projectKey=com.hr
+sonar.projectversion=1.0
+sonar.source=src
+######################################################################################################################################################################################
+
+
+
+
+

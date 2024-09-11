@@ -1,0 +1,15 @@
+booleanParam(name: 'CONTAINER', defaultValue: false, description: 'Trigger SecondaryJobName if SampleJob was successful.')
+stage('Building the container job') {
+            steps {
+                script {
+                    if (params.CONTAINER) {
+                        echo "${env.JOB_NAME}. Triggering The Container Job."
+
+                        
+                        build job: 'Job path here'
+                    } else {
+                        echo "${env.JOB_NAME} did not succeed or no trigger parameter set."
+                    }
+                }
+            }
+        }

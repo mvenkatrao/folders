@@ -1,0 +1,10 @@
+when we create a files that will get stored in hard disk
+
+but variables are not stored in file system or in hard disk those will get stored in RAM (data will stored in ram memory)
+
+
+we should use $(varialename)
+
+when we use above command to store the command output into into a variable
+
+

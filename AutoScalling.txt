@@ -1,0 +1,32 @@
+AutoScaling
+
+
+LaunchConfigurations
+AutoScalingGroup
+ScalingPolicies
+HealthChecks
+
+
+Launch Configuration provides information about the AMI and EC2 instance types / sizes
+
+any commands to execute while executing this information it has for the Launch configuration
+
+	
+Scalling Policies
+#####################
+Based on CPU metrics 
+
+Horizontal scalling --> increasing
+Vertical Scalling --> adding capacity
+
+
+Health Checks
+---------------
+
+it will determine the health check of the instances
+
+
+Launch Templates --> recently they added
+
+
+This will take the average of the CPU utilization of the all the servers and it will create

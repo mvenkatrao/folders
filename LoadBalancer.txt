@@ -1,0 +1,40 @@
+Load Balancer and servers should be in same region that can be in diffrent availability zone 
+
+LoadBalancer Family
+##################
+
+Network Load balancer --> layer 4 
+it will route the traffic to group of servers by the ports not like host based or path based
+
+
+Applicatin Load balancer --> HTTP/HTTPS --> This is layer 7 Load Balancer	
+---------------------
+This will support path based routing and host based routing
+
+
+
+classic Load Balancer --> TCP & HTTP/HTTPS protocals
+
+
+
+
+
+##############################
+
+
+
+we will have LoadBalancers
+LoadBalancers will have listerners
+listners will have routing rules
+
+
+
+
+what is sticky session --> when we have logged in same server will be processing the request
+
+
+
+High availability
+FaultTolernece
+Scalable & Elasticity  (Dynamic scaling)
+ 

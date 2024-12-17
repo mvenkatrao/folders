@@ -1,0 +1,109 @@
+path to enable password less authentication
+
+vi /etc/sshd/ssh_cnfig
+
+PasswordAuthentication yes
+ssh user_name@remoteip
+
+private key : id_rsa
+public key : id_rsa.pub
+sudo scp -r /root/. ec2-user@<remote-server-ip>:/home/ec2-user/
+
+
+to login to one server to another server 
+we should copy the public key by generating it
+
+ssh-keygen
+
+ssh-copy-id ec2-user@13.231.183.173
+
+ssh -o StrictHostKeyChecking=No ec2-user@18.183.156.227 "CMD"
+
+sshpass
+#######
+
+ssh pass is a interactive way for the authentication
+
+example :
+sshpass -p "password" ssh -t -o StrictHostKeyChecking=No ec2-user@ip "CMD"
+
+we can pass instead of password we can store into a file and we can pass that file for the authentication
+
+sshpass -f "filename" ssh -t -o StrictHostKeyChecking=No ec2-user@ip "CMD"
+
+we can export the password as well
+
+by using 
+
+export SSHPAS="pass"
+
+sshpass -e ssh -t -o StrictHostKeyChecking=No ec2-user@ip "CMD"
+
+for each_cmd in date uptime free -h 
+do
+  echo "sshpass -e ssh -t -o StrictHostKeyChecking=No ec2-user@ip $each_cmd"
+
+done
+
+
+
+
+#####################################################################
+
+#!/bin/bash
+<<cmt
+echo "The date command output on the server 18.183.156.227"
+echo "-----------------------------------------------------"
+sshpass -f "pass" ssh -o StrictHostKeyChecking=No ec2-user@18.183.156.227 "uptime"
+cmt
+
+for each_cmd in "date" "uptime" "free -h"
+do
+  echo "The $each_cmd" command out put on the server 18.183.156.227
+   sshpass -f "pass" ssh -t -o StrictHostKeyChecking=No ec2-user@18.183.156.227 "$each_cmd"
+  echo "--------------------------------------------------------------------"
+done
+
+###########################################################################
+
+
+#!/bin/bash
+<<cmt
+echo "The date command output on the server 18.183.156.227"
+echo "-----------------------------------------------------"
+sshpass -f "pass" ssh -o StrictHostKeyChecking=No ec2-user@18.183.156.227 "uptime"
+cmt
+
+
+for each_ser in 18.183.156.227 13.231.183.173
+do
+        echo "Executing the commands on $each_ser"
+for each_cmd in date uptime "free -h"
+do
+  echo "The $each_cmd command out put on the server $each_ser"
+   sshpass -f "/root/pass" ssh -t -o StrictHostKeyChecking=No ec2-user@$each_ser "$each_cmd"
+  echo "--------------------------------------------------------------------"
+done
+done
+
+
+###############################################################################################
+
+
+#!/bin/bash
+
+while read ser user pass cmd1 cmd2
+do
+  echo "Executing the $cmd1 on $ser with user as $user and password $pass"
+  sshpass -p $pass ssh -n -o StrictHostKeyChecking=No $user@$ser "$cmd1"
+  echo "Executing $cmd2 on $ser with user as $user and paword $pass"
+  sshpass -p $pass ssh -n -o StrictHostKeyChecking=No $user@$ser "$cmd2"
+  echo "--------------------------------------------------------------"
+done < servers_info.txt
+##############################################################################################
+
+13.231.183.173 ec2-user password whoami cal
+18.181.255.9   ec2-user password date cal
+#####################################################
+
+

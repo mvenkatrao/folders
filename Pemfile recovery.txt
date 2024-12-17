@@ -1,0 +1,12 @@
+--> launch a server with new key pair
+--> stop the server and detach from the server 
+--> attach to a new server 
+--> creat a new folder
+  mkdir /tmp/recovery
+
+sudo mount -o nouuid /dev/xvdf2/ /tmp/recoverkey/
+
+and go to the path /home/ec2-user/
+cat ~/.ssh/authorized_keys
+
+we can copy of that public key to this directory of the mount then we can detach from that 

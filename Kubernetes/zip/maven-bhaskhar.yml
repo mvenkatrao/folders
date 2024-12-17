@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: mavenwebappds
+spec:
+  selector:
+    matchLabels:
+      app: mavenwebapp
+  template:
+    metadata:
+      labels:
+        app: mavenwebapp
+    spec:
+      containers:
+      - image: dockerhandson/maven-web-app
+        name: mavenwebappcontainer
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mavenwebappservice
+spec:
+  type: ClusterIP
+  selector:
+    app: mavenwebapp
+  ports:
+    - port: 80
+      targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-resource-1
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: mavenwebapp.mvenkatrao.com
+      http:
+        paths:
+        # Default Backend (Root /)
+        - path: Prefix
+          pathType:
+          backend:
+            service:
+              name: mavenwebappservice
+              port:
+                number: 80
+

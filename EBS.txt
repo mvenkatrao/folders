@@ -1,0 +1,97 @@
+EBS - ec2 will have EBS volume as a root volume
+each EBS volume capacity --> 16 TB
+
+
+if we want to attach first 
+
+we should create volumes
+
+- One EBS can't be attached to multiple servers while in use
+
+
+- > we should create the volume first
+- >  we can check the storage by using below command for block storage
+   lsblk
+
+-> we should create a folder and we should mount that volume to it
+
+-> we should format also
+mkfs.ext4 /dev/xvdf
+
+
+
+- when we create with snap shot with policy aws will take care of the data like cronjob
+
+
+
+mkdir -p $JFROG_HOME/artifactory/var/etc/
+cd $JFROG_HOME/artifactory/var/etc/
+touch ./system.yaml
+chown -R 1030:1030 $JFROG_HOME/artifactory/var
+
+
+docker run --name artifactory -v $JFROG_HOME/artifactory/var/:/var/opt/jfrog/artifactory -d -p 8081:8081 -p 8082:8082 releases-docker.jfrog.io/jfrog/artifactory-oss:7.77.5
+
+
+EFS (NFS)
+
+Elastic file system NFS (Network file system)
+
+
+we should install nfs client software on the system then we should mount like below
+
+Port 2049 we should enable
+
+
+sudo apt install nfs-common -y
+
+mkdir nfsserverfolder
+command to mount (we will get it from the efs section in aws)
+
+we can use this efs for web servers to sync with static files
+
+
+sudo mount /dev/xvdf /var/lib/jenkins
+
+sudo systemctl start jenkins
+
+sudo cat /etc/fstab 
+
+sudo cp /etc/fstab /etc/fstab.orig
+sudo blkid
+
+redhat
+---------
+sudo blkid
+sudo lsblk -o +UUID --> this is for ubuntu
+
+
+after we get the ID we should take that ID number of the device
+
+sudo vi /etc/fstab
+
+UUID=<that number here> /var/lib/jenkins ext4 defaults,nofail 0 2
+
+to check we can use
+
+sudo unmount /var/lib/jenkins
+
+sudo mount -a --> this should get attach back to for permanently
+
+
+to clean up we can use below command
+
+#df -hk /
+
+sudo resize2fs /dev/xvdf
+
+
+
+to unmount to another server we can use below options
+
+sudo systemctl stop jenkins
+sudo umount /var/lib/jenkins
+- detaching from the server that EBS volume
+
+sudo file -s /dev/xvdf --> this is the command to check either files are there or not
+

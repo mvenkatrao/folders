@@ -1,0 +1,343 @@
+to display the message we can use like below
+
+
+
+
+
+Syntax of echo command:
+ echo [-enE] “[arguments]”
+ When the -n option is used, the trailing newline is suppressed.
+ When the -e options is given, then the following backslash-escaped characters will 
+ be interpreted/executed.
+ \n : This option creates new line from where it is used
+ \b : This option is used to remove one space back from where it is used.
+ \t : This option is used to create horizontal tab spaces
+ \v : This option is used to create vertical tab spaces
+ \a : This option is used to create a sound alert.
+ \r : This options is used for carriage return
+ \c: Suppress any further output
+ \ \ : Escapes or eliminate the special purpose of your escaped characters.
+ The -E option disables the interpretation of the escape characters. This is the 
+default.
+Learn how to automate common tasks using bash 
+ echo -e “\033[0;31m This is in red”
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+echo "Hi welcome to shell programing language"
+
+to execute a commands we can define like below
+echo "$(ls)" (we can call it as parenthesis)
+#########################################################
+echo -n is to display the message continoue like below
+
+
+
+
+there are few options for echo commands
+########################################
+
+syntax off echo command :
+
+* echo [ -enE] "[arguments]"
+
+  1.when the -n option is used, the travelling new line surpressed 
+  2. when the optiion -e given, the following backslash-escaped characters will be interpretter/executed
+    
+
+
+	__ \n ( when we use \n a new line will start from where it's used)
+	ex : 
+	
+	#!/bin/bash
+
+echo -e "This is first line \nThis is second line"
+
+
+output :
+########
+
+
+
+   
+  \b
+  
+  it wll remove the one word left side word when we replace this \b example
+  
+
+
+
+
+
+  [root@ip-172-31-45-211 tutorialpoint]# ./oneline_echo_command.sh
+This is first line
+This is second line
+[root@ip-172-31-45-211 tutorialpoint]#
+
+    
+	
+	\n : when we use -n from there it will start a new line like below
+	 ex :
+	there are two thing for \n 
+	if we replace -n it will contioue the next line with a one line
+	ex : 
+	
+	[root@ip-172-31-45-211 tutorialpoint]# cat -n echo_commands.sh
+     1  #!/usr/bin/bash
+     2
+     3  echo -n "This is a simple message"
+     4
+     5  echo "Current user name is $USER"
+     6
+     7  echo "Current time is "$(date)""
+[root@ip-172-31-45-211 tutorialpoint]#
+
+
+
+output :
+########
+[root@ip-172-31-45-211 tutorialpoint]# ./echo_commands.sh
+This is a simple messageCurrent user name is root
+Current time is Mon Dec 19 04:54:52 AM UTC 2022
+[root@ip-172-31-45-211 tutorialpoint]#
+
+
+###############################################
+
+
+echo command with option -t
+
+this t option is used to create a  horizontal tab spaces from where we mention
+
+
+Ex :
+
+
+This is second line
+[root@ip-172-31-45-211 tutorialpoint]# cat -n option_t.sh
+     1  #!/bin/bash
+     2
+     3
+     4  echo -e "This is first \tline\nThis is second line"
+
+Output :
+#######
+[root@ip-172-31-45-211 tutorialpoint]# ./option_t.sh
+This is first   line
+This is second line
+[root@ip-172-31-45-211 tutorialpoint]#
+#################################################################
+
+echo command with option v
+
+when we use option -v in variable value or somewhere that creates a veritical tab space 
+
+ex :
+
+[root@ip-172-31-45-211 tutorialpoint]# cat option_v.sh
+#!/bin/bash
+
+
+echo -e "This is first \vline"
+echo -e "This is second \vline"
+[root@ip-172-31-45-211 tutorialpoint]#
+
+
+
+output :
+######
+
+[root@ip-172-31-45-211 tutorialpoint]# ./option_v.sh
+This is first
+              line
+This is second
+               line
+[root@ip-172-31-45-211 tutorialpoint]#
+
+######################################################
+
+
+echo command with optiion a
+################################
+
+
+when we use option -a 
+
+that creates a sound
+
+ex :
+
+[root@ip-172-31-45-211 tutorialpoint]# cat option_a.sh
+#!/bin/bash
+
+
+echo -e "This is first \aline"
+echo -e "This is second \aline"
+[root@ip-172-31-45-211 tutorialpoint]#
+
+
+output :
+######
+[root@ip-172-31-45-211 tutorialpoint]# ./option_a.sh
+This is first line
+This is second line
+[root@ip-172-31-45-211 tutorialpoint]#
+
+
+####################################################################
+
+echo command with option -r
+##########################
+
+when we use echo command with option -r
+
+
+
+ex : 
+
+echo -e hello\rHi
+
+it will dispaly like 
+
+Hillo
+
+because when we mention \r it replace the custor point from there and that try to wrtite the data from there and it will display if there is a data after the cusor from the after the cusror that will replace the data
+
+for reference just refer the the example
+
+##################################################################################
+
+echo command with option -c 
+
+it will compress the output from where it's started
+
+
+ex:
+
+
+echo -e "Hello this is shell scripting \n\cecho command with an options"
+
+
+
+output :
+#######
+
+[root@ip-172-31-45-211 tutorialpoint]# echo -e "Hello this is shell scripting \n\cecho command with an options"
+Hello this is shell scripting
+[root@ip-172-31-45-211 tutorialpoint]#
+
+
+
+
+##########################################################################################
+
+\\ if we use any option in the echo command that will esacpe it's also like a comment 
+
+ex : 
+
+without \\
+
+[root@ip-172-31-45-211 tutorialpoint]# echo -e "Hello \nHi"
+Hello
+Hi
+[root@ip-172-31-45-211 tutorialpoint]#
+
+
+with \\
+########
+
+[root@ip-172-31-45-211 tutorialpoint]# echo -e "Hello \\\nHi"
+Hello \nHi
+[root@ip-172-31-45-211 tutorialpoint]#
+#########################################################################
+
+
+echo command with Uppercase Option -E
+
+
+
+
+
+echo -eE "Hi \nThis is shell"
+
+it will display same so option E is to normal display like \\
+
+output :
+########
+
+Hi \n This is shell
+because of -E
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+[root@ip-172-31-45-211 tutorialpoint]# cat echo_commands.sh
+#!/usr/bin/bash
+
+echo -n "This is a simple message"
+
+echo "Current user name is $USER"
+[root@ip-172-31-45-211 tutorialpoint]#
+
+output :
+########
+This is a simple messageCurrent user name is root
+
+echo -e and with \b option
+
+example :
+########
+
+#!/bin/bash
+
+echo -e "This is a first lines\b and this is second lines to this"
+
+
+
+output : 
+#######
+
+[root@ip-172-31-45-211 tutorialpoint]# ./echo_with_b.sh
+This is a first line and this is second lines to this
+[root@ip-172-31-45-211 tutorialpoint]#
+
+in above output s was removed insead of lines we could see only line and when we use only -e 
+
+
+

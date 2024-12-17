@@ -1,0 +1,36 @@
+Ec2 purchage options
+
+Ec2 Purchasing options
+
+- On Demand -- Most Expensive purchasing option & most flexable, charges will be applicable when instance is running
+- Reserved -- we can purchase or create ec2 instances for specific time period (1 Year or 2 Years 3 Years so on)
+   once we purchase we are responsible for the time period
+
+- Spot Instances --  AWS sells lot of unused servers for very short time at very less price 
+
+
+
+
+what is instance type and family
+
+
+Family : t2,m4,m3,c3,c4,cc2,g2,p2,r3,r4,x1,cr1,d2,i3,r4,cr1
+
+Instance type : t2.nano t2 micro t2.medium t2.2xlarge catagorized based on cpu and memory
+
+
+ - General purpose 
+ - Computer optimized
+ - GPU optimized
+ - Memory Optimized
+ - Storage Optimized
+	
+community AMI's are comes with only with OS's
+
+we can launch the instance without public ip using elastic ip
+
+
+
+in ebs when we update the file entire file will not be updated only particular piepce will be updated
+
+

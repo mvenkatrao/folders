@@ -1,0 +1,40 @@
+1. While creating subnets also we have define CIDR for subnet.
+subnet CIDR should be sub set of VPC CIDR.
+
+
+Below is for CIDR range
+
+32 -n 	32 - 24 	32 - 8
+
+
+ =2     =2		=2
+
+Actual IPS avaialbe = Total IPS -5 * Number of subnets
+
+
+##########################################################
+
+
+ VPC has subnets
+Subnets (Subnetworks)
+Public Subnets -->  The subnet which has access to IGW(Internet).
+IGW (Internet gate way)
+Route Table
+NAT Gateway/NAT instance --> Network address translator
+ACL/NACL (Network access controll) --> firewall at subnets level
+
+
+how a request reach to the private server?
+###########################################
+
+whenever a user request that will go to the load balancer which is placed in public server 
+
+
+actual IP's available = Total IP's - 5* number of subnets
+in each and every ip 5 ips will be  reserved
+
+1. Network address
+2. Reserved by aws for the vpc router
+3. Reserved by aws. The ip address of the DNS server is alway sthe base of the VPC network range plus two
+4. Reserved by aws for future use.
+5. Network broadcse address. we do not support broadcaset in vpc , therefore we reserve this address

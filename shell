@@ -1,0 +1,742 @@
+httpd -v 2>&1 | awk -F '/' 'NR==1{print $2}' | awk '{print $1}'
+cat /etc/httpd/conf/httpd.conf | grep ^Listen | awk '{print $2}'
+
+which bash
+
+redirection operators
+---------------------
+
+output redirection
+    > to create the file it will save which is lastet output
+    >> it will create with existing data
+
+
+input redirection
+< to provide the input
+
+combinding redirections
+
+| pipeline symbol as a standard out put
+
+STDOUT and STDERR
+
+---------------------------
+
+0 - STDIN
+1 - STDOUT
+2- STDERROR
+
+ldt 1>demo.txt 2>error.txt
+
+java --version 1>text.file 2>&1
+-------------------------------------------------
+
+echo command
+-------------
+echo [ -enE] "[arguments]"
+
+\n This option creates new line from where it's used
+\b This option is used to remove one space back 
+\t this option used to create horizontal tab space
+\v this option is used to create vertical tab space
+\a This option is used to create a sound alert
+\r this option is used for carriage retun
+\c supress any further output
+\\
+E -- without any options 
+
+-- source is to get the varibles which is there in another script
+-- or we can use if that file is in current location .
+-------------------------------------------------------
+
+storing exit status into command into variable
+
+
+exit status if it's 0 sucess
+to get that 
+echo $?
+
+non zero (1-255 values) exit status means command was failure
+127 command not found
+1 command failed during execution
+2 incorrect command usage etc..
+
+
+--------------------------------------------------------------------------------
+grep -i "sting" * it will refer all the current location 
+
+grep [options]"string/pattern" file/files
+options -i -w -v -o -n -c -A -B -C -r -l -h
+
+advanced options:
+-------------------
+-e -f and -E
+
+-i ingoring the case
+-w exact word match
+-v it will display which are not having particular text
+-o it will display only that matched string
+- n to display matched line number
+-c to display matched number of lines (to count)
+
+-A it will display next line after the match
+-B after match
+ grep -A 1 "matching" file.txt
+
+-C before match
+
+-R recorsably
+-l only file names
+-f Takes search string /pattern from a file one per line
+   grep "line" test.txt
+   grep -f it will compare the two files like
+  grep -f my_search.txt text.txt (it will look whaterver lines are there in my_search.txt in text.txt)
+
+grep -E one|two|three| four file.txt
+grep -e to search multiple strings
+grep -E ^port it will look for first match
+grep -E "xyz$" file.txt (it will match with end)
+grep -E "^file$" to match the space
+grep -E "\^" test.txt it will for the not a pattern or options to remove the special character or options we can refer \
+grep -E "p..t" file.txt it will look for which is starting with p and t
+grep -E "\." test.txt it will look for . match without matching everything this is the example for \
+grep -E "line\b" test.txt it will for which is having space after the line
+grep -E "\bline" test.txt it will look for the space before the word
+grep -E "file?" test.txt it's an optional it can be or it can't be
+grep -E "[port|is]" test.txt {it will look for the exact p character o character }
+grep -E "port{1}" httpd.sh 
+
+grep -E "port{3,4}" httpd.sh it will loof for minimum or maximum
+grep -E "port{2,}" httpd.sh it will lookf for minimum 2 times
+
+grep -E "[[:digit:]]" test.txt it will for digit
+
+grep -E "[[:UPPER:]]" test.txt 
+grep -i "[[:lower:]]" test.txt
+ [ec2-user@ip-172-31-33-47 ~]$ ifconfig | grep -E "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
+
+
+--------------------------------------------------------------------------------------------
+
+CUT
+[ec2-user@ip-172-31-33-47 ~]$ cat /etc/passwd | cut -d ':' -f 1
+[ec2-user@ip-172-31-33-47 ~]$ cat /etc/passwd | cut -d ':' -f 1,2 --output-delimiter="|"
+
+-------------------------------------------------------------------------------------------------------------
+awk [options] '[selection_creteria] {action}' inputfile
+cat inputfile | awk [options] '[section_creterial] {action}' inputfile
+
+
+-F fs To specify a field separator: (Default separator is tab and space)
+-f To specify a file that contains awk script.
+-v var=value to delcare a variable
+selection criteria: pattern/condition
+-------------------------------------
+httpd -v | awk -F '[ /]' '/version/ {print $4}' -- pattern
+httpd -v 
+------------------------------------------------------------------
+
+sting leanth
+below is for to calculate the strng value
+#!/bin/bash
+
+my_name="shell"
+echo "$my_name"
+echo "${#my_name}"
+${my_name^^}" -- to convert into upper case
+echo "${my_name_lowercase,,}" -- to convert to display in lower case
+-------------------------------------------------------------------
+
+[ec2-user@ip-172-31-37-103 ~]$ dirname /etc/httpd/conf/httpd.conf
+/etc/httpd/conf
+[ec2-user@ip-172-31-37-103 ~]$ basename /etc/httpd/conf/httpd.conf
+httpd.conf
+[ec2-user@ip-172-31-37-103 ~]$
+
+-------------------------------------------------------------------
+
+echo "${my_name:2,3}"
+ it to display 2nd and 3rd character 
+
+-------------------------------------------------------------
+operations on strings
+---------------------------[ec2-user@ip-172-31-37-103 ~]$ cat tomcat.sh
+#!/bin/bash
+
+cd /opt/
+req_tom_ver=9.0.85
+tom_m_v=${req_tom_ver:0:1}
+url="https://downloads.apache.org/tomcat/tomcat-${tom_m_v}/v${req_tom_ver}/bin/apache-tomcat-${req_tom_ver}.zip"
+
+sudo wget $url
+sudo unzip apache-tomcat-${req_tom_ver}.zip
+sudo mv apache-tomcat-${req_tom_ver} tomcat${tom_m_v}
+sudo rm -rf apache-tomcat-${req_tom_ver}.zip
+#https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.85/bin/apache-tomcat-9.0.85.zip
+----------------------------------------------------------------------------
+
+command line argument
+----------------------
+
+[ec2-user@ip-172-31-37-103 ~]$ cat commandline.sh
+#!/bin/bash
+echo "$0"
+echo "$1"
+echo "$2"
+echo "$3"
+echo "$4"
+echo "$5"
+echo "$6"
+($0 is the to print the file name )
+($# is to check the command line arguments count)
+$@: Treats each command-line argument as a separate quoted string, preserving arguments with spaces.
+
+$*: Treats all command-line arguments as a single space-separated string.
+
+foo.bar --> this will take only foo.bar it takes only middle one as something with only one charater
+foo.*bar --> this will check one or more occurances ending with bar
+[fcdplb]ooo
+[^mh] regex07 --> will not display m and h
+[j-l]oo --> range
+[j-mz]oo --> range
+[j-mJ-Mz]oo --> cerain range for with alphabets
+
+
+
+
+
+
+
+##########################################################
+
+##########################################################
+
+
+Aug
+####
+
+cut command
+
+syntax
+
+cut -c 1 filename.txt
+cut -b 1 filename.txt
+cut -b 1,2 filename.txt
+cut -c 1-9,12 filename.txt
+
+
+cut -f 1,2 filename.txt --> fild seperate will refer the tab only
+cut -d "," -f 1,2 cut.sh  --output-delimiter="  "
+
+cut -sf 1 cut.sh  --> this will do the things which will have only tab 
+
+above random lines will be ignored
+
+ex:
+one	two	three
+four	five	six
+slg jlhghl hghuhgh 
+gjj jihgh hughu g
+
+
+cut -d ' ' -f 1,2 twocut.sh --> This will not be ignored
+if we don't want to include tab one we can use -s 
+
+
+
+ httpd_version=$(apache2 -version | cut -d "/" -f 2 | grep -i "Ubun" | awk {'print $1'})
+
+
+to store the commandline output into as a variable
+###################################################################################
+
+
+
+
+AWK Command
+
+apache2 -version | grep -i "version" | awk {'print $3'} | cut -d "/" -f 2
+
+apache2 -version | awk -F '[ /]' NR==1' {print $4}'
+
+$0 --> means complete file
+NR --> means line number or records
+
+NF --> How many fields are there
+
+
+awk '{print NR,$NF}' demo.txt
+ 
+
+##########################################
+
+Operations on strings
+#######################
+
+
+when we use ${#variavlaname} --> we will get the how many strings are tehre in particular in particular variable --> it calculates the space as a character
+
+
+
+to translate into upper case
+
+${my_name^^} 
+
+lower case
+${my_name,,}
+
+dirname /etc/httpd/conf/httpd.conf --> this will remove last one
+basename this will remove first one and will display httpd.conf
+
+echo ${my_name:0}
+echo ${my_name:2:1}
+###########################################################################################################
+
+#!/bin/bash
+#req_tom_ver="10.1.28"
+req_tom_ver=$1
+tom_m_v=$(echo $req_tom_ver|cut -c 1,2)
+url="https://dlcdn.apache.org/tomcat/tomcat-${tom_m_v}/v${req_tom_ver}/bin/apache-tomcat-${req_tom_ver}.tar.gz"
+wget $url
+tar -xvzf apache-tomcat-${req_tom_ver}.tar.gz
+#mkdir tomcatfolder
+mv apache-tomcat-${req_tom_ver} tomcat${tom_m_v}
+rm -rf apache-tomcat-${req_tom_ver}.tar.gz
+###################################################################################################################
+
+
+
+input and outpur command
+
+caps REPLAY is the deffulat variable for read command
+######################################################
+
+
+commandline arguments or positional arguments
+------------------------------------------------
+
+
+echo $0 --> to print file name
+echo $1 --> first command line arguments
+echo ${10} -> 10th command line arguments
+
+
+$# --> to calculae how many command line arguments
+$* -> all the command line arguments
+$@ -> all the command line arguments
+
+
+
+
+Arthemetic Operators For Shell Scripting
+########################################
+
+ 
+There are diffrent ways to perfome arithmetic operations:
+
+Using declare
+using expr
+using let
+using (()) (For intergers)
+Using bc (for integer and float numbers)
+bc<<<"scale=4;$y/$x"
+
+my_result=$(bc<<<"scale=4;$y/$x")
+###################################
+
+
+#!/bin/bash
+
+read -p "Enter your first number: " a
+read -p "Enter your second number :" b
+((sum=a+b))
+echo "s=The addition of $a and $b is  $sum"
+
+flot numbers
+############
+
+ad -p "Enter your first number: " a
+read -p "Enter your second number: " b
+
+# Perform the addition using bc for floating-point arithmetic
+sum=$(echo "scale=1; $a + $b" | bc)
+echo $sum
+
+#########################################################################################
+
+
+case statement
+
+syntax
+-------
+
+
+case $opt in
+    opt1)
+       statements
+          ;;
+     opt2)
+        statements
+         ;;
+       opt*)
+          statement
+           ;;
+        esac
+
+
+
+#!/bin/bash
+
+read -p "Enter num1: a"
+read -p "Enter num2: " b
+read -p "Enter your options(1.Addition,2.Sub,3.Mul)" opt
+
+case $opt in
+  1) echo "you selected addition"
+      echo "The addition of $a and $b is : $((a+b))"
+      ;;
+   2) echo "You have selected Sub"
+       echo "The sub of $a and $b is : $((a-b))"
+       ;;
+    3)
+      echo "You have selected Multi"
+      echo "The Multi $a and $b :" $(($a*$b))
+     *)
+       echo "You have selected invalid option"
+         ;; 
+esac
+
+
+################################
+
+
+
+
+Test Command
+##############
+
+
+
+Simple syntax
+
+test condition or [conditino] or [[condition]]
+
+
+Numbers
+
+[[ int1 -eq int2 ]] 
+[[ int1 -ne int2 ]]
+[[ int1 -lt int2 ]]
+[[ int1 -le int2 ]]
+[[ int1 -gt int2 ]]
+[[ int1 -ge int2 ]]
+[[ ! int1 - int2 ]]
+
+###########################
+Strings:
+------------
+[[ -z str ]]
+[[ -n str ]]
+[[ str1 == str2]]
+[[ str1 != str2 ]]
+############################
+
+File test Operators
+--------------------
+[[ -d file ]] if it's directory
+[[ -f file ]] if it's file
+[[ -e file ]] if it's file exists
+[[ -r file ]] if it's file readable 
+[[ -w file ]] if it's file  writable
+[[ -x file ]] if it's file executable 
+
+[[ -d directoryname ]] && echo $?
+
+##############################
+
+Command Chaining Operators
+---------------------------
+; (Semicolon)
+
+syntax
+------
+command1;command2
+Note: if command1 failed command2 will execute
+
+
+Logical AND (&&)
+
+syntax:
+-------
+
+command1 && command2
+
+
+if command1 one success only second command will execute
+
+
+
+Logical OR (||)
+----------------
+
+syntax:
+
+command1 || command2
+
+if command1 will failed command2 will execute
+dateee 2>/dev/null || pwd
+#########################################################
+
+if else statements
+##################
+------------------
+
+
+
+
+
+
+
+syntax 
+
+if command1 (success)
+then
+  command2
+  command3
+fi
+########################################
+
+
+which httpd && echo "httpd is installed on this host"
+
+
+if else and if elif, else
+############################
+
+
+#!/bin/bash
+#read -p "Enter yur actions for nginx: " user_action
+#echo "executing your action on $user_action"
+user_id=$(id -u)
+if [[ user_id -eq 0 ]]
+then
+        echo "You can run the this $0 shell scripting"
+#else
+#echo "You should be root user to run this shell scripting"
+fi
+read -p "Enter yur actions for nginx: " user_action
+
+if [[ $user_action == "start" ]]
+
+then
+        systemctl status nginx &> /dev/null  || systemctl start nginx
+elif  [[  $user_action == "stop" ]]
+then
+        systemctl status nginx &> /dev/null  && systemctl stop  nginx
+
+elif  [[  $user_action == "restart"  ]]
+then
+        systemctl restart nginx
+else
+  echo "Please Enter valid options"
+fi
+
+##########################################################################################
+
+
+
+Loops
+#####
+
+
+for each in root.sh loop.sh
+do
+  if [[ -x $each ]]
+  then
+        echo "$each is having exeuction permissions"
+else
+         echo "$each is not having execution permissions"
+  fi
+done
+#######################################
+
+
+for variable in action
+
+do 
+
+done
+#################################
+
+
+C type variables
+#############
+
+
+#!/bin/bash
+for ((cnt=5; cnt<=10;cnt++))
+do
+        echo "This is C type"
+        echo "The iteration count is $cnt"
+done
+################################################
+
+to make the sequence we can use the seq 1 100 --> This will list till 100 
+
+####################################################
+
+
+#!/bin/bash
+if [[ $(id -u ) -ne 0 ]]
+then
+  echo "Please run as a root user to perfome the $0"
+exit 1
+fi
+#########################################################################
+
+
+#!/bin/bash
+if [[ $# -eq 0 ]]
+then
+        echo "Usages of the script is: $0 pkg1 pkg2"
+         exit 1
+fi
+
+if [[  $(id -u) -ne 0 ]]
+then
+        echo "Please run this script from root users"
+        exit 2
+fi
+
+for each_pkg in $@
+do
+        if which $each_pkg &> /dev/null
+        then
+                echo "Already $each_pkg is installed"
+        else
+                echo "Installing $each_pkg ...."
+                apt install $each_pkg -y &> /dev/null
+                if [[ $? -eq  0 ]]
+                then
+                        echo "Successfully Installed $each_pkg"
+                else
+                        echo "unable to install   $each_pkg"
+                fi
+        fi
+done
+#####################################################################################
+
+diffrence between $@ and $*
+-------------------------------
+
+The main diffrence will come when we use like this "$@" and "$*"
+
+when we use "$*" --> this will consider all the  argments as a single argument
+when we use "$@" --> this will consider as a single argument 
+
+
+#####################################################################################
+
+while loop
+-------------
+wile true
+do
+ echo "Statements"
+done
+
+-------------------------- or one more way--------------------
+
+while :
+do
+  echo "Statement"
+done
+
+
+
+#examples###
+
+
+
+
+
+
+
+#!/bin/bash
+<<comment
+while :
+do
+echo "ok"
+echo "-----"
+sleep 1s
+done
+
+
+while date
+do
+        echo today date is $(date)
+
+        sleep 1s
+       if [[ -z ]]
+done
+comment
+
+start=1
+while [[ $start -le 100 ]]
+do
+        echo "$start"
+        ((start++))
+done
+
+############################################# example two ########################################################################
+
+#!/bin/bash
+<<comment
+if [[ 4 -gt 1 ]]
+then
+        clear
+ echo "4 is greater than 1"
+else
+        echo "1 is not greater than 4"
+fi
+comment
+
+while [[ 4 -gt 1 ]]
+do
+        echo "executing 4 is greater than "
+        sleep 1s
+done
+###############################################################################################################
+
+Read command
+------------
+
+while read line
+do
+statements/commands
+done < file_name
+----------------------
+
+command | while read line
+do
+statements/commands
+done
+############################ 	
+
+
+
+
+
+Functions:
+-------------------
+
+A Function is a block of code that perfomes a specific task and which is reusable
+
+
+mycode()
+
+{
+read -p "Enter first number: " num1
+read -p "Enter second number " num2
+}
+
+this mycode can be replace whereever you want to use you can use it

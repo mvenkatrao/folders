@@ -1,0 +1,61 @@
+grep command is to search the string in a file
+
+
+grep [options] "string/pattern" file/files
+
+- i (ignoring the case)     ---- ignoring case 
+- w ( to match a exact word) ------- to match exact word
+- v ( to display the lines which are not having given string or text) ----------------- to dispaly which are not haviing 
+- o ( this option to dispaly only matches lines to print /display only matches parts from matches lines ) --------------------- to print only pattern as lines 
+
+- n ( to display the matches ine numbers it will list with line number) -- to dispaly with line number 
+- c ( to count howmany lines particular string is matched ) to display matches number of lines ------------------------ to dispaly with count
+
+- A (it will display after the one line if string is matches ) --------------------------------------- after a match one line will display
+
+- B same like above option but it's for before a string matches  ------------------------------------  before a match one line will dispaly
+- C is to match before 1 line and after a 1 line ----------------------------------------------------- it's for after one line before one it will display
+- r to match a string in subdirectories also
+- l to display from wherever string is matches ------------------------ it will print along with file names
+
+- h ( to hide the file names and print only content) ------------- it wll display only content not file names 
+
+
+
+ex for A :
+
+[root@ip-172-31-43-228 grepcommand]# cat grepcommnad.sh
+THIS LINE IS THE 1ST UPPER CASE LINE IN THIS FILE.
+this line is the 1st lower case line in this file.
+
+This line Has All It's First Character of The Word With Upper Case.
+
+Two lines above this line is empty.
+There are some no of lines in this file
+And this is the last line.
+
+
+######from above file above string is only one is there to match and need to print next line as well to do that we can use below command################
+
+grep -A 1 "above" grepcommand.sh
+and option "1" is for howmany lines 
+and -A means after a string
+and -B means before a string
+
+
+ex : for option CASE
+
+[root@ip-172-31-43-228 grepcommand]# grep -n -C 1 "above" grepcommnad.sh
+3-This line Has All It's First Character of The Word With Upper Case.
+4:Two lines above this line is empty.
+5-There are some no of lines in this file
+[root@ip-172-31-43-228 grepcommand]#
+
+
+option -r  
+
+[root@ip-172-31-43-228 grepcommand]# grep -r "above"
+grepcommnad.sh:Two lines above this line is empty.
+[root@ip-172-31-43-228 grepcommand]# grep -r "above"
+
+

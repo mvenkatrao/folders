@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javaapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: java
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 2
+      maxSurge: 1
+  minReadySeconds: 60
+  template:
+    metadata:
+      labels:
+        app: java
+    spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: worker
+                operator: In
+                values:
+                - One
+                - two
+      nodeSelector:
+        worker: One
+      imagePullSecrets:
+        - name: dockerregcred
+      containers:
+        - name: javacontainer
+          image: ashoknagari/javawebapp:10
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 200m
+              memory: 500Mi
+            limits:
+              cpu: 300m
+              memory: 500Mi
+          livenessProbe:
+            httpGet:
+              path: /java-web-app/
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /java-web-app/
+              port: 8080
+    
+

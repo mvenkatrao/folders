@@ -1,0 +1,107 @@
+test command with syntax
+
+it is a command to judge conditions .
+simple syntax
+test condition or [ condition ] or [[ condition ]]
+
+
+Note : [[]] works with bash /ksh/zsh shells  
+
+
+
+
+[] is a standard test command in shell scripting, also known as the test command. 
+It is used to test different conditions, such as whether a file exists, whether a string is empty, whether two strings are equal, and so on. 
+For example, you could use the following command to test whether a file named example.txt exists:
+
+
+
+On the other hand, [[]] is a more powerful version of the test command that is only available in certain shells, such as Bash. 
+It provides additional features, such as pattern matching and regular expressions. 
+For example, you could use the following command to test whether a string matches a regular expression:
+
+man test | vi -
+
+
+basically 
+[] it's used for test the condition like we mostly use with below options 
+
+-eq
+-gt
+! -gt
+
+
+[[]] mostly we will use this for options like below
+
+=<
+>=
+&&
+| | 
+
+
+ex : 
+
+[[ -n "string" && 1 -eq 1 ]]
+
+
+
+
+if [[ $(ls -lrt); echo $? ]] ; then
+    # The ls command succeeded
+    echo "ls succeeded"
+else
+    # The ls command failed
+    echo "ls failed"
+fi
+
+
+and also we use || this meaning for (or)
+
+* {} () is not supported in [[]] 
+
+ex : 
+
+
+[[ "string" = str* ]]
+echo $?
+
+[ "string" = str*]
+echo $?
+
+above one is the correct one 
+
+
+Here are some of the operators supported by [ and [[:
+
+-e and -f: Test whether a file exists (-e) or is a regular file (-f).
+-d and -s: Test whether a file is a directory (-d) or has a non-zero size (-s).
+-eq, -ne, -gt, -lt, -ge, and -le: Test whether a value is equal to (-eq), not equal to (-ne), greater than (-gt), less than (-lt), greater than or equal to (-ge), or less than or equal to (-le) another value.
+&& and ||: Used for combining multiple tests. && means "and" (i.e., both tests must be true), and || means "or" (i.e., at least one test must be true).
+=~: Test whether a string matches a regular expression.
+The [[ command has some additional features not available in [, such as support for regular expressions and more advanced string tests. For example, [[ $string == a*b ]] will test whether the variable $string starts with a and ends with b.
+
+Overall, [[ is generally preferred over [ due to its additional features and improved syntax. However, [ is still useful in certain situations where compatibility with other shells is important.
+
+
+
+Numbers comparision
+###################
+
+-eq
+-ne
+-lt
+-le
+-gt
+-ge
+-eq
+! -eq 
+
+
+
+Strings 
+#######
+
+
+-z str (when there is no strings for )
+ex :
+myname="" (it's not having zero strings)

@@ -1,0 +1,64 @@
+cheatsheet for [[]] and []
+Here's a cheatsheet for the most commonly used operators and syntax in the [[ and [ commands in Bash:
+
+[[ Command
+String Tests
+Operator	Description
+==	String equals
+!=	String not equals
+=~	String matches regular expression
+>	String greater than
+<	String less than
+-z	String is null (has zero length)
+-n	String is not null (has non-zero length)
+Numeric Tests
+Operator	Description
+-eq	Numeric equals
+-ne	Numeric not equals
+-gt	Numeric greater than
+-lt	Numeric less than
+-ge	Numeric greater than or equal to
+-le	Numeric less than or equal to
+File Tests
+Operator	Description
+-e	File exists
+-f	File is a regular file
+-d	File is a directory
+-r	File is readable by the current user
+-w	File is writable by the current user
+-x	File is executable by the current user
+Other Tests
+Operator	Description
+&&	Logical AND
+||	Logical OR
+[ Command
+String Tests
+Operator	Description
+=	String equals
+!=	String not equals
+<	String less than
+>	String greater than
+Numeric Tests
+Operator	Description
+-eq	Numeric equals
+-ne	Numeric not equals
+-gt	Numeric greater than
+-lt	Numeric less than
+-ge	Numeric greater than or equal to
+-le	Numeric less than or equal to
+File Tests
+Operator	Description
+-e	File exists
+-f	File is a regular file
+-d	File is a directory
+-r	File is readable by the current user
+-w	File is writable by the current user
+-x	File is executable by the current user
+Other Tests
+Operator	Description
+&&	Logical AND
+||	Logical OR
+Note that while many of the operators are the same between [ and [[, there are some differences in syntax and behavior. In general, the [[ command is more powerful and easier to use, and is recommended for most cases where conditional expressions are needed.
+
+
+

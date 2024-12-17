@@ -1,0 +1,11 @@
+strategy
+
+resolving when developer is having issue
+launching confuration using AMI for specified application
+
+attaching and detachign elastic ip 
+sonar quality gates and profiles
+-------------------------------------------------------------------
+
+git 4
+which branching strategy feature branch 

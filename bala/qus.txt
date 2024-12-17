@@ -1,0 +1,49 @@
+1. why we should use kubernetes?
+2. what is the self healing in kubernetes?
+3. is kubernetes is portable and how?
+    -it can be deploy in any cloud and any OS
+4. why do we use PODS?
+    - Pod is kubernetes object where our application is running our container container is wrapped under pod
+    - which is required cpu and memory
+5. how kubernetes ensre the application for high avaialability ?
+    - availability (livnesprobe readyness probe + supports horizontal pod scalling when we go for that supports the auto cluster auto scalling)
+6. diffrence between kubernetes deployment and service?
+   - service is like a load balancer which will manage by their labels to route the traffic to their nodes if there is any extenal cline to access it provides 3 types of services 
+   - Deployment actually creates the pods where our applicatin be running 
+     1. ClusterIP
+     2. NodePort
+     3. LoadBalancer
+     4. Ingress Controller
+
+7. any experience in upgrading the cluster?
+  ex: 1.18. 2.21  current release
+8. scalling ?
+   1. vertical 
+   2. Horizontal Pod scalling
+   (cluster auto scalling)
+9. what is the kuberentes namespace?
+   basically to application isolation it's like cluster inside cluster
+   - layer of isolation 
+   logically isolation of environment and application  for their resources
+10. what is PVC?
+11. what is configMaps?
+    when we want to refer the key value pair for the multiple pods or nodes
+12. what service account?
+         managing the authorization and authentication?  identification
+13. deployment strategy?
+14. what is the command for the deployment manually?
+15. when do we use statefulset?
+     - which is required to the data persistencey when we deploy a application as a statefulset that will be deploy with unique container and also it will get each pod will have one PVC as a unique and also that will create the container like 01 02 03 in this flow and also when container goes down that will create with same naming convention
+16 . how do you secure the kuberentes cluster?
+     - you instance should be in private vpc cidr and not exposing the unecessary ports securing not exposing the services unless it is must
+     - RBAC (providing the only required access)
+     - secrets and configMaps
+17. monitoning 
+
+================================================================================================================================================
+
+
+
+ingress controllers?
+
+  when we are working with micro services each micro service will have 

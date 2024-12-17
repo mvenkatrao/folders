@@ -1,0 +1,66 @@
+pipeline {
+    agent any
+
+    stages {
+        stage("Git Clone") {
+            steps {
+                script {
+                    git credentialsId: '8480e09a-ef8f-4167-af8a-37e85880925c', url: 'https://github.com/AMLSDEVOPS/spring-boot-mongo-docker.git'
+                }
+            }
+        }
+
+        stage("Maven Clean Build") {
+            steps {
+                script {
+                    def mavenHome = tool name: "Maven-3.9.6", type: "maven"
+                    def mavenCMD = "${mavenHome}/bin/mvn"
+                    sh "${mavenCMD} clean package" 
+                }
+            }
+        }
+
+        stage("Build Docker Image") {
+            steps {
+                script {
+                    sh "docker build -t 15.206.27.92:8083/spring-boot-mongo ."
+                }
+            }
+        }
+
+        stage("Docker Push") {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'NEXUS', variable: 'NEXUS')]) {
+                        sh "docker login -u admin 15.206.27.92:8083 -p ${NEXUS}"
+                    }
+                    sh "docker push 15.206.27.92:8083/spring-boot-mongo:latest"
+                }
+            }
+        }
+
+        stage("Deploying to Kubernetes cluster") {
+            steps {
+                script {
+                    withKubeConfig(
+                        caCertificate: '',
+                        clusterName: '',
+                        contextName: '',
+                        credentialsId: 'KubeConfig',
+                        namespace: '',
+                        restrictKubeConfigAccess: false,
+                        serverUrl: ''
+                    ) {
+                        sh "kubectl apply -f /var/lib/jenkins/workspace/Private-repo/springBootMongo-PrivateRepo.yml --kubeconfig=/usr/local/bin/kubectl"
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+

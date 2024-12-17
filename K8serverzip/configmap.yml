@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap
+data:
+  MONGO_DB_HOSTNAME: mongo
+  MONGO_DB_USERNAME: devdb
+  MONGO_DB_PASSWORD: devdb@123
+  MONGO_INITDB_ROOT_USERNAME: devdb
+  MONGO_INITDB_ROOT_PASSWORD: devdb@123 

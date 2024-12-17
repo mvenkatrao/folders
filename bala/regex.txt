@@ -1,0 +1,7 @@
+Regular expressions are a way to search for patterns within data sets.
+
+.* --> one or more occurances
+ ex: cat file grep -i "foo.*bar"
+\s* (for the space)
+
+

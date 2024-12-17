@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mithuntechappingressrule
+spec:
+  tls:
+  - hosts:
+      - mvenkatrao.com
+    secretName: mithun-ingress-tls
+  ingressClassName: nginx
+  rules:
+  - host: mvenkatrao.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/java-web-app"
+        backend:
+          service:
+            name: javasvc
+            port:
+              number: 80
+      - pathType: Prefix
+        path: "/maven-web-application"
+        backend:
+          service:
+            name: mavenwebappservice
+            port:
+              number: 80
+

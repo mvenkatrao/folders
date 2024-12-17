@@ -1,0 +1,108 @@
+— As a DevOps engineer, my main roles and responsibilities include 
+I automate manual processes using tools like scripts and configuration management tools to save time and reduce errors.
+I create and maintain pipelines in Jenkins to automate building, testing, and deploying code changes.
+I monitor system performance and troubleshoot issues to ensure smooth operation of applications and infrastructure.
+I use Docker to package applications into containers, making them portable and scalable.
+I work with cloud platforms like AWS to provision and manage infrastructure resources.
+I collaborate with development and operations teams to streamline processes and improve efficiency.
+I implement security best practices to protect systems and data from threats.
+Overall, my goal is to improve the development and deployment process, ensuring that software is delivered quickly, reliably, and securely.
+
+
+
+
+Implement Containerization with Docker:
+--------------------------------------
+Develop Dockerfiles and build Docker images for applications.
+Manage Docker containers and ensure their efficient operation.
+Optimize Docker images for size, security, and performance.
+
+Deploy and Scale Kubernetes Clusters:
+-------------------------------------
+Configure and deploy Kubernetes clusters across different environments.
+Scale Kubernetes clusters to accommodate varying workloads dynamically.
+
+Manage Containerized Applications:
+----------------------------------
+
+Define Kubernetes manifests to deploy and manage applications.
+Monitor and maintain the health and performance of containerized applications.
+
+
+--------------------------------------------------------------------------------------
+
+i'm the person who was the responsible for to take care of the repositories 
+
+developing the dockerfiles and building the docker images for the applications.
+ managing the docker containers and ensure their effiencet operations.
+ i used to configuring and deploying the kubernetes across diffrenet environments
+ and also taking care of the code quality analysis with sonarqube when it's not upto the mark of the threshold checking with the developers fixing them 
+
+* monitoring and maintaing the pipelines if any  troubleshooting and fixing them
+-- working with tickets like p1 p2 p3
+====================================================================================================
+
+-- Developing the Dockerfiles and building the docker images for applications.
+-- Managing the docker containers and ensure their effiencet operations.
+-- Configuring the deploying the kubernetes clusters across diffrenet environements
+-- Monitoring and maintaining the containerized applications
+I create and maintain pipelines in Jenkins to automate building, testing, and deploying code changes.
+- and also i used to taking care of the failure piplines and fixing them 
+
+#-- i created and mainting the pipelines if any failure pipelines fixing them 
+-- and troubleshooting the applications.
+-- and working with tickets as well like p1 p2 and p3
+
+
+--------------------------------------------------------
+
+
+Master -- dev -- QA -- PPD -- Prod
+          |
+          feature
+          |
+          dev
+
+Feature branching strategy 
+master and integrated branch long lived branches
+master always points to the production
+the total code is avaialbe in integration
+to change the features we will create a branch from integration
+
+
+
+---------------------------------------------------------------------------
+
+premot-grafana
+
+git push
+
+diffrence between fetch and pull 
+
+fetch only it informes  
+
+
+git merge and rebase
+
+.git
+.gitignore
+
+------------------
+
+pre-commits hook and post commits hook
+
+
+doing the certain task before the actions and after the actions
+
+resolving conflicts
+---------------------
+
+who is the developer who has done the changes
+
+
+
+
+2016-Oct-05 to 2021-July-01 SAP
+
+
+

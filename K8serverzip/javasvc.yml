@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: javasvc
+  # namespace: test-ns
+spec:
+  type: ClusterIP
+  selector:
+    app: java
+  ports:
+    - port: 80
+      targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-resource-java
+  # namespace: test-ns
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: javawebapp.mvenkatrao.com
+      http:
+        paths:
+        - path: /java-web-app
+          pathType: Prefix
+          backend:
+            service:
+              name: javasvc
+              port:
+                number: 80
+

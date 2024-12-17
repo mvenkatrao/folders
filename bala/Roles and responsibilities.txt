@@ -1,0 +1,71 @@
+Developing the Dockerfiles and build Docker Images for applications.
+Managing the  Docker containers and ensure their efficient operation.
+Optimize Docker images for size, security, and performance. (Remove unnecessary files and dependencies to reduce image size. Regularly update base images, scan for vulnerabilities, and minimize attack surface)
+Configure and deploy Kubernetes clusters across different environments
+Monitor and maintain the health and performance of containerized applications
+I create and maintain pipelines in Jenkins to automate building, testing, and deploying code changes
+I monitor system performance and troubleshoot issues to ensure smooth operation of applications and infrastructure
+
+===================================================================================================
+
+-- Developing the Dockerfiles and building the docker images for applications.
+-- Managing the docker containers and ensure their effiencet operations.
+-- Configuring the deploying the kubernetes clusters across diffrenet environements
+-- Monitoring and maintaining the containerized applications
+-- i created and mainting the pipelines if any failure pipelines fixing them 
+-- and troubleshooting the applications.
+-- and working with tickets as well like p1 p2 and p3
+=========================================================================================================
+
+
+-- Creating the git repo's
+- i used to write the pipelines end to end
+-- Ansible i used to write the diffrent roles 
+-- sonarqube
+-- dependencies , configurations, plugin management
+--  
+
+
+
+
+
+-----------------------------------------------------------------
+
+my name is venkat 
+i have 5.10 years of experience as a devops engineer
+the tools i was working with github as a source code manageemtn tools the build tool is maven and tomcat sonarqube for to analysis the code quality accuracy and nexus repository where we can store the artifactory and docker images and kubernetes and few of the aws services
+
+when it comes to the roles and responsibilities
+
+
+i was the respponsbile for to take care of the repositiories and working with developers when they had an issue
+and i used to developing the dockerfiles and building the docker images for applications
+and managing the dokcer containers and ensure their efficent operations as well
+and also i usec to configuring the deplying the kuberentes scluster for diffrent environements
+monitoring and mainting the applications and i used to take care of the sonarqube reports code quality '
+i used to ake care of the sonarqube as part of the Countius integration 
+------------------------------------------------------------------------------------------------------------
+
+-- Hi My name is venkat
+-- i have 5 years and 10 months of experience as a devops engineer
+-- the tools i have experience with the source code management github the build tool maven and tomcat sonarqube is to check the code quality and nexus where i used to store the artifacory docker images and kuberentes for archastration tool and few of the aws services
+
+when it comes to the roles and responsibilites
+---------------------------------------------------
+
+-- i was the responsbile for to take care of the few of the repositories
+-- and setting up the pipelines to automate the build and testing deploying the code changes.
+-- i used to monitor the system perfomance and trouble shoot the isses to ensure their smooth opeation of the application
+
+-- developing the dockerfiles and creating the docker images for the applications
+-- and also i used to manage the docker containers 
+- i used to make sure for delivered quickly, reliabbly and securly 
+
+
+
+
+
+
+
+
+ 

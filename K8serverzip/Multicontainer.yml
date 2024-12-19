@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: javawebapppod
+  namespace: test
+  labels:
+    app: javawebappp
+spec:
+  containers:
+  - name: javawebappp
+    image: javawebapp:1
+    ports:
+    - containerPort: 8080
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: javawebappsvc
+  namespace: test
+spec:
+  type: NodePort
+  selector:
+    app: javawebapp:1
+  ports:
+  - port: 8080
+    targetPort: 8080
+  - port: 80
+    targetPort: 80

@@ -55,6 +55,22 @@ Ec2 additioinal topics
 
 
 
+1. Physical interface level check -1 
+- power check
+- connectvity check
+- software issue with physical host
+- any issue with hardware issues
+- to check the system logs 
+- Go to Actions - Monitoring-Troubleshoot - click on get system logs
+- if something wrong with root volume we can replace with snapshots also
+
+2. Instance level check -2 
+- os level
+- booting level
+- file system correctpion
+- OOM
+- kernel issues
+
 
 
 

@@ -146,3 +146,16 @@ weighted routing policies
 we will measure this in 255
 255 means 100
 
+weighted routing policies
+###########################
+- we can map this domain to multiple resources
+we will measure this in 255
+255 means 100
+
+Record id -> like a tag name
+weight we should keep in mumbai like 0 (No traffic)
+
+add another record 
+- we should add another record for another region and vpc or load balancer
+  there we have to configure the load balancer also and weight should be 255
+

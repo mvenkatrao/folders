@@ -159,3 +159,12 @@ add another record
 - we should add another record for another region and vpc or load balancer
   there we have to configure the load balancer also and weight should be 255
 
+
+latency routing policies:
+#######################
+
+depending on the latency or how customers are access from where they are access according to that nearby regions it will route the traffic
+- it will response near by locations traffic will go which is near by regions 
+
+geo-location routing policies
+############################

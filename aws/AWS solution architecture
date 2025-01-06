@@ -163,8 +163,12 @@ add another record
 latency routing policies:
 #######################
 
+
+
 depending on the latency or how customers are access from where they are access according to that nearby regions it will route the traffic
 - it will response near by locations traffic will go which is near by regions 
 
 geo-location routing policies
 ############################
+
+if we want to configure like when there is a request from India that has to go to the USA for that also we can use his geo-location routing policies

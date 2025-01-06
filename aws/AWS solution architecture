@@ -45,5 +45,9 @@ AWSElasticBeanstalkWebTier
 AWSElasticBeanstalkWorkerTier
 AWSElasticBeanStalkMultiContainerDocker
 
+Deletion Process 
+- we have to delete the environments first
+- than we have to remove the application
+
 
 

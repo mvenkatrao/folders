@@ -75,3 +75,20 @@ Ec2 additioinal topics
 
 https://docs.aws.amazon.com/whitepapers/latest/introduction-aws-security/security-of-the-aws-infrastructure.html - aws security documentations 
 
+
+Placement Group
+
+Cluster - Means it will take same hardware same power supply whnever we launch any istances
+ we can create the partitions for placement group mostly for hadop
+
+Rack Spread level placement groups
+
+when we launch any servers that will lanunch in only one rack
+
+we can't lanunch the instance with placement groups if already instance is running or already lanunched if really want we can create one golden ami from that we can lanunch
+
+- placement group steps
+- we should create the placement group
+- we should go the consul while lanunching we can select the placement group
+
+- to protect the instance we can enable the encryption whenever a instance is lanunching that ebs will be encrypted

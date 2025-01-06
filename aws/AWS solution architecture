@@ -112,6 +112,10 @@ below are the imporant records
 #############################
 if we buy from godaddy we have to update this records over there
 if we buy from somewhere we have to update those records over there
+
+Failover Routing Policies
+###########################
+
 if we buy it from aws we have to update there also registered domains
 ns-506.awsdns-63.com
 ns-540.awsdns-03.net
@@ -172,3 +176,8 @@ geo-location routing policies
 ############################
 
 if we want to configure like when there is a request from India that has to go to the USA for that also we can use his geo-location routing policies
+
+FailOver Routing policies:
+################################
+
+- we should keep an one primary one secondary whenver there is a issue with one automatically that will go to the another region or another region

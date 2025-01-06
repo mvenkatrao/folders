@@ -139,5 +139,10 @@ this is the where we can configure the sub domains also
 - we should give that load balancer to that
 - we should enable the alias and where this traffic should go to the load balancer
 
-
+Simple routing policie
+########################
+weighted routing policies
+- we can map this domain to multiple resources
+we will measure this in 255
+255 means 100
 

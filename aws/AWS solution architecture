@@ -1,0 +1,49 @@
+IAM Roles
+----------------
+
+
+we can attach the roles to access to only one resource of aws service to instance level
+
+if we want our instance should access to only particular services in aws from the instance level we can configure the roles like below
+
+go to the aws roles and select which service that belongs to
+attach the required policies to that role attach that role to the instance by modifying IAM role
+
+system manager
+#####################
+
+there would be a one feature called session manager in the system manager 
+AmazonSSMFullaccess
+
+below steps to enable the session manager 
+
+https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started-instance-profile.html
+
+we can make the group of instance as a resource group in the session manager to collect the multiple instances
+- we can execute the commands without loggin also using this session manager
+- and we can store that output into s3 also and cloud watch logs also
+- we can make the patch policy also using system manager
+
+elastic beanstack - Pas platform as a service
+#################
+
+https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts-roles-service.html -> This is to create the service role
+
+Below are the policies that we should attach 
+
+Role Name
+aws-elasticbeanstalk-service-role
+
+permissions
+AWSElasticBeanstalkEnhancedHealth
+
+trusted entity
+
+Permissions
+
+AWSElasticBeanstalkWebTier
+AWSElasticBeanstalkWorkerTier
+AWSElasticBeanStalkMultiContainerDocker
+
+
+

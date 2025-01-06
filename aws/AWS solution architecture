@@ -92,3 +92,32 @@ we can't lanunch the instance with placement groups if already instance is runni
 - we should go the consul while lanunching we can select the placement group
 
 - to protect the instance we can enable the encryption whenever a instance is lanunching that ebs will be encrypted
+
+
+
+Route 53:
+##############
+
+godaddy
+namecheap.com
+bigrock
+
+- when we register with domain with any of the provider if we want to route that trafic to aws we should use Route 53 
+  we have two  hosted zones like below
+-  public hosted zone - over the internet
+- private hosted zone - within the aws account or only to particular vpc also we can make it using this private hosted zone
+* when we create any hosted zone we will get two records
+1. Name Server Record
+below are the imporant records
+#############################
+if we buy from godaddy we have to update this records over there
+if we buy from somewhere we have to update those records over there
+if we buy it from aws we have to update there also registered domains
+ns-506.awsdns-63.com
+ns-540.awsdns-03.net
+ns-1592.awsdns-07.co.uk
+ns-1101.awsdns-09.org
+
+2. SOA (Start of Authority record)
+
+

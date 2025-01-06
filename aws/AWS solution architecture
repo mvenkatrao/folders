@@ -120,4 +120,24 @@ ns-1101.awsdns-09.org
 
 2. SOA (Start of Authority record)
 
+godaddy
+manage dns ->
+i will use my own nameservers 
+we have to add above records 
+
+we have to create the records now 
+A Record (address records)
+C Record
+WAWA
+mx
+tx records
+
+
+this is the where we can configure the sub domains also
+
+- to map multiple instance we should create load balancer with target groups
+- we should give that load balancer to that
+- we should enable the alias and where this traffic should go to the load balancer
+
+
 

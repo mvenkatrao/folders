@@ -232,45 +232,6 @@ Class E : 240.0.0.0 - 255.255.255.255 : R& D
 
 127: loopback /localhost -> to use for same local machine to connect internal same local system
 
-#############################################################################################################
-
-
-
-VPC 
-#####
-
-Virutal private cloud : networking part in aws
-
-Public IP: Unique across the globe. (Internet)
-Private IP: Unique with in the network . (internal)
-
-------------------------
-IPv4: 32 bit : 2^32
-IPv6: 128 bit : 2^128
-
-below commands gives us private ip information
-ipconfig or ip addr
-
-To know Public ip of your network go to any of these websites below:
-
-https://whatismyipaddress.com
-https://www.whatismyip.com
-htps://iplocation.io/
-
-IPv4: 5 Classes
-
-Class A : 0.0.0.0 - 126.255.255.255 (0-126)
-Class B : 128.0.0.0 - 191.255.255.255 (128-191)
-Class C : 192.0.0.0 - 223.255.255.255 (192-223)
-
-above for regular purpose
-
-
-Class D : 224.0.0.0 - 239.255.255.255 : BroadCosting/Multicasting
-Class E : 240.0.0.0 - 255.255.255.255 : R& D 
-
-127: loopback /localhost -> to use for same local machine to connect internal same local system
-
 10 laptops: enable internal communication : using private ip addresses won't cost us anything
 need to re-watch from 10:40 2 mins back
 
@@ -370,9 +331,90 @@ Ans : 6 (2 Public & 4 private)
 
 
 How many public subnets required within VPC
-192.168.0.0/25 & 192.168.0.128/25
+192.168.0.0/26  to 192.168.0.64/26
 
 How many private subnets required within VPC?
-192.168.1.0/25 , 192.168.1.128/25, 192.168.2.0/25 & 192.168.3.0/25 & 192.168.3.128/25
+
+192.168.0.128/25
+192.168.1.0/25
+192.168.1.128/25	
+192.168.2.0/25  
+
+Below are the for the future purpose
+
+192.168.2.128/25
+192.168.3.0/25	
+192.168.3.128/25	
 
 
+
+3 tier application
+
+ELB --> 2 subnets  to run elb (ap-south-1a & ap-south-1b)
+APP --> 2 more subnets (ap-south-2a & ap-south-2b)
+DB --> 2 more subnets (ap-south-2a & ap-south-2b)
+
+
+
+Going to create the VPC with 192
+
+
+
+Creating VPC
+##############
+
+VPC Only - when we are set up everything manually we can go ahead with this
+VPC and more --> wen we want to see how things going on we can choose this option
+
+NameTag
+ Custome-VPC-YT
+
+CIDR range
+192.168.0.0
+
+No IPv6 CIDR block
+
+
+Tenancy - Default
+dedicated means creating this in dedicated hardware
+
+
+When we create One VPC we will get below
+1 Route tables
+2. one security group
+3. One network ACL
+
+We have to create the one subnet now 
+
+
+Tags
+
+
+
+
+his flow 
+1.
+
+CVPC-YT-Public-2A
+Asia Pacific (Hyderabad)/ap-south-2a
+192.168.0.0/26	
+		
+
+2.CVPC-YT-Public-2B
+192.168.0.64/26	
+
+
+3.Private Subnets
+
+CVPC-YT-APP-2A
+192.168.0.128/25
+
+
+4.CVPC-YT-APP-2B
+192.168.1.0/25
+
+5.CVPC-YT-DB-2A
+192.168.1.128/25
+
+6.CVPC-YT-DB-2B
+192.168.2.0/25

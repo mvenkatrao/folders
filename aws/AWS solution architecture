@@ -182,3 +182,53 @@ FailOver Routing policies:
 
 - we should keep an one primary one secondary whenver there is a issue with one automatically that will go to the another region or another region  
 - before that we should configure the health checks
+for failure over 
+- no need to configure the health check for secondary
+- we should give the domain name we should give the port and we shold give the path also if required for the health checks
+- whenver there is a issue with one primary region that will automatically route the traffic to another region
+- this is called active passive machanism
+
+
+One more Routing policy Multivalue answer
+############################################
+
+- we can't use alias
+- we can delivery the request based on the CIDR range also using ip address routing policy
+- we can't use combination of any of the routing policy
+
+
+VPC 
+#####
+
+Virutal private cloud : networking part in aws
+
+Public IP: Unique across the globe. (Internet)
+Private IP: Unique with in the network . (internal)
+
+------------------------
+IPv4: 32 bit : 2^32
+IPv6: 128 bit : 2^128
+
+below commands gives us private ip information
+ipconfig or ip addr
+
+To know Public ip of your network go to any of these websites below:
+
+https://whatismyipaddress.com
+https://www.whatismyip.com
+htps://iplocation.io/
+
+IPv4: 5 Classes
+
+Class A : 0.0.0.0 - 126.255.255.255 (0-126)
+Class B : 128.0.0.0 - 191.255.255.255 (128-191)
+Class C : 192.0.0.0 - 223.255.255.255 (192-223)
+
+above for regular purpose
+
+
+Class D : 224.0.0.0 - 239.255.255.255 : BroadCosting/Multicasting
+Class E : 240.0.0.0 - 255.255.255.255 : R& D 
+
+127: loopback /localhost -> to use for same local machine to connect internal same local system
+

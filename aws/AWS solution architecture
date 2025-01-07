@@ -180,4 +180,5 @@ if we want to configure like when there is a request from India that has to go t
 FailOver Routing policies:
 ################################
 
-- we should keep an one primary one secondary whenver there is a issue with one automatically that will go to the another region or another region  10:21
+- we should keep an one primary one secondary whenver there is a issue with one automatically that will go to the another region or another region  
+- before that we should configure the health checks

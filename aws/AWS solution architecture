@@ -418,3 +418,13 @@ CVPC-YT-APP-2A
 
 6.CVPC-YT-DB-2B
 192.168.2.0/25
+
+- One VPC will have only one IGW
+once we creawte the VPC + subnets
+- we have to create one IGW (each VPC will have only one IGW)
+- Once IGW done we have to create the Route table
+- One Public Route
+- One Private Route
+
+- Now we have to associate public Route to the subnets , we have to associate subnets now 
+

@@ -596,6 +596,22 @@ ap-south-1					us-west-1
 - we should go to the accepter of the vpc we should accpt the peering 
 - we should add this requester ip range ini the routes in the requester and also accepter range also 
 
+RDS - Pas
+#####
+
+There are 6 Relational Data bases
+1. aurora 
+ - mysql
+ - postgress sql compatiable
+ - mysql
+ - mariadb
+platform as a service
+
+Database as a service
+
+
+- easy create means aws default all the options
+- standard create means from scratch
 
 
 

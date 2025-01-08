@@ -428,3 +428,175 @@ once we creawte the VPC + subnets
 
 - Now we have to associate public Route to the subnets , we have to associate subnets now 
 
+
+- when we associate the public subnets --> this is not going to be a public subnets but that has to be enable with igw in the same route table options we should enable the all with igw 0.0.0.0
+to simplyfy
+
+- we have to create the one VPC
+- we have to create the subnets as per our requirement
+- we have to create the one igw
+- we have to create the routes
+- we have to associate the subnets according to the either to private or public
+- when we associate only that will become either public or private according to the our enabling the igw route rules
+- we should enable the auto assign public address - this is from subnet settings actions 
+
+- we have to enable the Enable DNS hostnames in the -  vpc settings
+
+
+- we should enable the logging for the vpc 
+- Create flow logs - we can store this in s3 also this logs or in cloudwatch
+- we can monitor the logs from subnet level also - Create flow log
+   - Create policy 
+
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "VisualEditor0",
+			"Effect": "Allow",
+			"Action": [
+				"logs:CreateLogStream",
+				"logs:DescribeLogGroups",
+				"logs:DescribeLogStreams",
+				"logs:CreateLogGroup",
+				"logs:PutLogEvents"
+			],
+			"Resource": "*"
+		}
+	]
+}
+
+
+- We have to Create the one role also like below
+
+Role -> Ec2 -> we should select the policy which we created above 
+- Now we have to change the TrustedEntitiy in the roles 
+
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Principal": {
+				"Service": "vpc-flow-logs.amazonaws.com"
+			},
+			"Action": "sts:AssumeRole"
+		}
+	]
+}
+
+
+YT-VPC-Role-Cloudwatch -> Role Name
+YT-VPC-Logs-Cloudwatch -> Cloud Watch Policies
+
+Now we have to create the flow logs in vpc
+- Flow Log Name 
+my-vpc-logs
+
+Filter -> All
+Aggregation - 1 min
+
+Destination
+
+To CloudWatch
+
+
+Before that we have to create one log group
+
+- we have to create select the destination log group	
+- we have to select the role which early created
+
+- Log record format -> aws default format
+
+
+
+Now we have to launch the instance
+
+
+Jumb server -> means this is the way to communicate with private servers which is placed in public servers
+
+we have to login to the jump server from there also we can login to the private instance but it will be not having any internet
+- we have to enable NAT Gateway (NAT instance very old one)
+- we have to enable the internet to the private instances using this NAT gateway -> and we should allocate on elastic ip also to this
+- we have to enable this nat in subnets of private we should associate
+
+
+-- we can also enable this using NAT instance 
+
+we have to launch one instance with communicty ami with NAT ami -> we have to go to security -> we have to change the destination stop and save
+- we have to go to that nat route tables and we have to enable the instance which we created we have to select that 
+
+- blackhole - means one way traffic
+
+- it will enable the only one HTTP traffic 
+- all the traffic will go from NAT
+
+
+
+
+#########################################
+
+
+
+NACL - Network acl
+- we can filter the traffic using this NACL
+- This is VPC level
+
+Refer the screenshot
+ - this is the where we can block the traffic according to the ip range 
+ - lowest rule number will be highest priority
+ - NACL will act as a firewall at subnet level
+
+
+
+
+
+One requirement 
+#####################
+
+we have one s3 data how this can access without IGW without NAT
+
+
+aws s3 -ls --region ap-south-2 --debug
+
+VPC Endpoint
+##################
+
+
+Two end points
+
+1. Interface Endpoint
+2. Gateway will be managed by aws
+
+
+to simplefly VPC endpoints will connect to the particular resource even if we not enabling IGW or NAT
+
+
+
+
+
+VPC peering
+##########
+
+
+
+Requester VPC					Accepter VPC
+vpc-08973902cae53a532				vpc-0e8478e4d2becdfdb
+	
+192.168.0.0/22					172.31.0.0/16
+ap-south-1					us-west-1
+590183956666					590183956666
+
+
+- we should create one VPC peering
+
+- we should go to the peering and before above details has to gather
+
+- we should give the accepter vpc id and vpc 
+- we should go to the accepter of the vpc we should accpt the peering 
+- we should add this requester ip range ini the routes in the requester and also accepter range also 
+
+
+
+
+

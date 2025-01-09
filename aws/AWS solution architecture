@@ -613,6 +613,76 @@ Database as a service
 - easy create means aws default all the options
 - standard create means from scratch
 
+Retention means it will store the last how many days data it should keep 
+
+
+maintenance window :
+keep the changes when we open maintenance window we can apply
+
+- mysql - swl work bench
+- work bench - mariadb
+- pg admin - postgresssql
+- tad oracle
+- sql ssm 
+
+
+
+S3 Module
+
+
+Storage Class we can find it under object property
+
+
+Storage Classes
+- Standard
+- Intelligent-Tiering
+- Standard-IA -> we can access but retrival time will be longer
+- One Zone IA - it will store only in one IA
+- Glacier Instant Retrival
+ - Glacier is only for achival 
+ - we will not able to access this data to access we should initiate the restore than only we can access the data-
+
+- Reduced redenancy storage - not suggestable to use
+Glacier Instant Retrieval - this will be accessable quaterly
+
+
+
+- we can enable the versioning so that whatever is uploaded latest will be become as a main one
+- we can also provide the object access with time frame also
+-  we can do the data transmission moving from one class to another class
+- we can also delete the objects everything we can do with by creating life cycle rule
+
+- life cycle rule
+
+- refer the screen shot for the strcture 
+
+- lifecycleName - YT-s3-LifecycleName
+- limit the scope of the rule using one or more filters -> is this for one bucket or one folder we can decide in this option -> if we want for particular folder
+- Apply to all the objects which is in the bucket 
+- tags 
+  - if we want to move according to the tags also we can 
+
+
+- we can select from minimum size to maximum size also 
+
+
+Lifecyle rule actions :
+###########################
+
+it's for to move automatically
+automatically deletion also
+
+Move current versions of objects between storage classes -> moving only current versions
+Move noncurrent versions of objects between storage classes
+Expiry current versions of objects
+permanently delete noncurrent versions of objects
+Delete expired object delete makers or incomplete multiplepart uploads
+
+
+
+To host static website we can use s3 bucket also
+
+
 
 
 

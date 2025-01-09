@@ -683,6 +683,25 @@ Delete expired object delete makers or incomplete multiplepart uploads
 To host static website we can use s3 bucket also
 
 
+simple steps
+
+- we should create a abucket with dns name
+- we should upload the files over there
+- we have to go to the property and enable the static website
+
+
+Bucket Policies
+####################
+
+Resource level restrictions
+
+1. we have to create one user
+2. we have to attach the s3full access
+
+requirement
+-----------
+
+
 
 
 

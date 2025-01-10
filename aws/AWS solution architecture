@@ -745,5 +745,107 @@ ifw we are not access any data for 90 days it will go to the intelligent-tiering
  - when we do the upload of a file this will go and get upload in the near by locations
 
 
+we can check like below
+
+
+https://s3-accelerate-speedtest.s3-accelerate.amazonaws.com/en/accelerate-speed-comparsion.html?region=ap-south-1&origBucketName=yt-bala-telugu
+
+this will tell us whcih is the better option either s3 direct or accelerate option 
+
+
+
+Requester pays
+####################
+
+the person who is doing get or put they have to pay
+
+metrics
+########
+
+we can go to any of the bucket we can go to the metrics 
+- we can see the bucket size objects
+- if we want to see the custome metrics we can enable there - go to view additional charts -> request metrics
+- if we can find how many http requests 
+- how many https requests
+- how many delete requests
+- how many 404 errors
+
+
+Object lock 
+---------- 
+
+-> if we enable this option no one can delete the object
+
+
+- we should enable the default retention mode
+- Governance
+  - who has access to the particular IAM permissions can modify the retention period
+
+- Compliance
+- No user can overwrite or delete the protected objct versions during the retention period
+
+
+- we can delete the old versions but not the current versions
+- we can't delete the bucket also
+- if we modify also we can't delete the objects or buckets
+
+
+
+StorageClass analsysis
+#########################
+
+
+which is the best to move to the another class it will generate the report
+
+- first report takes almost 48 hrs
+
+
+Inventory configuration
+##########################
+
+if we want information about entire bucket information we can use this inventory configuration
+
+
+AWS snow ball -> for data transfer
+
+AWS storage Gateway -> we can do the cache using this
+
+
+- consistency
+###############
+
+- read after write consistency
+- evenctual consistency - > while deletion if we get any request there is a chance to get the old data 
+- overwriting consistency
+
+s3 perfomance improve
+#################
+
+
+3500 - uploads
+5500 - downloads per sec
+
+to increase this 
+
+we should creat 2 buckets
+
+1. Folder1 -> 3500 requests
+2. Folder2 -> 3500 requests
+
+as a prefix we can add
+
+
+
+
+
+
+
+WAF Firewall
+############
+
+
+
+web application firewall
+1. From resource level we can add the filters  kind of firewall
 
 

@@ -700,7 +700,49 @@ Resource level restrictions
 
 requirement
 -----------
+if we want to restrict the access to only one bucket we can follow below steps
 
+1. we can go to the bucket
+2. we can go to the permissions
+3. we can edit the bucket policies
+
+-> Generate policy
+
+Effect -> Deny or allow
+Principal --> to which user (we have to give the user arn for multiple users , is seperated)
+Actions --> 
+s3:DeleteObject
+s3:DeleteObjectVersion
+s3:GetBucketPolicy
+s3:PutObject
+
+Resources (we should give the arn of the bucket )
+arn:aws:s3:::yt-bala-telugu
+arn:aws:s3:::yt-bala-telugu/*
+
+
+
+Creating the events
+@##########################
+
+
+1. We should create one SNS service first
+ - Fifo (this will support only for SQS)
+
+- select standard
+- Name
+- Access Policy - Everyone - Create topic
+
+- Go to S3
+- Properties
+- Event Notifications
+ 
+
+ifw we are not access any data for 90 days it will go to the intelligent-tiering
+- we can't access also - we should init the restore
+
+- Transfer acceleration
+ - when we do the upload of a file this will go and get upload in the near by locations
 
 
 

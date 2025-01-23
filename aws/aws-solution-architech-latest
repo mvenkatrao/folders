@@ -1,0 +1,217 @@
+IAM 
+####
+
+Identity access management
+
+
+- if we don't want to remember the account id we can make it alias 
+- if we want to give only to particular resrouces we cna do that by creating the groups 
+- if we want to assign the policy from existing user we can do that by using 2nd options
+- if we want to attach directly the policies we can use 3rd options
+- if we want to manage the user password streghth we can go to the account settings
+
+
+- if we create any user with admin access he can do anything xcept 
+
+
+- to give the billing access
+
+ - Go to My accooun my account -> there we can enable or else we can add below policy
+ - Billing
+ - Explore the free tier below
+ https://aws.amazon.com/free
+ 
+ 
+ - single sign on - Pending
+ - secret center - pending
+ 
+ - the document written in the json format this is called policy
+ 
+ 
+ we have three types of policies
+ - Customer managed - this is managed by customer
+ - AWS managed - managed by aws invidual policies
+ 
+ - AWS managed - Job function -> predefined policies example for networking admin all the collected policies
+ 
+ 
+ - we can use one condition for one bucket only for on one networking
+ - we can take
+ 
+- if we want to restrict the access only for one bucket like upload and delete only for one bucket we can do below steps
+- we should go to the policies there we can select the s3
+
+- Put Object
+- DeleteObject
+
+- we should select particular select specific in resource tab
+ - there we we can add the arn number
+ 
+ 
+ we can attach the policies from the policy page also under Entity
+ 
+ 
+ Policy simulator 
+ 
+ - > This is to show why policy is failing
+ 
+ 
+ 
+ Ec2
+ #####
+ 
+ on-demand is pay as you go model
+ Reserved instances -> reserving the servers
+  - standard reserved instances -> it can modify
+  - convertable reserved instances -> we can modify the instance configuration
+  
+  
+  
+Spot Instances
+#################
+
+this is kind of bidding 
+this instance will may go away any time
+
+
+Dedicated Hosts
+#################
+
+we can have the instance dedicadedly
+  
+  
+ 
+				
+ Reserved instances
+ #################
+ 
+ 
+ 
+ CPU selections
+ ######################
+ 
+ aws.amazon.com/ec2/instance-types/
+ 
+ General purpose
+ i means -> intel process
+ g - graviton process
+ a means - AMD process
+ 
+ Compute - > c series
+ Compute optimized -> for better cpu
+ 
+ 
+ Memory optimized -> Better Ram
+ 
+ storage optimized --> it will use for more I/o 
+ HPC optimized --> for deep learning
+ 
+ 
+ 
+ ssh - 22
+ rdp - 	 3389
+ http - 80
+ https - 443
+ dns - 53
+ mssql -1433
+ mysql - 3306
+ 
+ 
+ Windows + Run
+-  mstsc
+ windows latest password
+ ################################
+ 
+ y40.KvDYiIe8GmoCRGI7UAYT(9uq0))t
+ 
+ 
+ when we attach the volume to the instance we should verify by using below commands
+ ###########################################################################################
+ 
+ to verify the mounts
+ lsblk
+ 
+ df -Th --> to see the disk usages
+ 
+ file -s /dev/xvdf -> command to check if any files are contains or not we can check using below command 
+ 
+ file -s /dev/xvdf -> if it shows only like data --> means there is no file system
+ if it shows something else means it contains the file system
+ 
+ 
+ to create the file system below is the command
+ 
+ 
+ mkfs -t xfs /dev/xvdf
+ this file system will be stored in /dev/ 
+ 
+ 
+ -> now we should mount mount that to one folder
+ mkdir extravolume/
+ sudo mount /dev/xvdf extravolume/
+ --> now we should make it permenenly 
+ 
+ -> we should open cat /etc/mtab
+ /dev/xvdf /home/ubuntu/extravolume xfs rw,relatime,attr2,inode64,logbufs=8,logbsize=32k,noquota 0 0
+ 
+ vi /etc/fstab -> here we should add above entry 
+ 
+ mount -all
+ 
+ 
+ xfs_growfs -d /dev/xvdf
+ 
+ 
+ 
+ chkconfig httpd on -> this is for redhat whenever instance is restarted it will start the httpd service automatically
+ 
+ /var/www/html  --> we can deploy here
+ 
+ configuration /etc/nginx/site-available  --> configurations
+ 
+ #######################################################################################
+ 
+ snapshot
+ #########
+ 
+ we can create the snapshot from the volume and we can attach to any instance 
+ - we can also create multiple volumes from one snapshot
+ - we can move this volume to multiple region also and there we can create the volume
+ 
+ - the snapshots are getting stored in s3 buckets of aws
+ 
+ if we have any volume without encryption we can follow below steps
+ 
+ - we can go to the snapshots
+ - we can create the volunme from the same snapshot there we can encrypt the snapshot
+
+
+lifecycle manager
+Data lifecycle manager
+###################
+
+it works with labels and selectors (tags)
+- we can exclude the root volume also --> because it contains the os
+retain
+#####
+recent 10 snapshots will be available
+
+
+age -> we can keep the days
+
+
+requirement
+#########
+
+Golden AMI
+----------
+
+
+i need 10 instances aditional 2 gb volume and apache web server 
+1. launch one ec2 instances do all the customize
+2. create image
+3. we can launch the number of instances 
+
+1. lanuch new branch instances connect new instances and do the instalation
+
+

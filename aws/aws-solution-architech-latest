@@ -214,4 +214,80 @@ i need 10 instances aditional 2 gb volume and apache web server
 
 1. lanuch new branch instances connect new instances and do the instalation
 
+Load Balancer 
+#################
+
+we have 4 load balancers
+
+1. Applicatino Load balancers (ALB)
+2. Network Load balanacer
+3. Gateway Load balancers
+4. Classic Load balancers
+
+- the only diffrence between application load balancer and network load balancer is supported protocals 
+
+1. Application Load balancers
+
+we will have two types of scallings 
+1. Vertical scallings - adding cpu and memory
+2.Horizontal scallings - increasing the instances
+
+
+
+- application load balanacer will run on layer 7
+
+in load balanacer in target group we should mention the port on which port our application running for example 80 8080
+	
+
+ we can change the algoridham under attributes in target groups
+ 
+ 
+ 
+by default application load balanacer works with nested round robin algoridham 
+
+1. nested round robin algoridham - one request to one instance second request goes to second instance like this
+
+2. list outstanding algoridham : it will distribute the traffic where no traffic 
+
+
+stickyness
+##########
+
+if we want route the traffic to only one instance for the particular duration 
+- this will not go to the any of the instance untill this duration
+
+
+we can enable the traffic according to the port range also
+
+we can enable the traffic only from the load balancer we can go and edit the security group in the instance level there we can give the our load balancer security group
+- when we update the security groups id in instance level with load balancer security group it will not be accessable to others except from the load balancer
+
+
+- we  should create one security group if possible
+- we should create one target group
+- we should create one load balancer and the target group we should attach here now
+
+-we can't be sure about the public ip address to the public ip address - ip address is not fix
+
+Network load balancer
+#########################
+
+it supports millions of requests per second with ultra low latency
+
+- layer 4 load balancer
+- it will have perment ip address
+
+
+
+
+
+Autoscalling group
+######################
+
+- it will distribute the traffic according to the requests
+ 1. Create a GOldenAMI (make it as webserver)
+ 2. Create an ELB (Create an empty load balancer)
+ 3. Create an ASG
+   3.1 Create a launch template (settings of new ec2 instance : AMI, Instance ,type)
+
 

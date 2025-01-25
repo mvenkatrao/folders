@@ -289,5 +289,87 @@ Autoscalling group
  2. Create an ELB (Create an empty load balancer)
  3. Create an ASG
    3.1 Create a launch template (settings of new ec2 instance : AMI, Instance ,type)
+1. we should create the AMI from the instance 
+2. we should create the empty load balancer without any targets --> before this we should create the target groups where we should'nt attach any instances here
+ 3. we should create the auto scalling group
+ 3.1 before creating asg we should creat the launch templete --> what is the instance that you want to launch dynamically this information
+   - Provide guidance to help me set up a template that I can use with EC2 Auto Scaling  --> it means it will display which are required
+   
+ 4. we should create the auto scalling now
 
+   -  we should select the availability zones and 
+   - we should attach the load balancer target groups now
+   - enable the turn on elastic load balancing
+   - Health check grace period  ->300 seconds in this duration application can install and server can be up in this duration will not be considered for health check
+   - instance warm up it's also same like above --> by default 300 seconds
+
+
+--> the reason for creating empty load balancer without any associate any instance to the target group is because we will be creating desired as 2 instances those instances will get attached with emplty target group
+
+1. sudo apt install siege
+siege -c1000 -t7M -p localhost
+
+
+above command to test the load   
+   
+	
+	
+- scheduling scalling
+  -> we can schedule the instances 
+  -> go to automatic scalling -> scheduled actions -> there we can 	create the schedulings timings
+  
+  
+Auto scalling deletion policy
+##############################
+
+it will check if any instances are availalbe over multiple availability zone if so it will pick if no
+   -  select oldest configuration of the launch templete
+
+please refer the image in the github
+
+
+http://awswithchetan.com/courses/AWS-VPC-and-Networking
+
+
+
+Dynamic Auto scalling
+#########################
+
+
+it will create the instances according to the cpu memory or load average
+
+in Dynamic auto scalling we have three types of Policy types
+policy types
+#################
+
+   1. Target tracking policy
+   2. Step scalling policy
+   3.Simple scalling policy
+   
+  
+  
+1. Target tracking policy
+##############################
+it will target the cpu utilization and it will increase the instances according to the cpu utilization based on the desired and minimum and maximum count
+
+2. Step scalling policy
+########################
+
+we can add the instances accoridn to the cpu utilization if we have 40 percent of cpu we can decide how many we want to add like that so we can keep on adding so it will creasse step by step 
+
+
+current desired count is 1
+
+when cpu utilization reaches 50 % --> we can add 2+
+
+
+
+simple scalling policy
+#####################
+
+it means accoridn to the alerts it will decrease 
+
+
+
+ Please refer simple scalling 1 screen shot and screen shot 2  also 
 

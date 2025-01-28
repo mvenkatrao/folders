@@ -372,4 +372,53 @@ it means accoridn to the alerts it will decrease
 
 
  Please refer simple scalling 1 screen shot and screen shot 2  also 
+EFS
+
+Elastic file system
+#######################
+
+- it's serverless
+- it will work on port of 2049 nfs
+
+
+while creating we can customize the options or by default also we can create 
+
+- Customize
+ - Name of the nfs 
+   Storage Class
+    - Standard --> backend it will store the data in multiple regions
+	- One zone -> it will store the data only in one Availability zone
+Enable Automatic backup --> this will be charged
+
+Lifecycle Management
+-> this options will help to move the infrequent access data
+
+Transition into A
+7 days access
+Transiton into IA
+on first access -> if we access would you bring this to standard
+
+
+Enhanced -> General purpose
+Bursting --> if we have more I/O operations we should go for the bursting
+
+Prevent root access by default* -> If you checkmark the "Prevent root access by default" option in AWS EFS, it means that the root user on any EC2 instance or client accessing the file system will not have full access to the data. It limits root user privileges to enhance security and protect your files.
+Enforce in-transit encryption for all clients --> If you checkmark the "Enforce in-transit encryption for all clients" option in AWS EFS, it ensures that all data transferred between your EFS file system and clients (like EC2 instances) is encrypted while in transit. This helps protect sensitive data from being intercepted during transfer over the network.
+
+
+we should attach nfs like below commands
+###########################################
+
+sudo apt update
+sudo apt install nfs-common
+
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-034b00dc7d1cd7520.efs.ap-south-1.amazonaws.com:/ /var/www/html/
+
+- for windows we have fsx options	
+
+
+
+Cloud Watch
+############
+
 

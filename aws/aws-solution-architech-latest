@@ -134,6 +134,11 @@ if we have 3 status checks
 1. System status check
 2. Instance status checks
 3.Attached EBS status checks
+
+if we have 2 status checks
+1. System status checks
+2.Instance status checks
+
  to verify the mounts
  lsblk
  

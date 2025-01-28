@@ -127,7 +127,13 @@ we can have the instance dedicadedly
  
  when we attach the volume to the instance we should verify by using below commands
  ###########################################################################################
- 
+ EBS
+#######
+
+if we have 3 status checks 
+1. System status check
+2. Instance status checks
+3.Attached EBS status checks
  to verify the mounts
  lsblk
  

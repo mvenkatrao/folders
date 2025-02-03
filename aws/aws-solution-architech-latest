@@ -449,6 +449,7 @@ Automatic DashBoard means -> it will enable the automatic dashboards based on ou
 - Create Dashboard -> Stacked Area -> give the instances id's and create
 - we can share the dashboards with username and passwords 
 - DashBoard -> share -> Enter Gmail id --> it will be sent with usernamd and passwords
+- period -> how many minutes that should monitor that threshold
 
 
 --> Alarams

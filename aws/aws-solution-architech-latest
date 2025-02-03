@@ -523,6 +523,36 @@ Trusted Realtionship
 	
 	
 	to understand log flow details please refer the screen shot which is named like Log group - cloudwatch.png
+Event Bridge
+###########
+
+
+Purpose : -> to trigger some aws services based on this events  
+Ex :  when my instance stopped that should trigger the SNS services
+
+
+Go to Event Bridge -->  Create Rule 
+
+Event Patterns 
+############
+
+AWS Services
+   -> EC2
+   -> Ec2 Instance State Change Notification
+Specific State
+ -> Stopped 
+ -> Stopping
+ -> pending
+ -> Restarted 
+ 
+ Event Type specification 2
+  - SPecific Instance
+
+
+
+			
+- > to scheduling purpose
+
  
 	
 

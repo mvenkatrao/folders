@@ -459,3 +459,72 @@ Automatic DashBoard means -> it will enable the automatic dashboards based on ou
 we can create the alerts using metrics 
 
 
+stress --cpu 1 --timeout 300
+
+Log groups
+###########
+
+it will monitor the logs which are coming to ec2 or vpc level
+- what traffic we are getting
+
+- > to do this actions
+
+-> go to VPC -> Create flow logs - and select log groups and pending --> we will have to look into it
+
+
+before creating it we need below steps to be followed 
+
+- Create Role -> VPC-Flow-logs-1-1 --> Create inlinepolicy like below
+--> policy Details 
+##################
+
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"logs:CreateLogGroup",
+				"logs:CreateLogStream",
+				"logs:PutLogEvents",
+				"logs:DescribeLogGroups",
+				"logs:DescribeLogStreams"
+			],
+			"Resource": "*"
+		}
+	]
+}
+
+attach the trusted relationship also
+
+Trusted Realtionship
+#####################
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "vpc-flow-logs.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+
+
+--> Go to cloud watch
+--> Create log groups
+   -> Go to VPC --> Create flow logs
+    -> and select the role that we created as above
+	
+	--> we can see those events in the log group which is under located in the cloudwatch
+	
+	
+	to understand log flow details please refer the screen shot which is named like Log group - cloudwatch.png
+ 
+	
+
+
+

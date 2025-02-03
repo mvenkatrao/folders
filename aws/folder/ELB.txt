@@ -1,0 +1,73 @@
+Elastic Load Balancing automatically distributres incoming application traffic across multiple targets. such as Amazon Ec2 Instances, Containers, Or Ip addresses in Your VPC.
+
+- It will distributes the traffic within a same region
+- It's regional level service
+- it can be in diffrent availability zone
+
+
+
+ Network Load Balancer (layer 4 TCP/UDP)
+ Application Load Balancer (Layer 7 HTTP/HTTPS)
+Classic Load Balancer - it's layer 4 and layer 7 
+
+
+OSI Layers
+7 Layers
+ Open system inter connection
+
+1.Application Layer (We can define HTTP/HTTPS) it works with request level
+2. Presentation Layer
+3. Session 
+4. Transport Layer it will just receive the requrest (It's heart of OSI ) it's ot aware of the which request this will just forward the request to the some ip it's layer 4 
+5. network Layer
+6. DataLink Layer
+7. Physical Layer
+
+
+
+ Network Load Balancer :
+#######################
+
+- Opearates at the connection level (layer 4) routing connections to targets - Ec2 Instances or microservices, and containers within VPC based on IP protocal data
+- Routes connections (requests) based on IP protocal (layer 4)
+- Supports TCP/UDP protocals
+- Is capable of handling millions of requests per second while maitaining ultra-low
+- is optimized to handle sudden and volatile traffic patterns.
+
+Application Load Balancer:
+###########################
+
+
+1. Supports with HTTP/HTTPS Requests
+2. Opearates at request level routing the traffic to targets - Ec2 or Containers
+3. Routes based on the content of the requests
+4. Supports path based routing and host based routing
+
+
+###############################
+
+
+when we do the deploy of the application in private subnet
+we will place one load balancer we will have listener
+secure port 443
+insure 80 
+
+
+1. Target group is logical grouping the servers
+
+
+1. We shold create the target group and place the logical group of the server where our application is hosted
+2. we should create the LoadBalancer and we should target the traffic where our we create the target group
+
+
+we we want to define the path based routing we should be creating one grouping of that target and we should targeting to that in the rules to navigate that traffic
+1. we should create Application Load Balancer
+2. We should Create the target groups according to the applicatin of grouping them
+3. we should be creating the rules according to that path
+4. we can have multiple path based routing also with single Load Balancer in layer 7
+
+5. If we go for the kubernetes we can go for the Network Load Balancer - Ingress will take care of this request
+
+
+
+

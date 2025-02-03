@@ -1,0 +1,56 @@
+Dynamo DB is a classified a no sql data base
+
+Amazon DynamoDB is managed NOSQL service with strong consistency and predictable perfomance that shields users from the complexities of manual steps
+
+- it can handle more than 10 trillion requests per second 
+
+DynamoDB Table items:
+#######################
+
+items in the table can either contain scaler attributes which means it contains only one value like strings, numbers, or binary or the could have nested attributes.
+
+Nested attributes are like a map of key-value pairs DynamoDB supports up to 32 levels of nested attrinbutes
+
+
+Understanding DynamoDB primary Keys
+#######################################
+
+now to understand the different types of primary keys, let's look at two types of keys that can exist
+
+1. partition Key : This key is used to identify the partition on which the data is stored
+2. Sort Key: This key is used to identify the location of the items in the parition
+
+
+Using these two keys we can create the one primary key in two ways
+
+1. Simple Primary Key - This only contains one attributes to define the primary key. This attributes itself becomes that partiion key
+
+2.Composite primary key
+
+
+Dynamo DB can be created in two ways
+
+1. Provisioned Mode
+2. On Demand Mode
+
+Provisioned Mode:
+###############
+
+1.it defines the maximum amount of capacity that an application can use from a specified table.
+2. In Provisioned mode , you need to specify the number of reads and write per seconds by the application. And pay based on the allocated capacity 
+3. A provisioned mode is goo for the application that have predictable and consistent traffic.
+
+
+On-Demand
+========
+
+1. if we are not sure about the traffic we can go for the on-demand
+
+
+https://docs.aws.amazon.com/general/latest/gr/ddb.html
+
+
+
+
+
+

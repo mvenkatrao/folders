@@ -1,0 +1,122 @@
+Git is a source code management tool or version control tool
+
+available tools
+Github
+Gitlab
+Bitbucket
+SVN (Subversion)
+CVS --> (Concurrent Version)
+TFS --> Team foundation server
+
+Reposiory : 
+-------
+
+The place where we can store the source code or contributing the code
+
+Steps to create a Repository:
+----------------------------
+1. Create an organization
+2. Creat a Repository
+3. Create a Team
+4. Add the userst to the team
+5. Repo access to the team we can grant the access to them
+-------------------------------------------------------------
+
+
+If we have two repository we can provide the access by using organization
+------------------------------
+
+
+https://github.com/HarshaVenkatTechnologies/Management-tool-Repo.git (HTTPS)
+git@github.com:HarshaVenkatTechnologies/Management-tool-Repo.git (SSH)
+
+above two url are to clone the project
+
+
+
+Renaming the origanazation: we can rename the organization in the settings
+--------------------------------------------------------------------------------
+
+
+Commands to set up the user name and email
+------------------------
+
+git config --global user.name "Username Here"
+git config --global user.email "Email Here"
+
+git config --list
+git config --global --list
+git config --global --edit
+------------------------------------------------------------------------
+
+
+Git merge
+########
+
+
+
+if we want to merge we should go to the the branch in which branch we want the changes to reflect then we should merge from which branch we want to get the changes(pull)
+
+git checkout main
+git merge feature-branch
+-----------------------------------------------------------------------
+
+git show --pretty <commit id>
+git show --pretty="" --name-only <commit id> --> this will show us the only files are commited not the data
+team
+
+git log -2 --> This will display only last two logs
+
+git commit -a -m "This will do the git add and git commit also"
+
+(HEAD -> main) it means it's update to date compare to the remote repository
+------------------------------------------------------------------------------------
+
+
+Deleting the branches
+---------------------
+
+git branch -d branchname: Deletes the branch only if it has been merged.
+git branch -D branchname: Forces the deletion of the branch, even if it hasn't been merged.
+-------------------------------------------------------------------------------------------
+
+git show --pretty=oneline Displays the commit information in a single line.
+=============================================================================
+
+git reset 
+--------
+
+what is git reset?
+
+
+when we do the commit in locally which is not yet pushed to remote
+and if you want to remove the commit's we can use the git reset  
+- git reset <commit id > -> this will remove the commit id's which has been commited after this commit's
+- changes will come to the working area
+
+- git reset will have three options
+ - soft reset -> remove the commit id and keep the changes in staging area
+ - hard reset -> force dletion discard the changes
+ - mixed reset -> default option -> it will remove the changes and it will bring the changes to the working area
+
+
+###############################################################
+
+Git revert :
+###########
+
+
+we can use git revert to remove the remote changes
+ - when we dlete the local changes if we want to make those changes to remote we can't pull that will overwirte the local changes to avoid we can use git revert 
+so that changes will be removed
+- it will create the one more commit id
+
+
+git restore
+###########
+
+git restore --staged file.sh
+
+it bring the changes to the working area from there we can remove the file also
+if it's not in staging we can directly give the file name without --staged 
+

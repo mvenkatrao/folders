@@ -1,0 +1,142 @@
+Relational DataBase Service
+Offered by AWS
+
+Presentation tier basically GUI
+
+
+RDMS or SQL Data bases
+
+Ex: MYSQL
+Oracle
+Microsoft SQL Server
+PostGress
+MariaDB
+IBM DB2
+
+
+
+The customer table contains data about the customer
+
+Customer ID Primary Key
+Customer Name
+Billing address
+shipping address
+
+The Order table contians transactional information
+
+Order ID (Primary Key)
+Customer ID (Foreign key)
+order data
+Shiping date
+order status
+
+
+
+###########################################################
+
+
+
+
+NoSql --> Document Oriented Databases
+
+Ex: MongoDB
+CouchBase
+Cassandra. etc.
+
+
+what is Relational DataBase?
+
+A relatinal database (RDB) is a way of structuring information in tables, row and coloumns an relatinal database has the ability to establish links/relationalships between information by joining tables, which makes it easy to understand and gain insights about the relatinship between
+various data points
+
+
+
+Advantages or features of RDS:
+###################################
+
+You can use the database products you are already familar with : mariaDB,Microsoft SQL server MY SQL 
+Amazon RDS manages backups, software patching automatic failure detectin, and recovery
+
+
+
+RDS components:
+#############
+
+DB Engine it's a specific relational data base software
+
+
+AutoScalling also available for the storage in RDS
+
+
+
+We can run a DB instance on a virtual private cloud (VPC) using the Amazon Virtual Private Cloud (Amazon VPC) service.
+when you use a VPC, you have control over your virtual networking envrionemnt you can choose your own ip address range create subnets and configure routing access control lists
+
+
+we can use security also
+
+
+Each RDS will get Endpoint (URL/Domain)
+
+Primary --? Active
+Standard By --? is active
+
+
+- DB Failover
+- DB Replication
+- DB Availability
+- Scalability
+- Redentation
+- Replication - we should
+- Upgradation - we should
+
+- RDS is a regional level service
+
+Whenever upgradation required this will happen to stand-by-node later that will promote to the master 
+stadby will become primary primary will become stadnby
+
+
+ReadReplica's is introducted recently available in only few region in usa
+
+For read the data can contact only in ReadReplica
+
+Only write operations will happen in Primary
+
+
+If we go for the multi agent means only one primary one stand-by
+if we go for the multi deployment one primary multiple stand-by
+
+
+#######################################################################
+
+
+If we go for the Aurora it will give best perfomance
+
+
+it supports multi region architecture
+it's nt about multi availability zone amazon aura is supports for the multi region level
+
+it supports only MySql or postgress 
+
+Burstable classes means it will take more cpu even if we give also
+Connectivity:
+
+who can contact this RDS
+Connect ec2 
+Public access - Yes but not safe in realtime
+mysql default port is 3306
+
+RDS needs to improve 
+
+
+mysqlrdsdemo.cluster-cj46wgw2a0aj.ap-south-1.rds.amazonaws.com
+
+End Point
+
+RDS is a relational data base
+
+
+
+Initial database name means initiating the schema while creating the data base itself
+
+

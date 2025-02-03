@@ -1,0 +1,29 @@
+Autoscalling is to maintain the fault torralance
+
+
+Min 2
+Max 5
+Desired 2
+
+Scalling plans
+manual Scalling - Using GUI CLi API
+Scheduled scalling - Based on Time
+Dynamic Scalling - Based on the matrics based on the traffic
+
+The required thing to create for the launch configurations
+############################################################
+
+AMI 
+InstanceType
+IAMROle
+SSHKeyPair
+S.G
+Storage
+UserData
+
+
+We Should create the one AMI from the current running machine 
+
+Desired when there is no load it will come down
+Min - without making down it will keep some min
+siege -c200 -t7M -p http://localhost:8080/maven-web-application/

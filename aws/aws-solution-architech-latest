@@ -432,4 +432,28 @@ sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,ret
 Cloud Watch
 ############
 
+- Cloud is a monitoring service 
+- we can monitor the aws resources etc, resources utilizations and buckets events so on 
+- we can scale the instances also based on the alerts 
+- we can't see the memory utilization by default
+
+- pending have to watch the creating the custome metrics by installing the cloud agent
+- if want to enable the detailed monitoring we can enable on the instances
+
+
+
+Automatic DashBoard means -> it will enable the automatic dashboards based on our usages of the services
+
+- we can enable the cpu custome metrics using dashboards
+
+- Create Dashboard -> Stacked Area -> give the instances id's and create
+- we can share the dashboards with username and passwords 
+- DashBoard -> share -> Enter Gmail id --> it will be sent with usernamd and passwords
+
+
+--> Alarams
+##############
+
+we can create the alerts using metrics 
+
 
